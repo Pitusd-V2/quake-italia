@@ -1,0 +1,697 @@
+/* ---------- Layout generale ---------- */
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+.container--wide { max-width: 76rem; }
+
+.app-main {
+  flex: 1;
+  padding-block: var(--sp-5) var(--sp-7);
+}
+
+.stack { display: flex; flex-direction: column; gap: var(--sp-4); }
+.stack-sm { display: flex; flex-direction: column; gap: var(--sp-2); }
+.stack-lg { display: flex; flex-direction: column; gap: var(--sp-6); }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.row--between { justify-content: space-between; }
+
+.block { display: block; }
+.h3 { font-size: var(--fs-md); }
+.lead { font-size: var(--fs-md); }
+
+.inline-icon {
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+
+/* ---------- Header e navigazione ---------- */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.app-header__inner {
+  max-width: 76rem;
+  margin-inline: auto;
+  min-height: var(--header-h);
+  padding-inline: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+.app-header__brand {
+  color: var(--text);
+  text-decoration: none;
+  margin-right: auto;
+  border-radius: var(--r-sm);
+}
+.app-header__brand:hover { color: var(--text); }
+
+.logo svg { flex-shrink: 0; }
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.logo__word {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.top-nav { display: none; gap: var(--sp-1); }
+.top-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 2.75rem;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-pill);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+.top-nav__link svg { width: 1.15rem; height: 1.15rem; }
+/* Al passaggio del mouse solo una sottolineatura: lo sfondo pieno è riservato alla pagina in cui sei. */
+.top-nav__link:hover { color: var(--text); text-decoration: underline; text-underline-offset: 0.25em; }
+/* [aria-current] = "page" sulla pagina della voce, "true" sulle pagine che le appartengono (es. "Altro"). */
+/* Azzurro chiaro, non blu pieno: il blu pieno è del pulsante "Ho sentito", che è un'azione e non una pagina. */
+.top-nav__link[aria-current] { background: var(--primary-soft); color: var(--primary); text-decoration: none; }
+.top-nav__link--divider { margin-left: var(--sp-3); position: relative; }
+.top-nav__link--divider::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--sp-2));
+  top: 25%;
+  bottom: 25%;
+  border-left: 1px solid var(--border);
+}
+
+.only-wide { display: none; }
+
+.bottom-nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  display: flex;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2px 10px rgb(0 0 0 / 6%);
+}
+.bottom-nav__link {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--bottom-nav-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: clamp(12px, 3.4vw, 15px);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  /* 5 voci a 375px: ~75px l'una. Poco margine ai lati, così le parole lunghe ("Terremoti") stanno su una riga
+     anche a 320px; "Il mio comune" va a capo su due righe, senza tagli. Il testo è in px: non cresce con le scritte grandi. */
+  padding: var(--sp-1) 2px;
+  border-radius: 0;
+}
+.bottom-nav__link svg { width: 1.6rem; height: 1.6rem; flex-shrink: 0; }
+.bottom-nav__link[aria-current] { color: var(--primary); }
+/* La "pillola" della voce attiva resta dentro la sua colonna anche con le scritte più grandi. */
+.bottom-nav__link[aria-current] svg {
+  background: var(--primary-soft);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+  width: min(2.6rem, calc(100% - 20px));
+  box-sizing: content-box;
+}
+
+.app { padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom)); }
+
+@media (min-width: 1100px) {
+  /* Con le scritte molto grandi (e la voce Analisi) le voci possono non stare in una riga: vanno a capo, senza uscire dallo schermo. */
+  .top-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+  /* Le icone, come sul telefono, quando c'è spazio (da 1500px); sotto solo il testo. */
+  .top-nav__link svg { display: none; }
+  .top-nav__link { padding: 0 var(--sp-2); }
+  .bottom-nav { display: none; }
+  .app { padding-bottom: 0; }
+  .only-wide { display: inline; }
+  .only-narrow { display: none; }
+  /* Sotto i 1400px il pulsante in alto dice solo "Ho sentito", per lasciare spazio al menu. */
+  .btn--felt-small .only-wide { display: none; }
+  .btn--felt-small .only-narrow { display: inline; }
+}
+@media (min-width: 1500px) {
+  .top-nav__link svg { display: inline-block; }
+}
+@media (min-width: 1400px) {
+  .top-nav__link { padding: 0 var(--sp-3); }
+  .btn--felt-small .only-wide { display: inline; }
+  .btn--felt-small .only-narrow { display: none; }
+}
+
+.app-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding-block: var(--sp-5);
+}
+
+/* ---------- Pulsanti ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-5);
+  border-radius: var(--r-md);
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: var(--fs-base);
+  line-height: 1.25;
+  text-decoration: none;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), transform 120ms var(--ease);
+}
+.btn svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn:disabled { opacity: 0.5; }
+
+.btn--primary { background: var(--primary); color: var(--on-primary); }
+.btn--primary:hover:not(:disabled) { background: var(--primary-hover); color: var(--on-primary); }
+
+.btn--secondary { background: var(--surface); color: var(--primary); border-color: var(--primary); }
+.btn--secondary:hover:not(:disabled) { background: var(--primary-soft); color: var(--primary); }
+
+.btn--ghost { background: transparent; color: var(--primary); text-decoration: underline; text-underline-offset: 0.2em; }
+.btn--ghost:hover:not(:disabled) { background: var(--surface-2); color: var(--primary-hover); }
+
+.btn--block { width: 100%; }
+
+/* Il pulsante più importante: "Ho sentito una scossa" */
+.btn--felt {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  width: 100%;
+  padding: var(--sp-4) var(--sp-5);
+  min-height: 5.5rem;
+  border-radius: var(--r-lg);
+  background: var(--primary);
+  color: var(--on-primary);
+  text-decoration: none;
+  box-shadow: var(--shadow-2);
+  transition: background-color var(--dur) var(--ease), transform 120ms var(--ease);
+}
+.btn--felt:hover { background: var(--primary-hover); color: var(--on-primary); }
+.btn--felt:active { transform: scale(0.99); }
+.btn--felt > svg { width: 2.6rem; height: 2.6rem; flex-shrink: 0; }
+.btn--felt > span { display: flex; flex-direction: column; text-align: left; }
+.btn--felt__title { font-size: var(--fs-lg); font-weight: 700; line-height: 1.2; }
+.btn--felt__sub { opacity: 0.92; }
+
+.btn--felt-small {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 2.75rem;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-pill);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn--felt-small:hover { background: var(--primary-hover); color: var(--on-primary); }
+.btn--felt-small svg { width: 1.15rem; height: 1.15rem; }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+.icon-btn:hover:not(:disabled) { background: var(--surface-2); }
+.icon-btn svg { width: 1.25rem; height: 1.25rem; }
+
+.spin { animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Card, avvisi, stati ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-1);
+}
+
+.page-header { display: flex; flex-direction: column; gap: var(--sp-2); }
+.page-header h1 { font-size: var(--fs-2xl); letter-spacing: -0.015em; }
+.page-header h1:focus { outline: none; }
+.page-header__intro { color: var(--text-muted); font-size: var(--fs-md); }
+
+.notice {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: 1px solid;
+}
+.notice__icon { flex-shrink: 0; width: 1.6rem; height: 1.6rem; display: inline-flex; }
+.notice__icon svg { width: 100%; height: 100%; }
+.notice__body { display: flex; flex-direction: column; gap: var(--sp-2); align-items: flex-start; }
+.notice--info { background: var(--primary-soft); border-color: color-mix(in srgb, var(--primary) 35%, transparent); }
+.notice--info .notice__icon { color: var(--primary); }
+.notice--ok { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.notice--ok .notice__icon { color: var(--ok); }
+.notice--warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+.notice--warn .notice__icon { color: var(--warn); }
+.notice--danger { background: var(--danger-soft); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
+.notice--danger .notice__icon { color: var(--danger); }
+
+.loading { display: flex; flex-direction: column; gap: var(--sp-3); }
+.skeleton {
+  height: 7rem;
+  border-radius: var(--r-lg);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border: 1px solid var(--border);
+}
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+.empty {
+  padding: var(--sp-5);
+  border: 2px dashed var(--border);
+  border-radius: var(--r-lg);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.summary { font-size: var(--fs-md); }
+
+.eyebrow {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+
+/* ---------- Magnitudo e livelli ---------- */
+
+.mag {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--lvl);
+  color: var(--on-lvl);
+  border-radius: var(--r-md);
+  line-height: 1;
+}
+.mag__value { font-weight: 700; }
+.mag__unit { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; opacity: 0.95; }
+.mag--sm { width: 3.25rem; height: 3.25rem; }
+.mag--sm .mag__value { font-size: var(--fs-md); }
+.mag--md { width: 4.5rem; height: 4.5rem; }
+.mag--md .mag__value { font-size: var(--fs-xl); }
+.mag--lg { width: 6.5rem; height: 6.5rem; border-radius: var(--r-lg); }
+.mag--lg .mag__value { font-size: var(--fs-3xl); }
+.mag--lg .mag__unit { font-size: 0.72rem; }
+
+.level {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+.bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 1em;
+}
+.bars__bar {
+  width: 4px;
+  border-radius: 1px;
+  background: var(--border);
+}
+.bars__bar--on { background: var(--lvl, var(--primary)); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-3);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  width: fit-content;
+}
+.chip--felt-clear { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 45%, transparent); color: var(--text); }
+.chip--felt-light { background: var(--primary-soft); border-color: color-mix(in srgb, var(--primary) 40%, transparent); color: var(--text); }
+.chip--felt-maybe { background: var(--surface-2); color: var(--text); }
+.chip--felt-no { background: transparent; color: var(--text-muted); }
+
+/* ---------- Scheda terremoto ---------- */
+
+.quake-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.quake-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.quake-card:hover { border-color: var(--primary); box-shadow: var(--shadow-2); color: var(--text); }
+.quake-card__body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.quake-card__title { font-size: var(--fs-md); overflow-wrap: anywhere; }
+.quake-card__sub { color: var(--text-muted); }
+.quake-card__meta { display: flex; gap: var(--sp-2); align-items: baseline; }
+.quake-card__meta .inline-icon { color: var(--text-muted); align-self: center; }
+.quake-card__tags { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); align-items: center; margin-top: var(--sp-2); }
+.quake-card__chevron { width: 1.5rem; height: 1.5rem; align-self: center; color: var(--text-muted); flex-shrink: 0; }
+
+/* ---------- Moduli ---------- */
+
+.field { display: flex; flex-direction: column; gap: var(--sp-1); }
+.field__label { font-weight: 700; }
+.field__help { font-size: var(--fs-sm); color: var(--text-muted); }
+.field__error { color: var(--danger); font-weight: 700; }
+
+.input {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: max(1rem, 16px);
+}
+.input:focus-visible { border-color: var(--focus); outline-offset: 1px; }
+.input::placeholder { color: var(--text-muted); opacity: 0.8; }
+
+.input-with-icon { position: relative; }
+.input-with-icon > svg {
+  position: absolute;
+  left: var(--sp-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.input-with-icon .input { padding-left: 2.75rem; }
+
+.place-picker { display: flex; flex-direction: column; gap: var(--sp-3); }
+.place-picker__or { text-align: center; color: var(--text-muted); font-weight: 700; }
+.place-results { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.place-result {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-md);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  text-align: left;
+}
+.place-result:hover { border-color: var(--primary); background: var(--primary-soft); }
+.place-result svg { width: 1.25rem; height: 1.25rem; color: var(--primary); flex-shrink: 0; }
+
+/* Segmented control (radio) */
+.segmented { border: 0; margin: 0; padding: 0; min-width: 0; }
+.segmented__legend { font-weight: 700; margin-bottom: var(--sp-2); padding: 0; }
+.segmented__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.segmented__option { position: relative; flex: 1 1 auto; }
+.segmented__option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.segmented__option span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-md);
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.segmented__option:hover span { border-color: var(--primary); }
+.segmented__option input:checked + span {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+.segmented__option input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+/* Interruttore */
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.switch-row__text { display: flex; flex-direction: column; gap: 2px; }
+.switch-row__label { font-weight: 700; }
+.switch-row__desc { color: var(--text-muted); font-size: var(--fs-sm); }
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--tap);
+  padding: 0 var(--sp-2);
+  border: 0;
+  background: transparent;
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+}
+.switch__track {
+  position: relative;
+  width: 3.5rem;
+  height: 2rem;
+  border-radius: var(--r-pill);
+  background: var(--border-strong);
+  transition: background-color var(--dur) var(--ease);
+}
+.switch__thumb {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  transition: transform var(--dur) var(--ease);
+}
+.switch[aria-checked='true'] .switch__track { background: var(--primary); }
+.switch[aria-checked='true'] .switch__thumb { transform: translateX(1.5rem); }
+.switch__state { font-weight: 700; min-width: 1.6rem; text-align: left; }
+.switch:disabled { opacity: 0.5; }
+
+/* ---------- Avviso nuova scossa ---------- */
+
+.banner-region {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 35;
+}
+.banner {
+  max-width: 46rem;
+  margin: var(--sp-3) auto 0;
+  width: calc(100% - 2 * var(--sp-4));
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: var(--shadow-2);
+  animation: drop-in 240ms var(--ease);
+}
+.banner__link { flex: 1; display: flex; flex-direction: column; color: inherit; text-decoration: none; padding-block: var(--sp-1); }
+.banner__link:hover { color: inherit; text-decoration: underline; }
+.banner .icon-btn { color: inherit; }
+.banner .icon-btn:hover { background: rgb(127 127 127 / 25%); }
+@keyframes drop-in { from { transform: translateY(-8px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- Dati aggiornati ---------- */
+
+.data-status {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+.data-status--warn { color: var(--warn); font-weight: 700; }
+
+/* ---------- Mappa ---------- */
+
+.quake-map {
+  width: 100%;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.quake-map--page { height: min(70dvh, 640px); min-height: 360px; }
+.quake-map--detail { height: 320px; }
+.quake-map--loading { display: flex; align-items: center; justify-content: center; color: var(--text-muted); height: 320px; }
+
+.quake-map .maplibregl-ctrl-group button { width: 44px; height: 44px; }
+.quake-map .maplibregl-ctrl-group { border-radius: var(--r-md); overflow: hidden; }
+.maplibregl-popup-content {
+  font-family: var(--font);
+  font-size: 1rem;
+  border-radius: var(--r-md) !important;
+  padding: var(--sp-3) var(--sp-5) var(--sp-3) var(--sp-3) !important;
+  background: var(--surface) !important;
+  color: var(--text);
+}
+.maplibregl-popup-tip { border-top-color: var(--surface) !important; border-bottom-color: var(--surface) !important; }
+.maplibregl-popup-close-button { width: 32px; height: 32px; font-size: 22px; color: var(--text); }
+.map-popup { display: flex; flex-direction: column; gap: 2px; }
+.map-popup a { font-weight: 700; margin-top: var(--sp-1); }
+
+.home-marker {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-accent);
+  color: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 35%);
+}
+
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.legend li { display: flex; align-items: center; gap: var(--sp-2); }
+.legend__dot { width: 14px; height: 14px; border-radius: 50%; background: var(--lvl); flex-shrink: 0; }
+.legend .bars__bar--on { background: var(--lvl); }
+
+.depth-legend { max-width: 28rem; }
+.depth-legend__bar { height: 12px; border-radius: var(--r-pill); }
+.depth-legend__ticks { display: flex; justify-content: space-between; font-size: var(--fs-sm); color: var(--text-muted); margin-top: 2px; }
+
+/* Frase guida accanto al nome: solo su schermi larghi, per non affollare il telefono. */
+.logo__text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo__tagline { display: none; font-size: 0.72rem; font-weight: 400; color: var(--text-muted); }
+@media (min-width: 1280px) {
+  .logo__tagline { display: block; }
+}
+
+
+/* Solo dove sono possibili danni: il 112 a portata di pollice, senza urlare. */
+.btn--emergency { background: var(--danger); color: var(--danger-soft); }
+.btn--emergency:hover:not(:disabled) { background: var(--danger); color: var(--danger-soft); filter: brightness(1.08); }
+
+/* ---------- Pagina "Altro": grandi schede-link ---------- */
+
+.more-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.more-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: var(--tap);
+  padding: var(--sp-4);
+  border-radius: var(--r-lg);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+}
+.more-link:hover { color: var(--text); border-color: var(--primary); background: var(--primary-soft); }
+.more-link > svg:first-child { width: 2rem; height: 2rem; color: var(--primary); flex-shrink: 0; }
+.more-link > svg:last-child { width: 1.5rem; height: 1.5rem; margin-left: auto; flex-shrink: 0; color: var(--text-muted); }
+.more-link > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.more-link .strong { font-size: var(--fs-md); }
+
+/* Scheda del terremoto: "Dati tecnici" chiusi di base. */
+.tech-details > summary { display: flex; align-items: center; gap: var(--sp-2); min-height: var(--tap); cursor: pointer; color: var(--primary); }
+.tech-details > summary h2 { font-size: var(--fs-lg); }
+.tech-details:not([open]) { gap: 0; }

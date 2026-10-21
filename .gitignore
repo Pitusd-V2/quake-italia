@@ -1,0 +1,26 @@
+# Dipendenze (si reinstallano con npm install)
+node_modules/
+
+# Build e file generati
+dist/
+dev-dist/
+coverage/
+*.tsbuildinfo
+
+# Variabili d'ambiente e file locali
+.env
+.env.*
+*.local
+
+# Log
+*.log
+npm-debug.log*
+
+# Impostazioni personali di Claude Code (launch.json invece è condiviso)
+.claude/settings.local.json
+.claude/worktrees/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+desktop.ini

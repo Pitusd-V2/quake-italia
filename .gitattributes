@@ -1,0 +1,7 @@
+# A capo "LF" per tutti i file di testo, su Windows come su Linux (la CI gira su Linux).
+* text=auto eol=lf
+
+# File binari: mai convertiti.
+*.png binary
+*.ico binary
+*.woff2 binary

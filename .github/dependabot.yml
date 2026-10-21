@@ -1,0 +1,16 @@
+# Dependabot propone gli aggiornamenti delle librerie (soprattutto quelli di sicurezza).
+# Ogni proposta passa dai controlli della CI prima di poter essere accettata.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      dipendenze-minori:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

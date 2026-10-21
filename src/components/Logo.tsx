@@ -1,0 +1,28 @@
+import { TAGLINE } from '../lib/brand';
+
+/** Sagoma dell'Italia (Natural Earth) attraversata dal tracciato di un sismografo. Colori fissi: è il marchio. */
+const ITALY = 'M12.2 12.6L15.0 12.6L16.2 11.4L16.0 10.9L17.2 10.1L17.3 11.0L18.6 11.8L19.1 13.0L20.4 9.8L21.2 10.7L22.6 10.5L23.2 11.1L23.2 9.3L24.4 9.6L24.5 8.0L26.4 8.5L27.3 7.5L30.6 7.0L30.6 7.7L31.4 8.8L36.1 9.7L34.9 10.9L35.8 11.4L35.3 12.3L36.7 14.1L36.2 14.2L35.8 13.3L34.3 13.3L33.7 14.0L31.0 14.9L30.8 15.9L31.9 17.2L30.9 18.4L31.4 20.8L35.6 23.9L37.2 28.1L39.1 30.3L41.3 31.8L44.9 31.9L43.9 33.8L51.3 37.9L53.2 40.6L52.7 41.9L51.7 41.4L51.0 39.7L49.6 39.6L48.5 38.6L47.6 38.9L46.2 42.3L48.3 44.0L48.5 45.9L46.5 46.8L46.3 48.7L44.5 51.0L43.3 51.0L43.0 49.8L43.7 49.2L44.1 47.5L45.0 47.0L45.1 46.2L43.2 41.1L40.6 39.9L40.6 38.8L39.9 37.9L38.4 38.2L38.8 37.6L37.3 37.2L36.2 35.1L33.7 35.0L32.3 34.0L28.7 30.1L27.5 29.4L26.9 29.6L27.0 28.9L25.4 26.9L24.7 26.8L23.7 22.5L23.0 21.7L18.4 19.8L15.7 22.4L13.9 22.9L14.4 21.0L13.3 21.2L11.8 20.2L11.6 19.4L12.1 17.8L10.8 16.7L12.4 15.9L12.7 15.2L11.4 13.5ZM42.8 49.6L41.1 53.3L41.8 55.2L41.1 57.0L39.1 56.6L37.7 55.0L36.4 54.8L34.2 53.2L32.7 52.8L31.6 51.6L32.6 49.8L33.2 50.5L34.2 49.8L34.8 49.8L36.4 50.8L41.2 50.0L42.5 49.3L43.0 49.4ZM21.5 36.8L22.2 38.7L21.6 39.8L21.3 45.1L19.5 44.7L19.2 46.1L18.0 46.2L17.2 44.9L17.7 41.8L17.2 41.5L17.4 39.7L16.4 37.9L16.5 36.7L17.8 37.0L20.1 35.0L21.5 36.2Z';
+const TRACE = '5,31 23,31 26.5,24 30.5,38 34.5,18 38.5,40 41.5,27 44,31 59,31';
+
+export function LogoMark({ size = 36 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <rect width="64" height="64" rx="14" fill="#0e5e7e" />
+      <path d={ITALY} fill="#fff" />
+      <polyline points={TRACE} fill="none" stroke="#0e5e7e" strokeWidth="6.4" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points={TRACE} fill="none" stroke="#ff7a8a" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function Logo() {
+  return (
+    <span className="logo">
+      <LogoMark />
+      <span className="logo__text">
+        <span className="logo__word">Quake Italia</span>
+        <span className="logo__tagline">{TAGLINE}</span>
+      </span>
+    </span>
+  );
+}

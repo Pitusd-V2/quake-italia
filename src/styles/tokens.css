@@ -1,0 +1,196 @@
+/*
+ * Design tokens. Ogni colore dei componenti passa da qui:
+ * tema chiaro, scuro e alto contrasto si cambiano solo in questo file.
+ */
+:root {
+  color-scheme: light;
+  --font: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, monospace;
+
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef2f5;
+  --text: #14212b;
+  --text-muted: #4b5a67;
+  --border: #cfd8e0;
+  --border-strong: #8a99a6;
+
+  --primary: #0e5e7e;
+  --primary-hover: #0a4a64;
+  --on-primary: #ffffff;
+  --primary-soft: #e0eff5;
+  --focus: #0b57d0;
+
+  --ok: #1d7a46;
+  --ok-soft: #e3f4ea;
+  --warn: #8a5100;
+  --warn-soft: #fff3dc;
+  --danger: #b42318;
+  --danger-soft: #fde8e6;
+  --brand-accent: #e2475e;
+
+  /* Livelli di magnitudo: riempimento + testo con contrasto adeguato */
+  --lvl0: #5d6b78;  --on-lvl0: #ffffff;
+  --lvl1: #2f7d5b;  --on-lvl1: #ffffff;
+  --lvl2: #e3b505;  --on-lvl2: #1d1d1d;
+  --lvl3: #ea7c1c;  --on-lvl3: #1d1d1d;
+  --lvl4: #c62828;  --on-lvl4: #ffffff;
+  --lvl5: #7a1f3d;  --on-lvl5: #ffffff;
+
+  /* Zone sismiche: stessa scala dei livelli (1 = più pericolosa). */
+  --zone1: var(--lvl4); --on-zone1: var(--on-lvl4);
+  --zone2: var(--lvl3); --on-zone2: var(--on-lvl3);
+  --zone3: var(--lvl2); --on-zone3: var(--on-lvl2);
+  --zone4: var(--lvl1); --on-zone4: var(--on-lvl1);
+
+  --chart-grid: #e3e8ed;
+  --chart-axis: #8a99a6;
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-fit: #4b5a67;
+
+  --shadow-1: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
+  --shadow-2: 0 4px 12px rgb(16 24 40 / 10%);
+  --scrim: rgb(10 16 22 / 55%);
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+
+  --tap: 3.25rem; /* altezza minima dei controlli: ~52px */
+  --header-h: 4rem;
+  --bottom-nav-h: 4.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 180ms;
+}
+
+/* Dimensione del testo scelta nelle impostazioni */
+:root { font-size: 118.75%; }
+:root[data-text-size='normal'] { font-size: 106.25%; }
+:root[data-text-size='large'] { font-size: 118.75%; }
+:root[data-text-size='xlarge'] { font-size: 137.5%; }
+
+/* Tema scuro: solo se scelto ("Scuro") o se l'utente ha scelto "Automatico" e il sistema è scuro. Di base è chiaro. */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme='auto'] {
+    color-scheme: dark;
+    --bg: #111a1d;
+    --surface: #18242a;
+    --surface-2: #203038;
+    --text: #e9eef2;
+    --text-muted: #a9b7c3;
+    --border: #2e4048;
+    --border-strong: #5b6b78;
+    --primary: #86c3cc;
+    --primary-hover: #a3d4db;
+    --on-primary: #0b262c;
+    --primary-soft: #1d3a40;
+    --focus: #8ab4f8;
+    --ok: #5fd08f;
+    --ok-soft: #15301f;
+    --warn: #f5b84d;
+    --warn-soft: #3a2a0c;
+    --danger: #ff8a80;
+    --danger-soft: #3d1513;
+  --chart-grid: #26323b;
+    --chart-axis: #6b7c8a;
+    --chart-1: #3987e5;
+    --chart-2: #d95926;
+    --chart-fit: #c3ccd4;
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+    --shadow-2: 0 6px 16px rgb(0 0 0 / 45%);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #111a1d;
+  --surface: #18242a;
+  --surface-2: #203038;
+  --text: #e9eef2;
+  --text-muted: #a9b7c3;
+  --border: #2e4048;
+  --border-strong: #5b6b78;
+  --primary: #86c3cc;
+  --primary-hover: #a3d4db;
+  --on-primary: #0b262c;
+  --primary-soft: #1d3a40;
+  --focus: #8ab4f8;
+  --ok: #5fd08f;
+  --ok-soft: #15301f;
+  --warn: #f5b84d;
+  --warn-soft: #3a2a0c;
+  --danger: #ff8a80;
+  --danger-soft: #3d1513;
+  --chart-grid: #26323b;
+  --chart-axis: #6b7c8a;
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-fit: #c3ccd4;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-2: 0 6px 16px rgb(0 0 0 / 45%);
+}
+
+/* Alto contrasto (chiaro) */
+:root[data-contrast='high'] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f0f0f0;
+  --text: #000000;
+  --text-muted: #1f1f1f;
+  --border: #000000;
+  --border-strong: #000000;
+  --primary: #00405a;
+  --primary-hover: #002a3b;
+  --primary-soft: #d6ecf5;
+  --focus: #0032a0;
+}
+
+/* Alto contrasto (scuro) */
+@media (prefers-color-scheme: dark) {
+  :root[data-contrast='high'][data-theme='auto'] {
+    --bg: #000000;
+    --surface: #000000;
+    --surface-2: #141414;
+    --text: #ffffff;
+    --text-muted: #eeeeee;
+    --border: #ffffff;
+    --border-strong: #ffffff;
+    --primary: #7fdcff;
+    --primary-hover: #b3ebff;
+    --on-primary: #000000;
+    --primary-soft: #0b3445;
+    --focus: #ffd400;
+  }
+}
+:root[data-theme='dark'][data-contrast='high'] {
+  --bg: #000000;
+  --surface: #000000;
+  --surface-2: #141414;
+  --text: #ffffff;
+  --text-muted: #eeeeee;
+  --border: #ffffff;
+  --border-strong: #ffffff;
+  --primary: #7fdcff;
+  --primary-hover: #b3ebff;
+  --on-primary: #000000;
+  --primary-soft: #0b3445;
+  --focus: #ffd400;
+}

@@ -1,0 +1,30 @@
+# Controlli automatici a ogni push e pull request.
+# Se un test di sicurezza fallisce o una dipendenza ha vulnerabilità note, il controllo diventa rosso.
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # ogni lunedì: ricontrolla le dipendenze anche se il codice non cambia
+
+permissions:
+  contents: read # il workflow può solo leggere il codice, non modificarlo
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      # `npm ci` installa ESATTAMENTE le versioni del package-lock.json (niente sorprese).
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
+      # Typecheck + test (inclusi quelli di sicurezza) + build.
+      - run: npm run build
