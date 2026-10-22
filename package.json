@@ -2,7 +2,7 @@
   "name": "quake-italia",
   "private": true,
   "version": "0.1.0",
-  "description": "I dati ufficiali INGV sui terremoti in Italia, spiegati per tutti.",
+  "description": "Capire i terremoti in Italia, con i dati ufficiali INGV.",
   "type": "module",
   "scripts": {
     "dev": "vite",

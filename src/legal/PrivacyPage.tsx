@@ -48,8 +48,8 @@ export function PrivacyPage() {
       body: (
         <>
           <p>
-            Il titolare del trattamento è <strong>{LEGAL.owner.name}</strong>, {LEGAL.owner.place}, che gestisce {S} come
-            progetto personale, gratuito e senza scopo di lucro.
+            Il titolare del trattamento è <strong>{LEGAL.owner.name}</strong>, progetto personale, gratuito e senza scopo di
+            lucro.
           </p>
           <p>
             Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti scrivi a: <ContactEmail />.

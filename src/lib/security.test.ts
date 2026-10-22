@@ -5,6 +5,8 @@ import { cleanText, isAllowedLink, isSafeId } from './sanitize';
 import { parseFeature } from './ingv';
 import { sanitizeSettings } from '../state/settings';
 import { SECURITY_HEADERS, headersFile } from '../../security/headers';
+import { toCsv } from './export';
+import type { Quake } from './types';
 
 const feature = (props: Record<string, unknown>, coords: unknown[] = [13.1, 42.8, 10]) => ({
   properties: { eventId: 123, time: '2026-10-20T10:00:00.000000', mag: 3, magType: 'ML', place: '4 km E Norcia (PG)', ...props },
@@ -152,5 +154,25 @@ describe('Privacy allineata al codice', () => {
       expect(DESCRITTI[host], `Nuovo servizio esterno ${host}: aggiorna la Privacy Policy e questo test`).toBeTruthy();
       expect(privacy).toContain(DESCRITTI[host]);
     }
+  });
+});
+
+describe('Esportazione CSV', () => {
+  const q = (over: Partial<Quake>): Quake => ({
+    id: '1', time: new Date('2026-10-20T10:00:00Z'), lat: 42.8, lon: 13.1, depthKm: -0.5, mag: 3,
+    magType: 'ML', place: 'Norcia', author: 'INGV', version: 1, type: 'earthquake', ...over,
+  });
+
+  it('neutralizza i testi che Excel eseguirebbe come formule', () => {
+    const row = toCsv([q({ place: '=HYPERLINK("x","clic")', author: '+1+1', magType: '@SUM(A1)' })]).split('\n')[1];
+    expect(row).toContain(`"'=HYPERLINK(""x"",""clic"")"`);
+    expect(row).toContain("'+1+1");
+    expect(row).toContain("'@SUM(A1)");
+  });
+
+  it('lascia intatti i numeri, anche negativi', () => {
+    const row = toCsv([q({})]).split('\n')[1];
+    expect(row).toContain(',-0.5,');
+    expect(row).not.toContain("'-0.5");
   });
 });

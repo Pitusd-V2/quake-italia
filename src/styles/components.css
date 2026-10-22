@@ -160,7 +160,7 @@
 @media (min-width: 1100px) {
   /* Con le scritte molto grandi (e la voce Analisi) le voci possono non stare in una riga: vanno a capo, senza uscire dallo schermo. */
   .top-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
-  /* Le icone, come sul telefono, quando c'è spazio (da 1500px); sotto solo il testo. */
+  /* Solo testo: l'intestazione ha una larghezza massima e, con logo, slogan e 6 voci, le icone non ci stanno mai. */
   .top-nav__link svg { display: none; }
   .top-nav__link { padding: 0 var(--sp-2); }
   .bottom-nav { display: none; }
@@ -170,9 +170,6 @@
   /* Sotto i 1400px il pulsante in alto dice solo "Ho sentito", per lasciare spazio al menu. */
   .btn--felt-small .only-wide { display: none; }
   .btn--felt-small .only-narrow { display: inline; }
-}
-@media (min-width: 1500px) {
-  .top-nav__link svg { display: inline-block; }
 }
 @media (min-width: 1400px) {
   .top-nav__link { padding: 0 var(--sp-3); }

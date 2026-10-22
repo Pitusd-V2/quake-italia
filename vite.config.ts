@@ -24,9 +24,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'logo.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
-        name: 'Quake Italia — Terremoti spiegati per tutti',
+        name: 'Quake Italia — Capire i terremoti',
         short_name: 'Quake Italia',
-        description: 'I dati ufficiali INGV sui terremoti in Italia, spiegati per tutti.',
+        description: 'Capire i terremoti in Italia, con i dati ufficiali INGV.',
         lang: 'it',
         start_url: '/',
         display: 'standalone',

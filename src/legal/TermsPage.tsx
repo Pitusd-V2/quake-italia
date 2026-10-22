@@ -19,8 +19,7 @@ export function TermsPage() {
       body: (
         <>
           <p>
-            {S} è un sito gratuito gestito da <strong>{LEGAL.owner.name}</strong> come progetto personale, senza scopo di
-            lucro. Questi termini spiegano come si può usare il sito e quali sono i suoi limiti. Usando il sito li accetti:
+            {S} è un sito gratuito, gestito come progetto personale e senza scopo di lucro. Questi termini spiegano come si può usare il sito e quali sono i suoi limiti. Usando il sito li accetti:
             se non sei d’accordo, ti chiediamo di non usarlo.
           </p>
           <p>

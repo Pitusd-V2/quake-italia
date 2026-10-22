@@ -14,16 +14,14 @@ export const LEGAL = {
 
   /** Chi pubblica il sito ed è responsabile dei dati (il "titolare del trattamento"). */
   owner: {
-    name: '[DA COMPLETARE: nome e cognome di chi pubblica il sito]',
-    /** Città o indirizzo: per un privato basta il comune di residenza. */
-    place: '[DA COMPLETARE: comune]',
-    email: '[DA COMPLETARE: email di contatto]',
+    name: 'Quake Italia',
+    email: 'quakeitalia@gmail.com',
   },
 
   hosting: 'da-scegliere' as Hosting,
 
   /** Data dell'ultima modifica delle pagine legali (da aggiornare a ogni cambiamento). */
-  lastUpdated: '21 ottobre 2026',
+  lastUpdated: '22 ottobre 2026',
 };
 
 /** Formula prudente: le garanzie esatte (DPF e/o clausole standard) vanno verificate nell'informativa del fornitore. */

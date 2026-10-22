@@ -11,12 +11,12 @@ export function InfoPage() {
         <h2 id="why">Perché Quake Italia, se c’è già l’INGV?</h2>
         <p>
           Bella domanda, ed è giusto farsela. L’<ExternalLink href="https://terremoti.ingv.it/">INGV</ExternalLink> è la
-          fonte ufficiale: registra ogni terremoto in Italia e fa un lavoro scientifico prezioso. Il suo sito però è pensato
-          soprattutto per la comunicazione ufficiale e per chi ha già un po’ di basi.
+          fonte ufficiale: registra ogni terremoto in Italia, fa un lavoro scientifico prezioso e mette i suoi dati a
+          disposizione di tutti, gratuitamente. È proprio grazie a questo che Quake Italia può esistere.
         </p>
         <p>
-          Quake Italia <strong>non sostituisce l’INGV</strong>: usa <strong>gli stessi dati ufficiali</strong> e li rende più
-          facili da leggere, come una «versione per tutti» costruita sopra la fonte originale.
+          Quake Italia <strong>non sostituisce l’INGV</strong>: usa <strong>gli stessi dati ufficiali</strong> e li presenta in
+          un altro modo, pensando soprattutto a chi non è pratico di tecnologia.
         </p>
         <div className="why-grid">
           <div className="why-card">

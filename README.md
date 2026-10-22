@@ -1,6 +1,6 @@
 # Quake Italia
 
-**I dati ufficiali INGV, spiegati per tutti.**
+**Capire i terremoti, con i dati ufficiali INGV.**
 
 Quake Italia è un sito gratuito che mostra i terremoti in Italia in modo semplice e accessibile, soprattutto per chi
 non è pratico di tecnologia (per esempio le persone anziane), con una sezione Analisi per chi vuole approfondire.

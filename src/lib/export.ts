@@ -1,8 +1,11 @@
 import type { Quake } from './types';
 
 const csvCell = (v: string | number | null) => {
-  const s = v == null ? '' : String(v);
-  return /[",\n;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  let s = v == null ? '' : String(v);
+  // Un testo che inizia con = + - @ (o tab/a capo) verrebbe eseguito come formula da Excel e simili
+  // ("CSV injection"): lo apostrofo lo fa leggere come testo. I numeri restano numeri (es. profondità -0,5).
+  if (typeof v === 'string' && /^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+  return /[",\n\r;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
 
 export function toCsv(quakes: Quake[]): string {

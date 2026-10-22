@@ -187,7 +187,7 @@ function Welcome() {
     <section className="card welcome" aria-labelledby="welcome-title">
       <h2 id="welcome-title">Benvenuto su Quake Italia</h2>
       <p>
-        <strong>{TAGLINE}</strong> Qui trovi i terremoti registrati dall'INGV, tradotti in parole semplici. Dicci dove
+        <strong>{TAGLINE}</strong> Qui trovi i terremoti in Italia, raccontati in parole semplici. Dicci dove
         abiti: ti diremo se una scossa è vicina a te e se potresti averla sentita.
       </p>
       <PlacePicker onPick={(home) => update({ home, onboarded: true })} />
