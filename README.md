@@ -48,6 +48,7 @@ Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Ne
 
 - Aggiungere uno strumento alla sezione Analisi: vedi `src/pages/expert/registry.ts`.
 - Simulazioni (solo sviluppo): `src/dev/`.
+- Dati delle sequenze da rivedere sulla mappa (sezione «Capire»): `node scripts/build-sequence-data.mjs`; tappe e note in `src/learn/sequences.ts`.
 - Sicurezza: vedi [SECURITY.md](SECURITY.md).
 - Dati legali (titolare, contatti, hosting): `src/legal/config.ts`.
 
@@ -59,3 +60,32 @@ Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Ne
 - Ricerca dei comuni: [Photon](https://photon.komoot.io/) (komoot).
 - Carattere Atkinson Hyperlegible Next (SIL OFL), icone Lucide (ISC).
 - Sagoma dell'Italia nel logo: [Natural Earth](https://www.naturalearthdata.com/) (pubblico dominio). Icone dell'app: `npm run icons`.
+
+## Codice aperto
+
+Quake Italia è **open source**: chiunque può controllare come funziona, da dove arrivano i dati e come vengono
+spiegati. Non ci sono server privati, account o chiavi segrete: quello che vedi qui è tutto il sito.
+
+- **Codice**: [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0). Puoi usarlo, studiarlo, modificarlo e
+  ridistribuirlo; se pubblichi un sito basato su questo codice (anche modificato), devi rendere disponibile il suo
+  codice sorgente con la stessa licenza.
+- **Testi** degli articoli e delle pagine informative: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
+  Puoi riusarli citando Quake Italia e con la stessa licenza.
+- **Dati di terzi** (INGV, Protezione Civile, OpenStreetMap, Natural Earth…): restano con le loro licenze, elencate sopra.
+- **Nome e logo** «Quake Italia» **non** sono coperti da queste licenze: se pubblichi una versione modificata, usa un
+  nome e un logo diversi, così nessuno la scambia per questo progetto.
+
+Il codice è fornito «così com'è», senza garanzie (vedi la licenza). Per chi usa il sito valgono i
+Termini d'uso e la Privacy Policy pubblicati sul sito: Quake Italia **non è un sistema di allerta**.
+
+## Contribuire
+
+Segnalazioni e proposte sono benvenute, soprattutto da chi lavora con i terremoti (sismologi, geologi, protezione civile).
+La regola più importante è la stessa del sito: **scientifico ma capibile, niente disinformazione**.
+
+- **Ogni contenuto scientifico deve citare una fonte verificabile** (INGV, Protezione Civile, articoli scientifici,
+  cataloghi ufficiali). Numeri, date e magnitudo «a memoria» non vengono accettati.
+- Testi semplici, pensati anche per chi non è pratico di tecnologia; tono chiaro, mai allarmista.
+- Quake Italia non sostituisce nessuno: verso l'INGV e gli altri enti, tono di ringraziamento, mai di confronto.
+- Prima di proporre una modifica: `npm run build` deve passare (typecheck, test, build).
+- Problemi di sicurezza: **non** aprire una segnalazione pubblica, vedi [SECURITY.md](SECURITY.md).

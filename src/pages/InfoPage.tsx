@@ -120,6 +120,31 @@ export function InfoPage() {
           margine di circa un grado. Da lì scegliamo il tono: il numero 112 compare solo quando è plausibile che ci siano danni,
           o per una scossa di magnitudo 5 o più sentita forte dove sei.
         </p>
+        <p>
+          Le frasi «Così si è sentita» (per esempio «come il passaggio di un camion in strada») riprendono le descrizioni
+          ufficiali dei gradi della{' '}
+          <ExternalLink href="https://www.usgs.gov/programs/earthquake-hazards/modified-mercalli-intensity-scale">
+            scala Mercalli modificata (USGS)
+          </ExternalLink>{' '}
+          e della{' '}
+          <ExternalLink href="https://quakes.bgs.ac.uk/education/faqs/ems_synopsis.html">scala europea EMS-98</ExternalLink>.
+        </p>
+      </section>
+
+      <section className="card stack" aria-labelledby="open-source">
+        <h2 id="open-source">Codice aperto</h2>
+        <p>
+          Quake Italia è <strong>open source</strong>: il codice è pubblico e chiunque può controllare come funziona, da
+          dove arrivano i dati e come stimiamo quanto si è sentita una scossa. Non ci sono server privati né chiavi
+          segrete.
+        </p>
+        <p>
+          Il codice è distribuito con licenza AGPL-3.0, i testi con licenza CC BY-SA 4.0. Se sei un sismologo, un
+          geologo o lavori nella protezione civile e trovi un errore, le segnalazioni sono benvenute.
+        </p>
+        <ExternalLink href="https://github.com/Pitusd-V2/quake-italia" className="btn btn--secondary">
+          Il codice su GitHub
+        </ExternalLink>
       </section>
 
       <section className="card stack">

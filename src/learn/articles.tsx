@@ -5,6 +5,7 @@
  */
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
+import { SequenceSection } from './SequenceSection';
 import slab from '../data/learn/slab.json';
 import norcia from '../data/learn/norcia2016.json';
 import gr from '../data/learn/gr-italia.json';
@@ -385,6 +386,8 @@ export const ARTICLES: Article[] = [
           a Norcia, con il picco di {n(Math.max(...(norcia.giornaliero as number[])))} scosse in un giorno. A gennaio 2017 una
           nuova fase con scosse fino a Mw 5,5 vicino a Capitignano.
         </p>
+
+        <SequenceSection preferred="centro-italia" />
 
         <h2>La legge di Båth, e i suoi limiti</h2>
         <p>

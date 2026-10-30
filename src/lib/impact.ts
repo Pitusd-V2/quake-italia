@@ -5,7 +5,7 @@
  * calcinacci. Per questo tutto parte dall'intensità stimata nel tuo comune. Le soglie sono scelte per non allarmare:
  * il 112 compare solo quando è plausibile che serva davvero.
  */
-import { feltEstimate } from './describe';
+import { feltEstimate, SHALLOW_KM, SHALLOW_STRONG_MAG } from './describe';
 import { distanceKm, hypocentralKm } from './geo';
 import type { LatLon, Quake } from './types';
 
@@ -29,14 +29,19 @@ export type Impact = (typeof IMPACTS)[number];
 export const impactRank = (i: Impact) => IMPACTS.indexOf(i);
 
 /**
- * La formula sovrastima le scosse piccole e molto superficiali. Ai Campi Flegrei, a 2–3 km di profondità, la Md 4,2
- * del 2023 non ha fatto danni, la Md 4,6 del 2025 sì (danni lievi, un ferito): sotto 4,5 non parliamo mai di danni.
+ * Da che magnitudo parliamo di possibili danni. La formula, da sola, darebbe danni anche per scosse piccolissime e
+ * superficiali; i casi veri dicono altro:
+ * - di solito (terremoti a 10 km e più): da 4,5;
+ * - molto superficiali (5 km o meno, come ai vulcani): da 3,8. Ischia 2017, Mw 3,9 a circa 1,5 km: crolli e vittime;
+ *   Campi Flegrei, 20 maggio 2024, Md 4,4 a circa 2,6 km: crepe e tre palazzi sgomberati; 13 marzo 2025, Md 4,6:
+ *   danni e un ferito; 31 luglio 2026, Md 4,7: 26 feriti e crolli di edifici disabitati.
+ * Stesse soglie dei livelli in describe.ts (SHALLOW_KM, SHALLOW_STRONG_MAG).
  */
-const DAMAGE_MIN_MAG = 4.5;
+const damageMinMag = (depthKm: number) => (depthKm <= SHALLOW_KM ? SHALLOW_STRONG_MAG : 4.5);
 
 export function impactAt(q: Quake, at: LatLon): Impact {
   const i = intensityAt(q, at);
-  if (i >= 5.5) return q.mag >= DAMAGE_MIN_MAG ? 'damage' : 'strong'; // VI: possibili danni lievi
+  if (i >= 5.5) return q.mag >= damageMinMag(q.depthKm) ? 'damage' : 'strong'; // VI: possibili danni lievi
   if (i >= 4.5) return 'strong'; // V: la sentono tutti in casa, cadono oggetti
   if (i >= 3.5) return 'felt'; // IV: la sentono molti, vibrano vetri e porte
   // Il grado II («solo poche persone a riposo, ai piani alti») a casa quasi nessuno lo nota: per dire «potresti averla

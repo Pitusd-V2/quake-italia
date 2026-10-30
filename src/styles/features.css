@@ -445,3 +445,49 @@
   .quakes-page .page-header h1 { font-size: var(--fs-xl); }
   .quakes-page .page-header__intro { font-size: var(--fs-base); }
 }
+
+/* ---------- «Così si è sentita a casa tua» ---------- */
+.felt-like { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.felt-like__title { font-size: var(--fs-xl); }
+.felt-lamp { flex-shrink: 0; overflow: visible; }
+.felt-lamp__ceiling { fill: var(--border); }
+.felt-lamp__cord { stroke: var(--text-muted); stroke-width: 2; }
+.felt-lamp__shade { fill: var(--primary); }
+.felt-lamp__bulb { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.5; }
+.felt-lamp__arm { transform-origin: 32px 6px; }
+/* Oscilla avanti e indietro di --swing gradi, piano, come un vero lampadario. */
+.felt-lamp--swing .felt-lamp__arm { animation: felt-swing 1.6s ease-in-out infinite alternate; }
+@keyframes felt-swing {
+  from { transform: rotate(calc(-1 * var(--swing))); }
+  to { transform: rotate(var(--swing)); }
+}
+/* Con le animazioni ridotte il lampadario resta fermo ma inclinato: il disegno racconta comunque l'intensità. */
+@media (prefers-reduced-motion: reduce) {
+  .felt-lamp--swing .felt-lamp__arm { animation: none; transform: rotate(var(--swing)); }
+}
+@media (max-width: 420px) {
+  .felt-like { flex-direction: column; }
+}
+
+/* ---------- Rivedere una sequenza sulla mappa ---------- */
+.seq-replay__map-wrap { position: relative; }
+.seq-replay__map { height: clamp(280px, 55vw, 440px); border-radius: var(--r-md); overflow: hidden; background: var(--surface-2); }
+.seq-replay__clock {
+  position: absolute; left: var(--sp-2); top: var(--sp-2); z-index: 2;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: var(--sp-2) var(--sp-3); border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--surface) 92%, transparent); box-shadow: 0 1px 4px rgb(0 0 0 / 15%);
+  font-size: var(--fs-sm);
+}
+.seq-replay__loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--text-muted); }
+.seq-replay__timeline { display: flex; flex-direction: column; gap: var(--sp-1); }
+/* Barre delle scosse per giorno (o settimana) dietro il cursore: si vede subito dove la sequenza è più attiva. */
+.seq-replay__bars { position: relative; height: 56px; display: flex; align-items: flex-end; gap: 1px; }
+.seq-replay__bars span { flex: 1; min-width: 0; background: color-mix(in srgb, var(--chart-1, #2a78d6) 30%, transparent); border-radius: 1px 1px 0 0; }
+.seq-replay__bars span.is-past { background: var(--chart-1, #2a78d6); }
+.seq-replay__tick { position: absolute; top: -4px; bottom: 0; width: 2px; margin-left: -1px; background: var(--text); opacity: 0.55; }
+.seq-replay__range { width: 100%; min-height: var(--tap); accent-color: var(--primary); }
+.seq-replay__ends { display: flex; justify-content: space-between; }
+.seq-replay__caption { min-height: 6.5rem; padding: var(--sp-3) var(--sp-4); border-left: 4px solid var(--chart-2, #eb6834); background: var(--surface-2); border-radius: var(--r-md); }
+.seq-replay__caption p + p { margin-top: var(--sp-1); }
+.seq-replay__notes > summary { cursor: pointer; min-height: var(--tap); display: flex; align-items: center; color: var(--primary); }

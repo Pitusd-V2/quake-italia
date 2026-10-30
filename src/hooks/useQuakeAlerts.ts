@@ -16,7 +16,7 @@ function isRelevant(q: Quake, s: Settings): boolean {
 }
 
 export function alertText(q: Quake, s: Settings): { title: string; body: string } {
-  const lvl = magLevel(q.mag);
+  const lvl = magLevel(q.mag, q.depthKm);
   const where = placeText(q.place).full;
   const dist = s.home ? ` — a ${formatKm(distanceKm(s.home, q))} da ${s.home.name}` : '';
   return {

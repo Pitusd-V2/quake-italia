@@ -10,7 +10,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 // MapLibre 6 cerca il suo worker accanto al proprio file: con Vite il percorso cambia,
 // quindi gli diciamo noi dove si trova (funziona sia in sviluppo sia in produzione).
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-import { magLevel, placeText } from '../lib/describe';
+import { MAG_LEVELS, magLevel, placeText } from '../lib/describe';
 import { formatMag, formatWhen } from '../lib/format';
 import { ITALY_BOUNDS } from '../lib/ingv';
 import type { LatLon, Place, Quake } from '../lib/types';
@@ -71,10 +71,13 @@ function colorExpression(by: ColorBy, theme: 'light' | 'dark'): ExpressionSpecif
   if (by === 'depth') {
     return ['interpolate', ['linear'], ['get', 'depth'], ...DEPTH_STOPS[theme].flat()] as ExpressionSpecification;
   }
+  // Il colore segue lo stesso livello dei badge (magnitudo e profondità, vedi magLevel): non possono andare fuori sincrono.
+  const last = MAG_LEVELS[MAG_LEVELS.length - 1];
   return [
-    'step', ['get', 'mag'],
-    cssVar('--lvl0'), 2, cssVar('--lvl1'), 3, cssVar('--lvl2'), 4, cssVar('--lvl3'), 5, cssVar('--lvl4'), 6, cssVar('--lvl5'),
-  ];
+    'match', ['get', 'lvl'],
+    ...MAG_LEVELS.slice(0, -1).flatMap((l) => [l.level, cssVar(`--lvl${l.level}`)]),
+    cssVar(`--lvl${last.level}`),
+  ] as unknown as ExpressionSpecification;
 }
 
 function toGeoJson(quakes: Quake[]): FeatureCollection {
@@ -84,7 +87,7 @@ function toGeoJson(quakes: Quake[]): FeatureCollection {
     features: quakes.map((q) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [q.lon, q.lat] },
-      properties: { id: q.id, mag: q.mag, depth: q.depthKm, recent: q.time.getTime() >= hourAgo },
+      properties: { id: q.id, mag: q.mag, depth: q.depthKm, lvl: magLevel(q.mag, q.depthKm).level, recent: q.time.getTime() >= hourAgo },
     })),
   };
 }
@@ -95,7 +98,7 @@ function popupContent(q: Quake, go: (path: string) => void): HTMLElement {
   root.className = 'map-popup';
   const title = document.createElement('p');
   title.className = 'strong';
-  title.textContent = `${magLevel(q.mag).name} · magnitudo ${formatMag(q.mag)}`;
+  title.textContent = `${magLevel(q.mag, q.depthKm).name} · magnitudo ${formatMag(q.mag)}`;
   const place = document.createElement('p');
   place.textContent = placeText(q.place).full;
   const when = document.createElement('p');

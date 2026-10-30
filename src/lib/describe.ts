@@ -21,14 +21,44 @@ export const MAG_LEVELS: MagLevel[] = [
   { level: 0, min: -Infinity, name: 'Microscossa', feel: 'La registrano solo gli strumenti: le persone non la sentono.' },
   { level: 1, min: 2, name: 'Molto leggera', feel: 'Può sentirla qualche persona vicina, soprattutto se ferma o ai piani alti.' },
   { level: 2, min: 3, name: 'Leggera', feel: 'La sentono molte persone nella zona. Vetri e oggetti possono tremare. Di solito non fa danni.' },
-  { level: 3, min: 4, name: 'Moderata', feel: 'La sente quasi tutta la zona, anche a decine di km. Possono cadere oggetti e ci possono essere piccoli danni.' },
-  { level: 4, min: 5, name: 'Forte', feel: 'Può causare danni, soprattutto agli edifici vecchi o fragili.' },
-  { level: 5, min: 6, name: 'Molto forte', feel: "Può causare danni gravi su un'area estesa." },
+  { level: 3, min: 4, name: 'Moderata', feel: 'La sente quasi tutta la zona, anche a decine di km. Vicino all’epicentro possono cadere oggetti; i danni sono rari.' },
+  // Soglie pensate per l'Italia: terremoti poco profondi, vicini ai paesi, tanti edifici vecchi. Da 4,5 sono possibili
+  // danni lievi (è la stessa soglia dei «possibili danni» in impact.ts); da 5 il sito mostra anche il 112.
+  { level: 4, min: 4.5, name: 'Forte', feel: 'In Italia si sente su un’area ampia e, se è poco profonda, può causare danni lievi vicino all’epicentro, soprattutto agli edifici vecchi.' },
+  { level: 5, min: 5, name: 'Molto forte', feel: 'Può causare danni anche gravi vicino all’epicentro, soprattutto agli edifici vecchi o fragili, e si sente su gran parte della regione.' },
 ];
 
-export function magLevel(mag: number): MagLevel {
-  for (let i = MAG_LEVELS.length - 1; i >= 0; i--) if (mag >= MAG_LEVELS[i].min) return MAG_LEVELS[i];
-  return MAG_LEVELS[0];
+/** Fino a questa profondità un terremoto è «molto superficiale», come quasi sempre nelle aree vulcaniche. */
+export const SHALLOW_KM = 5;
+/**
+ * Da questa magnitudo una scossa molto superficiale conta un livello in più: vicino all'epicentro fa molto più
+ * di quanto dica il numero. Casi veri: Ischia 2017, Mw 3,9 a circa 1,5 km, crolli e vittime; Campi Flegrei,
+ * 20 maggio 2024, Md 4,4 a circa 2,6 km, crepe e tre palazzi sgomberati; 13 marzo 2025, Md 4,6, danni e un ferito;
+ * 31 luglio 2026, Md 4,7, 26 feriti e crolli di edifici disabitati.
+ */
+export const SHALLOW_STRONG_MAG = 3.8;
+
+export const isShallowStrong = (mag: number, depthKm: number) => depthKm <= SHALLOW_KM && mag >= SHALLOW_STRONG_MAG;
+
+/**
+ * Il livello di una scossa. Con la profondità, una scossa molto superficiale da 3,8 in su sale di un livello
+ * e la spiegazione dice perché.
+ */
+export function magLevel(mag: number, depthKm?: number): MagLevel & { shallow?: boolean } {
+  let base = MAG_LEVELS[0];
+  for (let i = MAG_LEVELS.length - 1; i >= 0; i--) {
+    if (mag >= MAG_LEVELS[i].min) {
+      base = MAG_LEVELS[i];
+      break;
+    }
+  }
+  if (depthKm == null || !isShallowStrong(mag, depthKm)) return base;
+  const up = MAG_LEVELS[Math.min(MAG_LEVELS.length - 1, base.level + 1)];
+  return {
+    ...up,
+    shallow: true,
+    feel: `È un terremoto molto superficiale (${depthText(depthKm)}): vicino all’epicentro si sente molto più forte di quanto dica la magnitudo e può causare danni, soprattutto agli edifici vecchi, come è successo a Ischia nel 2017 e ai Campi Flegrei.`,
+  };
 }
 
 /* ---------- Località ---------- */
@@ -136,7 +166,7 @@ export function distanceFrom(q: Quake, place: Place): string {
 
 /** Testo pensato per essere letto ad alta voce (niente sigle). */
 export function speechText(q: Quake, now: Date, home?: Place | null): string {
-  const lvl = magLevel(q.mag);
+  const lvl = magLevel(q.mag, q.depthKm);
   const p = placeText(q.place);
   const parts = [
     `${lvl.name}: terremoto di magnitudo ${formatMag(q.mag)}.`,
@@ -152,7 +182,7 @@ export function speechText(q: Quake, now: Date, home?: Place | null): string {
 }
 
 export function shareText(q: Quake, now: Date): string {
-  const lvl = magLevel(q.mag);
+  const lvl = magLevel(q.mag, q.depthKm);
   return `Terremoto di magnitudo ${formatMag(q.mag)} (${lvl.name.toLowerCase()}) ${formatWhen(q.time, now)} — ${placeText(q.place).full}. Fonte: INGV.`;
 }
 

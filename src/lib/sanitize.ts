@@ -81,6 +81,11 @@ export const ALLOWED_LINK_HOSTS = new Set([
   // Fonti della pagina «È vero?»
   'www.ilpost.it',
   'www.focus.it',
+  // Fonte dei paragoni «Così si è sentita» (scala EMS-98)
+  'quakes.bgs.ac.uk',
+  // Il codice aperto del sito
+  'github.com',
+  'www.gnu.org',
 ]);
 
 export function isAllowedLink(href: string): boolean {

@@ -58,6 +58,17 @@ describe('Testi semplici', () => {
     expect(magLevel(2).name).toBe('Molto leggera');
     expect(magLevel(3.4).name).toBe('Leggera');
     expect(magLevel(4.0).name).toBe('Moderata');
+    // In Italia da 4,5 sono possibili danni lievi: non è più «moderata».
+    expect(magLevel(4.8).name).toBe('Forte');
+    expect(magLevel(5).name).toBe('Molto forte');
+    // Molto superficiale (come ai vulcani): un livello in più da 3,8, e la spiegazione dice perché.
+    expect(magLevel(4.4, 2.6)).toMatchObject({ name: 'Forte', shallow: true });
+    expect(magLevel(4.7, 2.5).name).toBe('Molto forte');
+    expect(magLevel(3.9, 1.5).name).toBe('Moderata');
+    expect(magLevel(4.4, 2.6).feel).toContain('molto superficiale');
+    // Stessa magnitudo ma profonda: nessun livello in più.
+    expect(magLevel(4.4, 10).name).toBe('Moderata');
+    expect(magLevel(3.5, 2).name).toBe('Leggera');
     expect(magLevel(6.5).name).toBe('Molto forte');
   });
 

@@ -13,7 +13,6 @@ import { InfoPage } from './pages/InfoPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { MyTownPage } from './pages/MyTownPage';
 import { SequencePage } from './pages/SequencePage';
-import { MorePage } from './pages/MorePage';
 import { PrivacyPage } from './legal/PrivacyPage';
 import { TermsPage } from './legal/TermsPage';
 import { ArticlePage, LearnIndexPage } from './learn/LearnPages';
@@ -37,7 +36,6 @@ export function App() {
         <Route path="il-mio-comune" element={<MyTownPage />} />
         <Route path="sequenza/:id" element={<SequencePage />} />
         <Route path="impostazioni" element={<SettingsPage />} />
-        <Route path="altro" element={<MorePage />} />
         <Route path="informazioni" element={<InfoPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="termini" element={<TermsPage />} />

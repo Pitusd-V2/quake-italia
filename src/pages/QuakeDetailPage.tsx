@@ -6,6 +6,7 @@ import { useSettings } from '../state/settings';
 import { useQuake, useQuakeFeed } from '../state/quakes';
 import { useNow } from '../hooks/useNow';
 import { distanceKm, formatKm } from '../lib/geo';
+import { FeltLikeCard } from '../components/FeltLikeCard';
 import { capitalize, depthNote, depthText, feltEstimate, magLevel, placeText, shareText, speechText } from '../lib/describe';
 import { formatFull, formatMag, formatWhen, timeAgo } from '../lib/format';
 import { buildQueryUrl, ingvEventPage } from '../lib/ingv';
@@ -53,7 +54,7 @@ export function QuakeDetailPage() {
   }
 
   const p = placeText(quake.place);
-  const lvl = magLevel(quake.mag);
+  const lvl = magLevel(quake.mag, quake.depthKm);
   const note = depthNote(quake.depthKm);
   const felt = home ? feltEstimate(quake, home) : null;
   const pageUrl = `${window.location.origin}/terremoto/${quake.id}`;
@@ -65,11 +66,11 @@ export function QuakeDetailPage() {
       </Link>
 
       <header className="detail-hero">
-        <MagBadge mag={quake.mag} size="lg" />
+        <MagBadge mag={quake.mag} depthKm={quake.depthKm} size="lg" />
         <div className="stack-sm">
           <h1 tabIndex={-1}>{p.main}</h1>
           {p.sub && <p className="muted">{p.sub}</p>}
-          <LevelLabel mag={quake.mag} />
+          <LevelLabel mag={quake.mag} depthKm={quake.depthKm} />
         </div>
       </header>
 
@@ -144,6 +145,8 @@ export function QuakeDetailPage() {
           )}
         </dl>
       </section>
+
+      {home && <FeltLikeCard quake={quake} place={home} />}
 
       <Suspense fallback={<div className="quake-map quake-map--loading">Sto caricando la mappa…</div>}>
         <QuakeMap

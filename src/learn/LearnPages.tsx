@@ -1,10 +1,26 @@
 import { useRef, type RefObject } from 'react';
 import { Link, useParams } from 'react-router';
-import { ArrowLeft, ArrowRight, BookOpen, Clock, Square, Volume2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ChevronRight, Clock, FileText, FlaskConical, Info, MessageCircleQuestion, ShieldCheck, Square, Volume2, type LucideIcon } from 'lucide-react';
 import { useSpeech } from '../hooks/useSpeech';
 import { ExternalLink, PageHeader } from '../components/ui';
 import { NotFoundPage } from '../pages/NotFoundPage';
 import { ARTICLES, findArticle } from './articles';
+
+/** Scheda-link grande, come nell'elenco dei post. */
+function LinkCard({ to, title, text, icon: Icon }: { to: string; title: string; text: string; icon: LucideIcon }) {
+  return (
+    <li>
+      <Link to={to} className="link-card">
+        <Icon aria-hidden="true" />
+        <span>
+          <span className="strong">{title}</span>
+          <span className="muted">{text}</span>
+        </span>
+        <ChevronRight aria-hidden="true" />
+      </Link>
+    </li>
+  );
+}
 
 /** Elenco dei post. */
 export function LearnIndexPage() {
@@ -14,6 +30,15 @@ export function LearnIndexPage() {
         title="Capire i terremoti"
         intro="Brevi letture, in parole semplici ma con le parole giuste della scienza. Ogni post usa dati veri dell’INGV e fonti pubbliche, elencate in fondo."
       />
+      <ul className="link-list">
+        <LinkCard
+          to="/e-vero"
+          title="È vero? Le voci sui terremoti"
+          text="Previsioni, «tempo da terremoto», magnitudo «abbassata»: le voci più comuni, con la risposta degli scienziati."
+          icon={MessageCircleQuestion}
+        />
+      </ul>
+
       <ol className="learn-list">
         {ARTICLES.map((a, i) => (
           <li key={a.slug}>
@@ -32,6 +57,27 @@ export function LearnIndexPage() {
           </li>
         ))}
       </ol>
+
+      <section className="stack" aria-labelledby="learn-expert">
+        <h2 id="learn-expert">Per esperti</h2>
+        <ul className="link-list">
+          <LinkCard
+            to="/analisi"
+            title="Analisi"
+            text="Ricerche nel catalogo INGV, grafici, tabelle ed esportazione dei dati."
+            icon={FlaskConical}
+          />
+        </ul>
+      </section>
+
+      <section className="stack" aria-labelledby="learn-site">
+        <h2 id="learn-site">Il sito</h2>
+        <ul className="link-list">
+          <LinkCard to="/informazioni" title="Informazioni" text="Perché esiste Quake Italia, da dove arrivano i dati e i crediti." icon={Info} />
+          <LinkCard to="/privacy" title="Privacy" text="Come trattiamo i tuoi dati, in parole semplici." icon={ShieldCheck} />
+          <LinkCard to="/termini" title="Termini d’uso" text="Le regole per usare il sito e i suoi limiti." icon={FileText} />
+        </ul>
+      </section>
     </div>
   );
 }

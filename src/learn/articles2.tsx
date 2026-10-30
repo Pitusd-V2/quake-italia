@@ -7,6 +7,8 @@ import cpti from '../data/learn/cpti15.json';
 import cf from '../data/learn/campi-flegrei.json';
 import { formatInt } from '../lib/format';
 import type { Article } from './articles';
+import { CF_MAIN } from './cfEvents';
+import { SequenceSection } from './SequenceSection';
 import { CenturyBars, CFMonthlyChart, CFYearBars, HistoryTimeline, UpliftBars, VolcanicIntensityChart } from './figures2';
 
 const n = (v: number) => formatInt(v);
@@ -24,18 +26,6 @@ const DPC_CF_TIMELINE = {
   label: 'Dipartimento della Protezione Civile — Il bradisismo ai Campi Flegrei: linea del tempo',
   href: 'https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/il-bradisismo-ai-campi-flegrei/linea-del-tempo/',
 };
-
-/** Le scosse principali della fase attuale, con i valori ufficiali comunicati da OV/DPC. */
-const CF_MAIN: [string, string, string][] = [
-  ['27 settembre 2023', 'Md 4,2', 'nessun danno segnalato'],
-  ['2 ottobre 2023', 'Md 4,0', 'durante uno sciame'],
-  ['20 maggio 2024', 'Md 4,4', 'attivata l’Unità di crisi della Protezione Civile'],
-  ['13 marzo 2025', 'Md 4,6', 'danni lievi, un ferito'],
-  ['13 maggio 2025', 'Md 4,4', 'nessun danno segnalato'],
-  ['30 giugno 2025', 'Md 4,6', 'in mare, nessun danno segnalato'],
-  ['21 maggio 2026', 'Md 4,4', 'in mare'],
-  ['31 luglio 2026', 'Md 4,7', 'la più forte finora: 26 feriti, crolli di edifici disabitati'],
-];
 
 export const MORE_ARTICLES: Article[] = [
   /* ------------------------------------------------------------------ */
@@ -324,7 +314,7 @@ export const MORE_ARTICLES: Article[] = [
           ))}
         </ul>
         <p>
-          Sono terremoti di magnitudo moderata, ma si sentono molto perché sono <strong>superficialissimi</strong>: nei dati
+          Non sono terremoti grandissimi, ma si sentono molto perché sono <strong>superficialissimi</strong>: nei dati
           INGV dal 2000 la profondità mediana è di circa {String(cf.profonditaMediana).replace('.', ',')} km e solo il{' '}
           {cf.oltre3km}% supera i 3 km. In più avvengono sotto una città densa, su terreni vulcanici che amplificano lo
           scuotimento.
@@ -334,6 +324,8 @@ export const MORE_ARTICLES: Article[] = [
           Vesuviano ha comunicato Md 4,2, mentre il catalogo nazionale riporta ML 3,1: sono due tipi di magnitudo calcolati in
           modo diverso. Per le scosse principali usiamo i valori ufficiali dell’Osservatorio.
         </p>
+
+        <SequenceSection preferred="campi-flegrei" />
 
         <h2>I gas e il calore</h2>
         <p>

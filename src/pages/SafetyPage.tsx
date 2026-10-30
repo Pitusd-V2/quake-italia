@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { BookOpen, ClipboardList, House, MessageCircleWarning, Phone, Siren, TreePine } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { SpeakButton } from '../components/Actions';
 import { ExternalLink, PageHeader } from '../components/ui';
 
@@ -99,7 +99,8 @@ export function SafetyPage() {
       </a>
 
       {SECTIONS.map((s) => (
-        <section key={s.id} className="card stack" aria-labelledby={`sec-${s.id}`}>
+        <Fragment key={s.id}>
+        <section className="card stack" aria-labelledby={`sec-${s.id}`}>
           <h2 id={`sec-${s.id}`} className="icon-title">
             {s.icon}
             {s.title}
@@ -121,15 +122,18 @@ export function SafetyPage() {
             />
           </div>
         </section>
+        {/* Chi ha appena letto «Subito dopo» spesso si chiede: e la casa? */}
+        {s.id === 'dopo' && (
+          <Link to="/danni-casa" className="tip">
+            <House aria-hidden="true" />
+            <span>
+              <span className="strong">La casa ha delle crepe dopo una scossa?</span>
+              <span className="muted"> Quando preoccuparsi, chi chiamare, come funziona il controllo della casa, quali aiuti esistono.</span>
+            </span>
+          </Link>
+        )}
+        </Fragment>
       ))}
-
-      <Link to="/danni-casa" className="tip">
-        <House aria-hidden="true" />
-        <span>
-          <span className="strong">La casa ha delle crepe dopo una scossa?</span>
-          <span className="muted"> Chi chiamare, come funziona il controllo della casa, quali aiuti esistono.</span>
-        </span>
-      </Link>
 
       <section className="card stack" aria-labelledby="glossary">
         <h2 id="glossary" className="icon-title">

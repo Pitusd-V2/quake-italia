@@ -1,5 +1,14 @@
 # Sicurezza di Quake Italia
 
+## Segnalare un problema di sicurezza
+
+Se trovi una vulnerabilità **non aprire una segnalazione pubblica** (issue): chiunque la leggerebbe prima che sia corretta.
+
+- Su GitHub, nella scheda **Security** del repository, usa **«Report a vulnerability»** (segnalazione privata).
+- Oppure scrivi a **quakeitalia@gmail.com**.
+
+Descrivi il problema e, se puoi, come riprodurlo. Ti risponderemo appena possibile. Grazie!
+
 Quake Italia è un **sito statico**: niente server nostro, niente database, niente account.
 Il browser scarica i nostri file (HTML, JS, CSS) e legge i dati direttamente da tre servizi pubblici:
 INGV (terremoti), Photon (ricerca comuni), OpenFreeMap (mappe).
@@ -42,7 +51,7 @@ Quindi gli attacchi possibili sono pochi ma reali:
 ### GitHub
 - [ ] Ramo `main` protetto: niente push diretti, solo pull request con la CI verde.
 - [ ] Il sito si pubblica **solo dalla CI / dall'hosting collegato al repository**, mai caricando file a mano.
-- [ ] Attiva "Dependabot alerts" e "Secret scanning" nelle impostazioni del repository.
+- [ ] Attiva "Dependabot alerts", "Secret scanning" e "Private vulnerability reporting" nelle impostazioni del repository.
 - [ ] Se un domani ci saranno chiavi o segreti: mai nel codice, solo nei "secrets" dell'hosting/CI.
 
 ### Dominio

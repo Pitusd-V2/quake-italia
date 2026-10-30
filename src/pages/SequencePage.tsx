@@ -101,7 +101,7 @@ export function SequencePage() {
   }
 
   const p = placeText(main.place);
-  const lvl = magLevel(main.mag);
+  const lvl = magLevel(main.mag, main.depthKm);
   const summary = data
     ? `${capitalize(formatWhen(main.time, now))} c'è stata una scossa ${lvl.name.toLowerCase()} di magnitudo ${formatMag(main.mag)} vicino a ${p.main}. ` +
       (data.after.length
@@ -128,7 +128,7 @@ export function SequencePage() {
 
       <section className="card stack" aria-labelledby="seq-summary">
         <div className="best-match__head">
-          <MagBadge mag={main.mag} size="lg" />
+          <MagBadge mag={main.mag} depthKm={main.depthKm} size="lg" />
           <div>
             <h2 id="seq-summary">Scossa principale</h2>
             <p>{p.full}</p>

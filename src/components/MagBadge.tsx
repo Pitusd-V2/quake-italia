@@ -6,8 +6,9 @@ const levelStyle = (l: Level) =>
   ({ '--lvl': `var(--lvl${l})`, '--on-lvl': `var(--on-lvl${l})` }) as CSSProperties;
 
 /** Il numero della magnitudo, grande e colorato secondo il livello. */
-export function MagBadge({ mag, size = 'md' }: { mag: number; size?: 'sm' | 'md' | 'lg' }) {
-  const lvl = magLevel(mag);
+/** Con `depthKm` le scosse molto superficiali salgono di un livello (vedi magLevel). */
+export function MagBadge({ mag, depthKm, size = 'md' }: { mag: number; depthKm?: number; size?: 'sm' | 'md' | 'lg' }) {
+  const lvl = magLevel(mag, depthKm);
   return (
     <span className={`mag mag--${size}`} style={levelStyle(lvl.level)}>
       <span className="mag__value tabular">{formatMag(mag)}</span>
@@ -28,8 +29,8 @@ export function LevelBars({ level }: { level: Level }) {
 }
 
 /** Etichetta a parole: "▂▃▅ Leggera" */
-export function LevelLabel({ mag }: { mag: number }) {
-  const lvl = magLevel(mag);
+export function LevelLabel({ mag, depthKm }: { mag: number; depthKm?: number }) {
+  const lvl = magLevel(mag, depthKm);
   return (
     <span className="level" style={levelStyle(lvl.level)}>
       <LevelBars level={lvl.level} />

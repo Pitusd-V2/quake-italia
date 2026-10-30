@@ -150,7 +150,19 @@ export function TermsPage() {
       body: (
         <ul className="advice">
           <li>
-            Il nome «{S}», il logo, i testi e il codice del sito appartengono al gestore, salvo dove indicato diversamente.
+            Il <strong>codice</strong> del sito è open source, con licenza{' '}
+            <ExternalLink href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL-3.0</ExternalLink>: puoi usarlo,
+            studiarlo e modificarlo; se pubblichi un sito basato su di esso, devi renderne disponibile il codice con la
+            stessa licenza.
+          </li>
+          <li>
+            I <strong>testi</strong> (articoli e pagine informative) hanno licenza{' '}
+            <ExternalLink href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</ExternalLink>: puoi
+            riusarli citando {S} e con la stessa licenza.
+          </li>
+          <li>
+            Il <strong>nome</strong> «{S}» e il <strong>logo</strong> non sono coperti da queste licenze: chi pubblica una
+            versione modificata deve usare un nome e un logo diversi.
           </li>
           <li>
             Dati sui terremoti: © INGV, licenza{' '}

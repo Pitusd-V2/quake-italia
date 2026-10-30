@@ -5,7 +5,7 @@ import { useSettings } from '../state/settings';
 import { useQuakeFeed } from '../state/quakes';
 import { useNow } from '../hooks/useNow';
 import { distanceKm } from '../lib/geo';
-import { MAG_LEVELS, placeText } from '../lib/describe';
+import { MAG_LEVELS, placeText, SHALLOW_KM, SHALLOW_STRONG_MAG } from '../lib/describe';
 import { formatInt, formatMag, hoursAgo } from '../lib/format';
 import type { LatLon } from '../lib/types';
 import { isLat, isLon } from '../lib/sanitize';
@@ -48,10 +48,14 @@ export function MapLegend() {
           <LevelBars level={l.level} />
           <span>
             {l.name}
-            <span className="muted"> {l.min === -Infinity ? 'sotto 2' : `da ${l.min}`}</span>
+            <span className="muted"> {l.min === -Infinity ? 'sotto 2' : `da ${String(l.min).replace('.', ',')}`}</span>
           </span>
         </li>
       ))}
+      <li className="legend__note small muted">
+        Le scosse molto superficiali (fino a {SHALLOW_KM} km, come ai vulcani) salgono di un livello da magnitudo{' '}
+        {String(SHALLOW_STRONG_MAG).replace('.', ',')}: vicino all’epicentro fanno più di quanto dica il numero.
+      </li>
     </ul>
   );
 }

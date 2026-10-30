@@ -29,7 +29,7 @@ export function QuakeCard({
   const H = `h${headingLevel}` as const;
   return (
     <Link to={`/terremoto/${quake.id}`} className="quake-card">
-      <MagBadge mag={quake.mag} />
+      <MagBadge mag={quake.mag} depthKm={quake.depthKm} />
       <div className="quake-card__body">
         <H className="quake-card__title">{p.main}</H>
         {p.sub && <span className="quake-card__sub">{p.sub}</span>}
@@ -48,7 +48,7 @@ export function QuakeCard({
           </span>
         )}
         <span className="quake-card__tags">
-          <LevelLabel mag={quake.mag} />
+          <LevelLabel mag={quake.mag} depthKm={quake.depthKm} />
           {home && <FeltChip quake={quake} at={home} />}
         </span>
       </div>

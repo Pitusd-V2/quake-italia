@@ -12,6 +12,7 @@ import { fetchQuakes } from '../lib/ingv';
 import { impactAt, impactRank } from '../lib/impact';
 import type { Place, Quake } from '../lib/types';
 import { MagBadge, LevelLabel } from '../components/MagBadge';
+import { FeltLikeCard } from '../components/FeltLikeCard';
 import { QuakeCard } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { SpeakButton } from '../components/Actions';
@@ -33,16 +34,16 @@ interface Candidate {
 function BestMatch({ quake, place, now }: { quake: Quake; place: Place; now: Date }) {
   const p = placeText(quake.place);
   const felt = feltEstimate(quake, place);
-  const lvl = magLevel(quake.mag);
+  const lvl = magLevel(quake.mag, quake.depthKm);
   return (
     <article className="card best-match" aria-labelledby="best-title">
       <p className="eyebrow">Molto probabilmente era questa</p>
       <div className="best-match__head">
-        <MagBadge mag={quake.mag} size="lg" />
+        <MagBadge mag={quake.mag} depthKm={quake.depthKm} size="lg" />
         <div>
           <h2 id="best-title">{p.main}</h2>
           {p.sub && <p className="muted">{p.sub}</p>}
-          <LevelLabel mag={quake.mag} />
+          <LevelLabel mag={quake.mag} depthKm={quake.depthKm} />
         </div>
       </div>
       <ul className="facts">
@@ -160,6 +161,7 @@ export function FeltPage() {
           {candidates && candidates.length > 0 && (
             <>
               <BestMatch quake={candidates[0].quake} place={place} now={now} />
+              <FeltLikeCard quake={candidates[0].quake} place={place} />
               {candidates.length > 1 && (
                 <div className="stack">
                   <h2>Altre scosse nella zona {winLabel}</h2>

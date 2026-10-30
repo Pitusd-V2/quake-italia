@@ -1,6 +1,8 @@
 {
   "name": "quake-italia",
   "private": true,
+  "license": "AGPL-3.0-only",
+  "repository": "github:Pitusd-V2/quake-italia",
   "version": "0.1.0",
   "description": "Capire i terremoti in Italia, con i dati ufficiali INGV.",
   "type": "module",

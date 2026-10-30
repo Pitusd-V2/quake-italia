@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { homeImpact, impactAt, intensityAt, isNightInItaly, shows112 } from './impact';
 import { sequenceTrend } from './trend';
+import { feltLike } from './feltLike';
 import type { Quake } from './types';
 
 const HOME = { lat: 42, lon: 13 };
@@ -63,14 +64,21 @@ describe('intensità a casa tua (Allen, Wald & Worden 2012)', () => {
     expect(impactAt(quakeAt(150, 5), HOME)).toBe('weak');
   });
 
-  it('sotto magnitudo 4,5 non parla mai di danni, anche se molto superficiale', () => {
+  it('scosse normali: possibili danni solo da magnitudo 4,5', () => {
+    const tect = quakeAt(3, 4.4, 10);
+    expect(impactAt(tect, HOME)).toBe('strong');
+    expect(shows112('strong', tect.mag)).toBe(false);
+  });
+
+  it('scosse molto superficiali (vulcani): possibili danni già da 3,8, come nei casi veri', () => {
+    // Campi Flegrei, 20 maggio 2024: Md 4,4 a circa 2,6 km, crepe e palazzi sgomberati.
+    expect(impactAt(quakeAt(2, 4.4, 2.6), HOME)).toBe('damage');
+    // Ischia 2017: Mw 3,9 a circa 1,5 km, crolli e vittime.
+    expect(impactAt(quakeAt(1, 3.9, 1.5), HOME)).toBe('damage');
+    // Campi Flegrei, 31 luglio 2026: Md 4,7, 26 feriti.
+    expect(impactAt(quakeAt(3, 4.7, 2.5), HOME)).toBe('damage');
+    // Sotto 3,8 resta «forte»: spaventa, ma non parliamo di danni.
     expect(impactAt(quakeAt(1, 3.5, 2), HOME)).toBe('strong');
-    // Come la Md 4,2 dei Campi Flegrei del 2023: forte, ma senza danni.
-    const cf = quakeAt(3, 4.2, 3);
-    expect(impactAt(cf, HOME)).toBe('strong');
-    expect(shows112('strong', cf.mag)).toBe(false);
-    // Come la Md 4,6 del 2025: possibili danni.
-    expect(impactAt(quakeAt(3, 4.6, 2.5), HOME)).toBe('damage');
   });
 });
 
@@ -135,5 +143,31 @@ describe('andamento delle repliche', () => {
 
   it('quasi nessuna scossa → «zona quasi tranquilla»', () => {
     expect(sequenceTrend([...series(50, 51, 30)], MAIN, NOW).kind).toBe('quiet');
+  });
+});
+
+describe('«Così si è sentita a casa tua»', () => {
+  it('va dal «non sentita» al «molto forte» seguendo l’intensità', () => {
+    expect(feltLike(quakeAt(11, 1.9), HOME).degree).toBeLessThanOrEqual(2);
+    expect(feltLike(quakeAt(10, 3), HOME)).toMatchObject({ degree: 3, roman: 'III' });
+    expect(feltLike(quakeAt(10, 4.2), HOME).degree).toBe(4);
+    expect(feltLike(quakeAt(8, 4.8), HOME).degree).toBe(5);
+    expect(feltLike(quakeAt(6, 5.8, 9), HOME).degree).toBe(6);
+  });
+
+  it('il paragone del camion è al grado III, come nella scala Mercalli dell’USGS', () => {
+    expect(feltLike(quakeAt(10, 3), HOME).text).toContain('camion');
+  });
+
+  it('non contraddice mai il resto del sito', () => {
+    // Profonda 10 km e sotto 4,5: al massimo «forte», mai «molto forte».
+    expect(feltLike(quakeAt(3, 4.4, 10), HOME).degree).toBeLessThanOrEqual(5);
+    // Molto superficiale, come la 4,4 di Pozzuoli del 2024: crepe possibili, quindi grado VI.
+    expect(feltLike(quakeAt(2, 4.4, 2.6), HOME).degree).toBe(6);
+    // Lontana: al massimo «quasi impercettibile».
+    expect(feltLike(quakeAt(150, 5), HOME).degree).toBeLessThanOrEqual(2);
+    // Se il lampadario non si muove, la scossa non si è sentita.
+    const none = feltLike(quakeAt(40, 1.5), HOME);
+    expect(none).toMatchObject({ degree: 1, swingDeg: 0 });
   });
 });
