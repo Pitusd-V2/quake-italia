@@ -1,6 +1,6 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
-import { Activity, BookOpen, Ear, FlaskConical, House, Landmark, LifeBuoy, Settings, X, type LucideIcon } from 'lucide-react';
+import { Activity, BookOpen, Ear, House, Landmark, LifeBuoy, Settings, X, type LucideIcon } from 'lucide-react';
 import { useSettings } from '../state/settings';
 import { useQuakeFeed } from '../state/quakes';
 import { useQuakeAlerts, alertText } from '../hooks/useQuakeAlerts';
@@ -19,8 +19,6 @@ interface NavItem {
   end?: boolean;
   /** Altre pagine che "appartengono" a questa voce: la voce resta evidenziata anche lì. */
   section?: string[];
-  /** Separata dalle altre voci da una linea (per "Analisi", che è per esperti). */
-  divider?: boolean;
 }
 
 const HOME_ITEM: NavItem = { to: '/', label: 'Vicino a te', icon: House, end: true };
@@ -28,59 +26,14 @@ const QUAKES_ITEM: NavItem = { to: '/terremoti', label: 'Terremoti', icon: Activ
 const TOWN_ITEM: NavItem = { to: '/il-mio-comune', label: 'Il mio comune', icon: Landmark };
 // «La casa ha dei danni» si cerca dopo una scossa forte: sta con «Cosa fare».
 const SAFETY_ITEM: NavItem = { to: '/cosa-fare', label: 'Cosa fare', icon: LifeBuoy, section: ['/cosa-fare', '/danni-casa'] };
-const EXPERT_ITEM: NavItem = { to: '/analisi', label: 'Analisi', icon: FlaskConical, divider: true };
 // «Capire» è la parte culturale del progetto: ha una voce sua. Dentro ci sono anche «È vero?» e (sul telefono) «Analisi».
 const learnItem = (section: string[]): NavItem => ({ to: '/capire', label: 'Capire', icon: BookOpen, section });
 
-// Niente cassetto «Altro»: ogni voce dice cosa c'è dentro. Le stesse 5 voci sul telefono e sul computer;
-// sul computer si aggiunge «Analisi», separata. Impostazioni e grandezza delle scritte sono in alto.
+// Niente cassetto «Altro»: ogni voce dice cosa c'è dentro. Le stesse 5 voci, con le stesse icone, sul telefono
+// e sul computer. «Analisi» (per esperti) è dentro «Capire»; Impostazioni a destra su computer, in «Il mio comune» sul telefono.
 const MAIN_ITEMS: NavItem[] = [HOME_ITEM, QUAKES_ITEM, TOWN_ITEM, SAFETY_ITEM];
 const BOTTOM_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi'])];
-const TOP_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero']), EXPERT_ITEM];
-
-const TEXT_SIZES = ['normal', 'large', 'xlarge'] as const;
-const TEXT_SIZE_LABEL = { normal: 'normali', large: 'grandi', xlarge: 'molto grandi' } as const;
-
-/**
- * «Aa»: la grandezza delle scritte in un tocco, senza entrare nelle impostazioni.
- * A ogni tocco: normali → grandi → molto grandi → normali. Una piccola conferma dice cosa è cambiato.
- */
-function TextSizeButton() {
-  const { settings, update } = useSettings();
-  const [said, setSaid] = useState<string | null>(null);
-  const timer = useRef<number | undefined>(undefined);
-  const current = settings.textSize;
-  const next = TEXT_SIZES[(TEXT_SIZES.indexOf(current) + 1) % TEXT_SIZES.length];
-  useEffect(() => () => window.clearTimeout(timer.current), []);
-  return (
-    <span className="header-aa-wrap">
-      <button
-        type="button"
-        className="header-btn header-aa"
-        onClick={() => {
-          update({ textSize: next });
-          setSaid(`Scritte ${TEXT_SIZE_LABEL[next]}`);
-          window.clearTimeout(timer.current);
-          timer.current = window.setTimeout(() => setSaid(null), 1800);
-        }}
-        aria-label={`Scritte ${TEXT_SIZE_LABEL[current]}. Tocca per scritte ${TEXT_SIZE_LABEL[next]}`}
-        title="Grandezza delle scritte"
-      >
-        <span aria-hidden="true" className="header-aa__letters">
-          A<span>a</span>
-        </span>
-        <span aria-hidden="true" className="header-aa__dots">
-          {TEXT_SIZES.map((s, i) => (
-            <i key={s} className={i <= TEXT_SIZES.indexOf(current) ? 'is-on' : undefined} />
-          ))}
-        </span>
-      </button>
-      <span className="header-aa__toast" role="status">
-        {said}
-      </span>
-    </span>
-  );
-}
+const TOP_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi'])];
 
 /** true se `pathname` è la pagina `base` o una sua sotto-pagina (es. /capire/magnitudo). */
 function isUnder(pathname: string, base: string) {
@@ -91,8 +44,8 @@ function NavLinks({ items, className }: { items: NavItem[]; className: string })
   const { pathname } = useLocation();
   return (
     <>
-      {items.map(({ to, label, icon: Icon, end, section, divider }) => {
-        const cls = divider ? `${className} ${className}--divider` : className;
+      {items.map(({ to, label, icon: Icon, end, section }) => {
+        const cls = className;
         const content = (
           <>
             <Icon aria-hidden="true" />
@@ -177,10 +130,10 @@ export function Layout() {
           <nav className="top-nav" aria-label="Menu principale">
             <NavLinks items={TOP_NAV} className="top-nav__link" />
           </nav>
-          <TextSizeButton />
-          <Link to="/impostazioni" className="header-btn" aria-label="Impostazioni" title="Impostazioni">
-            <Settings aria-hidden="true" />
-          </Link>
+          {/* Su computer: Impostazioni con la scritta, in stile leggero. Sul telefono stanno in «Il mio comune». */}
+          <NavLink to="/impostazioni" className="header-settings">
+            <Settings aria-hidden="true" /> Impostazioni
+          </NavLink>
           <Link to="/ho-sentito" className="btn--felt-small" aria-label="Ho sentito una scossa">
             <Ear aria-hidden="true" />
             <span className="only-wide">Ho sentito una scossa</span>
@@ -209,6 +162,8 @@ export function Layout() {
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/termini">Termini d’uso</Link>
             <Link to="/informazioni">Informazioni e crediti</Link>
+            <Link to="/impostazioni">Impostazioni</Link>
+            <Link to="/analisi">Analisi per esperti</Link>
           </p>
         </div>
       </footer>

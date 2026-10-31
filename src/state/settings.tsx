@@ -29,8 +29,10 @@ export const STORAGE_KEY = 'quakeitalia:settings:v1';
 
 const DEFAULTS: Settings = {
   home: null,
-  radiusKm: 100,
-  textSize: 'large',
+  // «Vicino» = il proprio comune e quelli intorno. Le scosse lontane ma sentite a casa le segnaliamo comunque
+  // (vedi impact.ts e useQuakeAlerts): il raggio decide solo cosa contiamo come «vicino».
+  radiusKm: 30,
+  textSize: 'normal',
   theme: 'light',
   highContrast: false,
   showMicro: false,

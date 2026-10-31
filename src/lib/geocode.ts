@@ -39,10 +39,17 @@ function toPlace(f: PhotonFeature): Place {
   return { name, detail, lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1] };
 }
 
+/**
+ * Nomi sempre come sul posto («Napoli», «Lombardia»), qualunque sia la lingua del browser: senza questo, con un browser
+ * in inglese Photon risponde «Naples» e il comune non si trova più nell'elenco ufficiale delle zone sismiche.
+ * («it» non è tra le lingue di Photon; «default» = il nome locale di OpenStreetMap.)
+ */
+const LANG = 'default';
+
 export async function searchPlaces(text: string, signal?: AbortSignal): Promise<Place[]> {
   const q = text.trim();
   if (q.length < 2) return [];
-  const url = `${PHOTON}/api/?q=${encodeURIComponent(q)}&limit=15&bbox=${BBOX}&osm_tag=place`;
+  const url = `${PHOTON}/api/?q=${encodeURIComponent(q)}&limit=15&bbox=${BBOX}&osm_tag=place&lang=${LANG}`;
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error('Ricerca non disponibile in questo momento.');
   const json = (await res.json()) as { features?: PhotonFeature[] };
@@ -72,7 +79,7 @@ export async function searchPlaces(text: string, signal?: AbortSignal): Promise<
 export async function reverseGeocode(at: LatLon, signal?: AbortSignal): Promise<Place & { address?: string }> {
   const fallback: Place = { ...at, name: 'La mia posizione' };
   try {
-    const res = await fetch(`${PHOTON}/reverse?lat=${at.lat}&lon=${at.lon}`, { signal });
+    const res = await fetch(`${PHOTON}/reverse?lat=${at.lat}&lon=${at.lon}&lang=${LANG}`, { signal });
     if (!res.ok) return fallback;
     const json = (await res.json()) as { features?: PhotonFeature[] };
     const first = json.features?.[0];

@@ -102,15 +102,6 @@
 /* [aria-current] = "page" sulla pagina della voce, "true" sulle pagine che le appartengono (es. "Altro"). */
 /* Azzurro chiaro, non blu pieno: il blu pieno è del pulsante "Ho sentito", che è un'azione e non una pagina. */
 .top-nav__link[aria-current] { background: var(--primary-soft); color: var(--primary); text-decoration: none; }
-.top-nav__link--divider { margin-left: var(--sp-3); position: relative; }
-.top-nav__link--divider::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--sp-2));
-  top: 25%;
-  bottom: 25%;
-  border-left: 1px solid var(--border);
-}
 
 .only-wide { display: none; }
 
@@ -160,7 +151,7 @@
 @media (min-width: 1100px) {
   /* Con le scritte molto grandi (e la voce Analisi) le voci possono non stare in una riga: vanno a capo, senza uscire dallo schermo. */
   .top-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
-  /* Solo testo: l'intestazione ha una larghezza massima e, con logo, slogan e 6 voci, le icone non ci stanno mai. */
+  /* Le icone del menu in alto si accendono più giù (in fondo al file), dove ci sono le misure della testata. */
   .top-nav__link svg { display: none; }
   .top-nav__link { padding: 0 var(--sp-2); }
   .bottom-nav { display: none; }
@@ -654,11 +645,11 @@
 .depth-legend__bar { height: 12px; border-radius: var(--r-pill); }
 .depth-legend__ticks { display: flex; justify-content: space-between; font-size: var(--fs-sm); color: var(--text-muted); margin-top: 2px; }
 
-/* Frase guida accanto al nome: solo su schermi larghi, per non affollare il telefono. */
+/* Lo slogan sotto il nome: dove c'è spazio (da 1400px), per non affollare telefono e schermi piccoli. */
 .logo__text { display: flex; flex-direction: column; line-height: 1.15; }
 .logo__tagline { display: none; font-size: 0.72rem; font-weight: 400; color: var(--text-muted); }
-@media (min-width: 1500px) {
-  .logo__tagline { display: block; font-size: 12px; }
+@media (min-width: 1400px) {
+  .logo__tagline { display: block; font-size: 12px; white-space: nowrap; }
 }
 
 
@@ -694,50 +685,50 @@
 .tech-details:not([open]) { gap: 0; }
 .legend .legend__note { display: block; max-width: 34ch; }
 
-/* ---------- Testata: «Aa» e Impostazioni ---------- */
-.header-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 2px;
-  min-width: var(--tap); min-height: var(--tap); padding: 0 var(--sp-2);
-  border-radius: var(--r-pill); color: var(--text); text-decoration: none; background: transparent; border: 1px solid var(--border);
+/* ---------- Testata ---------- */
+/* «Impostazioni» con la scritta, leggero: il pulsante forte resta solo «Ho sentito». Solo su computer. */
+.header-settings { display: none; }
+@media (min-width: 1100px) {
+  .header-settings {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 6px;
+    color: var(--text); font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap;
+  }
+  .header-settings svg { width: 18px; height: 18px; color: var(--primary); }
+  .header-settings:hover { color: var(--text); text-decoration: underline; text-underline-offset: 0.25em; }
+  .header-settings[aria-current] { color: var(--primary); text-decoration: underline; text-underline-offset: 0.25em; }
 }
-.header-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-soft); }
-.header-btn svg { width: 1.35rem; height: 1.35rem; }
-.header-aa { flex-direction: column; gap: 1px; font-weight: 700; line-height: 1; }
-.header-aa__letters { font-size: 1.15rem; }
-.header-aa__letters span { font-size: 0.8em; }
-.header-aa__dots { display: flex; gap: 2px; }
-.header-aa__dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
-.header-aa__dots i.is-on { background: var(--primary); }
-.header-aa-wrap { position: relative; display: inline-flex; }
-/* Conferma breve sotto il pulsante: «Scritte grandi». Vuota = invisibile. */
-.header-aa__toast:empty { display: none; }
-.header-aa__toast {
-  position: absolute; top: calc(100% + 6px); right: 0; z-index: 50; white-space: nowrap;
-  padding: var(--sp-1) var(--sp-3); border-radius: var(--r-pill);
-  background: var(--text); color: var(--bg, #fff); font-size: var(--fs-sm); font-weight: 700;
-}
-/* Telefono: logo senza scritta, così ci stanno «Aa», Impostazioni e «Ho sentito». La pagina ha comunque il suo titolo. */
+/* Testata principale: logo, subito accanto il menu, a destra Impostazioni e «Ho sentito». Misure in px: con le scritte
+   più grandi cresce il contenuto delle pagine, non la testata (che altrimenti non ci starebbe). */
 @media (max-width: 479px) {
-  .app-header__brand .logo__text { display: none; }
   .app-header__inner { gap: 8px; padding-inline: 12px; }
-  /* Misure in px, come il menu in basso: con «scritte molto grandi» cresce il contenuto, non la testata (che non ci starebbe). */
-  .header-btn { padding: 0; width: 48px; min-width: 48px; min-height: 48px; }
-  .header-aa__letters { font-size: 18px; }
   .btn--felt-small { font-size: 16px; min-height: 48px; padding-inline: 14px; }
 }
-
-/* Testata del computer in px (come sul telefono): con «Aa», Impostazioni e 6 voci, solo così sta su una riga
-   anche con le scritte grandi. Cresce il contenuto delle pagine, non la testata. In fondo al file: vince sulle regole base. */
 @media (min-width: 1100px) {
-  .app-header__inner { gap: 12px; padding-inline: 16px; }
-  .top-nav__link { font-size: 15px; min-height: 44px; padding: 0 10px; }
-  .header-btn { padding: 0; width: 44px; min-width: 44px; min-height: 44px; }
-  .header-btn svg { width: 22px; height: 22px; }
-  .header-aa__letters { font-size: 17px; }
-  .btn--felt-small { font-size: 15px; min-height: 44px; padding-inline: 14px; gap: 8px; }
+  .app-header__inner { gap: 28px; padding-inline: 16px; }
+  .app-header__brand { margin-right: 0; }
+  .top-nav { margin-right: auto; justify-content: flex-start; gap: 4px; }
+  .top-nav__link { font-size: 16px; min-height: 44px; padding: 0 12px; }
+  .top-nav__link svg { display: inline-block; width: 18px; height: 18px; }
+  .btn--felt-small { font-size: 15px; min-height: 44px; padding-inline: 16px; gap: 8px; }
   .btn--felt-small svg { width: 18px; height: 18px; }
-  .app-header__brand .logo__word { font-size: 18px; }
+  .btn--felt-small .only-wide { display: none; }
+  .btn--felt-small .only-narrow { display: inline; }
+  .app-header__brand .logo__word { font-size: 19px; white-space: nowrap; }
 }
-@media (min-width: 1500px) {
-  .top-nav__link { padding: 0 14px; }
+/* La larghezza della testata in px: con «rem» dipenderebbe dalla grandezza del testo (più stretta con «Normale»). */
+@media (min-width: 1100px) {
+  .app-header__inner { max-width: 1440px; }
+  /* Anche lo spazio tra icona e scritta in px: in rem cresceva con il testo e mandava a capo il menu. */
+  .top-nav__link { gap: 6px; }
+}
+@media (min-width: 1100px) and (max-width: 1399px) {
+  .app-header__inner { gap: 14px; }
+  .header-settings { padding: 0 2px; }
+  .top-nav { gap: 2px; }
+  .top-nav__link { padding: 0 8px; }
+}
+/* Da 1400px c'è spazio per lo slogan e per «Ho sentito una scossa» per intero. */
+@media (min-width: 1400px) {
+  .btn--felt-small .only-wide { display: inline; }
+  .btn--felt-small .only-narrow { display: none; }
 }

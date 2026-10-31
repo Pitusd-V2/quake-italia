@@ -10,6 +10,10 @@ updates:
     groups:
       dipendenze-minori:
         update-types: [minor, patch]
+    ignore:
+      # Le descrizioni di Node seguono la versione usata dai controlli (Node 24): niente salti di versione grandi.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
   - package-ecosystem: github-actions
     directory: /
     schedule:

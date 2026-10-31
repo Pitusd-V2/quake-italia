@@ -105,7 +105,7 @@ export function SettingsPage() {
           label="Avvisami delle nuove scosse"
           description={
             settings.home
-              ? `Quando c'è una nuova scossa entro ${settings.radiusKm} km da ${settings.home.name}.`
+              ? `Quando c'è una nuova scossa entro ${settings.radiusKm} km da ${settings.home.name}, e quando una scossa più lontana si può essere sentita a ${settings.home.name}.`
               : 'Imposta il tuo comune per ricevere avvisi sulle scosse vicine. Senza comune ti avvisiamo solo per le scosse più forti in Italia.'
           }
           checked={settings.alerts.enabled && perm === 'granted'}

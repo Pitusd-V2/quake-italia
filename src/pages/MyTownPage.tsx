@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { CSSProperties } from 'react';
 import { Link } from 'react-router';
-import { BellRing, Check, ClipboardCheck, History, Landmark, ShieldAlert } from 'lucide-react';
+import { BellRing, Check, ChevronRight, ClipboardCheck, History, Landmark, Settings, ShieldAlert } from 'lucide-react';
 import { useSettings } from '../state/settings';
 import { useNow } from '../hooks/useNow';
 import { fetchQuakes } from '../lib/ingv';
@@ -77,11 +77,17 @@ export function MyTownPage() {
 
   return (
     <div className="container stack-lg">
-      <PageHeader title={`Il mio comune: ${home.name}`} intro="Quanto è sismica la tua zona, cosa è successo in passato e come prepararti.">
-        <p className="small">
-          Non è il tuo comune? <Link to="/impostazioni">Cambialo nelle impostazioni</Link>.
-        </p>
-      </PageHeader>
+      <PageHeader title={`Il mio comune: ${home.name}`} intro="Quanto è sismica la tua zona, cosa è successo in passato e come prepararti." />
+
+      {/* Le impostazioni sono personali come il comune: qui le trova anche chi usa il telefono (dove non sono in alto). */}
+      <Link to="/impostazioni" className="link-card">
+        <Settings aria-hidden="true" />
+        <span>
+          <span className="strong">Le tue impostazioni</span>
+          <span className="muted">Cambia comune, grandezza del testo, colori e avvisi delle nuove scosse.</span>
+        </span>
+        <ChevronRight aria-hidden="true" />
+      </Link>
 
       {/* ---------- Zona sismica ---------- */}
       <section className="card stack" aria-labelledby="zone-title">

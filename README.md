@@ -38,7 +38,7 @@ Quake Italia **non è un sito ufficiale**, non è collegato all'INGV e **non è 
 
 ```bash
 npm install        # installa le dipendenze (versioni bloccate)
-npm run dev        # sviluppo su http://localhost:5173 (con il pannello «Simulazioni»)
+npm run dev        # sviluppo su http://localhost:5173 (pannello «Simulazioni»: aggiungi ?simulazioni)
 npm test           # test
 npm run build      # typecheck + test + build in dist/
 npm run preview    # prova la build con gli stessi header di sicurezza della produzione
@@ -47,7 +47,7 @@ npm run preview    # prova la build con gli stessi header di sicurezza della pro
 Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Nessun backend: il sito è statico.
 
 - Aggiungere uno strumento alla sezione Analisi: vedi `src/pages/expert/registry.ts`.
-- Simulazioni (solo sviluppo): `src/dev/`.
+- Simulazioni (solo sviluppo, mai nel sito pubblicato): aggiungi `?simulazioni` all'indirizzo, es. `http://localhost:5173/?simulazioni`. Codice in `src/dev/`.
 - Dati delle sequenze da rivedere sulla mappa (sezione «Capire»): `node scripts/build-sequence-data.mjs`; tappe e note in `src/learn/sequences.ts`.
 - Sicurezza: vedi [SECURITY.md](SECURITY.md).
 - Dati legali (titolare, contatti, hosting): `src/legal/config.ts`.

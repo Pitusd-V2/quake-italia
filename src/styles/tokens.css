@@ -81,8 +81,9 @@
   --dur: 180ms;
 }
 
-/* Dimensione del testo scelta nelle impostazioni */
-:root { font-size: 118.75%; }
+/* Dimensione del testo scelta nelle impostazioni. Di base «Normale» (già un po' più grande dello standard):
+   chi ne ha bisogno ingrandisce da Impostazioni. */
+:root { font-size: 106.25%; }
 :root[data-text-size='normal'] { font-size: 106.25%; }
 :root[data-text-size='large'] { font-size: 118.75%; }
 :root[data-text-size='xlarge'] { font-size: 137.5%; }

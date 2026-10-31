@@ -71,7 +71,7 @@ describe('Impostazioni salvate manomesse', () => {
       checklist: { gas: true, __proto__: true, 'x y': true, mobili: 'sì' },
     });
     expect(s.home?.name).toBe('Norcia'); // i pezzi di HTML vengono tolti
-    expect(s.radiusKm).toBe(100);
+    expect(s.radiusKm).toBe(30); // valore assurdo: torna al predefinito
     expect(s.theme).toBe('light');
     expect(s.textSize).toBe('xlarge');
     // Le chiavi che non esistono più (come la vecchia "modalità esperto") vengono scartate.

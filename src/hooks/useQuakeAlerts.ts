@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { distanceKm, formatKm } from '../lib/geo';
 import { magLevel, placeText } from '../lib/describe';
+import { impactAt, impactRank } from '../lib/impact';
 import { formatMag } from '../lib/format';
 import { useSettings, type Settings } from '../state/settings';
 import type { Quake } from '../lib/types';
@@ -9,9 +10,18 @@ const RECENT_MS = 2 * 3_600_000;
 /** Senza un comune impostato avvisiamo solo per le scosse più importanti in Italia. */
 const NO_HOME_MIN_MAG = 3.5;
 
-function isRelevant(q: Quake, s: Settings): boolean {
-  if (Date.now() - q.time.getTime() > RECENT_MS) return false;
-  if (s.home) return q.mag >= s.alerts.minMag && distanceKm(s.home, q) <= s.radiusKm;
+/**
+ * Avvisiamo per le scosse vicine (entro il raggio, dalla magnitudo scelta) e per quelle che a casa tua si possono
+ * essere sentite, a qualsiasi distanza: una 4,5 a 60 km è fuori dal raggio di 30 km, ma lì arriva come «leggera»
+ * (grado III): qualcuno l'ha sentita e vuole sapere cos'era. Quelle che a casa non si sentono non avvisano.
+ */
+export function isRelevant(q: Quake, s: Settings, now = Date.now()): boolean {
+  if (now - q.time.getTime() > RECENT_MS) return false;
+  if (s.home) {
+    const near = q.mag >= s.alerts.minMag && distanceKm(s.home, q) <= s.radiusKm;
+    const feltAtHome = impactRank(impactAt(q, s.home)) >= impactRank('weak');
+    return near || feltAtHome;
+  }
   return q.mag >= Math.max(NO_HOME_MIN_MAG, s.alerts.minMag);
 }
 

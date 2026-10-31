@@ -25,6 +25,10 @@ jobs:
           cache: npm
       # `npm ci` installa ESATTAMENTE le versioni del package-lock.json (niente sorprese).
       - run: npm ci
-      - run: npm audit --audit-level=moderate
+      # Librerie che arrivano nel browser di chi visita il sito: nessuna vulnerabilità nota, nemmeno moderata.
+      - run: npm audit --omit=dev --audit-level=moderate
+      # Strumenti usati solo per costruire il sito (sul nostro computer o qui): blocca i problemi gravi.
+      # Quelli lievi e moderati li sistema Dependabot appena esce la correzione.
+      - run: npm audit --audit-level=high
       # Typecheck + test (inclusi quelli di sicurezza) + build.
       - run: npm run build

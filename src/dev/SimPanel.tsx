@@ -1,6 +1,8 @@
 /**
- * Pannello SIMULAZIONI — compare solo con `npm run dev`.
+ * Pannello SIMULAZIONI — esiste solo con `npm run dev` (mai nel sito pubblicato).
  * Serve per provare l'app senza aspettare un terremoto vero.
+ * Di base è nascosto: si apre aggiungendo «?simulazioni» all'indirizzo (resta fino alla chiusura della scheda).
+ * Se una simulazione è attiva, la striscia gialla si vede comunque: i dati finti non devono mai sembrare veri.
  */
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -9,6 +11,19 @@ import { useSettings } from '../state/settings';
 import { getSim, setSim, type Scenario } from './simulation';
 
 const DEFAULT_CENTER = { lat: 42.7924, lon: 13.0929, name: 'Norcia' };
+const PANEL_FLAG = 'quakeitalia:sim-panel';
+
+function panelEnabled(): boolean {
+  try {
+    if (new URLSearchParams(window.location.search).has('simulazioni')) {
+      sessionStorage.setItem(PANEL_FLAG, '1');
+      return true;
+    }
+    return sessionStorage.getItem(PANEL_FLAG) === '1';
+  } catch {
+    return false;
+  }
+}
 
 const LABELS: Record<Scenario, string> = {
   off: 'nessuna scossa finta',
@@ -22,6 +37,7 @@ export default function SimPanel() {
   const { settings } = useSettings();
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
+  const [enabled, setEnabled] = useState(panelEnabled);
   const [state, setState] = useState(getSim);
   const active = !!state && (state.scenario !== 'off' || state.fakeGps);
 
@@ -42,10 +58,12 @@ export default function SimPanel() {
           {state!.fakeGps ? ' · GPS finto' : ''} · i dati simulati non sono reali
         </div>
       )}
-      <button type="button" className="sim-fab" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-        <FlaskConical aria-hidden="true" /> Simulazioni
-      </button>
-      {open && (
+      {enabled && (
+        <button type="button" className="sim-fab" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+          <FlaskConical aria-hidden="true" /> Simulazioni
+        </button>
+      )}
+      {enabled && open && (
         <div className="sim-panel card stack-sm" role="dialog" aria-label="Simulazioni">
           <div className="row row--between">
             <p className="strong">Simulazioni (solo sviluppo)</p>
@@ -73,6 +91,21 @@ export default function SimPanel() {
           </button>
           <button type="button" className="btn btn--ghost" onClick={() => apply('off', false)}>
             Ferma tutte le simulazioni
+          </button>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => {
+              try {
+                sessionStorage.removeItem(PANEL_FLAG);
+              } catch {
+                /* niente */
+              }
+              setOpen(false);
+              setEnabled(false);
+            }}
+          >
+            Nascondi il pannello
           </button>
         </div>
       )}
