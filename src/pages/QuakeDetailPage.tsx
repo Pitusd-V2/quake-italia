@@ -10,6 +10,7 @@ import { FeltLikeCard } from '../components/FeltLikeCard';
 import { capitalize, depthNote, depthText, feltEstimate, magLevel, placeText, shareText, speechText } from '../lib/describe';
 import { formatFull, formatMag, formatWhen, timeAgo } from '../lib/format';
 import { buildQueryUrl, ingvEventPage } from '../lib/ingv';
+import { HSIT_FORM, hsitHint } from '../lib/hsit';
 import { MagBadge, LevelLabel } from '../components/MagBadge';
 import { QuakeList } from '../components/QuakeCard';
 import { ShareButton, SpeakButton } from '../components/Actions';
@@ -56,6 +57,7 @@ export function QuakeDetailPage() {
   const p = placeText(quake.place);
   const lvl = magLevel(quake.mag, quake.depthKm);
   const note = depthNote(quake.depthKm);
+  const hsit = hsitHint(quake);
   const felt = home ? feltEstimate(quake, home) : null;
   const pageUrl = `${window.location.origin}/terremoto/${quake.id}`;
 
@@ -169,10 +171,15 @@ export function QuakeDetailPage() {
 
       <section className="card stack" aria-labelledby="hsit">
         <h2 id="hsit">L'hai sentita?</h2>
-        <p>Racconta all'INGV cosa hai sentito: aiuti i sismologi a capire gli effetti di questa scossa.</p>
+        <p>Racconta all'INGV cosa hai sentito: aiuti i sismologi a capire gli effetti di questa scossa. Bastano pochi minuti.</p>
+        <p className="small">
+          Nel questionario, alla prima domanda, scegli dalla lista la scossa del{' '}
+          <span className="strong">{hsit.inList}</span>. Se non c'è ancora, scegli «Terremoto non in lista» e scrivi la
+          data <span className="strong">{hsit.date}</span> e l'ora <span className="strong">{hsit.time}</span>.
+        </p>
         <div className="row">
-          <ExternalLink href="https://www.hsit.it/" className="btn btn--secondary">
-            Questionario «Hai sentito il terremoto?»
+          <ExternalLink href={HSIT_FORM} className="btn btn--secondary">
+            Compila il questionario INGV
           </ExternalLink>
           <ExternalLink href={ingvEventPage(quake.id)} className="btn btn--ghost">
             Pagina ufficiale INGV

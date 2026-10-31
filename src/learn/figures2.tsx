@@ -1,5 +1,5 @@
 /**
- * Figure dei post su storia sismica e vulcani.
+ * Figure degli articoli su storia sismica e vulcani.
  * Dati: CPTI15 v4.0 (src/data/learn/cpti15.json, scripts/build-history-data.py)
  * e catalogo INGV per i Campi Flegrei (src/data/learn/campi-flegrei.json, scripts/build-learn-data.mjs).
  */

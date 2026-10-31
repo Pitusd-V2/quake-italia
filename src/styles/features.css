@@ -491,3 +491,20 @@
 .seq-replay__caption { min-height: 6.5rem; padding: var(--sp-3) var(--sp-4); border-left: 4px solid var(--chart-2, #eb6834); background: var(--surface-2); border-radius: var(--r-md); }
 .seq-replay__caption p + p { margin-top: var(--sp-1); }
 .seq-replay__notes > summary { cursor: pointer; min-height: var(--tap); display: flex; align-items: center; color: var(--primary); }
+
+/* ---------- Post «a strati»: le tre parti e l'approfondimento ---------- */
+.learn-body h3 { font-size: var(--fs-md); margin-top: var(--sp-3); }
+.learn-part { display: flex; gap: var(--sp-3); align-items: center; margin-top: var(--sp-5); padding-top: var(--sp-4); border-top: 2px solid var(--border); }
+.learn-part h2 { margin-top: 0; }
+.learn-part .eyebrow { margin: 0; }
+.learn-part__n {
+  flex-shrink: 0; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  background: var(--primary); color: var(--on-primary, #fff); font-weight: 800; font-size: var(--fs-md);
+}
+.learn-deep { padding: var(--sp-4); border-radius: var(--r-lg); background: var(--surface-2); border-left: 4px solid var(--primary); }
+.learn-deep h3:first-child { margin-top: 0; }
+.learn-deep .learn-figure { background: var(--surface); }
+
+/* Barre con una linea di riferimento (es. «quanto darebbe il caso»). */
+.hbars--ref .hbars__track { position: relative; }
+.hbars__ref { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--chart-fit); }

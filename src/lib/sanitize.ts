@@ -67,7 +67,7 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'dfm.ingv.it',
   'zonesismiche.mi.ingv.it',
   'www.earth-prints.org',
-  // Fonti dei post su storia e vulcani
+  // Fonti degli articoli su storia e vulcani
   'www.ov.ingv.it',
   'storing.ingv.it',
   'cfti.ingv.it',
@@ -83,6 +83,16 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.focus.it',
   // Fonte dei paragoni «Così si è sentita» (scala EMS-98)
   'quakes.bgs.ac.uk',
+  // Fonti di «Esiste il tempo da terremoto?» (testi antichi, giornale con l'intervista INGV, dati meteo)
+  'classics.mit.edu',
+  'www.perseus.tufts.edu',
+  'www.lanazione.it',
+  'open-meteo.com',
+  'archive-api.open-meteo.com',
+  // Fonte di «Il mal da terremoto» (segni dell'ictus)
+  'www.issalute.it',
+  // Fonte dell'articolo sui Campi Flegrei (fase 2 dell'allerta gialla)
+  'www.agi.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

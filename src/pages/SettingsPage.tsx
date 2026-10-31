@@ -129,8 +129,9 @@ export function SettingsPage() {
           onChange={(v) => update({ alerts: { ...settings.alerts, minMag: Number(v) } })}
         />
         <p className="small muted">
-          Gli avvisi arrivano solo mentre Quake Italia è aperto (anche in un'altra scheda) e con qualche minuto di ritardo
-          rispetto alla scossa. <span className="strong">Non è un sistema di allerta</span> e non può avvisarti prima di un
+          Gli avvisi arrivano solo mentre Quake Italia è aperto, con qualche minuto di ritardo rispetto alla scossa. Sul
+          computer arrivano anche se il sito è in un'altra scheda; sul telefono di solito solo mentre Quake Italia è aperto
+          sullo schermo. <span className="strong">Non è un sistema di allerta</span> e non può avvisarti prima di un
           terremoto.
         </p>
       </section>

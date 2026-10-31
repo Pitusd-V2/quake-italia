@@ -106,6 +106,12 @@ export function InfoPage() {
             <ExternalLink href="https://photon.komoot.io/">Photon</ExternalLink> di komoot, basato su OpenStreetMap.
           </li>
           <li>
+            <span className="strong">Meteo del passato</span> (solo nell’articolo sul «tempo da terremoto»):{' '}
+            <ExternalLink href="https://open-meteo.com/en/license">Open-Meteo</ExternalLink>, licenza CC BY 4.0, con dati della
+            rianalisi ERA5 del Copernicus Climate Change Service. Scaricati una volta sola per preparare l’articolo: il sito
+            non si collega a Open-Meteo.
+          </li>
+          <li>
             <span className="strong">Consigli di sicurezza:</span> campagna{' '}
             <ExternalLink href="https://iononrischio.protezionecivile.it/">Io non rischio</ExternalLink> della Protezione Civile.
           </li>

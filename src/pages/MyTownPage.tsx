@@ -138,8 +138,10 @@ export function MyTownPage() {
               <p className="muted">La lettera nel codice indica una sottozona decisa dalla Regione.</p>
             )}
             <p className="small muted">
-              La zona serve a decidere come vanno costruiti gli edifici. Non dice quando ci sarà un terremoto: nessuno può
-              prevederlo. Fonte: <ExternalLink href="https://rischi.protezionecivile.gov.it/it/sismico/attivita/classificazione-sismica/">{ZONES_SOURCE}</ExternalLink>.
+              La zona serve a Regione e Genio civile per pianificare e controllare il territorio. Per costruire, dal 2009, non
+              conta più la zona: i progettisti usano la pericolosità calcolata punto per punto, su una griglia di 5 km (Norme
+              Tecniche per le Costruzioni). La zona non dice quando ci sarà un terremoto: nessuno può prevederlo. Fonte:{' '}
+              <ExternalLink href="https://rischi.protezionecivile.gov.it/it/sismico/attivita/classificazione-sismica/">{ZONES_SOURCE}</ExternalLink>.
             </p>
           </>
         )}

@@ -6,7 +6,7 @@ import { ExternalLink, PageHeader } from '../components/ui';
 import { NotFoundPage } from '../pages/NotFoundPage';
 import { ARTICLES, findArticle } from './articles';
 
-/** Scheda-link grande, come nell'elenco dei post. */
+/** Scheda-link grande, come nell'elenco degli articoli. */
 function LinkCard({ to, title, text, icon: Icon }: { to: string; title: string; text: string; icon: LucideIcon }) {
   return (
     <li>
@@ -22,13 +22,13 @@ function LinkCard({ to, title, text, icon: Icon }: { to: string; title: string; 
   );
 }
 
-/** Elenco dei post. */
+/** Elenco degli articoli. */
 export function LearnIndexPage() {
   return (
     <div className="container stack-lg">
       <PageHeader
         title="Capire i terremoti"
-        intro="Brevi letture, in parole semplici ma con le parole giuste della scienza. Ogni post usa dati veri dell’INGV e fonti pubbliche, elencate in fondo."
+        intro="Brevi letture, in parole semplici ma con le parole giuste della scienza. Ogni articolo usa dati veri dell’INGV e fonti pubbliche, elencate in fondo."
       />
       <ul className="link-list">
         <LinkCard
@@ -82,7 +82,7 @@ export function LearnIndexPage() {
   );
 }
 
-/** Lettura ad alta voce di tutto il post (testo preso dalla pagina). */
+/** Lettura ad alta voce di tutto l'articolo (testo preso dalla pagina). */
 function ReadAloud({ target }: { target: RefObject<HTMLElement | null> }) {
   const { supported, speaking, speak, stop } = useSpeech();
   if (!supported) return null;
@@ -94,12 +94,12 @@ function ReadAloud({ target }: { target: RefObject<HTMLElement | null> }) {
       onClick={() => (speaking ? stop() : speak(target.current?.innerText ?? ''))}
     >
       {speaking ? <Square aria-hidden="true" /> : <Volume2 aria-hidden="true" />}
-      {speaking ? 'Ferma la lettura' : 'Ascolta il post'}
+      {speaking ? 'Ferma la lettura' : 'Ascolta l’articolo'}
     </button>
   );
 }
 
-/** Un post. */
+/** Un articolo. */
 export function ArticlePage() {
   const { slug } = useParams();
   const article = findArticle(slug);
@@ -118,7 +118,7 @@ export function ArticlePage() {
 
       <header className="page-header">
         <p className="eyebrow">
-          Post {i + 1} di {ARTICLES.length} · {article.minutes} minuti
+          Articolo {i + 1} di {ARTICLES.length} · {article.minutes} minuti
         </p>
         <h1 tabIndex={-1}>{article.title}</h1>
         <p className="page-header__intro">{article.subtitle}</p>
@@ -126,7 +126,7 @@ export function ArticlePage() {
 
       <section className="learn-summary" aria-labelledby="in-breve">
         <h2 id="in-breve" className="icon-title">
-          <BookOpen aria-hidden="true" /> In breve
+          <BookOpen aria-hidden="true" /> {article.summaryTitle ?? 'In breve'}
         </h2>
         <ul className="advice">
           {article.summary.map((s) => (
@@ -160,12 +160,16 @@ export function ArticlePage() {
           ))}
         </ol>
         <p className="small muted">
-          I grafici usano dati del catalogo INGV (licenza CC BY 4.0), scaricati e riassunti con lo script{' '}
-          <code>scripts/build-learn-data.mjs</code>: il link “richiesta” permette di rifare la stessa interrogazione.
+          {article.dataNote ?? (
+            <>
+              I grafici usano dati del catalogo INGV (licenza CC BY 4.0), scaricati e riassunti con lo script{' '}
+              <code>scripts/build-learn-data.mjs</code>: il link “richiesta” permette di rifare la stessa interrogazione.
+            </>
+          )}
         </p>
       </section>
 
-      <nav className="learn-nav" aria-label="Altri post">
+      <nav className="learn-nav" aria-label="Altri articoli">
         {prev ? (
           <Link to={`/capire/${prev.slug}`} className="learn-nav__link">
             <ArrowLeft aria-hidden="true" />

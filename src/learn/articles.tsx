@@ -1,7 +1,7 @@
 /**
- * "Capire i terremoti": i post divulgativi.
+ * "Capire i terremoti": gli articoli divulgativi.
  * Regola: linguaggio semplice, ma i termini scientifici restano (spiegati la prima volta)
- * e ogni affermazione importante ha una fonte pubblica in fondo al post.
+ * e ogni affermazione importante ha una fonte pubblica in fondo all'articolo.
  */
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
@@ -12,6 +12,7 @@ import gr from '../data/learn/gr-italia.json';
 import { formatInt } from '../lib/format';
 import { EnergyChart, FaultDiagram, GRBars, MCSScale, NorciaChart, RiskDiagram, SlabChart } from './figures';
 import { MORE_ARTICLES } from './articles2';
+import { WEATHER_ARTICLE } from './articles3';
 
 export interface Source {
   label: string;
@@ -28,6 +29,10 @@ export interface Article {
   body: () => ReactNode;
   glossary: [string, string][];
   sources: Source[];
+  /** Titolo del riassunto iniziale (di solito «In breve»). */
+  summaryTitle?: string;
+  /** Nota sui dati in fondo all'articolo, se diversa da quella standard. */
+  dataNote?: ReactNode;
 }
 
 const n = (v: number) => formatInt(v);
@@ -502,6 +507,6 @@ export const ARTICLES: Article[] = [
   },
 ];
 
-ARTICLES.push(...MORE_ARTICLES);
+ARTICLES.push(...MORE_ARTICLES, WEATHER_ARTICLE);
 
 export const findArticle = (slug: string | undefined) => ARTICLES.find((a) => a.slug === slug);

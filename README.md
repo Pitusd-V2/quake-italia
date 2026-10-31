@@ -49,6 +49,7 @@ Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Ne
 - Aggiungere uno strumento alla sezione Analisi: vedi `src/pages/expert/registry.ts`.
 - Simulazioni (solo sviluppo, mai nel sito pubblicato): aggiungi `?simulazioni` all'indirizzo, es. `http://localhost:5173/?simulazioni`. Codice in `src/dev/`.
 - Dati delle sequenze da rivedere sulla mappa (sezione «Capire»): `node scripts/build-sequence-data.mjs`; tappe e note in `src/learn/sequences.ts`.
+- Dati dell'articolo «Esiste il tempo da terremoto?»: `node scripts/build-weather-myth-data.mjs` (catalogo INGV e meteo ERA5 da Open-Meteo; qualche minuto, con `CACHE_DIR=<cartella>` i download si riusano).
 - Sicurezza: vedi [SECURITY.md](SECURITY.md).
 - Dati legali (titolare, contatti, hosting): `src/legal/config.ts`.
 

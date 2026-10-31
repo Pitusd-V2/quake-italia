@@ -17,11 +17,12 @@ export interface ComuneZone {
   mixed: boolean;
 }
 
+/** Descrizioni allineate a quelle del Dipartimento della Protezione Civile (pagina «Classificazione sismica»). */
 export const ZONE_INFO: Record<1 | 2 | 3 | 4, { label: string; text: string }> = {
-  1: { label: 'Pericolosità alta', text: 'È la zona più pericolosa: qui possono avvenire terremoti molto forti.' },
-  2: { label: 'Pericolosità medio-alta', text: 'Qui possono avvenire terremoti forti.' },
-  3: { label: 'Pericolosità media', text: 'Qui possono avvenire terremoti forti, ma sono rari.' },
-  4: { label: 'Pericolosità bassa', text: 'È la zona meno pericolosa: i terremoti forti sono molto rari, ma non impossibili.' },
+  1: { label: 'Pericolosità alta', text: 'È la zona più pericolosa: la probabilità che capiti un forte terremoto è alta.' },
+  2: { label: 'Pericolosità medio-alta', text: 'In questa zona i forti terremoti sono possibili.' },
+  3: { label: 'Pericolosità media', text: 'Qui i forti terremoti sono meno probabili che nelle zone 1 e 2, ma possibili.' },
+  4: { label: 'Pericolosità bassa', text: 'È la zona meno pericolosa: la probabilità di un terremoto dannoso è molto bassa, ma non è zero.' },
 };
 
 export const ZONES_SOURCE = 'Dipartimento della Protezione Civile — classificazione sismica aggiornata a maggio 2025';

@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { MessageCircleWarning, ShieldCheck } from 'lucide-react';
 import { SpeakButton } from '../components/Actions';
 import { ExternalLink, PageHeader } from '../components/ui';
+import { meteo as weatherMeteo } from '../data/learn/tempo-terremoto.json';
 
 type Verdict = 'falso' | 'in-parte';
 
@@ -11,6 +12,8 @@ interface Rumor {
   says: string;
   verdict: Verdict;
   answer: string[];
+  /** Approfondimento in «Capire», se c'è. */
+  more?: { to: string; label: string };
 }
 
 const VERDICT_LABEL: Record<Verdict, string> = { falso: 'Falso', 'in-parte': 'Vero solo in parte' };
@@ -48,9 +51,10 @@ const RUMORS: Rumor[] = [
     says: '«Fa caldo e c’è aria ferma: è tempo da terremoto.»',
     verdict: 'falso',
     answer: [
-      'Il «tempo da terremoto» non esiste. I terremoti nascono a chilometri di profondità, dove il tempo che fa in superficie non arriva. Avvengono con il caldo, con il freddo, con la pioggia e con il sole, in proporzioni simili.',
-      'Ci ricordiamo il tempo di un giorno speciale, e così sembra che ci sia un legame.',
+      `Il «tempo da terremoto» non esiste, e l’abbiamo controllato con i dati. Nelle 24 ore prima di ${weatherMeteo.terremoti} terremoti forti in Italia dal 1985 non faceva più caldo del solito, non c’era meno vento e non pioveva di più.`,
+      'L’idea viene da Aristotele, che pensava ai terremoti come a vento chiuso sottoterra. Sopravvive perché ricordiamo il tempo di un giorno terribile, non quello delle migliaia di giorni uguali in cui non è successo niente.',
     ],
+    more: { to: '/capire/tempo-da-terremoto', label: 'Leggi l’indagine completa, con i dati' },
   },
   {
     id: 'animali',
@@ -113,6 +117,13 @@ export function RumorsPage() {
             {r.answer.map((a) => (
               <p key={a}>{a}</p>
             ))}
+            {r.more && (
+              <p>
+                <Link to={r.more.to} className="strong">
+                  {r.more.label} →
+                </Link>
+              </p>
+            )}
             <div>
               <SpeakButton label="Ascolta" text={`${r.says} ${VERDICT_LABEL[r.verdict]}. ${r.answer.join(' ')}`} />
             </div>

@@ -1,5 +1,5 @@
 /**
- * Post su storia sismica e vulcani. Stesse regole di articles.tsx:
+ * Articoli su storia sismica e vulcani. Stesse regole di articles.tsx:
  * testo semplice, termini scientifici spiegati, numeri solo da fonti verificate (elencate in fondo).
  */
 import { Link } from 'react-router';
@@ -8,6 +8,7 @@ import cf from '../data/learn/campi-flegrei.json';
 import { formatInt } from '../lib/format';
 import type { Article } from './articles';
 import { CF_MAIN } from './cfEvents';
+import { MAL_ARTICLE } from './articles4';
 import { SequenceSection } from './SequenceSection';
 import { CenturyBars, CFMonthlyChart, CFYearBars, HistoryTimeline, UpliftBars, VolcanicIntensityChart } from './figures2';
 
@@ -144,7 +145,7 @@ export const MORE_ARTICLES: Article[] = [
   /* ------------------------------------------------------------------ */
   {
     slug: 'terremoti-e-vulcani',
-    title: 'Terremoti e vulcani: Etna, Vesuvio, Ischia',
+    title: 'Terremoti e vulcani: Etna, Vesuvio, Campi Flegrei',
     subtitle: 'Perché vicino ai vulcani anche una scossa “piccola” può fare danni.',
     minutes: 5,
     summary: [
@@ -205,7 +206,7 @@ export const MORE_ARTICLES: Article[] = [
 
           <h2>E i Campi Flegrei?</h2>
           <p>
-            Sono il caso più particolare, con un fenomeno tutto loro: il bradisismo. Li raccontiamo nel prossimo post,{' '}
+            Sono il caso più particolare, con un fenomeno tutto loro: il bradisismo. Li raccontiamo nel prossimo articolo,{' '}
             <Link to="/capire/campi-flegrei">Campi Flegrei: la caldera che respira</Link>.
           </p>
         </>
@@ -235,7 +236,7 @@ export const MORE_ARTICLES: Article[] = [
     summary: [
       'I Campi Flegrei sono una caldera: un vulcano “a conca” nato da enormi eruzioni, dove oggi vivono centinaia di migliaia di persone.',
       'Il suolo si alza e si abbassa lentamente (bradisismo): a Pozzuoli si è sollevato di circa 169,5 cm da novembre 2005.',
-      'La sismicità cresce dal 2019; la scossa più forte finora è stata Md 4,7 il 31 luglio 2026. Il livello di allerta è giallo.',
+      'La sismicità cresce dal 2019; la scossa più forte finora è stata Md 4,7 il 31 luglio 2026. Il livello di allerta è giallo, nella «fase 2 di attenzione».',
     ],
     body: () => (
       <>
@@ -286,8 +287,8 @@ export const MORE_ARTICLES: Article[] = [
         </p>
         <ul className="advice">
           <li>
-            alla stazione GPS del Rione Terra il sollevamento totale è di <strong>circa 169,5 cm da novembre 2005</strong>, di cui
-            circa 32 cm solo da gennaio 2025;
+            alla stazione GPS del Rione Terra il sollevamento totale è di <strong>circa 169,5 cm da novembre 2005</strong> ad
+            agosto 2026, di cui circa 32 cm solo da gennaio 2025;
           </li>
           <li>
             da febbraio 2026 il suolo sale in media di <strong>circa 10 mm al mese</strong>;
@@ -330,31 +331,41 @@ export const MORE_ARTICLES: Article[] = [
         <h2>I gas e il calore</h2>
         <p>
           Non c’è solo il movimento del suolo. Alla Solfatara e a Pisciarelli il vulcano “respira” gas: nell’area interna della
-          Solfatara il flusso di <dfn>anidride carbonica</dfn> (CO₂) dal suolo è stimato intorno a 900 tonnellate al giorno, un
-          valore elevato, paragonabile a quello di vulcani attivi che degassano in modo continuo. L’Osservatorio segnala che la
-          composizione delle fumarole indica il perdurare di un riscaldamento e di una pressurizzazione del sistema idrotermale,
-          ripresi dai primi mesi del 2022.
+          Solfatara il flusso di <dfn>anidride carbonica</dfn> (CO₂) dal suolo, a settembre 2026, è stimato intorno a 900
+          tonnellate al giorno: tra i valori più bassi degli ultimi mesi, ma comunque elevato e paragonabile a quello di vulcani
+          attivi che degassano in modo continuo. L’Osservatorio segnala che la composizione delle fumarole indica il perdurare
+          del riscaldamento e della pressurizzazione del sistema idrotermale, già osservati nei mesi precedenti.
         </p>
 
         <h2>Livelli di allerta: a che punto siamo</h2>
         <p>
           Per i vulcani italiani ci sono quattro <dfn>livelli di allerta</dfn>: verde, giallo, arancione e rosso. Ai Campi
-          Flegrei il livello è <strong>giallo</strong>, che l’Osservatorio descrive come “disequilibrio medio”: il vulcano mostra
-          variazioni dei parametri rispetto al normale. Dal novembre 2025 la Protezione Civile ha adottato anche la “fase di
-          attenzione”, mantenendo il livello giallo.
+          Flegrei il livello è <strong>giallo</strong> (attenzione): il vulcano mostra variazioni dei parametri rispetto al
+          normale. Dal novembre 2025 il livello giallo è diviso in due fasi e la Protezione Civile ha adottato la{' '}
+          <strong>fase 2</strong>, chiamata “disequilibrio medio”: serve a rafforzare il monitoraggio e a verificare i piani di
+          emergenza. Nel bollettino di settembre 2026 il livello è ancora questo.
         </p>
         <p>
-          Nel bollettino di settembre 2026 l’Osservatorio Vesuviano conclude che non ci sono elementi tali da suggerire
-          significative evoluzioni a breve termine, e che eventuali cambiamenti saranno comunicati subito.
+          Eventuali cambiamenti, scrive l’Osservatorio, saranno comunicati subito: per questo conviene seguire le fonti
+          ufficiali e non le voci.
         </p>
 
         <h2>Ci sarà un’eruzione?</h2>
         <p>
-          Nessuno può dirlo con certezza, e diffida di chi lo “prevede”. Bradisismo e terremoti non significano che
-          un’eruzione sia imminente: a oggi non ci sono evidenze di risalita di magma. Ma è proprio per questo che la caldera è
-          tra le aree più monitorate al mondo: 27 stazioni sismiche fisse a terra e in mare, più stazioni mobili, una rete GPS,
-          misure dei gas e del calore, sensori sul fondo del golfo. Se i parametri indicassero una risalita di magma, il livello
-          di allerta salirebbe e scatterebbero le misure del piano nazionale, che per la <dfn>zona rossa</dfn> prevede
+          Nessuno può dirlo con certezza, e diffida di chi lo “prevede”. Su cosa spinga il suolo a salire, la ricerca discute
+          ancora. Per molto tempo si è pensato soprattutto al sistema idrotermale. Studi recenti, anche di ricercatori dell’INGV,
+          indicano che dietro c’è anche <strong>magma che si muove in profondità</strong>, intorno ai 4–8 km, e che libera gas:
+          una risalita da più di 8 km verso profondità minori, secondo i modelli della deformazione del suolo (Astort e altri,
+          2024), e magma che perde gas ad almeno 6 km di profondità, secondo lo zolfo delle fumarole (Caliro e altri, 2025).
+        </p>
+        <p>
+          Magma in profondità non vuol dire eruzione imminente: per un’eruzione il magma deve arrivare fino in superficie. Ed è
+          proprio quello che la rete di sorveglianza cerca, perché è una delle aree vulcaniche più monitorate al mondo: 27
+          stazioni sismiche fisse a terra e in mare, più stazioni mobili, una rete GPS, misure dei gas e del calore, sensori sul
+          fondo del golfo. Se il magma si avvicinasse alla superficie, ci si aspetta che lo segnalino cambiamenti nei terremoti,
+          nella deformazione del suolo e nei gas. Nel bollettino di settembre 2026 l’Osservatorio Vesuviano scrive che non ci
+          sono elementi tali da suggerire significative evoluzioni a breve termine. Se i parametri cambiassero, il livello di
+          allerta salirebbe e scatterebbero le misure del piano nazionale, che per la <dfn>zona rossa</dfn> prevede
           l’allontanamento preventivo della popolazione.
         </p>
 
@@ -389,6 +400,18 @@ export const MORE_ARTICLES: Article[] = [
       { label: 'INGV – Osservatorio Vesuviano — I Campi Flegrei: inquadramento', href: 'https://www.ov.ingv.it/index.php/monitoraggio-sismico-e-vulcanico/campi-flegrei' },
       DPC_CF_TIMELINE,
       {
+        label: 'AGI, «Campi Flegrei: confermata l’allerta gialla per rischio vulcanico» (fase 2 di Attenzione), 4 novembre 2025',
+        href: 'https://www.agi.it/cronaca/news/2025-11-04/campi-flegrei-confermata-allerta-gialla-per-rischio-vulcanico-34020016/',
+      },
+      {
+        label: 'Astort A. e altri (2024). Tracking the 2007–2023 magma-driven unrest at Campi Flegrei caldera (Italy). Communications Earth & Environment 5',
+        href: 'https://doi.org/10.1038/s43247-024-01665-4',
+      },
+      {
+        label: 'Caliro S. e altri (2025). Escalation of caldera unrest indicated by increasing emission of isotopically light sulfur. Nature Geoscience 18',
+        href: 'https://doi.org/10.1038/s41561-024-01632-w',
+      },
+      {
         label: 'Dipartimento della Protezione Civile — Pianificazione nazionale di emergenza per il rischio vulcanico ai Campi Flegrei',
         href: 'https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/la-pianificazione-nazionale-di-emergenza-il-rischio-vulcanico-i-campi-flegrei/',
       },
@@ -398,83 +421,5 @@ export const MORE_ARTICLES: Article[] = [
     ],
   },
 
-  /* ------------------------------------------------------------------ */
-  {
-    slug: 'mal-da-terremoto',
-    title: 'Il «mal da terremoto»',
-    subtitle: 'Quando dopo una scossa sembra che la terra tremi ancora, anche se è ferma.',
-    minutes: 3,
-    summary: [
-      'Dopo una scossa forte o una sequenza, a molte persone sembra che la terra tremi anche quando è ferma.',
-      'Dopo i terremoti di Kumamoto (Giappone, 2016) è successo a 4 persone su 10 tra quelle che hanno risposto a uno studio.',
-      'È un disturbo conosciuto, non immaginazione: di solito passa da solo nel giro di qualche settimana.',
-    ],
-    body: () => (
-      <>
-        <h2>Cosa si sente</h2>
-        <p>
-          Una sensazione di ondeggiare, come una piccola scossa, che dura pochi secondi e quasi sempre meno di un minuto.
-          Capita soprattutto in casa, quando si è seduti o fermi: proprio quando si sentono meglio anche le scosse vere. Per
-          questo è così difficile distinguerla. In Giappone i medici l’hanno chiamata{' '}
-          <dfn>sindrome da capogiro post-terremoto</dfn> (in inglese post-earthquake dizziness syndrome).
-        </p>
-
-        <h2>Quanto è comune</h2>
-        <p>
-          Dopo i forti terremoti di Kumamoto, nel sud del Giappone, nel 2016 un gruppo di medici ha fatto un questionario: su{' '}
-          {n(3656)} persone che hanno risposto, <strong>{n(1543)} (il 42%)</strong> avevano avuto questa sensazione. Di solito
-          era comparsa entro una settimana dalla scossa ed era durata fino a qualche settimana.
-        </p>
-
-        <h2>A chi capita di più</h2>
-        <p>Nello stesso studio era più frequente:</p>
-        <ul className="advice">
-          <li>in chi si sentiva più in ansia;</li>
-          <li>in chi soffre di mal d’auto o di mal di mare;</li>
-          <li>in chi abita dal terzo piano in su;</li>
-          <li>nelle donne e negli adulti, più che nei ragazzi;</li>
-          <li>in chi aveva fischi o la sensazione di orecchie tappate.</li>
-        </ul>
-
-        <h2>Perché succede</h2>
-        <p>
-          Non si sa ancora con certezza. L’ipotesi dei ricercatori è che il nostro <dfn>sistema dell’equilibrio</dfn>{' '}
-          (orecchio interno, vista e sensazioni del corpo), dopo tante scosse, riceva segnali che non vanno d’accordo tra loro,
-          e che lo stress faccia il resto. Non è debolezza e non vuol dire che stai esagerando.
-        </p>
-
-        <h2>Come capire se trema davvero</h2>
-        <ul className="advice">
-          <li>Guarda un lampadario, una pianta o l’acqua in un bicchiere: se restano fermi, di solito non sta tremando.</li>
-          <li>Chiedi a chi è con te se l’ha sentita anche lui.</li>
-          <li>
-            Apri <Link to="/ho-sentito">Ho sentito una scossa</Link>: l’INGV registra anche le scosse più piccole e dopo
-            pochi minuti le trovi lì.
-          </li>
-        </ul>
-
-        <h2>Cosa può aiutare</h2>
-        <ul className="advice">
-          <li>Sapere che è normale aiuta già molto: capita a tantissime persone.</li>
-          <li>Parlane con chi ti sta vicino: spesso scopri che succede anche a loro.</li>
-          <li>
-            Se la sensazione dura più di qualche settimana, se hai capogiri forti o se l’ansia non ti fa dormire, parlane con
-            il tuo medico.
-          </li>
-        </ul>
-      </>
-    ),
-    glossary: [
-      ['Mal da terremoto', 'Sensazione che la terra tremi quando è ferma, dopo una scossa forte o una sequenza.'],
-      ['Sistema dell’equilibrio', 'Orecchio interno, vista e sensazioni del corpo: insieme ci dicono se siamo fermi o ci muoviamo.'],
-    ],
-    sources: [
-      {
-        label:
-          'Miwa T., Matsuyoshi H., Nomura Y., Minoda R. (2021). Post-earthquake dizziness syndrome following the 2016 Kumamoto earthquakes, Japan. PLOS ONE 16(8): e0255816',
-        href: 'https://doi.org/10.1371/journal.pone.0255816',
-      },
-      { label: 'Nomura Y., Toi T. (2014). Post Earthquake Dizziness Syndrome. Equilibrium Research 73(3): 167–173', href: 'https://doi.org/10.3757/jser.73.167' },
-    ],
-  },
+  MAL_ARTICLE,
 ];

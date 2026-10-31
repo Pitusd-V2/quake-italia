@@ -17,6 +17,7 @@ import { QuakeCard } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { SpeakButton } from '../components/Actions';
 import { ErrorBox, ExternalLink, LoadingCards, Notice, PageHeader, Segmented } from '../components/ui';
+import { HSIT_FORM } from '../lib/hsit';
 
 type Window = '60' | '180' | '720';
 const WINDOWS: { value: Window; label: string }[] = [
@@ -220,9 +221,10 @@ export function FeltPage() {
         </h2>
         <p>
           Se hai sentito la scossa puoi raccontarlo all'INGV con il questionario ufficiale «Hai sentito il terremoto?». Bastano
-          pochi minuti e serve a capire gli effetti nei diversi paesi.
+          pochi minuti e serve a capire gli effetti nei diversi paesi. Alla prima domanda scegli la scossa dalla lista: data e
+          ora sono quelle italiane, le stesse che vedi qui.
         </p>
-        <ExternalLink href="https://www.hsit.it/" className="btn btn--secondary">
+        <ExternalLink href={HSIT_FORM} className="btn btn--secondary">
           Compila il questionario INGV
         </ExternalLink>
       </section>

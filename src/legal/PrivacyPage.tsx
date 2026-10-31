@@ -206,8 +206,8 @@ export function PrivacyPage() {
       body: (
         <ul className="advice">
           <li>
-            <strong>Notifiche:</strong> sono generate dal browser sul tuo dispositivo, solo se le attivi. Non usiamo server
-            di notifica e non raccogliamo identificativi.
+            <strong>Notifiche:</strong> sono generate dal browser sul tuo dispositivo, solo se le attivi, e funzionano solo
+            mentre {S} è aperto. Non usiamo notifiche push inviate da un server e non raccogliamo identificativi.
           </li>
           <li>
             <strong>Lettura ad alta voce:</strong> usa la sintesi vocale del tuo dispositivo. Alcuni browser possono usare
