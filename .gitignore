@@ -17,10 +17,11 @@ coverage/
 *.log
 npm-debug.log*
 
-# Impostazioni personali di Claude Code (launch.json invece è condiviso)
-.claude
-.claude/settings.local.json
-.claude/worktrees/
+# File locali di Claude Code (servono solo sul computer di chi sviluppa)
+.claude/
+
+# Rapporti dei controlli di sicurezza (restano sul computer)
+CLAUDE-SECURITY-*/
 
 # File di sistema
 .DS_Store
