@@ -34,8 +34,10 @@ export function useInstallPrompt() {
     };
   }, []);
 
-  const installed = window.matchMedia('(display-mode: standalone)').matches;
-  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  // Le pagine vengono anche generate al build, in Node: lì non c'è la finestra del browser.
+  const browser = typeof window !== 'undefined';
+  const installed = browser && window.matchMedia('(display-mode: standalone)').matches;
+  const isIos = browser && /iphone|ipad|ipod/i.test(navigator.userAgent);
 
   const install = async () => {
     if (!deferred) return;

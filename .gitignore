@@ -3,6 +3,7 @@ node_modules/
 
 # Build e file generati
 dist/
+dist-ssr/
 dev-dist/
 coverage/
 *.tsbuildinfo
@@ -12,6 +13,9 @@ coverage/
 .env
 .env.*
 *.local
+
+# Riassunto del controllo sulla classificazione sismica (scripts/check-zone-update.mjs)
+zone-check.md
 
 # Log
 *.log

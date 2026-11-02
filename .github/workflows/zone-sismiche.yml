@@ -1,0 +1,44 @@
+# Ogni settimana controlla se la Protezione Civile ha pubblicato una classificazione sismica diversa da quella del sito.
+# Se trova novità (o non riesce a controllare) apre una segnalazione (issue): GitHub la manda per email.
+# Non modifica mai i dati da solo: l'aggiornamento lo fa una persona, dopo aver guardato cosa è cambiato.
+name: Zone sismiche
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # ogni lunedì mattina
+  workflow_dispatch: # e quando lo avvii a mano da GitHub (Actions → Zone sismiche → Run workflow)
+
+permissions:
+  contents: read # legge il codice
+  issues: write # può solo aprire la segnalazione
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      # Nessuna libreria da installare: lo script usa solo Node.
+      - id: check
+        run: |
+          set +e
+          node scripts/check-zone-update.mjs
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Apri una segnalazione (se non ce n'è già una aperta)
+        if: steps.check.outputs.code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODE: ${{ steps.check.outputs.code }}
+        run: |
+          if [ "$CODE" = "1" ]; then TITLE="Zone sismiche: ci sono dati ufficiali nuovi"; else TITLE="Zone sismiche: il controllo settimanale non è riuscito"; fi
+          OPEN=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq 'length')
+          if [ "$OPEN" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body-file zone-check.md
+          else
+            echo "Segnalazione già aperta: non ne apro un'altra."
+          fi

@@ -8,6 +8,7 @@ import { Logo } from './Logo';
 import { DataStatus } from './DataStatus';
 import { LoadingCards } from './ui';
 import { TAGLINE } from '../lib/brand';
+import { metaFor } from '../seo/pages';
 
 // Pannello simulazioni: esiste solo in sviluppo, in produzione viene eliminato.
 const SimPanel = import.meta.env.DEV ? lazy(() => import('../dev/SimPanel')) : null;
@@ -75,6 +76,12 @@ function NavLinks({ items, className }: { items: NavItem[]; className: string })
 function useRouteFocus() {
   const { pathname } = useLocation();
   const first = useRef(true);
+  // Titolo della scheda del browser (e descrizione), uguali a quelli delle pagine generate al build.
+  useEffect(() => {
+    const meta = metaFor(pathname);
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+  }, [pathname]);
   useEffect(() => {
     if (first.current) {
       first.current = false;

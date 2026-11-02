@@ -50,8 +50,10 @@ Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Ne
 - Simulazioni (solo sviluppo, mai nel sito pubblicato): aggiungi `?simulazioni` all'indirizzo, es. `http://localhost:5173/?simulazioni`. Codice in `src/dev/`.
 - Dati delle sequenze da rivedere sulla mappa (sezione «Capire»): `node scripts/build-sequence-data.mjs`; tappe e note in `src/learn/sequences.ts`.
 - Dati dell'articolo «Esiste il tempo da terremoto?»: `node scripts/build-weather-myth-data.mjs` (catalogo INGV e meteo ERA5 da Open-Meteo; qualche minuto, con `CACHE_DIR=<cartella>` i download si riusano).
+- Zone sismiche dei comuni: `src/data/zone-sismiche.json`, dal file ufficiale della Protezione Civile. Ogni lunedì GitHub controlla se ne è uscito uno nuovo (`.github/workflows/zone-sismiche.yml`) e, se sì, apre una segnalazione. Per controllare o aggiornare a mano: `node scripts/check-zone-update.mjs` (aggiungi `--update` per riscrivere i dati).
 - Sicurezza: vedi [SECURITY.md](SECURITY.md).
 - Dati legali (titolare, contatti, hosting): `src/legal/config.ts`.
+- Pagine per Google e anteprime dei link: `npm run build` genera anche un file HTML per ogni pagina (`scripts/prerender.mjs`), con titolo e descrizione da `src/seo/pages.ts`. Gli articoli e le pagine che non invecchiano hanno il testo già dentro; quelle con dati dal vivo solo titolo e descrizione. Link canonici, mappa del sito e immagine di anteprima (`public/og-image.png`, da `scripts/build-og-image.mjs`) compaiono quando `siteUrl` in `src/legal/config.ts` (o la variabile `SITE_URL`) è l'indirizzo vero del sito.
 
 ## Dati e licenze
 

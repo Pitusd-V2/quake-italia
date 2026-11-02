@@ -117,7 +117,7 @@ export function useSettings(): SettingsCtx {
 /** Il tema effettivo (chiaro/scuro), tenendo conto della preferenza di sistema. */
 export function useResolvedTheme(): 'light' | 'dark' {
   const { settings } = useSettings();
-  const [systemDark, setSystemDark] = useState(() => matchMedia('(prefers-color-scheme: dark)').matches);
+  const [systemDark, setSystemDark] = useState(() => typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches);
   useEffect(() => {
     const mq = matchMedia('(prefers-color-scheme: dark)');
     const on = (e: MediaQueryListEvent) => setSystemDark(e.matches);
