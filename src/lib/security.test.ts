@@ -110,6 +110,21 @@ describe('Link esterni', () => {
     expect(urls.length).toBeGreaterThan(5);
     expect(urls.filter((u) => !isAllowedLink(u))).toEqual([]);
   });
+
+  it('ogni link negli articoli (contenuti/articoli/*.mdx) è in lista', () => {
+    const dir = join(__dirname, '../../contenuti/articoli');
+    const texts = readdirSync(dir)
+      .filter((f) => f.endsWith('.mdx'))
+      .map((f) => readFileSync(join(dir, f), 'utf8'));
+    expect(texts.length).toBeGreaterThan(5);
+    const urls = texts.flatMap((t) => [
+      ...[...t.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1]), // [testo](https://…)
+      ...[...t.matchAll(/href="(https?:\/\/[^"]+)"/g)].map((m) => m[1]),
+      ...[...t.matchAll(/^\s*url:\s*"?(https?:\/\/[^"\s]+)"?\s*$/gm)].map((m) => m[1]), // fonti
+    ]);
+    expect(urls.length).toBeGreaterThan(20);
+    expect(urls.filter((u) => !isAllowedLink(u))).toEqual([]);
+  });
 });
 
 describe('Header di sicurezza', () => {

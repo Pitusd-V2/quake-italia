@@ -1,0 +1,53 @@
+---
+titolo: "Perché l’Italia trema"
+sottotitolo: "Placche che si scontrano, una catena che si allarga e una placca che sprofonda."
+percorso: italia
+ordine: 1
+minuti: 5
+verificato: 2026-10-21
+riassunto:
+  - "L’Italia è al confine tra la placca africana e quella euroasiatica, che si avvicinano di pochi millimetri all’anno."
+  - "L’Appennino si sta “stirando”: per questo molti terremoti forti dell’Italia centrale sono su faglie dette normali."
+  - "Sotto la Calabria una placca sprofonda nel mantello: lì ci sono terremoti fino a 617 km di profondità."
+glossario:
+  - termine: "Convergenza"
+    definizione: "Avvicinamento tra due placche."
+  - termine: "Faglia normale"
+    definizione: "Faglia in cui un blocco scende rispetto all’altro, tipica delle zone che si allargano."
+  - termine: "Subduzione"
+    definizione: "Processo in cui una placca scende sotto un’altra e sprofonda nel mantello."
+  - termine: "Piano di Wadati-Benioff"
+    definizione: "Superficie inclinata su cui si allineano i terremoti di una placca in subduzione."
+fonti:
+  - testo: "INGV — catalogo dei terremoti, richiesta usata per il grafico"
+    url: "https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&limit=20000&starttime=2005-01-01&endtime=2026-01-01&minmag=2.5&minlat=37&maxlat=41.5&minlon=13&maxlon=18"
+  - testo: "D’Agostino, N. et al. (2001). Active crustal extension in the central Apennines (Italy) inferred from GPS measurements in the interval 1994–1999. Geophysical Research Letters (archivio INGV Earth-prints)"
+    url: "https://www.earth-prints.org/handle/2122/2051"
+  - testo: "Studi INGV/EGU sulla convergenza Africa–Eurasia e sulla microplacca adriatica (EGU General Assembly 2008, abstract A-03934)"
+  - testo: "INGV — FAQ, domande frequenti sui terremoti"
+    url: "https://ingvterremoti.com/faq/faq-domande-frequenti-sui-terremoti/"
+correlati: [cos-e-un-terremoto, grandi-terremoti-della-storia]
+paroleChiave: ["placche", "Africa", "Eurasia", "Appennino", "faglie normali", "subduzione", "Calabria", "Wadati-Benioff", "terremoti profondi"]
+---
+
+import { SlabChart } from '../../src/learn/figures'
+import { n } from '../../src/learn/facts/format'
+import slab from '../../src/data/learn/slab.json'
+
+## Tra Africa ed Europa
+
+L’Italia si trova dove la <dfn>placca africana</dfn> e quella <dfn>euroasiatica</dfn> si avvicinano. All’altezza della Sicilia le misure GPS indicano una convergenza di circa 5 millimetri all’anno, verso nord-ovest. In mezzo c’è un pezzo di crosta più piccolo, la <dfn>microplacca adriatica</dfn>, che si muove in modo in parte indipendente. Il risultato non è un unico “scontro”, ma tante zone diverse, ognuna con il suo tipo di terremoti.
+
+## L’Appennino si sta allargando
+
+Lungo la catena appenninica le stazioni GPS mostrano che i due versanti si allontanano di qualche millimetro all’anno: nell’Appennino centrale circa 3–6 mm, a seconda dello studio e della zona. La crosta si “stira” e si rompe lungo <dfn>faglie normali</dfn>, in cui un blocco scende rispetto all’altro. Sono di questo tipo i terremoti di L’Aquila (2009) e di Amatrice–Visso–Norcia (2016).
+
+Nel nord, invece (Pianura Padana, Alpi), prevale la <dfn>compressione</dfn>: è il caso dei terremoti dell’Emilia del 2012. E poi ci sono le aree vulcaniche (Etna, Campi Flegrei, Vesuvio, Eolie), con terremoti di solito poco profondi legati al movimento di magma e fluidi.
+
+## Una placca che sprofonda sotto la Calabria
+
+Sotto la Calabria la crosta oceanica del Mar Ionio scende nel mantello verso nord-ovest, sotto il Tirreno: è una <dfn>zona di subduzione</dfn>. La placca che scende è fredda e rigida e produce terremoti anche a grandissima profondità. Se si mettono su un grafico i terremoti veri, la placca “si vede”:
+
+<SlabChart />
+
+In questa sezione ci sono {n(slab.statistiche.totale)} terremoti: {n(slab.statistiche.oltre100km)} sono più profondi di 100 km e il più profondo è a {slab.statistiche.maxProfonditaKm} km. I punti si allineano su un piano inclinato, chiamato <dfn>piano di Wadati-Benioff</dfn>, dal nome dei due sismologi che lo scoprirono. I terremoti così profondi di solito si sentono poco in superficie, perché le onde perdono energia nel lungo tragitto, ma possono essere avvertiti su un’area molto ampia.

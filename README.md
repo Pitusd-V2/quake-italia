@@ -48,6 +48,7 @@ Stack: React 19, TypeScript, Vite, TanStack Query, MapLibre GL, React Router. Ne
 
 - Aggiungere uno strumento alla sezione Analisi: vedi `src/pages/expert/registry.ts`.
 - Simulazioni (solo sviluppo, mai nel sito pubblicato): aggiungi `?simulazioni` all'indirizzo, es. `http://localhost:5173/?simulazioni`. Codice in `src/dev/`.
+- **Articoli di «Capire»**: un file per articolo in `contenuti/articoli/*.mdx` (Markdown con i dati in cima). Come scriverne uno: [`contenuti/COME-SCRIVERE.md`](contenuti/COME-SCRIVERE.md); regole editoriali: pagina `/come-scriviamo`. Il build controlla ogni articolo (`plugins/articoli.ts`); `npm run check:fonti` verifica link e DOI (anche ogni lunedì su GitHub).
 - Dati delle sequenze da rivedere sulla mappa (sezione «Capire»): `node scripts/build-sequence-data.mjs`; tappe e note in `src/learn/sequences.ts`.
 - Dati dell'articolo «Esiste il tempo da terremoto?»: `node scripts/build-weather-myth-data.mjs` (catalogo INGV e meteo ERA5 da Open-Meteo; qualche minuto, con `CACHE_DIR=<cartella>` i download si riusano).
 - Zone sismiche dei comuni: `src/data/zone-sismiche.json`, dal file ufficiale della Protezione Civile. Ogni lunedì GitHub controlla se ne è uscito uno nuovo (`.github/workflows/zone-sismiche.yml`) e, se sì, apre una segnalazione. Per controllare o aggiornare a mano: `node scripts/check-zone-update.mjs` (aggiungi `--update` per riscrivere i dati).
@@ -84,6 +85,8 @@ Termini d'uso e la Privacy Policy pubblicati sul sito: Quake Italia **non è un 
 ## Contribuire
 
 Segnalazioni e proposte sono benvenute, soprattutto da chi lavora con i terremoti (sismologi, geologi, protezione civile).
+Quake Italia è gratuito, senza pubblicità e senza guadagni: ogni contributo, comprese le revisioni degli articoli, è
+volontario e non retribuito, e a titolo personale (non impegna l'ente per cui lavori).
 La regola più importante è la stessa del sito: **scientifico ma capibile, niente disinformazione**.
 
 - **Ogni contenuto scientifico deve citare una fonte verificabile** (INGV, Protezione Civile, articoli scientifici,

@@ -1,0 +1,55 @@
+---
+titolo: "Tante piccole, poche grandi"
+sottotitolo: "La legge di Gutenberg-Richter, vista con i terremoti italiani del 2025."
+percorso: le-basi
+ordine: 3
+minuti: 4
+verificato: 2026-10-21
+riassunto:
+  - "Nel 2025 l’INGV ha localizzato 15.813 terremoti nell’area italiana: quasi tutti piccolissimi."
+  - "Per ogni punto di magnitudo in più, i terremoti sono circa dieci volte meno: è la legge di Gutenberg-Richter."
+  - "Questa legge serve a stimare la pericolosità, ma non dice quando arriverà il prossimo terremoto."
+glossario:
+  - termine: "Legge di Gutenberg-Richter"
+    definizione: "Relazione tra magnitudo e numero di terremoti: log₁₀N = a − bM."
+  - termine: "b-value"
+    definizione: "Quanto calano i terremoti al crescere della magnitudo; di solito vicino a 1."
+  - termine: "Magnitudo di completezza"
+    definizione: "Magnitudo sopra la quale il catalogo registra praticamente tutti i terremoti."
+fonti:
+  - testo: "INGV — catalogo dei terremoti, richiesta usata per il grafico"
+    url: "https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&limit=20000&starttime=2025-01-01&endtime=2026-01-01&minlat=35&maxlat=48&minlon=6&maxlon=19"
+  - testo: "Gutenberg, B. & Richter, C. F. (1944). Frequency of earthquakes in California. Bulletin of the Seismological Society of America, 34(4)"
+    url: "https://doi.org/10.1785/BSSA0340040185"
+  - testo: "Aki, K. (1965). Maximum likelihood estimate of b in the formula log N = a − bM and its confidence limits. Bulletin of the Earthquake Research Institute, 43"
+correlati: [magnitudo-e-intensita, repliche-e-sequenze]
+paroleChiave: ["Gutenberg-Richter", "b-value", "magnitudo di completezza", "statistica", "pericolosità"]
+---
+
+import { GRBars } from '../../src/learn/figures'
+import { n, dec } from '../../src/learn/facts/format'
+import gr from '../../src/data/learn/gr-italia.json'
+
+export const at = Object.fromEntries(gr.almeno)
+
+## Un anno di terremoti in Italia
+
+Nel 2025 la Rete Sismica Nazionale dell’INGV ha localizzato **{n(gr.totale)}** terremoti nell’area italiana e nei mari vicini. Sembrano tantissimi, ma guardiamo quanti erano almeno di una certa magnitudo: {n(at[1])} di magnitudo 1 o più, {n(at[2])} di magnitudo 2 o più, {n(at[3])} di magnitudo 3 o più e solo {n(at[4])} di magnitudo 4 o più.
+
+<GRBars />
+
+## La legge di Gutenberg-Richter
+
+Nel 1944 i sismologi Beno Gutenberg e Charles Richter notarono che in California succedeva lo stesso, e lo scrissero con una formula semplice:
+
+<p className="formula" aria-label="logaritmo in base dieci di N uguale a a meno b per M">log₁₀ N = a − b · M</p>
+
+Qui N è il numero di terremoti di magnitudo almeno M, mentre <dfn>a</dfn> dice quanto è attiva una zona e <dfn>b</dfn> (il <dfn>b-value</dfn>) quanto velocemente calano i terremoti al crescere della magnitudo. In quasi tutto il mondo b è vicino a 1, cioè dieci volte meno terremoti per ogni punto di magnitudo. Con i dati italiani del 2025 otteniamo b = {dec(gr.bValue)}.
+
+## I terremoti che “non si vedono”
+
+Le scosse piccolissime spesso non vengono registrate da abbastanza stazioni. Per questo si calcola la <dfn>magnitudo di completezza</dfn> (Mc): sopra quel valore il catalogo è completo. Per il 2025 la stimiamo intorno a {dec(gr.mc)}. Puoi rifare questi calcoli, su qualsiasi zona e periodo, nella sezione [Analisi](/analisi?strumento=gutenberg-richter) (per esperti).
+
+## A cosa serve, e a cosa no
+
+Questa legge è uno dei mattoni delle mappe di <dfn>pericolosità sismica</dfn>: aiuta a stimare quanto spesso, in media, una zona può avere terremoti forti. Ma è una legge statistica: **non dice quando** arriverà il prossimo terremoto, né quanto sarà forte.

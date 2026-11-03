@@ -16,6 +16,8 @@ coverage/
 
 # Riassunto del controllo sulla classificazione sismica (scripts/check-zone-update.mjs)
 zone-check.md
+# Riassunto del controllo delle fonti degli articoli (scripts/check-sources.mjs)
+sources-check.md
 
 # Log
 *.log

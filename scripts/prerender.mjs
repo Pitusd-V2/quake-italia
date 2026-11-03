@@ -63,8 +63,8 @@ function build(page, body, extraHead = '') {
 }
 
 /** Il disegno della pagina, senza stili in linea (la CSP li bloccherebbe: l'app li rimette appena parte). */
-function content(page) {
-  const html = render(page.path).replace(/\sstyle="[^"]*"/g, '');
+async function content(page) {
+  const html = (await render(page.path)).replace(/\sstyle="[^"]*"/g, '');
   if (/<script/i.test(html)) throw new Error(`Script in linea nella pagina ${page.path}`);
   if (/\sstyle=/i.test(html)) throw new Error(`Stile in linea rimasto nella pagina ${page.path}`);
   if (!html.includes('<h1')) throw new Error(`La pagina ${page.path} non ha un titolo <h1>: qualcosa non è stato disegnato`);
@@ -81,7 +81,7 @@ for (const page of PAGES) {
     continue;
   }
   if (page.prerender === 'none') continue;
-  const body = page.prerender === 'full' ? content(page) : '';
+  const body = page.prerender === 'full' ? await content(page) : '';
   fs.mkdirSync(path.dirname(fileFor(page.path)), { recursive: true });
   fs.writeFileSync(fileFor(page.path), build(page, body));
   if (page.prerender === 'full') full++;

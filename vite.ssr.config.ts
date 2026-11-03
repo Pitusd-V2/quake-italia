@@ -4,9 +4,10 @@
  */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { mdxPlugins } from './vite.config.ts';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [...mdxPlugins(), react()],
   build: {
     ssr: 'src/entry-server.tsx',
     outDir: 'dist-ssr',

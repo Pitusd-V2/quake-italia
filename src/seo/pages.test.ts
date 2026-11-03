@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { ARTICLES } from '../learn/articles';
+import { CATALOG } from '../learn/catalog';
 import { HOME_TITLE, metaFor, PAGES } from './pages';
 
 describe('Pagine per Google e anteprime dei link', () => {
   it('ogni articolo ha la sua pagina generata con il testo', () => {
-    for (const a of ARTICLES) {
+    for (const a of CATALOG) {
       const p = PAGES.find((x) => x.path === `/capire/${a.slug}`);
       expect(p?.prerender, a.slug).toBe('full');
-      expect(p?.description).toBe(a.subtitle);
+      expect(p?.description).toBe(a.sottotitolo);
     }
   });
 

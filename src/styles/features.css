@@ -508,3 +508,16 @@
 /* Barre con una linea di riferimento (es. «quanto darebbe il caso»). */
 .hbars--ref .hbars__track { position: relative; }
 .hbars__ref { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--chart-fit); }
+
+/* ---------- Capire: ricerca, percorsi, verifiche ---------- */
+.learn-search { display: flex; flex-direction: column; gap: var(--sp-2); }
+.learn-search__label { display: inline-flex; align-items: center; gap: var(--sp-2); font-weight: 700; }
+.learn-search__label svg { width: 1.2em; height: 1.2em; color: var(--primary); }
+.learn-search input { width: 100%; min-height: 3rem; padding: 0 var(--sp-3); font: inherit; border: 2px solid var(--border); border-radius: var(--r-md); background: var(--surface); color: var(--text); }
+.learn-search input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-color: var(--primary); }
+.learn-percorso { padding-top: var(--sp-3); border-top: 2px solid var(--border); }
+.learn-percorso h2 { margin: 0; }
+.learn-check { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); border-radius: var(--r-lg); background: var(--surface-2); font-size: var(--fs-sm); }
+.learn-check p { margin: 0; }
+.corrections { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.corrections p { margin: 0; }

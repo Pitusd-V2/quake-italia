@@ -33,8 +33,8 @@ const learnItem = (section: string[]): NavItem => ({ to: '/capire', label: 'Capi
 // Niente cassetto «Altro»: ogni voce dice cosa c'è dentro. Le stesse 5 voci, con le stesse icone, sul telefono
 // e sul computer. «Analisi» (per esperti) è dentro «Capire»; Impostazioni a destra su computer, in «Il mio comune» sul telefono.
 const MAIN_ITEMS: NavItem[] = [HOME_ITEM, QUAKES_ITEM, TOWN_ITEM, SAFETY_ITEM];
-const BOTTOM_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi'])];
-const TOP_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi'])];
+const BOTTOM_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi', '/come-scriviamo'])];
+const TOP_NAV: NavItem[] = [...MAIN_ITEMS, learnItem(['/capire', '/e-vero', '/analisi', '/come-scriviamo'])];
 
 /** true se `pathname` è la pagina `base` o una sua sotto-pagina (es. /capire/magnitudo). */
 function isUnder(pathname: string, base: string) {
@@ -169,6 +169,7 @@ export function Layout() {
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/termini">Termini d’uso</Link>
             <Link to="/informazioni">Informazioni e crediti</Link>
+            <Link to="/come-scriviamo">Come scriviamo gli articoli</Link>
             <Link to="/impostazioni">Impostazioni</Link>
             <Link to="/analisi">Analisi per esperti</Link>
           </p>

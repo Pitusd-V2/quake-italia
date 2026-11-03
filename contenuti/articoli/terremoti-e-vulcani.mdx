@@ -1,0 +1,71 @@
+---
+titolo: "Terremoti e vulcani: Etna, Vesuvio, Campi Flegrei"
+sottotitolo: "Perché vicino ai vulcani anche una scossa “piccola” può fare danni."
+percorso: vulcani
+ordine: 1
+minuti: 5
+verificato: 2026-10-21
+riassunto:
+  - "Nelle aree vulcaniche i terremoti nascono da magma, gas e fluidi in movimento e dalle faglie sui fianchi dei vulcani."
+  - "Sono quasi sempre poco profondi (pochi km): per questo, anche con magnitudo bassa, vicino all’epicentro si sentono forte."
+  - "Esempi: Ischia 1883 (Mw 4,3, intensità IX-X) e Fleri sull’Etna 2018 (Mw 4,9, profondità meno di 1 km)."
+glossario:
+  - termine: "Sistema idrotermale"
+    definizione: "Acqua e gas caldi nel sottosuolo di un vulcano, riscaldati dal magma."
+  - termine: "Terremoto superficiale"
+    definizione: "Terremoto con ipocentro a pochi km di profondità: forte vicino, debole lontano."
+  - termine: "Faglia di Fiandaca"
+    definizione: "Faglia sul fianco orientale dell’Etna, rotta in superficie dal terremoto del 26 dicembre 2018."
+fonti:
+  - testo: "Rovida A., Locati M., Camassi R., Lolli B., Gasperini P., Antonucci A. (2022). Catalogo Parametrico dei Terremoti Italiani (CPTI15), versione 4.0. INGV"
+    url: "https://doi.org/10.13127/CPTI/CPTI15.4"
+  - testo: "INGV — Il terremoto sull’Etna del 26 dicembre e la rottura della faglia di Fiandaca"
+    url: "https://www.ingv.it/stampa-urp/ufficio-stampa/note-stampa/il-terremoto-sull-etna-del-26-dicembre-e-la-rottura-della-faglia-di-fiandaca"
+  - testo: "INGVterremoti — La fagliazione superficiale prodotta dal terremoto etneo del 26 dicembre 2018, Mw 4.9"
+    url: "https://ingvterremoti.com/2019/03/06/la-fagliazione-superficiale-prodotta-dal-terremoto-etneo-del-26-dicembre-2018-mw-4-9/"
+  - testo: "INGV — ASMI, 28 luglio 1883, Isola d’Ischia"
+    url: "https://emidius.mi.ingv.it/ASMI/event/18830728_2025_000"
+  - testo: "INGVterremoti — 28 luglio 1883, la catastrofe di Casamicciola"
+    url: "https://ingvterremoti.com/2018/07/27/i-terremoti-nella-storia-28-luglio-1883-la-catastrofe-di-casamicciola-sullisola-dischia/"
+  - testo: "INGV — catalogo dei terremoti (Vesuvio e Ischia 2017)"
+    url: "https://webservices.ingv.it/fdsnws/event/1/query?format=text&starttime=1985-01-01&lat=40.821&lon=14.426&maxradiuskm=6&orderby=magnitude&limit=5"
+correlati: [campi-flegrei, grandi-terremoti-della-storia]
+paroleChiave: ["vulcani", "Etna", "Fleri", "Ischia", "Casamicciola", "Vesuvio", "terremoti superficiali"]
+---
+
+import { VolcanicIntensityChart } from '../../src/learn/figures2'
+import { n } from '../../src/learn/facts/format'
+import cpti from '../../src/data/learn/cpti15.json'
+
+export const ischia = cpti.flegreo.piuForti.find((e) => e.anno === 1883)
+export const linera = cpti.etna.piuForti.find((e) => e.anno === 1914)
+
+## Perché tremano i vulcani
+
+Nelle aree vulcaniche i terremoti hanno cause diverse da quelle dell’Appennino:
+
+- il <dfn>magma</dfn> e i gas che si muovono in profondità spingono e fratturano le rocce;
+- i <dfn>sistemi idrotermali</dfn> (acqua e gas caldi sotto il vulcano) si pressurizzano e fanno muovere il suolo;
+- i fianchi dei vulcani sono attraversati da <dfn>faglie</dfn> che possono rompersi, come sull’Etna.
+
+Questi terremoti sono quasi sempre **superficiali**, a pochi chilometri o anche meno di un chilometro di profondità. Le onde arrivano in superficie quasi senza perdere energia: vicino all’epicentro lo scuotimento è forte, ma si esaurisce in pochi chilometri.
+
+<VolcanicIntensityChart />
+
+## Etna
+
+L’Etna è uno dei vulcani più attivi del mondo e uno dei più sismici d’Italia: il catalogo storico ne elenca {n(cpti.etna.totale)} terremoti. I più dannosi avvengono lungo le faglie del fianco orientale. Nel 1914 una scossa di Mw {String(linera.mw).replace('.', ',')} raggiunse l’intensità {linera.io} a Linera, vicino a Santa Venerina.
+
+Il 26 dicembre 2018, durante un’eruzione laterale, un terremoto di **Mw 4,9** colpì Fleri e i paesi vicini: è stato il più energetico sull’Etna degli ultimi 70 anni. L’ipocentro era a meno di un chilometro di profondità e la <dfn>faglia di Fiandaca</dfn> si è rotta fino in superficie per circa 8 km. Gli edifici costruiti proprio sopra la faglia sono stati i più colpiti; i danni hanno riguardato più di 3.000 edifici.
+
+## Ischia
+
+Il 28 luglio 1883 un terremoto di magnitudo stimata solo **{String(ischia.mw).replace('.', ',')}** distrusse Casamicciola, con un’intensità {ischia.io}: secondo l’Archivio Storico Macrosismico dell’INGV le vittime furono circa 2.300, anche perché l’isola era piena di turisti. Il 21 agosto 2017 una nuova scossa di Mw 3,9, a circa 1,5 km di profondità, ha provocato di nuovo crolli e vittime a Casamicciola.
+
+## Vesuvio
+
+Il Vesuvio non erutta dal 1944 ed è oggi un vulcano tranquillo dal punto di vista sismico: dal 1985 il terremoto più forte registrato nel catalogo INGV vicino al cratere è stato di magnitudo Md 3,4, nel 1999. Ma “tranquillo” non vuol dire “innocuo”: attorno al Vesuvio vivono centinaia di migliaia di persone e per questo esiste un piano nazionale di emergenza.
+
+## E i Campi Flegrei?
+
+Sono il caso più particolare, con un fenomeno tutto loro: il bradisismo. Li raccontiamo nel prossimo articolo, [Campi Flegrei: la caldera che respira](/capire/campi-flegrei).

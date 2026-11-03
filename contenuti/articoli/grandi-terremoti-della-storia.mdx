@@ -1,0 +1,78 @@
+---
+titolo: "I grandi terremoti della storia d’Italia"
+sottotitolo: "Mille anni di memoria scritta: cosa ci insegnano i terremoti del passato."
+percorso: storia
+ordine: 1
+minuti: 6
+verificato: 2026-10-21
+riassunto:
+  - "Il catalogo storico dell’INGV (CPTI15) elenca 4.894 terremoti dall’anno 1005 al 2020."
+  - "I più forti hanno colpito Sicilia orientale, Calabria, Appennino meridionale e centrale: Mw stimata oltre 7."
+  - "Le stesse zone sono state colpite più volte: per questo la storia è la base delle mappe di pericolosità."
+glossario:
+  - termine: "Sismologia storica"
+    definizione: "Studio dei terremoti del passato attraverso documenti scritti."
+  - termine: "CPTI15"
+    definizione: "Catalogo Parametrico dei Terremoti Italiani dell’INGV: elenco ufficiale dei terremoti dall’anno 1000."
+  - termine: "Completezza"
+    definizione: "Quanto un catalogo contiene davvero tutti i terremoti di un periodo; per i secoli antichi è bassa."
+fonti:
+  - testo: "Rovida A., Locati M., Camassi R., Lolli B., Gasperini P., Antonucci A. (2022). Catalogo Parametrico dei Terremoti Italiani (CPTI15), versione 4.0. INGV"
+    url: "https://doi.org/10.13127/CPTI/CPTI15.4"
+  - testo: "INGV — CFTI5Med, Catalogo dei Forti Terremoti in Italia"
+    url: "https://storing.ingv.it/cfti/cfti5/"
+  - testo: "INGV — CFTI, linea del tempo dei forti terremoti"
+    url: "https://cfti.ingv.it/timeline/"
+  - testo: "INGV — CFTI, scheda del terremoto del Friuli del 6 maggio 1976"
+    url: "https://storing.ingv.it/cfti/cfti4/quakes/38902.html"
+  - testo: "INGVterremoti — La “catastrofe sismica” del 28 dicembre 1908"
+    url: "https://ingvterremoti.com/2015/12/28/i-terremoti-del-900-la-catastrofe-sismica-del-28-dicembre-1908/"
+  - testo: "Protezione Civile — The Irpinia earthquake"
+    url: "https://servizio-nazionale.protezionecivile.gov.it/en/pagina-base/irpinia-earthquake/"
+  - testo: "Protezione Civile — The Abruzzo earthquake"
+    url: "https://servizio-nazionale.protezionecivile.gov.it/en/pagina-base/abruzzo-earthquake/"
+  - testo: "Protezione Civile — The earthquake in Central Italy"
+    url: "https://servizio-nazionale.protezionecivile.gov.it/en/pagina-base/earthquake-central-italy/"
+correlati: [perche-l-italia-trema, repliche-e-sequenze]
+paroleChiave: ["storia", "CPTI15", "Messina 1908", "Val di Noto 1693", "Irpinia 1980", "Friuli 1976", "L'Aquila 2009", "sismologia storica"]
+---
+
+import { CenturyBars, HistoryTimeline } from '../../src/learn/figures2'
+import { n } from '../../src/learn/facts/format'
+import cpti from '../../src/data/learn/cpti15.json'
+
+## Come si studia un terremoto di 500 anni fa
+
+L’Italia ha una “memoria sismica” unica al mondo: cronache, lettere, registri parrocchiali, relazioni di ingegneri e giornali raccontano i terremoti da più di mille anni. La <dfn>sismologia storica</dfn> raccoglie questi documenti, ricostruisce i danni paese per paese e assegna a ogni luogo un grado di <dfn>intensità</dfn> (scala MCS). Dalla distribuzione delle intensità si stimano poi la posizione dell’epicentro e la magnitudo.
+
+Il risultato è il <dfn>Catalogo Parametrico dei Terremoti Italiani (CPTI15)</dfn> dell’INGV: {n(cpti.totaleEventi)} terremoti, dal {cpti.primoAnno} al {cpti.ultimoAnno}. Per i terremoti antichi la magnitudo è una stima ricavata dagli effetti; per quelli recenti viene dagli strumenti. Per questo alcuni valori possono essere un po’ diversi da quelli che trovi altrove: per Norcia 2016, per esempio, il catalogo storico riporta Mw 6,6, l’INGV in tempo reale Mw 6,5.
+
+<HistoryTimeline />
+
+## I più forti
+
+- **11 gennaio 1693, Sicilia sud-orientale (Mw 7,3):** il terremoto più forte del catalogo. Distrusse decine di città del Val di Noto, con molte migliaia di vittime. Le città furono ricostruite in stile barocco: oggi sono patrimonio dell’UNESCO.
+- **5 dicembre 1456, Appennino centro-meridionale (Mw 7,2)** e **16 dicembre 1857, Basilicata (Mw 7,1):** due grandi terremoti dell’Appennino del Sud. Dopo quello del 1857 l’ingegnere irlandese Robert Mallet ne studiò gli effetti sul posto: è considerato uno degli inizi della sismologia moderna.
+- **1783, Calabria (Mw fino a 7,1):** non un solo terremoto, ma una sequenza di cinque forti scosse in meno di due mesi, che cambiò il paesaggio con frane e laghi nuovi.
+- **28 dicembre 1908, Stretto di Messina (Mw 7,1):** il disastro più grave della storia d’Italia moderna. Messina e Reggio Calabria furono rase al suolo, seguì un maremoto. Secondo l’INGV le vittime furono circa 80.000.
+- **13 gennaio 1915, Marsica (Mw 7,1):** distrusse Avezzano e molti paesi della piana del Fucino.
+
+## Il Novecento e i nostri giorni
+
+- **1968, Valle del Belice** (Mw 6,4).
+- **6 maggio 1976, Friuli (Mw 6,5):** 965 vittime secondo il catalogo dei forti terremoti dell’INGV. Le scosse dell’11 e del 15 settembre ne causarono altre 13.
+- **23 novembre 1980, Irpinia-Basilicata (Mw 6,8):** 2.734 vittime secondo la Protezione Civile. I soccorsi lenti e disorganizzati portarono, nel 1982, alla nascita del Dipartimento della Protezione Civile.
+- **6 aprile 2009, L’Aquila (Mw 6,3):** 309 vittime e oltre 1.500 feriti.
+- **2016, Italia centrale:** il 24 agosto (Mw 6,0) 299 vittime ad Amatrice, Accumoli e Arquata del Tronto; il 30 ottobre la scossa di Norcia, la più forte in Italia dal 1980, senza vittime ma con danni enormi. Ne parliamo in [Repliche e sequenze](/capire/repliche-e-sequenze).
+
+Secondo l’INGV, negli ultimi 150 anni l’Italia ha avuto in media un disastro sismico ogni 4–5 anni, con circa 150.000 morti in totale.
+
+## Il Medioevo tremava meno? No: mancano i documenti
+
+<CenturyBars />
+
+Questo è un concetto importante, la <dfn>completezza</dfn> del catalogo: per i periodi antichi conosciamo soprattutto i terremoti più distruttivi, quelli che hanno lasciato tracce scritte. Gli studiosi ne tengono conto quando calcolano la pericolosità.
+
+## Cosa ci insegna la storia
+
+Guardando la mappa dei terremoti del passato si vede che le stesse zone sono state colpite più volte: Sicilia orientale, Calabria, Appennino. La storia non dice *quando* arriverà il prossimo terremoto, ma dice *dove* può arrivare e quanto può essere forte. È proprio su questi dati che si costruiscono le mappe di pericolosità e le [zone sismiche dei comuni](/il-mio-comune).

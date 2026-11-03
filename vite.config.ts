@@ -3,9 +3,20 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { headersFile, SECURITY_HEADERS } from './security/headers.ts';
 import { readFileSync } from 'node:fs';
+import mdx from '@mdx-js/rollup';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+import { articoliPlugin } from './plugins/articoli.ts';
+
+/** Gli articoli (contenuti/articoli/*.mdx): Markdown trasformato in componenti React al build, niente HTML a mano. */
+export const mdxPlugins = () => [
+  { enforce: 'pre' as const, ...mdx({ remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter] }) },
+  articoliPlugin(),
+];
 
 export default defineConfig({
   plugins: [
+    ...mdxPlugins(),
     react(),
     {
       // Scrive dist/_headers con CSP e header di sicurezza (Cloudflare Pages / Netlify).

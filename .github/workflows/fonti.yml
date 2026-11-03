@@ -1,0 +1,43 @@
+# Ogni settimana controlla le fonti di tutti gli articoli: link che non funzionano più e DOI che non portano allo studio citato.
+# Se trova errori apre una segnalazione (issue): GitHub la manda per email. Non modifica mai gli articoli da solo.
+name: Fonti degli articoli
+
+on:
+  schedule:
+    - cron: '30 7 * * 1' # ogni lunedì mattina, dopo il controllo delle zone sismiche
+  workflow_dispatch: # e quando lo avvii a mano (Actions → Fonti degli articoli → Run workflow)
+
+permissions:
+  contents: read # legge il codice
+  issues: write # può solo aprire la segnalazione
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - id: check
+        run: |
+          set +e
+          node scripts/check-sources.mjs
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Apri una segnalazione (se non ce n'è già una aperta)
+        if: steps.check.outputs.code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="Fonti degli articoli: ci sono link o DOI da correggere"
+          OPEN=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq 'length')
+          if [ "$OPEN" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body-file sources-check.md
+          else
+            echo "Segnalazione già aperta: non ne apro un'altra."
+          fi

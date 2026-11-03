@@ -1,0 +1,73 @@
+---
+titolo: "Repliche e sequenze"
+sottotitolo: "Perché dopo una scossa forte la terra continua a tremare, e perché bisogna restare prudenti."
+percorso: le-basi
+ordine: 4
+minuti: 5
+verificato: 2026-10-21
+riassunto:
+  - "Dopo una scossa forte arrivano molte scosse più piccole, le repliche, che diminuiscono col tempo (legge di Omori)."
+  - "Di solito la replica più forte è più debole della scossa principale, ma non è una regola fissa."
+  - "Nel 2016, due mesi dopo Amatrice (Mw 6,0), è arrivata la scossa di Norcia, più forte (Mw 6,5)."
+glossario:
+  - termine: "Scossa principale"
+    definizione: "La scossa più forte di una sequenza."
+  - termine: "Repliche"
+    definizione: "Scosse che seguono la scossa principale, nella stessa zona (aftershocks)."
+  - termine: "Legge di Omori"
+    definizione: "Il numero di repliche cala nel tempo come K / (t + c)^p, con p vicino a 1."
+  - termine: "Legge di Båth"
+    definizione: "In media la replica più forte è circa 1,2 magnitudo sotto la principale (con grandi variazioni)."
+  - termine: "Sciame sismico"
+    definizione: "Serie di scosse simili, senza una scossa principale netta."
+fonti:
+  - testo: "INGV — catalogo dei terremoti, richiesta usata per il grafico"
+    url: "https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&limit=20000&starttime=2016-08-20&endtime=2017-03-01&minmag=2.5&lat=42.8&lon=13.2&maxradiuskm=40"
+  - testo: "INGVterremoti — Sequenza sismica in Italia Centrale 2016–2017"
+    url: "https://ingvterremoti.com/category/terremoti_italia/sequenza-sismica-amatrice/"
+  - testo: "Utsu, T., Ogata, Y. & Matsu’ura, R. S. (1995). The centenary of the Omori formula for a decay law of aftershock activity. Journal of Physics of the Earth, 43(1)"
+    url: "https://doi.org/10.4294/jpe1952.43.1"
+  - testo: "Båth, M. (1965). Lateral inhomogeneities of the upper mantle. Tectonophysics, 2(6)"
+    url: "https://doi.org/10.1016/0040-1951(65)90003-X"
+correlati: [tante-piccole-poche-grandi, si-possono-prevedere]
+paroleChiave: ["repliche", "aftershock", "Omori", "Båth", "sequenza", "sciame sismico", "foreshock", "Norcia", "Amatrice"]
+---
+
+import { NorciaChart } from '../../src/learn/figures'
+import { SequenceSection } from '../../src/learn/SequenceSection'
+import { n } from '../../src/learn/facts/format'
+import norcia from '../../src/data/learn/norcia2016.json'
+
+## Le repliche
+
+Dopo una scossa forte, la <dfn>scossa principale</dfn>, la crosta intorno alla faglia si riassesta e produce molte scosse più piccole: le <dfn>repliche</dfn> (in inglese aftershocks). Sono normali e possono continuare per giorni, mesi, a volte anni.
+
+## La legge di Omori: sempre meno, col passare del tempo
+
+Già nel 1894 il sismologo giapponese Fusakichi Omori notò che il numero di repliche cala col tempo in modo regolare. Nella forma moderna (Utsu) si scrive:
+
+<p className="formula" aria-label="n di t uguale a K diviso t più c elevato alla p">n(t) = K / (t + c)<sup>p</sup></p>
+
+Con <dfn>p</dfn> vicino a 1, vuol dire più o meno questo: il decimo giorno ci sono circa dieci volte meno repliche del primo. Ma “meno” non vuol dire “nessuna”.
+
+## Un caso vero: Amatrice, Visso, Norcia
+
+La sequenza dell’Italia centrale del 2016–2017 è una delle più studiate al mondo: l’INGV ha localizzato oltre 110.000 terremoti. Nel grafico ci sono solo quelli di magnitudo 2,5 o più vicino a Norcia ({n(norcia.totale)}).
+
+<NorciaChart />
+
+Si vedono tre cose. Dopo il 24 agosto (Mw 6,0, Amatrice) le repliche calano proprio come dice Omori. Il 26 ottobre arriva una scossa di Mw 5,9 vicino a Visso e, quattro giorni dopo, il 30 ottobre, la più forte di tutte: Mw 6,5 vicino a Norcia, con il picco di {n(Math.max(...norcia.giornaliero))} scosse in un giorno. A gennaio 2017 una nuova fase con scosse fino a Mw 5,5 vicino a Capitignano.
+
+<SequenceSection preferred="centro-italia" />
+
+## La legge di Båth, e i suoi limiti
+
+Il sismologo svedese Markus Båth (1965) osservò che, in media, la replica più forte è circa 1,2 punti di magnitudo più debole della scossa principale. Ma è solo una media: da una sequenza all’altra la differenza cambia molto, e a volte dopo una scossa ne arriva una più forte, come a Norcia. Allora la prima scossa diventa, “a posteriori”, una <dfn>scossa precursore</dfn> (foreshock).
+
+## Sciami sismici
+
+A volte non c’è una scossa principale chiara, ma tante scosse simili tra loro, concentrate in una zona per giorni o settimane: è uno <dfn>sciame sismico</dfn>. Succede spesso nelle aree vulcaniche e dove ci sono fluidi in movimento nella crosta.
+
+## Cosa ci insegna
+
+Nessuno può dire «il peggio è passato». Durante una sequenza è giusto restare prudenti, non rientrare in edifici danneggiati e seguire le indicazioni delle autorità. Quando c’è una sequenza in corso, Quake Italia la racconta nella pagina «Cosa sta succedendo».

@@ -7,7 +7,7 @@
  *  - 'meta': solo titolo e descrizione, il contenuto arriva dal vivo (dati che cambiano di minuto in minuto);
  *  - 'none': nessun file a parte (pagine personali o con indirizzo variabile).
  */
-import { ARTICLES } from '../learn/articles';
+import { CATALOG } from '../learn/catalog';
 import { TAGLINE } from '../lib/brand';
 
 export interface PageMeta {
@@ -41,7 +41,8 @@ export const PAGES: PageMeta[] = [
   page('/danni-casa', 'La casa ha dei danni: cosa fare', 'Dopo una scossa forte: come capire se è meglio uscire, chi chiamare, come funziona il controllo della casa e quali aiuti esistono.', 'full'),
   page('/e-vero', 'È vero? Le voci sui terremoti', 'Dopo una scossa girano tanti messaggi, audio e «previsioni». Le voci più comuni, con la risposta degli scienziati e le fonti.', 'full'),
   page('/capire', 'Capire i terremoti', 'Brevi letture, in parole semplici ma con le parole giuste della scienza. Ogni articolo usa dati veri dell’INGV e fonti pubbliche.', 'full'),
-  ...ARTICLES.map((a) => page(`/capire/${a.slug}`, a.title, a.subtitle, 'full')),
+  ...CATALOG.map((a) => page(`/capire/${a.slug}`, a.titolo, a.sottotitolo, 'full')),
+  page('/come-scriviamo', 'Come scriviamo gli articoli', 'Le fonti che usiamo, come le controlliamo, chi scrive gli articoli e come correggiamo gli errori.', 'full'),
   page('/informazioni', 'Informazioni', `${TAGLINE} Perché esiste Quake Italia, da dove arrivano i dati e come li usiamo.`, 'full'),
   page('/privacy', 'Privacy Policy', 'Come Quake Italia tratta i tuoi dati, in parole semplici: niente account, niente cookie, niente statistiche né pubblicità.', 'full'),
   page('/termini', 'Termini d’uso', 'Le regole per usare Quake Italia e, soprattutto, i suoi limiti: non prevede i terremoti e non è un sistema di allerta.', 'full'),

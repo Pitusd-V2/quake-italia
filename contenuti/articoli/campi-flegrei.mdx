@@ -1,0 +1,134 @@
+---
+titolo: "Campi Flegrei: la caldera che respira"
+sottotitolo: "Cos’è il bradisismo, cosa sta succedendo dal 2005 e cosa sappiamo davvero."
+percorso: vulcani
+ordine: 2
+minuti: 9
+verificato: 2026-10-31
+riassunto:
+  - "I Campi Flegrei sono una caldera: un vulcano “a conca” nato da enormi eruzioni, dove oggi vivono centinaia di migliaia di persone."
+  - "Il suolo si alza e si abbassa lentamente (bradisismo): a Pozzuoli si è sollevato di circa 169,5 cm da novembre 2005."
+  - "La sismicità cresce dal 2019; la scossa più forte finora è stata Md 4,7 il 31 luglio 2026. Il livello di allerta è giallo, nella «fase 2 di attenzione»."
+glossario:
+  - termine: "Caldera"
+    definizione: "Grande depressione vulcanica nata dallo sprofondamento del tetto della camera magmatica."
+  - termine: "Bradisismo"
+    definizione: "Lento sollevamento o abbassamento del suolo (dal greco bradýs, “lento”)."
+  - termine: "Sistema idrotermale"
+    definizione: "Acqua e gas caldi nel sottosuolo, riscaldati dal magma."
+  - termine: "Livello di allerta"
+    definizione: "Stato di attività di un vulcano: verde, giallo, arancione, rosso."
+  - termine: "Zona rossa"
+    definizione: "Area più esposta in caso di eruzione, per cui è previsto l’allontanamento preventivo."
+  - termine: "Md"
+    definizione: "Magnitudo di durata: si calcola da quanto dura il segnale sul sismogramma; usata per i terremoti vulcanici."
+fonti:
+  - testo: "INGV – Osservatorio Vesuviano, Bollettino di sorveglianza Campi Flegrei, settembre 2026"
+    url: "https://www.ov.ingv.it/index.php/monitoraggio-e-infrastrutture/bollettini-tutti/bollett-mensili-cf/anno-2026-3/2017-bollettino-mensile-campi-flegrei-2026-09/file"
+  - testo: "INGV – Osservatorio Vesuviano — I Campi Flegrei: inquadramento"
+    url: "https://www.ov.ingv.it/index.php/monitoraggio-sismico-e-vulcanico/campi-flegrei"
+  - testo: "Dipartimento della Protezione Civile — Il bradisismo ai Campi Flegrei: linea del tempo"
+    url: "https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/il-bradisismo-ai-campi-flegrei/linea-del-tempo/"
+  - testo: "AGI, «Campi Flegrei: confermata l’allerta gialla per rischio vulcanico» (fase 2 di Attenzione), 4 novembre 2025"
+    url: "https://www.agi.it/cronaca/news/2025-11-04/campi-flegrei-confermata-allerta-gialla-per-rischio-vulcanico-34020016/"
+  - testo: "Astort A. e altri (2024). Tracking the 2007–2023 magma-driven unrest at Campi Flegrei caldera (Italy). Communications Earth & Environment 5"
+    url: "https://doi.org/10.1038/s43247-024-01665-4"
+  - testo: "Caliro S. e altri (2025). Escalation of caldera unrest indicated by increasing emission of isotopically light sulfur. Nature Geoscience 18"
+    url: "https://doi.org/10.1038/s41561-024-01632-w"
+  - testo: "Dipartimento della Protezione Civile — Pianificazione nazionale di emergenza per il rischio vulcanico ai Campi Flegrei"
+    url: "https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/la-pianificazione-nazionale-di-emergenza-il-rischio-vulcanico-i-campi-flegrei/"
+  - testo: "Io non rischio — Campi Flegrei: cosa sapere"
+    url: "https://iononrischio.protezionecivile.gov.it/it/preparati/vulcani/campi-flegrei/cosa-sapere/"
+  - testo: "INGV — Miscellanea INGV sulle crisi bradisismiche del 1970–72 e 1982–84"
+    url: "https://collane-editoriali.ingv.it/index.php/mi/article/view/171/pdf"
+  - testo: "INGV — catalogo dei terremoti, richiesta usata per i grafici"
+    url: "https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&limit=20000&starttime=2026-01-01&endtime=2027-01-01&lat=40.827&lon=14.139&maxradiuskm=8"
+correlati: [terremoti-e-vulcani, mal-da-terremoto]
+paroleChiave: ["Campi Flegrei", "bradisismo", "Pozzuoli", "caldera", "Solfatara", "allerta gialla", "zona rossa", "magma"]
+---
+
+import { CFMonthlyChart, CFYearBars, UpliftBars } from '../../src/learn/figures2'
+import { SequenceSection } from '../../src/learn/SequenceSection'
+import { CF_MAIN } from '../../src/learn/cfEvents'
+import cf from '../../src/data/learn/campi-flegrei.json'
+
+## Un vulcano che non sembra un vulcano
+
+Se pensi a un vulcano immagini una montagna a cono come il Vesuvio. I Campi Flegrei, a ovest di Napoli, sono invece una <dfn>caldera</dfn>: una grande depressione nata quando il tetto della camera magmatica è sprofondato dopo eruzioni gigantesche. Secondo l’Osservatorio Vesuviano dell’INGV le principali sono due:
+
+- l’<dfn>Ignimbrite Campana</dfn>, circa 40.000 anni fa, l’eruzione più energetica conosciuta nell’area del Mediterraneo;
+- il <dfn>Tufo Giallo Napoletano</dfn>, circa 15.000 anni fa.
+
+Dopo, negli ultimi 5.500 anni, ci sono state più di 27 eruzioni più piccole. L’ultima è del 1538 e ha formato il Monte Nuovo, vicino a Pozzuoli. Dentro e attorno alla caldera oggi ci sono Pozzuoli, Bacoli, Monte di Procida, Quarto e quartieri di Napoli: è una delle aree vulcaniche più abitate del mondo.
+
+## Il bradisismo: il suolo che sale e scende
+
+<dfn>Bradisismo</dfn> viene dal greco *bradýs*, “lento”: è un lento movimento verticale del suolo. Ai Campi Flegrei sotto la superficie c’è un <dfn>sistema idrotermale</dfn>: acqua e gas caldi, riscaldati dal magma più in profondità. Quando questo sistema si scalda e si pressurizza, il suolo si gonfia e si solleva; quando la pressione cala, si abbassa. Il sollevamento “stira” le rocce più superficiali, che si rompono con tanti piccoli terremoti.
+
+Lo si misura anche dal livello del mare: la stazione mareografica di Pozzuoli Porto registra, dal 2006 a oggi, un sollevamento del suolo di circa 159 cm rispetto al mare.
+
+## Le crisi del 1970–72 e del 1982–84
+
+Nel 1970–72 il suolo si sollevò di circa 1,5–1,7 m e il Rione Terra di Pozzuoli fu evacuato. Nel 1982–84 il sollevamento fu di circa 1,8 m, con molti terremoti e danni diffusi agli edifici: fu evacuato tutto il centro di Pozzuoli. In totale, in quegli anni, il suolo si alzò di circa 3,5 m. Poi, per vent’anni, è lentamente sceso.
+
+<UpliftBars />
+
+## La fase attuale: dal 2005 a oggi
+
+Dal novembre 2005 il suolo ha ricominciato a salire, prima lentamente, poi sempre più in fretta. Secondo il bollettino dell’Osservatorio Vesuviano di settembre 2026:
+
+- alla stazione GPS del Rione Terra il sollevamento totale è di **circa 169,5 cm da novembre 2005** ad agosto 2026, di cui circa 32 cm solo da gennaio 2025;
+- da febbraio 2026 il suolo sale in media di **circa 10 mm al mese**;
+- a settembre 2026 ci sono stati 91 terremoti, il più forte di magnitudo Md 2,0.
+
+L’Osservatorio scrive che dal 2019 la sismicità si è intensificata, sia per numero di eventi sia per magnitudo. I dati del catalogo nazionale lo mostrano bene:
+
+<CFYearBars />
+
+<CFMonthlyChart />
+
+## Le scosse più forti
+
+Valori ufficiali comunicati dall’Osservatorio Vesuviano e dalla Protezione Civile:
+
+<ul className="cf-events">
+{CF_MAIN.map(([d, m, note]) => (
+<li key={d}>
+<span className="cf-events__date">{d}</span>
+<span className="cf-events__mag">{m}</span>
+<span className="muted">{note}</span>
+</li>
+))}
+</ul>
+
+Non sono terremoti grandissimi, ma si sentono molto perché sono **superficialissimi**: nei dati INGV dal 2000 la profondità mediana è di circa {String(cf.profonditaMediana).replace('.', ',')} km e solo il {cf.oltre3km}% supera i 3 km. In più avvengono sotto una città densa, su terreni vulcanici che amplificano lo scuotimento.
+
+<p className="small muted">Nota: la stessa scossa può avere magnitudo diverse in cataloghi diversi. Per quella del 27 settembre 2023 l’Osservatorio Vesuviano ha comunicato Md 4,2, mentre il catalogo nazionale riporta ML 3,1: sono due tipi di magnitudo calcolati in modo diverso. Per le scosse principali usiamo i valori ufficiali dell’Osservatorio.</p>
+
+<SequenceSection preferred="campi-flegrei" />
+
+## I gas e il calore
+
+Non c’è solo il movimento del suolo. Alla Solfatara e a Pisciarelli il vulcano “respira” gas: nell’area interna della Solfatara il flusso di <dfn>anidride carbonica</dfn> (CO₂) dal suolo, a settembre 2026, è stimato intorno a 900 tonnellate al giorno: tra i valori più bassi degli ultimi mesi, ma comunque elevato e paragonabile a quello di vulcani attivi che degassano in modo continuo. L’Osservatorio segnala che la composizione delle fumarole indica il perdurare del riscaldamento e della pressurizzazione del sistema idrotermale, già osservati nei mesi precedenti.
+
+## Livelli di allerta: a che punto siamo
+
+Per i vulcani italiani ci sono quattro <dfn>livelli di allerta</dfn>: verde, giallo, arancione e rosso. Ai Campi Flegrei il livello è **giallo** (attenzione): il vulcano mostra variazioni dei parametri rispetto al normale. Dal novembre 2025 il livello giallo è diviso in due fasi e la Protezione Civile ha adottato la **fase 2**, chiamata “disequilibrio medio”: serve a rafforzare il monitoraggio e a verificare i piani di emergenza. Nel bollettino di settembre 2026 il livello è ancora questo.
+
+Eventuali cambiamenti, scrive l’Osservatorio, saranno comunicati subito: per questo conviene seguire le fonti ufficiali e non le voci.
+
+## Ci sarà un’eruzione?
+
+Nessuno può dirlo con certezza, e diffida di chi lo “prevede”. Su cosa spinga il suolo a salire, la ricerca discute ancora. Per molto tempo si è pensato soprattutto al sistema idrotermale. Studi recenti, anche di ricercatori dell’INGV, indicano che dietro c’è anche **magma che si muove in profondità**, intorno ai 4–8 km, e che libera gas: una risalita da più di 8 km verso profondità minori, secondo i modelli della deformazione del suolo (Astort e altri, 2024), e magma che perde gas ad almeno 6 km di profondità, secondo lo zolfo delle fumarole (Caliro e altri, 2025).
+
+Magma in profondità non vuol dire eruzione imminente: per un’eruzione il magma deve arrivare fino in superficie. Ed è proprio quello che la rete di sorveglianza cerca, perché è una delle aree vulcaniche più monitorate al mondo: 27 stazioni sismiche fisse a terra e in mare, più stazioni mobili, una rete GPS, misure dei gas e del calore, sensori sul fondo del golfo. Se il magma si avvicinasse alla superficie, ci si aspetta che lo segnalino cambiamenti nei terremoti, nella deformazione del suolo e nei gas. Nel bollettino di settembre 2026 l’Osservatorio Vesuviano scrive che non ci sono elementi tali da suggerire significative evoluzioni a breve termine. Se i parametri cambiassero, il livello di allerta salirebbe e scatterebbero le misure del piano nazionale, che per la <dfn>zona rossa</dfn> prevede l’allontanamento preventivo della popolazione.
+
+## Se vivi ai Campi Flegrei
+
+- Scopri se la tua casa è nella zona rossa e qual è la tua area di attesa: chiedilo al Comune.
+- Leggi le indicazioni della Protezione Civile su bradisismo e rischio vulcanico (link in fondo).
+- Verifica con un tecnico lo stato della tua casa: con i terremoti superficiali la qualità dell’edificio fa la differenza.
+- Segui solo le fonti ufficiali: Osservatorio Vesuviano, Protezione Civile, il tuo Comune.
+- Durante una scossa vale quello che diciamo in [Cosa fare](/cosa-fare).
+
+Puoi seguire in tempo reale i terremoti dell’area in [Terremoti](/terremoti?vista=mappa&centro=40.827,14.139).

@@ -1,0 +1,65 @@
+---
+titolo: "Magnitudo e intensità: due cose diverse"
+sottotitolo: "Perché un terremoto ha una sola magnitudo ma tante intensità."
+percorso: le-basi
+ordine: 2
+minuti: 5
+verificato: 2026-10-21
+riassunto:
+  - "La magnitudo misura quanto è “grande” un terremoto: è un solo numero, calcolato dagli strumenti."
+  - "Ogni punto in più di magnitudo vuol dire circa 32 volte più energia."
+  - "L’intensità (scala MCS, 12 gradi) descrive gli effetti in un luogo: cambia da paese a paese."
+glossario:
+  - termine: "Magnitudo"
+    definizione: "Misura della grandezza di un terremoto, calcolata dagli strumenti. Una sola per terremoto."
+  - termine: "ML e Mw"
+    definizione: "Magnitudo locale (dall’ampiezza delle onde) e magnitudo momento (dal momento sismico)."
+  - termine: "Momento sismico"
+    definizione: "Rigidità della roccia × area della faglia × spostamento: misura “fisica” della grandezza del terremoto."
+  - termine: "Intensità"
+    definizione: "Misura degli effetti in un luogo (scala MCS, 12 gradi)."
+  - termine: "Effetti di sito"
+    definizione: "Amplificazione dello scuotimento dovuta al tipo di terreno."
+fonti:
+  - testo: "USGS — Earthquake Magnitude, Energy Release, and Shaking Intensity"
+    url: "https://www.usgs.gov/programs/earthquake-hazards/earthquake-magnitude-energy-release-and-shaking-intensity"
+  - testo: "INGV — Scala macrosismica MCS (Database Fotografico Macrosismico)"
+    url: "https://dfm.ingv.it/?page=scale.mcs"
+  - testo: "Hanks, T. C. & Kanamori, H. (1979). A moment magnitude scale. Journal of Geophysical Research, 84(B5)"
+    url: "https://doi.org/10.1029/JB084iB05p02348"
+  - testo: "INGV — Questionario «Hai sentito il terremoto?»"
+    url: "https://www.hsit.it/"
+correlati: [cos-e-un-terremoto, tante-piccole-poche-grandi]
+paroleChiave: ["magnitudo", "intensità", "Richter", "Mercalli", "MCS", "Mw", "ML", "energia", "effetti di sito"]
+---
+
+import { EnergyChart, MCSScale } from '../../src/learn/figures'
+
+## La magnitudo: la “taglia” del terremoto
+
+La <dfn>magnitudo</dfn> si calcola dai <dfn>sismogrammi</dfn>, le registrazioni delle stazioni sismiche. Ogni terremoto ha **una sola** magnitudo, uguale per tutti, ovunque ci si trovi.
+
+- La <dfn>magnitudo locale ML</dfn> (quella “Richter”, 1935) si basa sull’ampiezza massima delle onde registrate. L’INGV la usa per la maggior parte dei terremoti.
+- La <dfn>magnitudo momento Mw</dfn> si basa sul <dfn>momento sismico</dfn>: rigidità della roccia × area della faglia rotta × quanto si è spostata. Descrive meglio i terremoti forti, per questo l’INGV la indica per i più grandi (ad esempio Mw 6,5 a Norcia nel 2016).
+
+Subito dopo una scossa la magnitudo è una **stima automatica**; poi i sismologi la rivedono. Per questo a volte cambia di qualche decimale.
+
+## Una scala logaritmica
+
+La scala è <dfn>logaritmica</dfn>: ogni punto in più vuol dire onde 10 volte più ampie sui sismogrammi e circa **32 volte più energia**. Due punti in più: circa 1.000 volte. Quindi una magnitudo 6 non è “il doppio” di una 3: libera circa 32.000 volte più energia.
+
+<EnergyChart />
+
+## L’intensità: cosa succede dove sei tu
+
+L’<dfn>intensità</dfn> descrive gli effetti di un terremoto in un luogo preciso: cosa hanno sentito le persone, cosa è caduto, che danni hanno avuto gli edifici. In Italia si usa la scala <dfn>Mercalli-Cancani-Sieberg (MCS)</dfn>, di 12 gradi, scritti con i numeri romani. Lo stesso terremoto può essere di VIII grado vicino all’epicentro e di III a 100 km di distanza.
+
+<MCSScale />
+
+## Perché la stessa scossa si sente in modo diverso
+
+- **Distanza e profondità:** più lontano o più profondo è l’ipocentro, più le onde si indeboliscono.
+- **Terreno:** i terreni morbidi (sabbie, argille, fondovalle) possono amplificare lo scuotimento: si chiamano <dfn>effetti di sito</dfn>.
+- **Edificio e piano:** ai piani alti si sente di più; gli edifici fragili si danneggiano prima.
+
+Per stimare l’intensità l’INGV usa anche i questionari dei cittadini «Hai sentito il terremoto?». Le frasi come «probabilmente avvertita» di Quake Italia sono una stima semplice dello stesso tipo, non un dato ufficiale.

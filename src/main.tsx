@@ -11,6 +11,7 @@ import './styles/pages.css';
 import './styles/features.css';
 import { SettingsProvider } from './state/settings';
 import { App } from './App';
+import { preloadForPath } from './learn/catalog';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,9 @@ const queryClient = new QueryClient({
   },
 });
 
-createRoot(document.getElementById('root')!).render(
+// Se si apre direttamente un articolo, il suo testo si scarica prima di disegnare (niente «lampo» di caricamento).
+void preloadForPath(window.location.pathname).then(() =>
+  createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <SettingsProvider>
@@ -32,4 +35,5 @@ createRoot(document.getElementById('root')!).render(
       </SettingsProvider>
     </QueryClientProvider>
   </StrictMode>,
+  ),
 );
