@@ -1,4 +1,7 @@
-# Piano editoriale di «Capire» — bozza da approvare
+# Piano editoriale di «Capire» — approvato per iniziare (4 novembre 2026)
+
+Il livello di scrittura (a chi scriviamo, come spieghiamo i concetti difficili, le due prove prima di proporre un
+articolo) è in [COME-SCRIVERE](../contenuti/COME-SCRIVERE.md#a-chi-scriviamo-e-a-che-livello).
 
 Obiettivo: prima della pubblicazione del sito, una base di **circa 50 articoli** scritti con le regole di
 [Come scriviamo gli articoli](../src/pages/EditorialPage.tsx) (sul sito: `/come-scriviamo`), in 8 percorsi.

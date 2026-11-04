@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -97,5 +98,10 @@ export default defineConfig({
   // `npm run preview` usa gli stessi header della produzione: così la CSP si prova in locale.
   preview: {
     headers: SECURITY_HEADERS,
+  },
+  test: {
+    // Niente cache dei moduli tra un'esecuzione e l'altra: non si accorge dei file nuovi letti con
+    // import.meta.glob, e un articolo appena aggiunto risulterebbe «senza file» finché non cambia catalog.ts.
+    fsModuleCache: false,
   },
 });

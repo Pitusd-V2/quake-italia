@@ -10,6 +10,7 @@ import slab from '../data/learn/slab.json';
 import gr from '../data/learn/gr-italia.json';
 import cpti from '../data/learn/cpti15.json';
 import tempo from '../data/learn/tempo-terremoto.json';
+import { amatrice, conMw, d1, flegreiMd, marche, momentoVolte, norcia } from './facts/magnitudo';
 
 const { articles } = readArticles();
 const summary = (slug: string) => articles.find((a) => a.slug === slug)!.riassunto.join(' ');
@@ -35,6 +36,22 @@ describe('Articoli di «Capire»', () => {
     expect(summary('grandi-terremoti-della-storia')).toContain(`${formatInt(cpti.totaleEventi)} terremoti dall’anno ${cpti.primoAnno} al ${cpti.ultimoAnno}`);
     expect(summary('tempo-da-terremoto')).toContain(`${tempo.meteo.terremoti} terremoti forti`);
     expect(summary('tempo-da-terremoto')).toContain(`${formatInt(tempo.mesi.n)} terremoti`);
+    expect(summary('perche-la-magnitudo-cambia')).toContain(`la ML era ${d1(norcia.mlPrincipale)} e la Mw ${d1(norcia.mw)}`);
+  });
+
+  // L'articolo sulle magnitudo racconta questi fatti: se un giorno il catalogo INGV cambiasse, il test lo dice.
+  it('«Perché la magnitudo cambia»: i fatti del testo valgono ancora nei dati INGV', () => {
+    expect(norcia.mwTutteUguali).toBe(true); // «le stime della magnitudo momento danno tutte 6,5»
+    expect(norcia.mw! - norcia.mlMax!).toBeGreaterThan(0.2); // Norcia si stacca da tutte le sue ML
+    expect(conMw.filter((s) => s.mw! > 6.1).map((s) => s.nome)).toEqual(['Norcia']); // «l’unica con Mw sopra 6,1»
+    for (const s of conMw.filter((x) => x.nome !== 'Norcia')) {
+      // «per quasi tutte, la Mw cade dentro o accanto al gruppo delle ML»
+      expect(s.mw!).toBeGreaterThanOrEqual(s.mlMin! - 0.11);
+      expect(s.mw!).toBeLessThanOrEqual(s.mlMax! + 0.21);
+    }
+    expect(marche.mw!).toBeLessThan(marche.mlPrincipale!); // la Mw più bassa della ML
+    expect(Math.round(momentoVolte(norcia.mw!, amatrice.mw!) * 2) / 2).toBe(5.5); // «circa cinque volte e mezzo»
+    expect([flegreiMd.prima, flegreiMd.finale]).toEqual([4.4, 4.6]);
   });
 });
 

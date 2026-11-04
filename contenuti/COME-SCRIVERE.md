@@ -5,6 +5,36 @@ Gli articoli sono file di testo in `contenuti/articoli/`, uno per articolo. Il n
 [Come scriviamo gli articoli](https://github.com/Pitusd-V2/quake-italia/blob/main/src/pages/EditorialPage.tsx)
 (sul sito: `/come-scriviamo`). Prima di scrivere, leggile.
 
+## A chi scriviamo, e a che livello
+
+Scriviamo per chi non fa ricerca ma vuole capire davvero: persone curiose, di ogni età, che vogliono saperne più del
+normale. Non scriviamo per bambini e non per esperti. È la parte più difficile del lavoro, e la più importante.
+
+- **Il concetto difficile resta.** Non si semplifica togliendo, si semplifica spiegando: prima un paragone, poi la cosa
+  vera con i suoi numeri, poi dove il paragone smette di funzionare.
+- **Come lo sappiamo.** Ogni articolo racconta anche il metodo: quale strumento, quale misura, quale studio, chi e
+  quando. È la differenza tra una curiosità e la cultura scientifica.
+- **Le fonti sono quelle della ricerca.** Dove si può: lo studio originale, una rassegna più recente e la fonte
+  ufficiale italiana. Mai un sito che riassume un altro sito.
+- **Numeri veri.** Con l'unità di misura e, quando c'è, l'incertezza: «circa 32 volte più energia», non «molta più
+  energia»; «6,1 ± 0,3», non solo «6,1».
+- **Il confine di ciò che si sa.** Cosa è assodato, cosa è discusso, cosa non sappiamo ancora. Scriverlo fa parte della
+  spiegazione, non è una debolezza.
+- **Un caso italiano.** La teoria si aggancia a un terremoto, a un luogo, a una misura italiana.
+- **Rispetto per chi legge.** Frasi corte e parole semplici, ma pensieri completi. Niente tono da favola, niente
+  «incredibile!», niente allarmismo.
+
+Gli articoli non sono «paper»: non presentiamo ricerche nuove come se fossero studi pubblicati. Raccontiamo gli studi
+con il loro stesso rigore. Quando facciamo un'analisi nostra (come nell'articolo sul «tempo da terremoto»), lo diciamo
+chiaramente e pubblichiamo il codice per rifarla.
+
+**Due prove prima di proporre un articolo:**
+
+1. *La prova del lettore:* dopo averlo letto, una persona curiosa senza studi scientifici saprebbe rispiegare l'idea
+   principale a un amico, con parole sue?
+2. *La prova dell'esperto:* rileggendolo come lo leggerebbe un sismologo, c'è qualcosa di sbagliato, o semplificato al
+   punto da diventare falso? Se sì, si riscrive.
+
 ## Correggere una frase
 
 Apri il file, correggi il testo, aggiorna `verificato` con la data di oggi se hai ricontrollato le fonti. Se l'errore era

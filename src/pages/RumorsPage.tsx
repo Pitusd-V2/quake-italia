@@ -70,9 +70,11 @@ const RUMORS: Rumor[] = [
     says: '«L’INGV abbassa la magnitudo per non far pagare i danni allo Stato.»',
     verdict: 'falso',
     answer: [
-      'I primi valori sono automatici e vengono corretti quando arrivano più dati: possono cambiare anche di mezzo punto, in su o in giù. Nel 2016 la scossa di Norcia passò da 6,1 a 6,5.',
+      'I primi valori sono automatici e vengono rivisti quando arrivano più dati: possono cambiare anche di mezzo punto, in su o in giù.',
+      'E le magnitudo non sono tutte uguali. A Norcia, nel 2016, la prima stima fu la magnitudo locale, 6,1, e l’INGV avvisò subito che il valore corretto sarebbe stato più alto. Poco dopo arrivò la magnitudo momento, 6,5, più adatta alle scosse forti: due misure diverse della stessa scossa.',
       'Enti diversi possono dare numeri un po’ diversi perché usano dati e metodi diversi. E gli aiuti dopo un terremoto dipendono dai danni accertati, non dalla magnitudo.',
     ],
+    more: { to: '/capire/perche-la-magnitudo-cambia', label: 'Perché la magnitudo cambia: la storia completa, con i dati' },
   },
   {
     id: 'vulcano',
@@ -171,6 +173,11 @@ export function RumorsPage() {
           </li>
           <li>
             <ExternalLink href="https://ingvterremoti.com/faq/faq-domande-frequenti-sui-terremoti/">INGV — FAQ, domande frequenti sui terremoti (Quale magnitudo?)</ExternalLink>
+          </li>
+          <li>
+            <ExternalLink href="https://ingvterremoti.com/2016/10/31/la-magnitudo-del-terremoto-del-30-ottobre-2016/">
+              INGV — La magnitudo del terremoto del 30 ottobre 2016
+            </ExternalLink>
           </li>
           <li>
             <ExternalLink href="https://www.usgs.gov/programs/earthquake-hazards/earthquake-facts-earthquake-fantasy">

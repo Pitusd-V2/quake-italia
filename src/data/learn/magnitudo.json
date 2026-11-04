@@ -1,0 +1,357 @@
+{
+ "titolo": "Tutte le stime della magnitudo di sette terremoti italiani nel catalogo INGV",
+ "fonte": "INGV — webservices.ingv.it (FDSN), licenza CC BY 4.0",
+ "scaricato": "2026-11-04",
+ "eventi": [
+  {
+   "id": 8863681,
+   "nome": "Norcia",
+   "tempo": "2016-10-30T06:40:17.320Z",
+   "luogo": "4 km NE Norcia (PG)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=8863681&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 6.5,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.3,
+     "stazioni": 359,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.4,
+     "stazioni": 176,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.3,
+     "stazioni": 141,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.3,
+     "stazioni": 136,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.2,
+     "incertezza": 0.4,
+     "stazioni": 36,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.2,
+     "stazioni": 5,
+     "preferita": false
+    },
+    {
+     "tipo": "Mwp",
+     "valore": 6.5,
+     "incertezza": 0.3,
+     "stazioni": null,
+     "preferita": false
+    },
+    {
+     "tipo": "Mwp",
+     "valore": 6.5,
+     "incertezza": 0.3,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 1895389,
+   "nome": "L’Aquila",
+   "tempo": "2009-04-06T01:32:40.400Z",
+   "luogo": "2 km SW L'Aquila (AQ)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=1895389&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 6.1,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.4,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 7073641,
+   "nome": "Amatrice",
+   "tempo": "2016-08-24T01:36:32.000Z",
+   "luogo": "1 km W Accumoli (RI)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=7073641&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 6,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 6,
+     "incertezza": 0.6,
+     "stazioni": 188,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6,
+     "incertezza": 0.3,
+     "stazioni": 159,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6,
+     "incertezza": 0.3,
+     "stazioni": 145,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.7,
+     "stazioni": 32,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.8,
+     "incertezza": 0.5,
+     "stazioni": 4,
+     "preferita": false
+    },
+    {
+     "tipo": "Mw",
+     "valore": 6,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": false
+    },
+    {
+     "tipo": "Mw",
+     "valore": 6,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 8669321,
+   "nome": "Visso",
+   "tempo": "2016-10-26T19:18:07.420Z",
+   "luogo": "3 km S Visso (MC)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=8669321&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 5.9,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.8,
+     "incertezza": 0.3,
+     "stazioni": 220,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.7,
+     "stazioni": 112,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.3,
+     "stazioni": 85,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.3,
+     "stazioni": 84,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.4,
+     "stazioni": 9,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.7,
+     "incertezza": 0.4,
+     "stazioni": 4,
+     "preferita": false
+    },
+    {
+     "tipo": "Mw",
+     "valore": 5.9,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 772691,
+   "nome": "Emilia",
+   "tempo": "2012-05-20T02:03:50.170Z",
+   "luogo": "7 km NW Finale Emilia (MO)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=772691&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 5.8,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.2,
+     "stazioni": 42,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.2,
+     "stazioni": 21,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0.2,
+     "stazioni": 0,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.9,
+     "incertezza": 0,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 33301831,
+   "nome": "Costa marchigiana",
+   "tempo": "2022-11-09T06:07:25.000Z",
+   "luogo": "Costa Marchigiana Pesarese (Pesaro-Urbino)",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=33301831&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Mw",
+     "valore": 5.5,
+     "incertezza": null,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.7,
+     "incertezza": 0.3,
+     "stazioni": 582,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.7,
+     "incertezza": 0.3,
+     "stazioni": 502,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.6,
+     "incertezza": 0.4,
+     "stazioni": 222,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 5.8,
+     "incertezza": 0.3,
+     "stazioni": 34,
+     "preferita": false
+    },
+    {
+     "tipo": "ML",
+     "valore": 6.1,
+     "incertezza": 0.4,
+     "stazioni": 7,
+     "preferita": false
+    }
+   ]
+  },
+  {
+   "id": 41908352,
+   "nome": "Campi Flegrei",
+   "tempo": "2025-03-13T00:25:02.349Z",
+   "luogo": "Campi Flegrei",
+   "richiesta": "https://webservices.ingv.it/fdsnws/event/1/query?eventid=41908352&includeallmagnitudes=true",
+   "stime": [
+    {
+     "tipo": "Md",
+     "valore": 4.6,
+     "incertezza": 0.3,
+     "stazioni": null,
+     "preferita": true
+    },
+    {
+     "tipo": "Md",
+     "valore": 4.6,
+     "incertezza": 0.3,
+     "stazioni": null,
+     "preferita": false
+    },
+    {
+     "tipo": "Md",
+     "valore": 4.4,
+     "incertezza": 0.3,
+     "stazioni": null,
+     "preferita": false
+    }
+   ]
+  }
+ ]
+}

@@ -64,6 +64,10 @@ export function EditorialPage() {
           <li>I numeri vengono dalle fonti o dai dati ufficiali. Quando facciamo calcoli nostri, pubblichiamo il codice per rifarli.</li>
           <li>Distinguiamo ciò che è assodato da ciò su cui gli scienziati discutono ancora.</li>
           <li>Niente allarmismo, e niente false rassicurazioni.</li>
+          <li>
+            Non togliamo i concetti difficili: li spieghiamo. E raccontiamo anche come lo sappiamo: con quali strumenti,
+            misure e studi gli scienziati ci sono arrivati.
+          </li>
           <li>Parole semplici, ma i termini scientifici restano: li spieghiamo la prima volta e nel glossario.</li>
           <li>
             Gli articoli sono «a strati»: l’essenziale si capisce in pochi secondi, e chi vuole può andare a fondo, fino agli
