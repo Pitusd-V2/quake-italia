@@ -25,8 +25,9 @@ export default defineConfig({
       generateBundle() {
         this.emitFile({ type: 'asset', fileName: '_headers', source: headersFile() });
         // Promemoria: le pagine legali hanno ancora campi da compilare (src/legal/config.ts).
-        const legal = readFileSync('src/legal/config.ts', 'utf8');
-        if (/^\s+(name|place|email|siteUrl): '\[DA COMPLETARE/m.test(legal) || legal.includes("hosting: 'da-scegliere'")) {
+        // Solo il blocco LEGAL: più sotto c'è il testo di riserva per l'hosting «da scegliere», che non conta.
+        const legal = readFileSync('src/legal/config.ts', 'utf8').split('export const HOSTING_INFO')[0];
+        if (legal.includes("'[DA COMPLETARE") || legal.includes("hosting: 'da-scegliere'")) {
           this.warn('ATTENZIONE: Privacy Policy e Termini hanno campi [DA COMPLETARE] in src/legal/config.ts. Compilali prima di pubblicare.');
         }
       },

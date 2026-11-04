@@ -191,3 +191,18 @@ describe('Esportazione CSV', () => {
     expect(row).not.toContain("'-0.5");
   });
 });
+
+describe('security.txt', () => {
+  const txt = readFileSync(join(process.cwd(), 'public', '.well-known', 'security.txt'), 'utf8');
+
+  it('ha un contatto e punta al dominio del sito', () => {
+    expect(txt).toMatch(/^Contact: https:\/\/github\.com\/Pitusd-V2\/quake-italia\/security\/advisories\/new$/m);
+    expect(txt).toMatch(/^Canonical: https:\/\/quakeitalia\.it\/\.well-known\/security\.txt$/m);
+  });
+
+  it('non è scaduto e non scade entro 30 giorni (se fallisce: sposta la data «Expires» di un anno)', () => {
+    const expires = Date.parse(txt.match(/^Expires: (.+)$/m)?.[1] ?? '');
+    expect(expires - Date.now()).toBeGreaterThan(30 * 24 * 3600 * 1000);
+    expect(expires - Date.now()).toBeLessThan(366 * 24 * 3600 * 1000);
+  });
+});

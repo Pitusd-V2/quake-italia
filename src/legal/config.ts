@@ -10,7 +10,7 @@ export type Hosting = 'cloudflare' | 'netlify' | 'github' | 'da-scegliere';
 
 export const LEGAL = {
   siteName: 'Quake Italia',
-  siteUrl: '[DA COMPLETARE: indirizzo del sito, es. https://quakeitalia.it]',
+  siteUrl: 'https://quakeitalia.it',
 
   /** Chi pubblica il sito ed è responsabile dei dati (il "titolare del trattamento"). */
   owner: {
@@ -18,10 +18,10 @@ export const LEGAL = {
     email: 'quakeitalia@gmail.com',
   },
 
-  hosting: 'da-scegliere' as Hosting,
+  hosting: 'cloudflare' as Hosting,
 
   /** Data dell'ultima modifica delle pagine legali (da aggiornare a ogni cambiamento). */
-  lastUpdated: '31 ottobre 2026',
+  lastUpdated: '4 novembre 2026',
 };
 
 /** Formula prudente: le garanzie esatte (DPF e/o clausole standard) vanno verificate nell'informativa del fornitore. */
