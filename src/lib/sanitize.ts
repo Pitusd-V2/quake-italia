@@ -93,6 +93,8 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.issalute.it',
   // Fonte dell'articolo sui Campi Flegrei (fase 2 dell'allerta gialla)
   'www.agi.it',
+  // Fonte di «Come l’INGV trova un terremoto» (scheda didattica dell'INGV di Pisa)
+  'www.pi.ingv.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

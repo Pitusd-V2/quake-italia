@@ -1,0 +1,144 @@
+---
+titolo: "Come l’INGV trova un terremoto, in pochi minuti"
+sottotitolo: "Dal «lampo e tuono» delle onde alla sala di sorveglianza aperta giorno e notte: come si calcolano epicentro e profondità, e perché le prime stime cambiano."
+percorso: le-basi
+ordine: 9
+minuti: 11
+verificato: 2026-11-04
+riassuntoTitolo: "In 30 secondi"
+riassunto:
+  - "Un terremoto manda due tipi di onde: le P arrivano prima, le S dopo. Come tra il lampo e il tuono, più il ritardo è lungo, più la scossa è lontana: circa 7-8 km per ogni secondo."
+  - "Con i tempi di arrivo a decine o centinaia di stazioni, un computer calcola dove è iniziata la rottura e a che profondità. Le stazioni sono centinaia: nel 2025, contando anche quelle di università ed enti collegati all’INGV, più di 850."
+  - "Dopo circa 2 minuti l’INGV pubblica una «stima provvisoria» automatica; entro 30 minuti (in media 10-12) i sismologi di turno la rivedono. Poi il Bollettino Sismico Italiano ricontrolla tutto: in pochi giorni le scosse più forti, le altre entro qualche mese."
+  - "Nelle scosse del 2024 e del 2025, la stima automatica dei primi minuti aveva di solito l’epicentro a 4 km da quello finale e la profondità a 8 km; dopo la revisione dei sismologi, entrambi erano di solito entro un paio di chilometri."
+  - "La profondità è il dato più difficile da misurare: per calcolarla bene serve una stazione vicina all’epicentro."
+glossario:
+  - termine: "Ipocentro"
+    definizione: "Il punto sottoterra dove inizia la rottura della faglia."
+  - termine: "Epicentro"
+    definizione: "Il punto in superficie esattamente sopra l’ipocentro."
+  - termine: "Onde P e onde S"
+    definizione: "Le onde che attraversano la Terra. Le P sono le più veloci e arrivano per prime; le S arrivano dopo e scuotono di più."
+  - termine: "Localizzazione"
+    definizione: "Il calcolo di dove e quando è iniziato un terremoto: posizione dell’epicentro, profondità e ora."
+  - termine: "Stima provvisoria"
+    definizione: "La localizzazione calcolata dai computer senza controllo umano, pubblicata dall’INGV in attesa della revisione dei sismologi."
+  - termine: "Dromocrone"
+    definizione: "Le curve che legano la distanza di una stazione al tempo che le onde impiegano per arrivarci."
+  - termine: "Bollettino Sismico Italiano"
+    definizione: "Il catalogo dei terremoti rivisto a mano dagli analisti dell’INGV, pubblicato ogni quattro mesi."
+fonti:
+  - testo: "INGV — «La localizzazione automatica degli eventi sismici sbarca anche sul web», blog INGVterremoti, 11 giugno 2019"
+    url: "https://ingvterremoti.com/2019/06/11/la-localizzazione-automatica-sbarca-anche-sul-web/"
+  - testo: "INGV — «Notifica errata del sistema di localizzazione automatica di un evento nel basso Lazio, 17 febbraio 2025», blog INGVterremoti"
+    url: "https://ingvterremoti.com/2025/02/17/notifica-errata-del-sistema-di-localizzazione-automatica-di-un-evento-nel-basso-lazio-17-febbraio-2025/"
+  - testo: "INGV — «1985-2025: 40 anni del Bollettino Sismico Italiano», blog INGVterremoti, 16 giugno 2025"
+    url: "https://ingvterremoti.com/2025/06/16/1985-2025-40-anni-del-bollettino-sismico-italiano/"
+  - testo: "INGV, Sezione di Pisa (2019). I numeri del terremoto, a cura di S. Cianetti e altri (determinazione dell’epicentro)"
+    url: "https://www.pi.ingv.it/flipbook/Terremoti/files/basic-html/page10.html"
+  - testo: "BSI Working Group (2015). Bollettino Sismico Italiano (BSI). INGV"
+    url: "https://doi.org/10.13127/bsi"
+  - testo: "ISIDe Working Group (2007). Italian Seismological Instrumental and Parametric Database (ISIDe). INGV"
+    url: "https://doi.org/10.13127/ISIDE"
+  - testo: "USGS — At what depth do earthquakes occur? What is the significance of the depth?"
+    url: "https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth"
+  - testo: "USGS — Why do so many earthquakes occur at a depth of 10km?"
+    url: "https://www.usgs.gov/faqs/why-do-so-many-earthquakes-occur-a-depth-10km"
+  - testo: "Mazza, S. e altri (2012). AIDA – Seismic data acquisition, processing, storage and distribution at the National Earthquake Center, INGV. Annals of Geophysics, 55(4)"
+    url: "https://doi.org/10.4401/ag-6145"
+  - testo: "Michelini, A. e altri (2016). The Italian National Seismic Network and the earthquake and tsunami monitoring and surveillance systems. Advances in Geosciences, 43"
+    url: "https://doi.org/10.5194/adgeo-43-31-2016"
+  - testo: "Marchetti, A. e altri (2016). The Italian Seismic Bulletin: strategies, revised pickings and locations of the central Italy seismic sequence. Annals of Geophysics, 59"
+    url: "https://doi.org/10.4401/ag-7169"
+correlati: [perche-la-magnitudo-cambia, cos-e-un-terremoto, repliche-e-sequenze]
+paroleChiave: ["localizzazione", "epicentro", "ipocentro", "profondità", "onde P", "onde S", "sala di sorveglianza", "stima provvisoria", "Bollettino Sismico Italiano", "Rete Sismica Nazionale", "dromocrone", "Pietrapaola", "falso allarme"]
+notaDati: "I grafici usano il catalogo INGV (licenza CC BY 4.0): tutte le localizzazioni e gli arrivi delle onde della scossa di Pietrapaola, e le localizzazioni di tutte le scosse di magnitudo 3 o più del 2024 e del 2025, scaricate e confrontate con lo script `scripts/build-location-data.mjs`. Il confronto tra prime stime e Bollettino è un nostro calcolo."
+---
+import { LocationStepsChart, TravelTimeChart, ShiftChart } from '../../src/learn/figures6'
+import { esempio, automatiche, primaAuto, ultimaAuto, sala, bollettino, localizzazioni, piuVicina, piuLontana, conPeS, kmPerSecondo, kmPerSecondoMin, kmPerSecondoMax, stat, d1, int } from '../../src/learn/facts/localizzazione'
+
+{/* ---------------- 1. La storia ---------------- */}
+
+<Part n={1} kicker="La storia">Diciannove secondi</Part>
+
+Giovedì 1° agosto 2024, ore 21:43. In Calabria, vicino a Pietrapaola, in provincia di Cosenza, avviene un terremoto di magnitudo {d1(esempio.magnitudo.valore)}. Dopo {primaAuto.dopoSecondi} secondi, nei computer dell’INGV c’è già una prima risposta alla domanda più urgente: **dove?** È calcolata con {primaAuto.stazioni} stazioni. Altre stime arrivano nei minuti successivi; dopo {Math.round(sala.dopoSecondi / 60)} minuti i sismologi di turno hanno controllato tutto a mano.
+
+Come si fa a capire dove è avvenuta una scossa, a volte a chilometri di profondità, in così poco tempo? Con lo stesso ragionamento che usiamo per un temporale.
+
+### Il lampo e il tuono
+
+Quando vediamo un lampo, contiamo i secondi fino al tuono: più sono, più il temporale è lontano. Un terremoto fa qualcosa di simile. Dal punto in cui comincia la rottura, l’<dfn>ipocentro</dfn>, partono due tipi di onde: le <dfn>onde P</dfn>, più veloci, che arrivano per **P**rime, e le <dfn>onde S</dfn>, più lente, che arrivano per **S**econde e scuotono di più. Più una stazione è lontana, più tempo passa tra l’arrivo delle une e delle altre.
+
+Alla stazione sismica di Pietrapaola, a {d1(piuVicina.km)} km dall’epicentro, le onde P sono arrivate {d1(piuVicina.P)} secondi dopo l’inizio della scossa, le onde S dopo {d1(piuVicina.S)}: due secondi e mezzo di distacco. Per quella scossa, ogni secondo di distacco corrispondeva a circa {d1(kmPerSecondo)} km di distanza (lo spieghiamo più sotto): due secondi e mezzo vogliono dire una ventina di chilometri. La scossa era quasi sotto la stazione, ma in profondità. Il Bollettino, alla fine, ha calcolato {d1(bollettino.profKm)} km.
+
+Una sola stazione dice **quanto** è lontana la scossa, non in **che direzione**. Con tre stazioni si può disegnare un cerchio intorno a ognuna, grande quanto la distanza: l’epicentro è dove i cerchi si incrociano. Ma per trovare anche la profondità e l’ora esatta servono molte più stazioni, e un calcolo che si fa al computer. Il computer prova un numero grandissimo di terremoti «possibili», calcola per ognuno quando le onde sarebbero dovute arrivare a ogni stazione e sceglie quello che si avvicina di più ai tempi osservati davvero.
+
+### Da 6 stazioni a più di 850
+
+In Italia la prima rete nazionale collegata in tempo reale nacque nel 1980, dopo i terremoti del Friuli (1976), della Valnerina (1979) e dell’Irpinia (1980): sei stazioni. Dal 1982 i segnali arrivavano in una sala di sorveglianza a Roma, dove venivano scritti su carta da registratori a tamburo; dal 1985 vengono anche digitalizzati, e da allora esiste il <dfn>Bollettino Sismico Italiano</dfn>. Nel 2016 e nel 2019 l’INGV contava circa 400 stazioni nella sua Rete Sismica Nazionale; nel 2025, con quelle di università ed enti con cui collabora, più di 850. Dal 2012 i dati vengono raccolti e analizzati da un sistema dell’INGV chiamato AIDA.
+
+{/* ---------------- 2. Cosa dicono i dati ---------------- */}
+
+<Part n={2} kicker="Cosa dicono i dati">Una scossa, cinque localizzazioni</Part>
+
+Il catalogo INGV conserva tutte le <dfn>localizzazioni</dfn> calcolate per ogni scossa, con l’ora in cui sono state fatte. Per Pietrapaola sono queste.
+
+<LocationStepsChart />
+
+La prima stima, con {primaAuto.stazioni} stazioni, metteva la scossa a {d1(primaAuto.profKm)} km di profondità. {automatiche[1].dopoSecondi - primaAuto.dopoSecondi} secondi dopo, con {automatiche[1].stazioni} stazioni, a {d1(automatiche[1].profKm)} km; poi, con {ultimaAuto.stazioni} stazioni, a {d1(ultimaAuto.profKm)} km. I sismologi della sala di sorveglianza, controllando a mano l’arrivo delle onde, l’hanno portata a {d1(sala.profKm)} km; il Bollettino Sismico Italiano, quasi due giorni dopo, a {d1(bollettino.profKm)} km (± {d1(bollettino.profIncKm ?? 0)}). L’epicentro, intanto, si è spostato al massimo di {d1(Math.max(...localizzazioni.map((l) => l.spostamentoKm)))} km.
+
+### Perché la profondità è la cosa più difficile
+
+Le stazioni stanno quasi tutte in superficie. Se una stazione è lontana, che la scossa sia a 10 o a 20 km di profondità cambia pochissimo la strada che le onde devono fare per arrivarci: per una stazione a 100 km, appena un chilometro e mezzo in più. Per una stazione quasi sopra l’epicentro, invece, la differenza è grande: è lei a «vedere» la profondità. Per questo, scrive l’USGS, il servizio geologico americano, misurare la profondità è di solito più difficile che trovare l’epicentro, a meno che una stazione sia vicina e proprio sopra la scossa. Come regola pratica, la stazione più vicina dovrebbe stare più vicina all’epicentro di quanto la scossa sia profonda. A Pietrapaola la regola era rispettata: {d1(piuVicina.km)} km di distanza, contro {d1(bollettino.profKm)} di profondità.
+
+### Due anni di scosse: quanto erano vicine le prime stime
+
+Un esempio solo può ingannare. Per questo abbiamo fatto lo stesso confronto per tutte le scosse di magnitudo 3 o più del 2024 e del 2025 in Italia e nei mari vicini: {stat.scosse} scosse, di cui {stat.confrontate} già riviste dal Bollettino Sismico Italiano.
+
+<ShiftChart />
+
+La stima automatica dei primi minuti (di solito circa {int(stat.auto.secondi / 60)} minuti dopo la scossa, con {int(stat.auto.stazioni)} stazioni) aveva l’epicentro, per metà delle scosse, entro {d1(stat.auto.epiMeta)} km da quello finale; la profondità sbagliava di più, entro {d1(stat.auto.profMeta)} km. Dopo la revisione dei sismologi, la metà delle scosse era entro {d1(stat.sala.epiMeta)} km per l’epicentro ed entro {d1(stat.sala.profMeta)} km per la profondità. Ma ci sono le eccezioni: per una scossa su dieci, la stima automatica era lontana più di {int(stat.auto.epi9)} km.
+
+E la primissima stima, quella dei primi {int(stat.prima.secondi)} secondi con {int(stat.prima.stazioni)} stazioni? Per metà delle scosse era già entro {d1(stat.prima.epiMeta)} km, ma per una su dieci sbagliava di oltre {int(stat.prima.epi9)} km. Per questo l’INGV pubblica le stime automatiche solo quando superano dei controlli di qualità.
+
+### Cosa vedi tu, minuto per minuto
+
+Dal 2019, sul sito dell’INGV, la localizzazione automatica compare circa 2 minuti dopo le scosse di magnitudo 3 o più, con la scritta <dfn>stima provvisoria</dfn>. La magnitudo è indicata con una «forchetta», per esempio tra 4,0 e 4,6, e il luogo con la provincia o la zona. Quando i sismologi hanno finito la revisione, di solito in 10-12 minuti e al massimo in 30, la stima provvisoria sparisce e al suo posto compare il dato rivisto.
+
+Non tutte le scosse hanno la stima provvisoria: secondo l’INGV circa una su quattro o cinque non viene comunicata in anticipo, perché la localizzazione automatica non è abbastanza precisa. Succede soprattutto con le scosse in mare, quando due terremoti avvengono quasi insieme in zone diverse o quando qualche stazione è guasta. Nelle aree vulcaniche della Campania e della Sicilia, di norma, si pubblicano solo le localizzazioni riviste dai sismologi, entro 30 minuti.
+
+Su Quake Italia i dati arrivano dall’INGV: se hai appena sentito una scossa e non la trovi ancora, la pagina [Ho sentito una scossa](/ho-sentito) ricontrolla da sola ogni minuto.
+
+### Quando il computer sbaglia
+
+La mattina del 17 febbraio 2025, per pochi minuti, il sito e l’app dell’INGV hanno mostrato la stima provvisoria di un terremoto tra 4,6 e 5,1 al largo della costa tra Lazio e Campania, a più di 100 km di profondità. Non era mai avvenuto. Il sistema automatico aveva messo insieme i segnali di una piccola scossa ai Campi Flegrei con segnali di altre stazioni, lontane, che non erano terremoti. I sismologi in sala se ne sono accorti e l’hanno cancellata. L’INGV lo ha spiegato il giorno stesso: è il prezzo della velocità, ed è il motivo per cui una persona controlla sempre. Durante la lunga sperimentazione fatta prima di pubblicare le stime provvisorie sul sito, era successo una volta sola su più di 1.500 terremoti.
+
+{/* ---------------- 3. Per chi vuole andare a fondo ---------------- */}
+
+<Part n={3} kicker="Per chi vuole andare a fondo">Le onde, il metodo e il Bollettino</Part>
+
+### Le dromocrone di Pietrapaola
+
+Ecco tutte le stazioni che hanno registrato la scossa di Pietrapaola, con il tempo di arrivo delle onde. La più lontana è a {piuLontana.nome?.replace(', Serbia', ', in Serbia')}, a {int(piuLontana.km)} km: l’onda P ci è arrivata dopo {d1(piuLontana.P ?? 0)} secondi.
+
+<TravelTimeChart />
+
+Dalle {conPeS.length} stazioni con l’arrivo sia delle onde P sia delle S si ricava la regola del «lampo e tuono» per quella scossa, usando le distanze dall’ipocentro del Bollettino: in media {d1(kmPerSecondo)} km per ogni secondo di distacco, ma da {d1(kmPerSecondoMin)} a {d1(kmPerSecondoMax)} km a seconda della stazione. Non è un numero fisso perché le onde attraversano rocce diverse, e in ogni roccia viaggiano a una velocità diversa. È per questo che i calcoli usano un modello della crosta terrestre, cioè una descrizione di quanto veloci sono le onde a ogni profondità; e un modello imperfetto è una delle cause degli errori nelle localizzazioni.
+
+### Il Bollettino: il controllo che arriva dopo
+
+La localizzazione della sala di sorveglianza è fatta in fretta, scossa per scossa. Poi c’è il lavoro con calma degli analisti del Bollettino Sismico Italiano. Dal 2015 rivedono tutte le scosse di magnitudo 1,5 o più, e il Bollettino esce ogni quattro mesi; le scosse di magnitudo 3,5 o più le rivedono subito, in pochi giorni. Gli analisti controllano a mano, stazione per stazione, l’arrivo delle onde P e S e in che verso è partito il primo movimento del terreno; dal 2016 ricontrollano anche le ampiezze, che servono per la magnitudo. Dal 1985 al 2024 hanno localizzato più di 450 mila terremoti.
+
+Durante una sequenza forte, questo lavoro trova anche quello che in tempo reale era sfuggito. Dopo la scossa di Amatrice del 24 agosto 2016, le scosse localizzate nelle prime otto ore sono passate, dopo la revisione, da 133 a 408. Tra quelle recuperate ce n’era una di magnitudo 4,5, avvenuta subito dopo la scossa principale. E la magnitudo sopra la quale il catalogo contiene tutte le scosse è scesa da circa 3,5 a 2,7.
+
+### La profondità «fissa» di 10 km
+
+Quando i dati non bastano per calcolare la profondità, alcuni enti le assegnano un valore fisso. L’USGS, per esempio, usa 10 km. Se in un sito internazionale vedi una scossa esattamente a 10 km di profondità, può voler dire proprio questo: la profondità non si conosce bene.
+
+### Come leggere «4 km SW Pietrapaola (CS)»
+
+Il nome che l’INGV dà a una scossa indica la distanza e la direzione dell’epicentro rispetto a un paese vicino: in questo caso 4 km a sud-ovest (SW, dall’inglese) di Pietrapaola, in provincia di Cosenza. È solo un punto di riferimento sulla mappa: non vuol dire che la scossa sia stata sentita di più in quel paese.
+
+### In pratica
+
+Nei primi minuti dopo una scossa, prendi la posizione e la profondità come una prima idea. Se cambiano, non è un errore nascosto: è il lavoro che continua: prima dei computer, poi dei sismologi e infine degli analisti del Bollettino.

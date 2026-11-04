@@ -508,6 +508,13 @@
 /* Barre con una linea di riferimento (es. «quanto darebbe il caso»). */
 .hbars--ref .hbars__track { position: relative; }
 .hbars__ref { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--chart-fit); }
+/* Etichette lunghe (es. «dopo 19 secondi: calcolo automatico, 8 stazioni»): sopra la barra, a tutta larghezza. */
+.hbars--wide-label li { grid-template-columns: 1fr auto; }
+.hbars--wide-label .hbars__track { grid-column: 1 / -1; grid-row: 2; }
+/* Barra a due livelli: piena fino al valore «di metà», chiara fino a «9 su 10». */
+.hbars__track--range { position: relative; }
+.hbars__track--range span { position: absolute; top: 0; left: 0; }
+.hbars__track--range .hbars__soft { background: color-mix(in srgb, var(--chart-1) 30%, transparent); }
 
 /* ---------- Capire: ricerca, percorsi, verifiche ---------- */
 .learn-search { display: flex; flex-direction: column; gap: var(--sp-2); }

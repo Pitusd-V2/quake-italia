@@ -11,6 +11,7 @@ import gr from '../data/learn/gr-italia.json';
 import cpti from '../data/learn/cpti15.json';
 import tempo from '../data/learn/tempo-terremoto.json';
 import { amatrice, conMw, d1, flegreiMd, marche, momentoVolte, norcia } from './facts/magnitudo';
+import * as loc from './facts/localizzazione';
 
 const { articles } = readArticles();
 const summary = (slug: string) => articles.find((a) => a.slug === slug)!.riassunto.join(' ');
@@ -52,6 +53,20 @@ describe('Articoli di «Capire»', () => {
     expect(marche.mw!).toBeLessThan(marche.mlPrincipale!); // la Mw più bassa della ML
     expect(Math.round(momentoVolte(norcia.mw!, amatrice.mw!) * 2) / 2).toBe(5.5); // «circa cinque volte e mezzo»
     expect([flegreiMd.prima, flegreiMd.finale]).toEqual([4.4, 4.6]);
+  });
+
+  it('«Come l’INGV trova un terremoto»: i fatti del testo valgono ancora nei dati INGV', () => {
+    expect(summary('come-si-trova-un-terremoto')).toContain(
+      `l’epicentro a ${loc.int(loc.stat.auto.epiMeta)} km da quello finale e la profondità a ${loc.int(loc.stat.auto.profMeta)} km`,
+    );
+    expect(summary('come-si-trova-un-terremoto')).toContain('circa 7-8 km per ogni secondo');
+    expect(loc.kmPerSecondo).toBeGreaterThan(7);
+    expect(loc.kmPerSecondo).toBeLessThan(8.5);
+    expect(loc.primaAuto.dopoSecondi).toBe(19); // il titolo della prima parte: «Diciannove secondi»
+    expect(loc.stat.auto.profMeta).toBeGreaterThan(loc.stat.auto.epiMeta); // «la profondità sbagliava di più»
+    expect(Math.max(loc.stat.sala.epiMeta, loc.stat.sala.profMeta)).toBeLessThan(2.5); // «entro un paio di chilometri»
+    expect(loc.piuVicina.km).toBeLessThan(loc.bollettino.profKm); // «a Pietrapaola la regola era rispettata»
+    expect(loc.piuVicina.nome).toBe('Pietrapaola');
   });
 });
 
