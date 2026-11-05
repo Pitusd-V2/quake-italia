@@ -95,6 +95,8 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.agi.it',
   // Fonte di «Come l’INGV trova un terremoto» (scheda didattica dell'INGV di Pisa)
   'www.pi.ingv.it',
+  // Fonte di «Le faglie» (ITHACA, catalogo delle faglie capaci dell'ISPRA)
+  'www.isprambiente.gov.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

@@ -12,6 +12,7 @@ import cpti from '../data/learn/cpti15.json';
 import tempo from '../data/learn/tempo-terremoto.json';
 import { amatrice, conMw, d1, flegreiMd, marche, momentoVolte, norcia } from './facts/magnitudo';
 import * as loc from './facts/localizzazione';
+import * as fa from './facts/faglie';
 
 const { articles } = readArticles();
 const summary = (slug: string) => articles.find((a) => a.slug === slug)!.riassunto.join(' ');
@@ -67,6 +68,21 @@ describe('Articoli di «Capire»', () => {
     expect(Math.max(loc.stat.sala.epiMeta, loc.stat.sala.profMeta)).toBeLessThan(2.5); // «entro un paio di chilometri»
     expect(loc.piuVicina.km).toBeLessThan(loc.bollettino.profKm); // «a Pietrapaola la regola era rispettata»
     expect(loc.piuVicina.nome).toBe('Pietrapaola');
+  });
+
+  it('«Le faglie»: i fatti del testo valgono ancora nei dati INGV', () => {
+    const app = fa.zona('Appennino centrale');
+    const pad = fa.zona('Pianura Padana');
+    const sic = fa.zona('Sicilia e Tirreno meridionale');
+    expect(fa.suDieci(app.quota[0])).toBe('quasi 9 su 10'); // riassunto: «quasi 9 scosse su 10 … su faglie normali»
+    expect(summary('le-faglie')).toContain('quasi 9 scosse su 10');
+    expect(pad.quota[1]).toBeGreaterThan(0.7); // «sotto la Pianura Padana … su faglie inverse»
+    expect(sic.quota[2]).toBeGreaterThan(0.4); // «quasi metà delle scosse è trascorrente»
+    expect(sic.quota[2]).toBeLessThan(0.5);
+    expect([fa.norcia.tipo, fa.aquila.tipo, fa.amatrice.tipo]).toEqual(['normale', 'normale', 'normale']);
+    expect([fa.finale.tipo, fa.medolla.tipo, fa.marche.tipo]).toEqual(['inversa', 'inversa', 'inversa']);
+    expect(fa.croazia.tipo).toBe('trascorrente');
+    expect(fa.profondeSud.length).toBeGreaterThan(fa.profonde.length / 2);
   });
 });
 

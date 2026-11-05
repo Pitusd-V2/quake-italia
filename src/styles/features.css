@@ -511,6 +511,25 @@
 /* Etichette lunghe (es. «dopo 19 secondi: calcolo automatico, 8 stazioni»): sopra la barra, a tutta larghezza. */
 .hbars--wide-label li { grid-template-columns: 1fr auto; }
 .hbars--wide-label .hbars__track { grid-column: 1 / -1; grid-row: 2; }
+/* Barra divisa in parti (es. quote di faglie normali, inverse, trascorrenti). */
+.hbars__track--stack { display: flex; }
+.hbars__track--stack span { flex: none; border-radius: 0; }
+/* I tre tipi di faglia: tre disegni affiancati, uno sotto l'altro sul telefono. */
+.fault-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.fault-types__item { display: flex; flex-direction: column; align-items: center; }
+.fault-types__item .diagram { max-width: 320px; }
+.fault-types__label { text-align: center; font-size: var(--fs-sm); margin: var(--sp-2) 0 0; }
+@media (max-width: 620px) {
+  .fault-types { grid-template-columns: 1fr; }
+}
+/* Mappe semplici disegnate a mano (coste, riquadri, punti). */
+.learn-map { display: flex; justify-content: center; }
+.learn-chart.learn-map svg { overflow: hidden; } /* le coste continuano oltre il bordo: si tagliano lì */
+.learn-map__coast { fill: none; stroke: var(--chart-axis); stroke-width: 1; stroke-linejoin: round; }
+.learn-map__zone { fill: none; stroke: var(--chart-fit); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.learn-map__dot { stroke: var(--surface); stroke-width: 0.6; opacity: 0.85; }
+.learn-map__num { fill: var(--chart-fit); }
+.learn-map__numtext { fill: var(--surface); font-size: 11px; font-weight: 700; font-family: var(--font); }
 /* Barra a due livelli: piena fino al valore «di metà», chiara fino a «9 su 10». */
 .hbars__track--range { position: relative; }
 .hbars__track--range span { position: absolute; top: 0; left: 0; }

@@ -24,10 +24,10 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | 3 | Tante piccole, poche grandi | Perché le scosse piccole sono così tante? | Catalogo INGV; Gutenberg & Richter (1944) | 🔁 ★ |
 | 4 | Repliche e sequenze | Quanto dura, dopo una scossa forte? | Catalogo INGV; Utsu et al. (1995); Båth (1965) | 🔁 ★ |
 | 5 | Si possono prevedere i terremoti? | Qualcuno sa quando arriverà il prossimo? | INGV; ICEF, Jordan et al. (2011) | 🔁 ★ |
-| 6 | Le faglie: come si rompe la crosta | Faglie normali, inverse, trascorrenti: che differenza fa? | INGV; DISS (INGV) | 🆕 ★ |
+| 6 | Le faglie: come si rompe la crosta | Faglie normali, inverse, trascorrenti: che differenza fa? | Scritto: `le-faglie` (5/11/2026) | ✅ ★ |
 | 7 | Onde e sismografi: come si «ascolta» la Terra | Come fanno gli strumenti a sentire una scossa lontana? | INGV, Rete Sismica Nazionale | 🆕 ★ |
-| 8 | ML, Md, Mw: perché la magnitudo cambia | Perché due siti danno numeri diversi per la stessa scossa? | INGV FAQ «Quale magnitudo?»; Hanks & Kanamori (1979) | 🆕 ★ |
-| 9 | Come l’INGV localizza un terremoto in pochi minuti | Cosa succede nella sala di sorveglianza dopo una scossa? | INGV (sala di sorveglianza, comunicati) | 🆕 ★ |
+| 8 | ML, Md, Mw: perché la magnitudo cambia | Perché due siti danno numeri diversi per la stessa scossa? | Scritto: `perche-la-magnitudo-cambia` (4/11/2026) | ✅ ★ |
+| 9 | Come l’INGV localizza un terremoto in pochi minuti | Cosa succede nella sala di sorveglianza dopo una scossa? | Scritto: `come-si-trova-un-terremoto` (4/11/2026) | ✅ ★ |
 | 10 | La profondità conta | Perché alcune scosse piccole si sentono fortissimo? | Catalogo INGV; Allen, Wald & Worden (2012) | 🆕 |
 | 11 | Il terreno amplifica: gli effetti di sito | Perché due case vicine tremano in modo diverso? | Protezione Civile, microzonazione sismica | 🆕 ★ |
 | 12 | Foreshock: avvisano prima? | Una scossa può annunciarne una più forte? | Gulia & Wiemer (2019) e le critiche successive; INGV | 🆕 ★ |
@@ -148,8 +148,8 @@ Regola in più: niente consigli medici personali, sempre il rimando al medico; n
 
 ## In numeri
 
-- **82 temi** in 8 percorsi: 2 già «a strati», 9 da riscrivere, 71 nuovi.
-- **Proposta per la base: 50 articoli** (★): gli 11 esistenti più 39 nuovi.
+- **82 temi** in 8 percorsi: 5 già «a strati», 9 da riscrivere, 68 nuovi (al 5 novembre 2026).
+- **Base: 50 articoli** (★): gli 11 esistenti più 39 nuovi. Al 5 novembre 2026: 5 al livello «a strati» (2 vecchi e 3 nuovi), 9 vecchi da riscrivere, 36 nuovi da scrivere.
 - Gli altri restano in lista per dopo il lancio.
 
 ## Ordine proposto (a gruppi di 5)

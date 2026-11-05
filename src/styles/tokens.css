@@ -47,6 +47,7 @@
   --chart-axis: #8a99a6;
   --chart-1: #2a78d6;
   --chart-2: #eb6834;
+  --chart-3: #7b52c7;
   --chart-fit: #4b5a67;
 
   --shadow-1: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
@@ -114,6 +115,7 @@
     --chart-axis: #6b7c8a;
     --chart-1: #3987e5;
     --chart-2: #d95926;
+    --chart-3: #a184e8;
     --chart-fit: #c3ccd4;
     --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
     --shadow-2: 0 6px 16px rgb(0 0 0 / 45%);
@@ -144,6 +146,7 @@
   --chart-axis: #6b7c8a;
   --chart-1: #3987e5;
   --chart-2: #d95926;
+  --chart-3: #a184e8;
   --chart-fit: #c3ccd4;
   --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
   --shadow-2: 0 6px 16px rgb(0 0 0 / 45%);
