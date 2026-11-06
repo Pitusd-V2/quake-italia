@@ -22,7 +22,7 @@ export interface PageMeta {
 const SITE = 'Quake Italia';
 export const HOME_TITLE = `${SITE} — Capire i terremoti, con i dati ufficiali INGV`;
 export const HOME_DESCRIPTION =
-  'Capire i terremoti in Italia, con i dati ufficiali INGV: vicino a te, sulla mappa, la zona sismica del tuo comune e cosa fare. Gratuito, senza registrazione.';
+  'Capire i terremoti in Italia, con i dati ufficiali INGV: le scosse vicino a te, la zona sismica del tuo comune, cosa fare e articoli con le fonti. Gratuito, senza pubblicità.';
 
 const page = (path: string, title: string, description: string, prerender: PageMeta['prerender'], sitemap = true): PageMeta => ({
   path,

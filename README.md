@@ -2,21 +2,27 @@
 
 **Capire i terremoti, con i dati ufficiali INGV.**
 
-Quake Italia è un sito gratuito che mostra i terremoti in Italia in modo semplice e accessibile, soprattutto per chi
-non è pratico di tecnologia (per esempio le persone anziane), con una sezione Analisi per chi vuole approfondire.
+Quake Italia è un sito gratuito che mostra i terremoti in Italia e aiuta a capirli. È pensato per chi non fa il
+sismologo di mestiere: chi ha sentito una scossa e vuole sapere cos’era, chi vuole capire come funzionano i terremoti,
+chi cerca risposte chiare e verificabili. Con un occhio di riguardo per chi usa poco la tecnologia (per esempio le
+persone anziane), e una sezione Analisi per chi vuole i numeri.
 
 ## Perché esiste, se c'è già l'INGV?
 
 Pensalo come le mod dei videogiochi che si chiamano «Better…»: non sostituiscono il gioco originale, lo rendono più
 comodo da usare. Quake Italia fa lo stesso con i dati dell'[INGV](https://terremoti.ingv.it/): stessa fonte ufficiale,
-nessun dato inventato, ma **tutto più facile**.
+nessun dato inventato, ma **i dati spiegati**.
 
-- **Capisci al primo sguardo.** Niente sigle: invece di «ML 3.2» leggi «Scossa leggera, di solito non fa danni».
-- **Parla di te.** Ti dice subito se è successo qualcosa vicino a casa tua e se potresti averlo sentito.
-- **Una scossa ti ha spaventato?** Premi «Ho sentito una scossa» e scopri in un attimo cos'era.
-- **Tutto in un posto.** Terremoti, zona sismica del tuo comune e cosa fare: non devi cercare su tanti siti.
-- **Comodo da leggere.** Scritte grandi e colori chiari. E se preferisci, te lo legge ad alta voce.
-- **Ti aiuta a capire.** Brevi spiegazioni per sapere cosa succede, con meno paura.
+- **Ogni scossa, con il suo significato.** Accanto ai numeri: quanto è stata forte, se e come si è sentita dove
+  abiti (una stima, con il suo margine), cosa fare. Le sigle restano, per chi le vuole.
+- **La scienza dei terremoti, raccontata sul serio.** Nella sezione «Capire», articoli per chi non fa ricerca ma vuole
+  capire davvero: con le fonti, i dati veri e il codice per rifare i conti. Dal riassunto di 30 secondi agli studi
+  originali.
+- **Le risposte alle domande di tutti.** «Cos'era la scossa che ho sentito?», «In che zona sismica è il mio comune?»,
+  «È vero che…?», «La casa ha delle crepe: cosa faccio?». Ogni risposta porta alle fonti ufficiali.
+- **Per chi vuole i numeri.** La sezione Analisi: catalogo, grafici, sequenze, esportazione dei dati.
+- **Aperto e senza secondi fini.** Gratuito, senza pubblicità, senza account e senza tracciamento.
+- **Facile da leggere per tutti.** Scritte grandi, colori chiari e, se preferisci, la lettura ad alta voce.
 
 Per i dati scientifici completi e le comunicazioni ufficiali resta l'INGV: ogni scheda rimanda alla pagina ufficiale.
 Quake Italia **non è un sito ufficiale**, non è collegato all'INGV e **non è un sistema di allerta**.
@@ -30,6 +36,7 @@ Quake Italia **non è un sito ufficiale**, non è collegato all'INGV e **non è 
 - **Cosa sta succedendo**: racconto in tempo reale di una sequenza dopo una scossa forte, con l'andamento delle repliche a parole («in calo», «stabile»…).
 - **Cosa fare**: consigli della campagna «Io non rischio» e glossario.
 - **La casa ha dei danni**: segnali per capire se uscire, chi chiamare, come funziona il controllo di agibilità (esiti A–F), foto e assicurazione, aiuti come il contributo di autonoma sistemazione.
+- **Capire**: articoli «a strati» sulla scienza dei terremoti, per chi non fa ricerca ma vuole capire davvero: fonti verificabili, dati INGV e il codice per rifare i conti. Le regole sono pubbliche, nella pagina «Come scriviamo gli articoli».
 - **È vero?**: le voci più comuni sui terremoti (previsioni, «tempo da terremoto», magnitudo «abbassata»…) con la risposta degli scienziati, e come riconoscere un messaggio falso.
 - **Analisi** (per esperti, sempre nel menu): ricerca nel catalogo, mappa per profondità, sequenza, Gutenberg-Richter, tabella, esportazione CSV/GeoJSON.
 - App installabile (PWA), funziona anche senza rete con gli ultimi dati.
@@ -91,7 +98,7 @@ La regola più importante è la stessa del sito: **scientifico ma capibile, nien
 
 - **Ogni contenuto scientifico deve citare una fonte verificabile** (INGV, Protezione Civile, articoli scientifici,
   cataloghi ufficiali). Numeri, date e magnitudo «a memoria» non vengono accettati.
-- Testi semplici, pensati anche per chi non è pratico di tecnologia; tono chiaro, mai allarmista.
+- Testi chiari, pensati per chi non fa ricerca (e per chi usa poco la tecnologia); tono mai allarmista.
 - Quake Italia non sostituisce nessuno: verso l'INGV e gli altri enti, tono di ringraziamento, mai di confronto.
 - Prima di proporre una modifica: `npm run build` deve passare (typecheck, test, build).
 - Problemi di sicurezza: **non** aprire una segnalazione pubblica, vedi [SECURITY.md](SECURITY.md).

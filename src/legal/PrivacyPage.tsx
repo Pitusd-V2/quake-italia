@@ -48,8 +48,18 @@ export function PrivacyPage() {
       body: (
         <>
           <p>
-            Il titolare del trattamento è <strong>{LEGAL.owner.name}</strong>, progetto personale, gratuito e senza scopo di
-            lucro.
+            {/* Finché in config.ts il titolare è solo il nome del sito, non lo presentiamo come un soggetto giuridico. */}
+            {LEGAL.owner.name === S ? (
+              <>
+                Il titolare del trattamento è <strong>la persona che gestisce {S}</strong>, progetto personale, gratuito e
+                senza scopo di lucro.
+              </>
+            ) : (
+              <>
+                Il titolare del trattamento è <strong>{LEGAL.owner.name}</strong>, che gestisce {S}, progetto personale,
+                gratuito e senza scopo di lucro.
+              </>
+            )}
           </p>
           <p>
             Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti scrivi a: <ContactEmail />.
@@ -224,10 +234,16 @@ export function PrivacyPage() {
       id: 'contatti',
       title: 'Se ci scrivi',
       body: (
-        <p>
-          Se ci scrivi via email, useremo il tuo indirizzo e il contenuto del messaggio solo per risponderti (art. 6, par. 1,
-          lett. b e f, GDPR), e li conserveremo per il tempo necessario a gestire la tua richiesta.
-        </p>
+        <>
+          <p>
+            Se ci scrivi via email, useremo il tuo indirizzo e il contenuto del messaggio solo per risponderti (art. 6, par. 1,
+            lett. b e f, GDPR), e li conserveremo per il tempo necessario a gestire la tua richiesta.
+          </p>
+          <p>
+            Se segnali un errore su GitHub (per esempio con il link in fondo agli articoli), lo fai sul sito di GitHub, con il
+            tuo account e secondo la sua informativa: la segnalazione è pubblica e la può leggere chiunque.
+          </p>
+        </>
       ),
     },
     {
@@ -280,11 +296,28 @@ export function PrivacyPage() {
       id: 'sicurezza',
       title: 'Sicurezza',
       body: (
-        <p>
-          Il sito usa solo connessioni cifrate (HTTPS) e regole di sicurezza del browser (Content-Security-Policy) che
-          impediscono di caricare codice o collegarsi a servizi diversi da quelli elencati sopra. Nessuna misura è però
-          sicura al 100%.
-        </p>
+        <ul className="advice">
+          <li>Il sito usa solo connessioni cifrate (HTTPS).</li>
+          <li>
+            Regole di sicurezza del browser (Content-Security-Policy) impediscono di caricare codice da altri siti e di
+            collegarsi a servizi diversi da quelli elencati in questa pagina.
+          </li>
+          <li>
+            Sui nostri server non c’è un archivio con i tuoi dati: il comune che scegli e le tue preferenze restano sul tuo
+            dispositivo.
+          </li>
+          <li>
+            Il codice è pubblico. A ogni modifica viene controllato in automatico, anche per le vulnerabilità note delle
+            librerie che usa, che aggiorniamo quando esce una correzione.
+          </li>
+          <li>
+            Se trovi un problema di sicurezza, puoi segnalarlo in modo riservato seguendo le{' '}
+            <ExternalLink href="https://github.com/Pitusd-V2/quake-italia/blob/main/SECURITY.md">
+              istruzioni sulla sicurezza del progetto
+            </ExternalLink>
+            : rispondiamo entro 7 giorni.
+          </li>
+        </ul>
       ),
     },
     {

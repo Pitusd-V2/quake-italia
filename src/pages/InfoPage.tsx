@@ -7,6 +7,52 @@ export function InfoPage() {
     <div className="container stack-lg prose">
       <PageHeader title="Informazioni" intro={`${TAGLINE} Perché esiste Quake Italia, da dove arrivano i dati e come li usiamo.`} />
 
+      <section className="card stack" aria-labelledby="mission">
+        <h2 id="mission">La nostra missione</h2>
+        <p>
+          Quake Italia è nato pensando a Napoli. Negli ultimi anni, ai Campi Flegrei, la terra ha ripreso a muoversi: il
+          suolo che si alza, le scosse che si fanno sentire sempre più spesso, le notti passate in strada. E intanto si parla
+          del Vesuvio, di Stromboli, del Marsili sommerso nel Tirreno: ogni notizia una paura nuova, a volte più grande della
+          realtà.
+        </p>
+        <p>
+          In quei momenti le domande sono sempre le stesse: cos’era? Era forte? Ne arriverà un’altra? Le risposte esistono,
+          e le danno da una vita i ricercatori dell’Osservatorio Vesuviano dell’INGV, il più antico osservatorio vulcanologico
+          del mondo. Ma chi non sa dove cercarle, o non sa leggerle, come tanti dei nostri genitori e dei nostri nonni, resta
+          solo con la paura.
+        </p>
+        <p>
+          <strong>Quake Italia è nato per loro</strong>, per chi vive ai Campi Flegrei e a Napoli: per dare una risposta
+          chiara, vera e tranquilla, proprio quando serve. Poi abbiamo capito che le stesse domande se le fa tutta l’Italia,
+          da Norcia a Catania, e il progetto è cresciuto con lei. Con un secondo obiettivo: che, passata la paura, chi vuole possa
+          capire davvero cosa succede sotto i suoi piedi.
+        </p>
+        <p>
+          Sui terremoti in Italia si sa moltissimo. L’INGV registra ogni scossa, giorno e notte; ogni comune ha la sua
+          zona sismica ufficiale; i cataloghi raccontano mille anni di terremoti; ogni grande scossa viene studiata da decine
+          di ricercatori. E gran parte di questa conoscenza è pubblica.
+        </p>
+        <p>
+          Ma è sparsa in tanti posti diversi, ed è scritta per chi la studia di mestiere: sigle, tabelle, articoli scientifici
+          in inglese. Chi non è un ricercatore spesso si ferma lì, e resta con le sue domande. Oppure trova le risposte
+          sbagliate che girano in rete.
+        </p>
+        <p>
+          <strong>Quake Italia prova ad accorciare questa distanza.</strong> Raccoglie in un solo posto i dati e le
+          conoscenze ufficiali (i terremoti dell’INGV, le zone sismiche della Protezione Civile, i cataloghi storici, gli
+          studi scientifici) e li traduce in parole che chiunque può capire. Tradurre non vuol dire impoverire: i concetti
+          difficili restano, spiegati bene, e ogni affermazione porta alla sua fonte. La nostra regola è una sola:{' '}
+          <strong>scientifico, ma capibile</strong>.
+        </p>
+        <p>
+          <strong>E tutto è aperto:</strong> il codice del sito, i testi, i dati che usiamo e perfino i calcoli che facciamo.
+          Chiunque può leggerli, controllarli, correggerli e riusarli. Lo facciamo per due ragioni. La prima è la fiducia: su
+          un tema che fa paura non basta dire «fidati», bisogna mostrare come si arriva a ogni numero. La seconda è un
+          principio: <strong>la cultura scientifica è un bene comune</strong>. Gran parte di questa conoscenza nasce dalla
+          ricerca pubblica, e deve restare di tutti: senza abbonamenti, senza pubblicità, senza registrazioni.
+        </p>
+      </section>
+
       <section className="card stack" aria-labelledby="why">
         <h2 id="why">Perché Quake Italia, se c’è già l’INGV?</h2>
         <p>
@@ -15,70 +61,15 @@ export function InfoPage() {
           disposizione di tutti, gratuitamente. È proprio grazie a questo che Quake Italia può esistere.
         </p>
         <p>
-          Quake Italia <strong>non sostituisce l’INGV</strong>: usa <strong>gli stessi dati ufficiali</strong> e li presenta in
-          un altro modo, pensando soprattutto a chi non è pratico di tecnologia.
+          Quake Italia <strong>non sostituisce l’INGV</strong>: usa <strong>gli stessi dati ufficiali</strong> e ci aggiunge
+          quello che serve per capirli. È pensato per chi non fa il sismologo di mestiere: chi ha sentito una scossa e vuole
+          sapere cos’era, chi vuole capire come funzionano i terremoti, chi cerca risposte chiare e verificabili. Con un
+          occhio di riguardo per chi usa poco il telefono o il computer.
         </p>
-        <div className="why-grid">
-          <div className="why-card">
-            <h3>INGV: da qui arrivano i dati</h3>
-            <ul className="advice">
-              <li>È la fonte ufficiale: registra ogni terremoto in Italia.</li>
-              <li>Ha tutti i dati tecnici, per chi li sa leggere.</li>
-              <li>Pubblica le spiegazioni dei sismologi.</li>
-            </ul>
-          </div>
-          <div className="why-card why-card--hq">
-            <h3>Quake Italia: tutto più facile</h3>
-            <ul className="advice">
-              <li>
-                <strong>Capisci al primo sguardo.</strong> Niente sigle: invece di «ML 3.2» leggi «Scossa leggera, di solito
-                non fa danni».
-              </li>
-              <li>
-                <strong>Parla di te.</strong> Ti dice subito se è successo qualcosa vicino a casa tua e se potresti averlo
-                sentito.
-              </li>
-              <li>
-                <strong>Una scossa ti ha spaventato?</strong> Premi «Ho sentito una scossa» e scopri in un attimo cos’era.
-              </li>
-              <li>
-                <strong>Tutto in un posto.</strong> Terremoti, zona sismica del tuo comune e cosa fare: non devi cercare su
-                tanti siti.
-              </li>
-              <li>
-                <strong>Comodo da leggere.</strong> Scritte grandi e colori chiari. E se preferisci, te lo legge ad alta voce.
-              </li>
-              <li>
-                <strong>Ti aiuta a capire.</strong> Brevi spiegazioni per sapere cosa succede, con meno paura.
-              </li>
-            </ul>
-          </div>
-        </div>
         <p>
           Per i dati scientifici completi e per le comunicazioni ufficiali, il posto giusto resta l’INGV: in ogni scheda trovi
           il link alla pagina ufficiale dell’evento.
         </p>
-      </section>
-
-      <section className="card stack" aria-labelledby="mission">
-        <h2 id="mission">La nostra idea</h2>
-        <p>
-          Quake Italia è un progetto indipendente e gratuito, nato con tre obiettivi:
-        </p>
-        <ul className="advice">
-          <li>
-            <strong>Navigare senza fatica:</strong> trovare in pochi secondi la risposta a «è successo qualcosa vicino a
-            me?», anche per chi non è pratico di tecnologia.
-          </li>
-          <li>
-            <strong>Avere più dati possibile, ma chiari:</strong> semplice per tutti, con la sezione Analisi per chi vuole
-            approfondire.
-          </li>
-          <li>
-            <strong>Diffondere cultura:</strong> capire cosa sono magnitudo, sequenze e zone sismiche aiuta ad avere meno
-            paura, a riconoscere le notizie false e a prepararsi meglio.
-          </li>
-        </ul>
         <p>
           <span className="strong">Quake Italia non è un sito ufficiale e non è collegato all'INGV.</span> Non prevede i
           terremoti e non è un sistema di allerta. Non ha pubblicità e non chiede registrazioni. In caso di emergenza chiama

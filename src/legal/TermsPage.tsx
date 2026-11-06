@@ -99,6 +99,31 @@ export function TermsPage() {
       ),
     },
     {
+      id: 'articoli',
+      title: 'Gli articoli di «Capire»',
+      body: (
+        <ul className="advice">
+          <li>
+            Gli articoli hanno <strong>scopo divulgativo</strong>. Li scriviamo seguendo regole pubbliche, citando le fonti e
+            ricontrollando i numeri sui dati ufficiali: le regole sono nella pagina{' '}
+            <Link to="/come-scriviamo">Come scriviamo gli articoli</Link>.
+          </li>
+          <li>
+            Nascono dal lavoro di una persona e di un’intelligenza artificiale, e <strong>ogni articolo viene letto e
+            approvato da una persona</strong> prima di essere pubblicato. Lo scriviamo anche all’inizio di ogni articolo. La
+            responsabilità di ciò che pubblichiamo è del gestore del sito.
+          </li>
+          <li>
+            Possono comunque contenere errori. Se ne trovi uno, segnalacelo: le correzioni importanti restano scritte nel
+            registro pubblico delle correzioni.
+          </li>
+          <li>
+            Non sostituiscono il parere di un medico, di un tecnico abilitato o le indicazioni delle autorità.
+          </li>
+        </ul>
+      ),
+    },
+    {
       id: 'disponibilita',
       title: 'Servizio gratuito e disponibilità',
       body: (
@@ -116,14 +141,20 @@ export function TermsPage() {
       body: (
         <>
           <p>
-            Nei limiti consentiti dalla legge, il gestore di {S} non risponde di danni derivanti da: ritardi, errori o
-            mancanza dei dati forniti da terzi; interruzioni del servizio; uso delle informazioni del sito in modo diverso da
-            quello indicato in questi termini, in particolare come se fossero un sistema di allerta o di emergenza.
+            {S} è gratuito e informativo, e i suoi dati arrivano da altri. Per questo, nei limiti consentiti dalla legge, il
+            gestore di {S} non risponde di danni derivanti da: ritardi, errori o mancanza dei dati forniti da terzi;
+            interruzioni del servizio; uso delle informazioni del sito in modo diverso da quello indicato in questi termini, in
+            particolare come se fossero un sistema di allerta o di emergenza.
           </p>
           <p>
-            Questa limitazione <strong>non si applica</strong> ai casi di dolo o colpa grave (art. 1229 del Codice civile) e non
-            riduce i diritti che la legge riconosce in modo inderogabile ai consumatori.
+            Questa limitazione <strong>non si applica</strong>:
           </p>
+          <ul className="advice">
+            <li>ai danni causati con dolo o colpa grave (art. 1229 del Codice civile);</li>
+            <li>ai danni alla vita o alla salute delle persone;</li>
+            <li>agli altri casi in cui la legge non permette di limitare la responsabilità.</li>
+          </ul>
+          <p>E non riduce in alcun modo i diritti che la legge riconosce ai consumatori.</p>
         </>
       ),
     },
@@ -201,20 +232,38 @@ export function TermsPage() {
       id: 'modifiche',
       title: 'Modifiche ai termini',
       body: (
-        <p>
-          Possiamo aggiornare questi termini, ad esempio quando aggiungiamo nuove funzioni. La versione valida è sempre quella
-          pubblicata su questa pagina, con la data di «ultimo aggiornamento» in alto.
-        </p>
+        <>
+          <p>
+            Possiamo aggiornare questi termini solo per motivi concreti: quando aggiungiamo, cambiamo o togliamo funzioni del
+            sito, quando cambiano la legge o i servizi esterni che usiamo, o per correggere errori e rendere il testo più
+            chiaro.
+          </p>
+          <p>
+            Le modifiche valgono <strong>solo per il futuro</strong>, dalla data di «ultimo aggiornamento» indicata in alto.
+            Quelle importanti le segnaleremo anche nel sito. Le versioni precedenti restano consultabili nella{' '}
+            <ExternalLink href="https://github.com/Pitusd-V2/quake-italia/commits/main/src/legal/TermsPage.tsx">
+              cronologia pubblica su GitHub
+            </ExternalLink>
+            .
+          </p>
+          <p>
+            Se non sei d’accordo con la nuova versione, puoi smettere di usare il sito in qualsiasi momento: non ci sono
+            account da chiudere né costi.
+          </p>
+        </>
       ),
     },
     {
       id: 'legge',
       title: 'Legge applicabile',
       body: (
-        <p>
-          Questi termini sono regolati dalla legge italiana. Se usi il sito come consumatore, per eventuali controversie è
-          competente il giudice del luogo in cui risiedi o sei domiciliato, come previsto dal Codice del consumo.
-        </p>
+        <>
+          <p>
+            Questi termini sono regolati dalla legge italiana. Se usi il sito come consumatore, per eventuali controversie è
+            competente il giudice del luogo in cui risiedi o sei domiciliato, come previsto dal Codice del consumo.
+          </p>
+          <p>Se una parte di questi termini risultasse non valida, il resto continua a valere.</p>
+        </>
       ),
     },
     {

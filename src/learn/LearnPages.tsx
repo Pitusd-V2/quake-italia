@@ -321,6 +321,11 @@ export function ArticlePage() {
         </p>
         <h1 tabIndex={-1}>{card.titolo}</h1>
         <p className="page-header__intro">{card.sottotitolo}</p>
+        {/* Trasparenza sull'IA già all'inizio dell'articolo (AI Act, art. 50): non solo nella pagina sul metodo. */}
+        <p className="small muted">
+          Scritto insieme a un’intelligenza artificiale e approvato da una persona prima della pubblicazione.{' '}
+          <Link to="/come-scriviamo">Come lavoriamo</Link>
+        </p>
       </header>
 
       <ArticleErrorBoundary key={card.slug}>
