@@ -20,7 +20,7 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | # | Titolo provvisorio | La domanda | Fonti principali previste | |
 |---|---|---|---|---|
 | 1 | Cos’è un terremoto | Cosa succede sottoterra quando trema? | INGV FAQ; Reid (1910); Wells & Coppersmith (1994) | 🔁 ★ |
-| 2 | Magnitudo e intensità | Perché una scossa ha un solo numero ma effetti diversi? | INGV; scala MCS (DFM INGV); Hanks & Kanamori (1979) | 🔁 ★ |
+| 2 | Magnitudo e intensità | Perché una scossa ha un solo numero ma effetti diversi? | Riscritto: `magnitudo-e-intensita` (8/11/2026), da leggere | ✅ ★ |
 | 3 | Tante piccole, poche grandi | Perché le scosse piccole sono così tante? | Catalogo INGV; Gutenberg & Richter (1944) | 🔁 ★ |
 | 4 | Repliche e sequenze | Quanto dura, dopo una scossa forte? | Catalogo INGV; Utsu et al. (1995); Båth (1965) | 🔁 ★ |
 | 5 | Si possono prevedere i terremoti? | Qualcuno sa quando arriverà il prossimo? | INGV; ICEF, Jordan et al. (2011) | 🔁 ★ |
@@ -29,7 +29,7 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | 8 | ML, Md, Mw: perché la magnitudo cambia | Perché due siti danno numeri diversi per la stessa scossa? | Scritto: `perche-la-magnitudo-cambia` (4/11/2026) | ✅ ★ |
 | 9 | Come l’INGV localizza un terremoto in pochi minuti | Cosa succede nella sala di sorveglianza dopo una scossa? | Scritto: `come-si-trova-un-terremoto` (4/11/2026) | ✅ ★ |
 | 10 | La profondità conta | Perché alcune scosse piccole si sentono fortissimo? | Catalogo INGV; Allen, Wald & Worden (2012) | 🆕 |
-| 11 | Il terreno amplifica: gli effetti di sito | Perché due case vicine tremano in modo diverso? | Protezione Civile, microzonazione sismica | 🆕 ★ |
+| 11 | Il terreno amplifica: gli effetti di sito | Perché due case vicine tremano in modo diverso? | Scritto: `effetti-di-sito` (8/11/2026), da leggere | ✅ ★ |
 | 12 | Foreshock: avvisano prima? | Una scossa può annunciarne una più forte? | Gulia & Wiemer (2019) e le critiche successive; INGV | 🆕 ★ |
 | 13 | Gli sciami sismici | Tante scosse simili: cosa vuol dire? | INGV *(da individuare: studi italiani sugli sciami)* | 🆕 |
 | 14 | Quando il terreno diventa liquido | Cos’è la liquefazione, e perché è successa in Emilia? | INGV EMERGEO; ISPRA | 🆕 ★ |
@@ -49,7 +49,7 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | 23 | Lo Stretto di Messina e la Sicilia orientale | Perché qui i terremoti più forti della storia? | CFTI5Med; CPTI15; INGV | 🆕 |
 | 24 | Le faglie attive d’Italia | Esiste un elenco delle faglie pericolose? | DISS (INGV); ITHACA (ISPRA) | 🆕 ★ |
 | 25 | La mappa di pericolosità | Cosa dice davvero la mappa colorata dell’Italia? | MPS04 (Stucchi et al. 2011); MPS19 (Meletti et al. 2021) | 🆕 ★ |
-| 26 | Le zone sismiche, spiegate | Cosa vuol dire «zona 2» per casa mia? | Protezione Civile (classificazione 2025); NTC 2018 | 🆕 ★ |
+| 26 | Le zone sismiche, spiegate | Cosa vuol dire «zona 2» per casa mia? | Scritto: `le-zone-sismiche` (8/11/2026), da leggere | ✅ ★ |
 | 27 | Come si ricostruisce un terremoto di 500 anni fa | Come sappiamo dei terremoti senza strumenti? | CPTI15; DBMI15; CFTI5Med | 🆕 ★ |
 
 ## 3. I grandi terremoti — `storia`

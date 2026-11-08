@@ -23,7 +23,7 @@ export const MIN_FONTI = 3;
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-function frontmatter(file: string): Record<string, unknown> {
+export function frontmatter(file: string): Record<string, unknown> {
   const text = fs.readFileSync(file, 'utf8').replace(/^﻿/, '');
   const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   if (!m) throw new Error('mancano i dati in cima al file (il blocco tra due righe ---)');
@@ -33,7 +33,7 @@ function frontmatter(file: string): Record<string, unknown> {
 }
 
 /** Legge e controlla un articolo. Restituisce i problemi trovati (vuoto = tutto a posto). */
-function check(slug: string, d: Record<string, unknown>, today: string): { data: ArticleData | null; errors: string[]; warnings: string[] } {
+export function check(slug: string, d: Record<string, unknown>, today: string): { data: ArticleData | null; errors: string[]; warnings: string[] } {
   const errors: string[] = [];
   const warnings: string[] = [];
   const str = (k: string, max = 400) => {

@@ -97,6 +97,14 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.pi.ingv.it',
   // Fonte di «Le faglie» (ITHACA, catalogo delle faglie capaci dell'ISPRA)
   'www.isprambiente.gov.it',
+  // Fonti di «Effetti di sito», «Le zone sismiche» e «Magnitudo e intensità»: norme, atti ufficiali, rivista, dati
+  'www.gazzettaufficiale.it',
+  'www.normattiva.it',
+  'sisma2016.gov.it',
+  'www.regione.toscana.it',
+  'demo.istat.it',
+  'amq.aiqua.it',
+  'e.hsit.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',
