@@ -16,7 +16,7 @@ interface Section {
  * Niente diagnosi tecniche e niente allarmi inutili: le crepe sottili sono comuni, i segnali seri sono pochi e
  * riconoscibili da chiunque. Solo per quelli vale la regola: esci e fai controllare.
  */
-const SECTIONS: Section[] = [
+export const SECTIONS: Section[] = [
   {
     id: 'sicurezza',
     title: 'Crepe e danni: quando preoccuparsi',

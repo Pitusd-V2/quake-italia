@@ -16,6 +16,7 @@ import { SequencePage } from './pages/SequencePage';
 import { PrivacyPage } from './legal/PrivacyPage';
 import { TermsPage } from './legal/TermsPage';
 import { ArticlePage, LearnIndexPage } from './learn/LearnPages';
+import { GlossaryPage } from './learn/GlossaryPage';
 import { EditorialPage } from './pages/EditorialPage';
 
 // La sezione esperti (grafici, tabelle) si scarica solo se serve.
@@ -33,6 +34,7 @@ export function App() {
         <Route path="danni-casa" element={<DamagePage />} />
         <Route path="e-vero" element={<RumorsPage />} />
         <Route path="capire" element={<LearnIndexPage />} />
+        <Route path="capire/glossario" element={<GlossaryPage />} />
         <Route path="capire/:slug" element={<ArticlePage />} />
         <Route path="come-scriviamo" element={<EditorialPage />} />
         <Route path="il-mio-comune" element={<MyTownPage />} />

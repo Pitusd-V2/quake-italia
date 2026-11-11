@@ -41,6 +41,7 @@ export const PAGES: PageMeta[] = [
   page('/danni-casa', 'La casa ha dei danni: cosa fare', 'Dopo una scossa forte: come capire se è meglio uscire, chi chiamare, come funziona il controllo della casa e quali aiuti esistono.', 'full'),
   page('/e-vero', 'È vero? Le voci sui terremoti', 'Dopo una scossa girano tanti messaggi, audio e «previsioni». Le voci più comuni, con la risposta degli scienziati e le fonti.', 'full'),
   page('/capire', 'Capire i terremoti', 'Brevi letture, in parole semplici ma con le parole giuste della scienza. Ogni articolo usa dati veri dell’INGV e fonti pubbliche.', 'full'),
+  page('/capire/glossario', 'Le parole della scienza', 'Il glossario dei terremoti: ipocentro, magnitudo, faglia, replica… tutte le parole spiegate negli articoli, dalla A alla Z, ognuna con l’articolo da cui viene.', 'full'),
   ...CATALOG.map((a) => page(`/capire/${a.slug}`, a.titolo, a.sottotitolo, 'full')),
   page('/come-scriviamo', 'Come scriviamo gli articoli', 'Le fonti che usiamo, come le controlliamo, chi scrive gli articoli e come correggiamo gli errori.', 'full'),
   page('/informazioni', 'Informazioni', `${TAGLINE} Perché esiste Quake Italia, da dove arrivano i dati e come li usiamo.`, 'full'),

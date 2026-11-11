@@ -8,12 +8,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SettingsProvider } from './state/settings';
 import { App } from './App';
 import { preloadAllArticles } from './learn/catalog';
+import { loadGlossary } from './learn/glossary';
 
 export { PAGES } from './seo/pages';
 
 export async function render(url: string): Promise<string> {
   // Gli articoli si scaricano a parte: al build li prepariamo tutti prima di disegnare.
-  await preloadAllArticles();
+  await Promise.all([preloadAllArticles(), loadGlossary()]);
   // Al build non si scarica niente: le parti con dati dal vivo restano «in caricamento», come al primo istante nel browser.
   const queryClient = new QueryClient({ defaultOptions: { queries: { enabled: false, retry: false } } });
   return renderToString(

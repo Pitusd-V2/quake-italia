@@ -5,6 +5,18 @@ declare module 'virtual:articoli' {
   export default cards;
 }
 
+declare module 'virtual:glossario' {
+  import type { GlossaryEntry } from '../learn/articleTypes';
+  const entries: GlossaryEntry[];
+  export default entries;
+}
+
+declare module 'virtual:ricerca' {
+  import type { ArticleText } from '../learn/articleTypes';
+  const texts: ArticleText[];
+  export default texts;
+}
+
 declare module '*.mdx' {
   import type { ComponentType } from 'react';
   import type { ArticleData } from '../learn/articleTypes';

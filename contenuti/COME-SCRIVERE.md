@@ -78,7 +78,9 @@ paroleChiave: ["liquefazione", "sabbia", "Emilia 2012"]  # per la ricerca
 
 Testo normale in **Markdown**: paragrafi separati da una riga vuota, *corsivo*, [link a un’altra pagina](/cosa-fare),
 [link esterno](https://www.ingv.it/) (solo siti in `src/lib/sanitize.ts`). I termini scientifici, la prima volta:
-<dfn>liquefazione</dfn>.
+<dfn>liquefazione</dfn>. Se la stessa parola è nel `glossario` in cima al file, sul sito diventa una parola da toccare:
+si apre la sua spiegazione. Singolare e plurale non contano («repliche» trova «Replica»), ma la parola deve essere
+la stessa: `<dfn>magnitudo</dfn>` non apre «Magnitudo momento (Mw)».
 
 - Gli elenchi puntati si scrivono così.
 

@@ -1,8 +1,9 @@
-import { Component, Suspense, use, useMemo, useRef, useState, type ComponentPropsWithoutRef, type ReactNode, type RefObject } from 'react';
-import { Link, useParams } from 'react-router';
+import { Component, Suspense, use, useEffect, useMemo, useRef, useState, type ComponentPropsWithoutRef, type ReactNode, type RefObject } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router';
 import {
   ArrowLeft,
   ArrowRight,
+  BookA,
   BookOpen,
   ChevronRight,
   Clock,
@@ -26,6 +27,9 @@ import { CATALOG, findCard, loadArticle, type ArticleModule } from './catalog';
 import type { ArticleCard } from './articleTypes';
 import { PERCORSI } from './percorsi';
 import { Part } from './LearnPart';
+import { GlossarioContext, Termine } from './Termine';
+import { fold, type SearchHit, type SearchResult } from './searchEngine';
+import type { Found } from './search';
 
 const longDate = new Intl.DateTimeFormat('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const dateText = (iso: string) => longDate.format(new Date(`${iso}T00:00:00Z`));
@@ -64,21 +68,102 @@ function ArticleLink({ a }: { a: ArticleCard }) {
   );
 }
 
-/** Ricerca semplice: tutte le parole cercate devono comparire in titolo, sottotitolo o parole chiave. */
-function search(q: string): ArticleCard[] {
+/**
+ * Ricerca di riserva, sui soli titoli e parole chiave: risponde subito, mentre quella vera (src/learn/search.ts, con
+ * il testo degli articoli) si sta scaricando, e resta se lo scaricamento non riesce (per esempio senza rete).
+ */
+function basicSearch(q: string): SearchResult<Found> {
   const words = norm(q).split(' ').filter((w) => w.length > 1);
-  if (!words.length) return [];
-  return CATALOG.filter((a) => {
-    const hay = norm([a.titolo, a.sottotitolo, ...a.paroleChiave, percorsoOf(a.percorso)?.titolo ?? ''].join(' '));
-    return words.every((w) => hay.includes(w));
-  });
+  const cards = words.length
+    ? CATALOG.filter((a) => {
+        const hay = norm([a.titolo, a.sottotitolo, ...a.paroleChiave, percorsoOf(a.percorso)?.titolo ?? ''].join(' '));
+        return words.every((w) => hay.includes(w));
+      })
+    : [];
+  return { hits: cards.map((card) => ({ item: { kind: 'articolo', card }, score: 0, matched: words.length })), partial: false };
 }
+
+/** La frase trovata, con le parole cercate in evidenza e il titolo del paragrafo da cui viene. */
+function Snippet({ hit }: { hit: SearchHit<Found> }) {
+  if (!hit.snippet) return null;
+  return (
+    <span className="search-snippet">
+      {hit.label && <span className="search-snippet__where">{hit.label}: </span>}
+      {hit.snippet.map((s, i) => (s.hit ? <mark key={i}>{s.text}</mark> : s.text))}
+    </span>
+  );
+}
+
+/** Un risultato della ricerca: un articolo, una parola del glossario o un'altra pagina del sito. */
+function ResultItem({ hit }: { hit: SearchHit<Found> }) {
+  const { item } = hit;
+  if (item.kind === 'articolo') {
+    return (
+      <li>
+        <Link to={`/capire/${item.card.slug}`} className="learn-card">
+          <span className="learn-card__body">
+            <span className="learn-card__title">{item.card.titolo}</span>
+            {hit.snippet ? <Snippet hit={hit} /> : <span className="muted">{item.card.sottotitolo}</span>}
+            <span className="small muted">
+              <Clock className="inline-icon" aria-hidden="true" /> {item.card.minuti} minuti di lettura
+            </span>
+          </span>
+        </Link>
+      </li>
+    );
+  }
+  if (item.kind === 'parola') {
+    return (
+      <li>
+        <Link to={`/capire/glossario#${item.entry.id}`} className="learn-card">
+          <span className="learn-card__body">
+            <span className="eyebrow">Parola del glossario</span>
+            <span className="learn-card__title">{item.entry.termine}</span>
+            <span className="muted">{item.entry.voci[0]?.definizione}</span>
+          </span>
+        </Link>
+      </li>
+    );
+  }
+  return (
+    <li>
+      <Link to={item.to} className="learn-card">
+        <span className="learn-card__body">
+          <span className="eyebrow">{item.where}</span>
+          <span className="learn-card__title">{item.title}</span>
+          <Snippet hit={hit} />
+        </span>
+      </Link>
+    </li>
+  );
+}
+
+const resultKey = ({ item }: SearchHit<Found>) =>
+  item.kind === 'articolo' ? `a-${item.card.slug}` : item.kind === 'parola' ? `p-${item.entry.id}` : `s-${item.to}-${item.title}`;
 
 /** Elenco degli articoli, per percorsi, con la ricerca. */
 export function LearnIndexPage() {
-  const [q, setQ] = useState('');
-  const results = useMemo(() => search(q), [q]);
-  const searching = norm(q).length > 1;
+  // La ricerca sta nell'indirizzo (?q=…): tornando indietro da un articolo si ritrovano gli stessi risultati.
+  const [params, setParams] = useSearchParams();
+  const q = params.get('q') ?? '';
+  const setQ = (value: string) => setParams(value ? { q: value } : {}, { replace: true });
+  // La ricerca vera (con il testo di tutti gli articoli) si scarica solo quando qualcuno cerca.
+  const [engine, setEngine] = useState<typeof import('./search') | null>(null);
+  const asked = useRef(false);
+  const loadEngine = () => {
+    if (asked.current) return;
+    asked.current = true;
+    import('./search').then(setEngine, () => {
+      asked.current = false;
+    });
+  };
+  useEffect(() => {
+    if (q) loadEngine();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const searching = fold(q).length > 1;
+  const results = useMemo(() => (searching ? (engine ? engine.searchSite(q) : basicSearch(q)) : null), [q, engine, searching]);
+  const found = results?.hits.length ?? 0;
   return (
     <div className="container stack-lg">
       <PageHeader
@@ -94,23 +179,43 @@ export function LearnIndexPage() {
           id="learn-q"
           type="search"
           value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Per esempio: magnitudo, Campi Flegrei, repliche"
+          onChange={(e) => {
+            loadEngine();
+            setQ(e.target.value);
+          }}
+          onFocus={loadEngine}
+          placeholder="Per esempio: assestamento, zona 2, crepe"
           autoComplete="off"
+          spellCheck={false}
         />
+        <p className="small muted">Cerca negli articoli, nel glossario e nelle pagine «È vero?», «Cosa fare» e «La casa ha dei danni».</p>
       </div>
 
       {searching ? (
         <section className="stack" aria-live="polite" aria-labelledby="learn-results">
-          <h2 id="learn-results">
-            {results.length === 0 ? 'Nessun articolo trovato' : results.length === 1 ? '1 articolo' : `${results.length} articoli`}
-          </h2>
-          {results.length === 0 ? (
-            <p className="muted">Prova con un’altra parola, o guarda i percorsi qui sotto cancellando la ricerca.</p>
+          <h2 id="learn-results">{found === 0 ? 'Nessun risultato' : found === 1 ? '1 risultato' : `${found} risultati`}</h2>
+          {results?.partial && (
+            <p className="muted">Nessuna pagina contiene tutte le parole che hai scritto: queste ne contengono alcune.</p>
+          )}
+          {found === 0 ? (
+            <>
+              <p className="muted">
+                Prova con un’altra parola o con una sola. Se l’argomento non c’è ancora, è possibile che l’articolo sia in
+                preparazione.
+              </p>
+              <ul className="link-list">
+                <LinkCard
+                  to="/capire/glossario"
+                  title="Le parole della scienza"
+                  text="Il glossario: tutte le parole spiegate negli articoli, dalla A alla Z."
+                  icon={BookA}
+                />
+              </ul>
+            </>
           ) : (
             <ul className="learn-list">
-              {results.map((a) => (
-                <ArticleLink key={a.slug} a={a} />
+              {results?.hits.map((hit) => (
+                <ResultItem key={resultKey(hit)} hit={hit} />
               ))}
             </ul>
           )}
@@ -123,6 +228,12 @@ export function LearnIndexPage() {
               title="È vero? Le voci sui terremoti"
               text="Previsioni, «tempo da terremoto», magnitudo «abbassata»: le voci più comuni, con la risposta degli scienziati."
               icon={MessageCircleQuestion}
+            />
+            <LinkCard
+              to="/capire/glossario"
+              title="Le parole della scienza"
+              text="Il glossario: ipocentro, faglia, replica… tutte le parole spiegate negli articoli, dalla A alla Z."
+              icon={BookA}
             />
           </ul>
           {PERCORSI.filter((p) => inPercorso(p.id).length > 0).map((p) => (
@@ -195,6 +306,8 @@ const MDX_COMPONENTS = {
     href.startsWith('/') ? <Link to={href}>{children}</Link> : <ExternalLink href={href}>{children}</ExternalLink>,
   ul: ({ className, ...props }: ComponentPropsWithoutRef<'ul'>) => <ul className={className ?? 'advice'} {...props} />,
   Part,
+  // Le parole del glossario scritte <dfn>…</dfn> nel testo (vedi plugins/termini.ts).
+  Termine,
 };
 
 /** `testo con `codice`` → testo con <code>codice</code> (per le note sui dati). */
@@ -233,7 +346,9 @@ function ArticleBody({ card }: { card: ArticleCard }) {
       </section>
 
       <div className="learn-body" ref={bodyRef}>
-        <Content components={MDX_COMPONENTS} />
+        <GlossarioContext value={fm.glossario}>
+          <Content components={MDX_COMPONENTS} />
+        </GlossarioContext>
       </div>
 
       {fm.glossario.length > 0 && (
@@ -247,6 +362,9 @@ function ArticleBody({ card }: { card: ArticleCard }) {
               </div>
             ))}
           </dl>
+          <p className="small">
+            <Link to="/capire/glossario">Tutte le parole degli articoli, dalla A alla Z</Link>
+          </p>
         </section>
       )}
 
@@ -281,7 +399,7 @@ function ArticleBody({ card }: { card: ArticleCard }) {
 }
 
 /** Se il testo non si scarica (per esempio senza rete), lo diciamo invece di lasciare la pagina vuota. */
-class ArticleErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+export class ArticleErrorBoundary extends Component<{ children: ReactNode; what?: string }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
@@ -289,7 +407,7 @@ class ArticleErrorBoundary extends Component<{ children: ReactNode }, { failed: 
   render() {
     if (this.state.failed)
       return (
-        <Notice tone="warn" title="Non riesco a caricare l’articolo">
+        <Notice tone="warn" title={`Non riesco a caricare ${this.props.what ?? 'l’articolo'}`}>
           <p>Forse la connessione è assente. Riprova tra poco ricaricando la pagina.</p>
         </Notice>
       );

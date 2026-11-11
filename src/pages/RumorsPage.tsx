@@ -19,7 +19,7 @@ interface Rumor {
 const VERDICT_LABEL: Record<Verdict, string> = { falso: 'Falso', 'in-parte': 'Vero solo in parte' };
 
 /* Ogni risposta viene da una fonte elencata in fondo alla pagina (INGV, USGS, Protezione Civile, Il Post). */
-const RUMORS: Rumor[] = [
+export const RUMORS: Rumor[] = [
   {
     id: 'previsione',
     says: '«Stanotte alle 3 arriva una scossa forte: me l’ha detto un amico che lavora all’INGV.»',

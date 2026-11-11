@@ -12,7 +12,7 @@ interface Section {
 }
 
 /* Consigli tratti dalle indicazioni pubbliche della Protezione Civile ("Io non rischio"). */
-const SECTIONS: Section[] = [
+export const SECTIONS: Section[] = [
   {
     id: 'durante',
     title: 'Durante la scossa',

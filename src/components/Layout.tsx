@@ -74,7 +74,7 @@ function NavLinks({ items, className }: { items: NavItem[]; className: string })
 
 /** Dopo un cambio pagina: torna in cima e sposta il focus sul titolo (per i lettori di schermo). */
 function useRouteFocus() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const first = useRef(true);
   // Titolo della scheda del browser (e descrizione), uguali a quelli delle pagine generate al build.
   useEffect(() => {
@@ -91,6 +91,28 @@ function useRouteFocus() {
     const h1 = document.querySelector<HTMLElement>('#main h1');
     h1?.focus({ preventScroll: true });
   }, [pathname]);
+  // Indirizzi con un punto preciso della pagina (/capire/glossario#faglia, /e-vero#rumor-animali): ci andiamo.
+  // Se quel punto arriva un attimo dopo (pagine che scaricano i loro dati), riproviamo per un secondo e mezzo.
+  useEffect(() => {
+    if (!hash) return;
+    let id: string;
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch {
+      return;
+    }
+    let tries = 0;
+    let timer = 0;
+    const go = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView();
+        el.focus({ preventScroll: true });
+      } else if (tries++ < 15) timer = window.setTimeout(go, 100);
+    };
+    go();
+    return () => window.clearTimeout(timer);
+  }, [pathname, hash]);
 }
 
 function NewQuakeBanner() {

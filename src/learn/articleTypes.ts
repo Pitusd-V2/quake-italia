@@ -36,3 +36,26 @@ export type ArticleCard = Pick<
   ArticleData,
   'slug' | 'titolo' | 'sottotitolo' | 'percorso' | 'ordine' | 'minuti' | 'verificato' | 'revisione' | 'correlati' | 'paroleChiave'
 >;
+
+/** Un pezzo del testo di un articolo, per la ricerca: il titolo del paragrafo e le sue frasi. */
+export interface Sezione {
+  titolo: string | null;
+  /** La parte dell'articolo «a strati» a cui appartiene (La storia, Cosa dicono i dati…). */
+  parte: string | null;
+  testo: string;
+}
+
+/** Il testo di un articolo, come lo vede la ricerca (creato al build, scaricato solo quando si cerca). */
+export interface ArticleText {
+  slug: string;
+  riassunto: string[];
+  sezioni: Sezione[];
+}
+
+/** Una parola del glossario generale: la stessa parola può essere spiegata in più articoli. */
+export interface GlossaryEntry {
+  /** Per l'indirizzo: /capire/glossario#faglia-normale */
+  id: string;
+  termine: string;
+  voci: { slug: string; definizione: string }[];
+}

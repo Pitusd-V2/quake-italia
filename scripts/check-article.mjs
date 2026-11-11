@@ -118,7 +118,8 @@ if (errors.length === 0) {
     const { StaticRouter } = await import('react-router');
     const { Part } = await server.ssrLoadModule('/src/learn/LearnPart.tsx');
     const mod = await server.ssrLoadModule(abs);
-    const components = { Part, a: ({ href, children }) => createElement('a', { href }, children) };
+    // «Termine»: le parole del glossario nel testo (plugins/termini.ts). Qui basta disegnarle come parole in evidenza.
+    const components = { Part, Termine: ({ children }) => createElement('dfn', null, children), a: ({ href, children }) => createElement('a', { href }, children) };
     // Gli avvisi di React sul disegno lato server (useLayoutEffect…) non sono errori dell'articolo.
     const origError = console.error;
     const reactErrors = [];

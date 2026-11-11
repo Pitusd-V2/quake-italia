@@ -8,10 +8,11 @@ import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { articoliPlugin } from './plugins/articoli.ts';
+import { remarkTermini } from './plugins/termini.ts';
 
 /** Gli articoli (contenuti/articoli/*.mdx): Markdown trasformato in componenti React al build, niente HTML a mano. */
 export const mdxPlugins = () => [
-  { enforce: 'pre' as const, ...mdx({ remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter] }) },
+  { enforce: 'pre' as const, ...mdx({ remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkTermini] }) },
   articoliPlugin(),
 ];
 
