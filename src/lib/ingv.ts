@@ -1,4 +1,5 @@
 import type { Bounds, Quake } from './types';
+import { coarse, distanceKm } from './geo';
 import { cleanText, inRange, isLat, isLon, isSafeId } from './sanitize';
 
 /** Servizio FDSN pubblico dell'INGV (dati CC BY 4.0). */
@@ -21,8 +22,12 @@ export interface QuakeQuery {
   maxDepth?: number;
   /** Rettangolo geografico. Se manca (e manca `around`) la ricerca è mondiale. */
   bounds?: Bounds;
-  /** Cerchio attorno a un punto: ha la precedenza su `bounds`. */
-  around?: { lat: number; lon: number; radiusKm: number };
+  /**
+   * Cerchio attorno a un punto: ha la precedenza su `bounds`.
+   * `personal`: il punto è la casa o la posizione di una persona. All'INGV non va il punto esatto ma uno arrotondato
+   * a circa 1 km, con un cerchio un po' più largo; fetchQuakes poi tiene solo le scosse davvero entro il raggio.
+   */
+  around?: { lat: number; lon: number; radiusKm: number; personal?: boolean };
   eventId?: string;
   limit?: number;
   orderBy?: OrderBy;
@@ -36,6 +41,11 @@ export class IngvError extends Error {
     this.status = status;
   }
 }
+
+/** Di quanto allarghiamo il cerchio di un punto personale: l'arrotondamento lo sposta di 0,7 km al massimo. */
+const PERSONAL_PAD_KM = 1;
+/** Con un limite basso chiediamo qualche scossa in più: quelle nell'anello aggiunto vengono poi tolte. */
+const PERSONAL_EXTRA = 5;
 
 /** Il servizio vuole date UTC senza fuso: 2026-10-20T19:10:16 */
 const fdsnTime = (d: Date) => d.toISOString().slice(0, 19);
@@ -52,10 +62,12 @@ export function buildQueryUrl(q: QuakeQuery): string {
   if (q.maxMag != null) p.set('maxmag', String(q.maxMag));
   if (q.minDepth != null) p.set('mindepth', String(q.minDepth));
   if (q.maxDepth != null) p.set('maxdepth', String(q.maxDepth));
+  const personal = q.around?.personal === true;
   if (q.around) {
-    p.set('lat', q.around.lat.toFixed(4));
-    p.set('lon', q.around.lon.toFixed(4));
-    p.set('maxradiuskm', String(Math.round(q.around.radiusKm)));
+    const c = personal ? coarse(q.around, 2) : q.around;
+    p.set('lat', c.lat.toFixed(personal ? 2 : 4));
+    p.set('lon', c.lon.toFixed(personal ? 2 : 4));
+    p.set('maxradiuskm', String(Math.round(q.around.radiusKm) + (personal ? PERSONAL_PAD_KM : 0)));
   } else if (q.bounds) {
     p.set('minlat', String(q.bounds.minLat));
     p.set('maxlat', String(q.bounds.maxLat));
@@ -63,8 +75,19 @@ export function buildQueryUrl(q: QuakeQuery): string {
     p.set('maxlon', String(q.bounds.maxLon));
   }
   p.set('orderby', q.orderBy ?? 'time');
-  if (q.limit) p.set('limit', String(q.limit));
+  if (q.limit) p.set('limit', String(q.limit + (personal && q.limit <= 500 ? PERSONAL_EXTRA : 0)));
   return `${INGV_EVENT_API}?${p}`;
+}
+
+/**
+ * Per un punto personale la richiesta all'INGV è un po' più larga del necessario (vedi buildQueryUrl):
+ * qui, sul dispositivo, teniamo solo le scosse entro il raggio vero dal punto esatto.
+ */
+export function onlyWithin(q: QuakeQuery, list: Quake[]): Quake[] {
+  const a = q.around;
+  if (!a?.personal) return list;
+  const inside = list.filter((x) => distanceKm(a, x) <= a.radiusKm);
+  return q.limit ? inside.slice(0, q.limit) : inside;
 }
 
 /**
@@ -127,7 +150,7 @@ export function parseCollection(json: unknown): Quake[] {
 }
 
 export async function fetchQuakes(q: QuakeQuery, signal?: AbortSignal): Promise<Quake[]> {
-  const real = await fetchFromIngv(q, signal);
+  const real = onlyWithin(q, await fetchFromIngv(q, signal));
   // Solo in sviluppo: eventuali terremoti simulati (vedi src/dev/simulation.ts).
   if (import.meta.env.DEV && typeof sessionStorage !== 'undefined') {
     const { applySimulation } = await import('../dev/simulation');

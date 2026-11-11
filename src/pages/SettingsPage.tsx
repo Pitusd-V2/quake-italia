@@ -4,6 +4,7 @@ import { Download, MapPin } from 'lucide-react';
 import { useSettings, type TextSize, type ThemePref } from '../state/settings';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { PlacePicker } from '../components/PlacePicker';
+import { HomePoint } from '../components/HomePoint';
 import { MyData } from '../components/MyData';
 import { Notice, PageHeader, Segmented, Switch } from '../components/ui';
 
@@ -57,6 +58,7 @@ export function SettingsPage() {
                 Rimuovi
               </button>
             </div>
+            <HomePoint />
           </>
         ) : (
           <>

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Link } from 'react-router';
-import { BellRing, Check, ChevronRight, ClipboardCheck, History, Landmark, Settings, ShieldAlert } from 'lucide-react';
+import { BellRing, ChevronRight, History, Landmark, Settings, ShieldAlert } from 'lucide-react';
 import { useSettings } from '../state/settings';
 import { useNow } from '../hooks/useNow';
 import { fetchQuakes } from '../lib/ingv';
@@ -12,19 +12,10 @@ import { QuakeList } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { ExternalLink, LoadingCards, Notice, PageHeader } from '../components/ui';
 import { VolcanoZones } from '../components/VolcanoZones';
+import { PrepareGame } from '../components/PrepareGame';
+import { HomePoint } from '../components/HomePoint';
 
 const NEAR_KM = 30;
-
-const CHECKLIST: { id: string; text: string }[] = [
-  { id: 'area', text: 'So qual è l’area di attesa del mio Comune, cioè dove andare dopo una scossa forte.' },
-  { id: 'mobili', text: 'Ho fissato al muro i mobili alti e pesanti (armadi, librerie).' },
-  { id: 'oggetti', text: 'Non tengo oggetti pesanti o di vetro sopra il letto o sugli scaffali alti.' },
-  { id: 'gas', text: 'So dove sono e come si chiudono gas, acqua e luce.' },
-  { id: 'kit', text: 'Ho pronto un kit: torcia, radio a pile, acqua, pronto soccorso.' },
-  { id: 'medicine', text: 'Ho medicine e copie dei documenti in una borsa facile da prendere.' },
-  { id: 'punto', text: 'Ho deciso con la famiglia un punto dove ritrovarci.' },
-  { id: 'casa', text: 'So se la mia casa è costruita con criteri antisismici (posso chiederlo a un tecnico).' },
-];
 
 const longDate = new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -32,6 +23,9 @@ export function MyTownPage() {
   const { settings, update } = useSettings();
   const now = useNow(60_000);
   const home = settings.home;
+  // Il riquadro «Il punto di casa» serve a chi non l'ha ancora indicato sulla mappa; appena salvato resta visibile
+  // (come conferma) fino alla prossima visita. Dopo si cambia da Impostazioni.
+  const [showPoint] = useState(() => settings.home?.point !== 'map');
 
   const zone = useQuery({
     queryKey: ['zone', home?.name, home?.detail],
@@ -44,14 +38,14 @@ export function MyTownPage() {
   const history = useQuery({
     queryKey: ['history', home?.lat, home?.lon],
     queryFn: ({ signal }) =>
-      fetchQuakes({ start: new Date('1985-01-01T00:00:00Z'), minMag: 4, around: { lat: home!.lat, lon: home!.lon, radiusKm: NEAR_KM }, orderBy: 'magnitude', limit: 5 }, signal),
+      fetchQuakes({ start: new Date('1985-01-01T00:00:00Z'), minMag: 4, around: { lat: home!.lat, lon: home!.lon, radiusKm: NEAR_KM, personal: true }, orderBy: 'magnitude', limit: 5 }, signal),
     enabled: !!home,
     staleTime: 24 * 3_600_000,
   });
 
   const recent = useQuery({
     queryKey: ['recent30', home?.lat, home?.lon],
-    queryFn: ({ signal }) => fetchQuakes({ start: daysAgo(30), around: { lat: home!.lat, lon: home!.lon, radiusKm: NEAR_KM } }, signal),
+    queryFn: ({ signal }) => fetchQuakes({ start: daysAgo(30), around: { lat: home!.lat, lon: home!.lon, radiusKm: NEAR_KM, personal: true } }, signal),
     enabled: !!home,
     staleTime: 10 * 60_000,
   });
@@ -68,9 +62,6 @@ export function MyTownPage() {
     );
   }
 
-  const done = CHECKLIST.filter((c) => settings.checklist[c.id]).length;
-  const total = CHECKLIST.length;
-  const toggle = (id: string) => update({ checklist: { ...settings.checklist, [id]: !settings.checklist[id] } });
   const z = zone.data;
   const strongestRecent = recent.data?.reduce<(typeof recent.data)[number] | undefined>((a, b) => (!a || b.mag > a.mag ? b : a), undefined);
   const perceivable = recent.data?.filter((q) => q.mag >= 2).length ?? 0;
@@ -88,6 +79,12 @@ export function MyTownPage() {
         </span>
         <ChevronRight aria-hidden="true" />
       </Link>
+
+      {showPoint && (
+        <section className="card">
+          <HomePoint as="h2" />
+        </section>
+      )}
 
       {/* ---------- Zona sismica ---------- */}
       <section className="card stack" aria-labelledby="zone-title">
@@ -191,33 +188,8 @@ export function MyTownPage() {
         </Link>
       </section>
 
-      {/* ---------- Checklist ---------- */}
-      <section className="card stack" aria-labelledby="check-title">
-        <h2 id="check-title" className="icon-title">
-          <ClipboardCheck aria-hidden="true" /> Prepara la tua casa
-        </h2>
-        <div className="progress" aria-hidden="true">
-          <span style={{ width: `${(done / total) * 100}%` }} />
-        </div>
-        <p className="strong" role="status">
-          Hai fatto {done} {done === 1 ? 'cosa' : 'cose'} su {total}
-          {done === total ? ': complimenti!' : '.'}
-        </p>
-        <ul className="checklist">
-          {CHECKLIST.map((c) => (
-            <li key={c.id}>
-              <label className="check">
-                <input type="checkbox" checked={!!settings.checklist[c.id]} onChange={() => toggle(c.id)} />
-                <span className="check__box" aria-hidden="true">
-                  <Check />
-                </span>
-                <span>{c.text}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-        <p className="small muted">Le spunte restano salvate su questo dispositivo.</p>
-      </section>
+      {/* ---------- Prepara la tua casa (gioco a livelli) ---------- */}
+      <PrepareGame homeName={home.name} />
 
       {/* ---------- Comune e IT-alert ---------- */}
       <section className="card stack" aria-labelledby="plan-title">

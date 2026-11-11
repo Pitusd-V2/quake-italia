@@ -104,7 +104,7 @@ export function buildQuery(f: ExpertForm, home: Place | null): Built {
   if (f.area === 'italia') q.bounds = ITALY_BOUNDS;
   else if (f.area === 'casa') {
     if (!home) return err('Non hai ancora impostato il tuo comune (vai in Impostazioni).');
-    q.around = { lat: home.lat, lon: home.lon, radiusKm };
+    q.around = { lat: home.lat, lon: home.lon, radiusKm, personal: true };
   } else if (f.area === 'punto') {
     const lat = num(f.lat);
     const lon = num(f.lon);

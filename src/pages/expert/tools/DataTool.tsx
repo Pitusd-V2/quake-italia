@@ -45,6 +45,12 @@ export default function DataTool({ quakes, query }: ToolProps) {
         <pre className="code" tabIndex={0}>
           <code>{url}</code>
         </pre>
+        {query.around?.personal && (
+          <p className="small muted">
+            Il centro è arrotondato a circa 1 km e il raggio è più largo di 1 km, per non scrivere nella richiesta il punto
+            esatto di casa. I risultati qui sopra contengono solo le scosse entro il raggio che hai scelto.
+          </p>
+        )}
         <div className="row">
           <button type="button" className="btn btn--secondary" onClick={copy}>
             {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />} {copied ? 'Copiata' : 'Copia'}

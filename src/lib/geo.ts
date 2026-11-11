@@ -11,6 +11,15 @@ export function distanceKm(a: LatLon, b: LatLon): number {
   return 2 * R_EARTH_KM * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
+/**
+ * Coordinate arrotondate: con 2 decimali il punto si sposta di 0,7 km al massimo, con 3 di 70 metri.
+ * Serve a non far uscire dal dispositivo il punto esatto di casa (vedi ingv.ts e geocode.ts).
+ */
+export function coarse(at: LatLon, decimals: number): LatLon {
+  const k = 10 ** decimals;
+  return { lat: Math.round(at.lat * k) / k, lon: Math.round(at.lon * k) / k };
+}
+
 /** Distanza "vera" dal punto di rottura in profondità (ipocentro). */
 export function hypocentralKm(surfaceKm: number, depthKm: number): number {
   return Math.sqrt(surfaceKm ** 2 + Math.max(0, depthKm) ** 2);

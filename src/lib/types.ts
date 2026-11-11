@@ -8,6 +8,11 @@ export interface Place extends LatLon {
   name: string;
   /** Provincia / regione, per distinguere comuni omonimi. */
   detail?: string;
+  /**
+   * Da dove vengono le coordinate. Assente: è il centro del comune (ricerca per nome). 'gps': la posizione trovata
+   * dal dispositivo. 'map': il punto messo a mano sulla mappa («punto di casa»).
+   */
+  point?: 'gps' | 'map';
 }
 
 /** Un terremoto, già convertito dal formato GeoJSON dell'INGV. */

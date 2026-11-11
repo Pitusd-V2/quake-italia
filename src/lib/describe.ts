@@ -114,6 +114,9 @@ export function placeText(raw: string): PlaceText {
 /* ---------- "L'avrò sentita?" ---------- */
 
 /**
+ * Stima per sola distanza: serve a ordinare le scosse (pagina «Ho sentito una scossa») e a non dire «sentita» per
+ * scosse troppo lontane. Le frasi mostrate a chi legge vengono invece da feltHere() in impact.ts, che segue l'intensità.
+ *
  * Raggio indicativo (km) entro cui una scossa viene di solito avvertita
  * da qualcuno. Relazione empirica approssimata: M2≈9 km, M3≈25 km,
  * M4≈70 km, M5≈200 km. Serve solo a dare un'indicazione a parole.
@@ -160,25 +163,14 @@ export function depthNote(km: number): string | null {
 
 /* ---------- Frasi complete ---------- */
 
-export function distanceFrom(q: Quake, place: Place): string {
-  return `a ${formatKm(distanceKm(place, q))} da ${place.name}`;
-}
+/**
+ * Da dove partono le distanze, a parole: «da casa tua» se il punto è stato indicato (sulla mappa o con la posizione
+ * del dispositivo), altrimenti «da Napoli», cioè dal centro del comune.
+ */
+export const fromPlace = (place: Place) => (place.point ? 'da casa tua' : `da ${place.name}`);
 
-/** Testo pensato per essere letto ad alta voce (niente sigle). */
-export function speechText(q: Quake, now: Date, home?: Place | null): string {
-  const lvl = magLevel(q.mag, q.depthKm);
-  const p = placeText(q.place);
-  const parts = [
-    `${lvl.name}: terremoto di magnitudo ${formatMag(q.mag)}.`,
-    `${capitalize(formatWhen(q.time, now))}, ${p.full.replace(/\bkm\b/g, 'chilometri')}.`,
-    `Profondità: ${depthText(q.depthKm).replace(/\bkm\b/g, 'chilometri')}.`,
-  ];
-  if (home) {
-    const d = formatKm(distanceKm(home, q)).replace(/\bkm\b/g, 'chilometri');
-    parts.push(`Si trova a ${d} da ${home.name}. ${feltEstimate(q, home).explain}`);
-  }
-  parts.push(lvl.feel);
-  return parts.join(' ');
+export function distanceFrom(q: Quake, place: Place): string {
+  return `a ${formatKm(distanceKm(place, q))} ${fromPlace(place)}`;
 }
 
 export function shareText(q: Quake, now: Date): string {

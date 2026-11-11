@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { readRaw, writeJson } from '../lib/storage';
+import { migrateChecklist } from '../lib/prepare';
 import { cleanText, inRange, isLat, isLon } from '../lib/sanitize';
 import type { Place } from '../lib/types';
 
@@ -53,14 +54,17 @@ export function sanitizeSettings(raw: unknown): Settings {
   const h = r.home as Record<string, unknown> | null | undefined;
   if (h && typeof h === 'object' && isLat(Number(h.lat)) && isLon(Number(h.lon)) && cleanText(h.name, 80)) {
     home = { lat: Number(h.lat), lon: Number(h.lon), name: cleanText(h.name, 80), detail: cleanText(h.detail, 120) || undefined };
+    if (h.point === 'gps' || h.point === 'map') home.point = h.point;
   }
   const alerts = (r.alerts && typeof r.alerts === 'object' ? r.alerts : {}) as Record<string, unknown>;
-  const checklist: Record<string, boolean> = {};
+  let checklist: Record<string, boolean> = {};
   if (r.checklist && typeof r.checklist === 'object') {
-    for (const [k, v] of Object.entries(r.checklist as Record<string, unknown>).slice(0, 30)) {
+    for (const [k, v] of Object.entries(r.checklist as Record<string, unknown>).slice(0, 60)) {
       if (/^[a-z]{1,20}$/.test(k) && v === true) checklist[k] = true;
     }
   }
+  // Le spunte della vecchia lista diventano quelle del gioco a livelli (vedi prepare.ts).
+  checklist = migrateChecklist(checklist);
   return {
     home,
     radiusKm: oneOf(r.radiusKm, [30, 50, 100, 200], DEFAULTS.radiusKm),

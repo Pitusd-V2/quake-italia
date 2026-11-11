@@ -50,7 +50,8 @@ export function PlacePicker({
 
   const useGps = async () => {
     const p = await geo.locate();
-    if (p) onPick(p);
+    // Solo i dati che servono: l'indirizzo trovato da Photon non va salvato da nessuna parte.
+    if (p) onPick({ name: p.name, detail: p.detail, lat: p.lat, lon: p.lon, point: 'gps' });
   };
 
   return (

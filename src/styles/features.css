@@ -67,6 +67,98 @@
 .check input:checked + .check__box { background: var(--ok); border-color: var(--ok); color: #fff; }
 .check input:focus-visible + .check__box { outline: 3px solid var(--focus); outline-offset: 2px; }
 
+/* ---------- «Prepara la tua casa», a livelli (PrepareGame) ---------- */
+
+.prep-summary { display: flex; flex-direction: column; gap: var(--sp-3); }
+.prep-badges { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-2); }
+.prep-badge { display: flex; flex-direction: column; align-items: center; gap: var(--sp-1); text-align: center; font-size: var(--fs-sm); line-height: 1.25; color: var(--text-muted); }
+.prep-badge__icon { display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%; border: 2px dashed var(--border-strong); background: var(--surface); }
+.prep-badge__icon svg { width: 1.6rem; height: 1.6rem; }
+.prep-badge.is-earned { color: var(--text); font-weight: 700; }
+.prep-badge.is-earned .prep-badge__icon { border: 2px solid var(--ok); background: var(--ok-soft); color: var(--ok); }
+.prep-badge.is-new .prep-badge__icon { animation: badge-pop 700ms var(--ease); }
+@keyframes badge-pop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.progress--thin { height: 8px; margin-top: var(--sp-1); }
+
+.prep-finale { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4); border-radius: var(--r-md); background: var(--ok-soft); border: 1px solid var(--ok); }
+.prep-finale p { margin: 0; }
+.prep-finale svg { width: 2rem; height: 2rem; flex-shrink: 0; color: var(--ok); }
+
+.prep-levels { display: flex; flex-direction: column; gap: var(--sp-3); }
+.prep-level { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+.prep-level.is-complete { border-color: var(--ok); }
+.prep-level__heading { margin: 0; font-size: inherit; }
+.prep-level__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--sp-3) var(--sp-4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.prep-level__head:hover { background: var(--surface-2); }
+.prep-level__head:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.prep-level__badge { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; flex-shrink: 0; border-radius: 50%; background: var(--primary-soft); color: var(--primary); }
+.prep-level__badge.is-earned { background: var(--ok); color: var(--surface); }
+.prep-level__badge svg { width: 1.4rem; height: 1.4rem; }
+.prep-level__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.prep-level__title { font-weight: 700; font-size: var(--fs-md); }
+.prep-level__meta { font-size: var(--fs-sm); color: var(--text-muted); }
+.prep-level__chev { width: 1.4rem; height: 1.4rem; flex-shrink: 0; transition: transform var(--dur) var(--ease); }
+.prep-level__head[aria-expanded='true'] .prep-level__chev { transform: rotate(180deg); }
+
+.missions { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.mission { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); }
+.mission + .mission { border-top: 1px solid var(--border); }
+.mission__head { position: relative; display: flex; align-items: flex-start; gap: var(--sp-3); cursor: pointer; }
+.mission__head input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mission__head input:checked + .check__box { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.mission__head input:indeterminate + .check__box { background: var(--ok-soft); border-color: var(--ok); }
+.mission__head input:focus-visible + .check__box { outline: 3px solid var(--focus); outline-offset: 2px; }
+.mission__title { padding-top: 0.15rem; font-weight: 700; }
+.mission.is-done .mission__title { color: var(--text-muted); text-decoration: line-through; text-decoration-thickness: 2px; }
+.mission__time { display: inline-block; margin-left: var(--sp-2); padding: 0 var(--sp-2); border-radius: var(--r-pill); background: var(--surface-2); color: var(--text-muted); font-size: var(--fs-sm); font-weight: 400; white-space: nowrap; }
+.mission__how,
+.mission__parts,
+.mission__action { margin-left: calc(1.75rem + var(--sp-3)); }
+.mission__how { margin-top: 0; margin-bottom: 0; color: var(--text-muted); }
+.mission__parts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.mission__action { align-self: flex-start; }
+.part-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-height: 2.75rem;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  cursor: pointer;
+}
+.part-chip:hover { border-color: var(--primary); }
+.part-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.part-chip svg { width: 1.1rem; height: 1.1rem; stroke-width: 3; color: var(--border); }
+.part-chip.is-on { background: var(--ok-soft); border-color: var(--ok); font-weight: 700; }
+.part-chip.is-on svg { color: var(--ok); }
+.part-chip:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+@media (max-width: 30rem) {
+  .mission__how,
+  .mission__parts,
+  .mission__action { margin-left: 0; }
+}
+
 /* ---------- Schede "sequenza" / "comune" ---------- */
 
 .seq-card {
@@ -542,3 +634,68 @@
 .learn-check p { margin: 0; }
 .corrections { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
 .corrections p { margin: 0; }
+
+/* ---------- Ricerca di «Capire»: la frase trovata ---------- */
+.search-snippet { color: var(--text-muted); }
+.search-snippet__where { font-weight: 700; color: var(--text); }
+.search-snippet mark { background: var(--warn-soft); color: var(--text); font-weight: 700; padding: 0 2px; border-radius: 3px; }
+
+/* ---------- Parole del glossario dentro al testo: un tocco apre la spiegazione ---------- */
+.term__btn {
+  font: inherit;
+  font-weight: 700;
+  color: var(--primary);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.term__btn:hover,
+.term__btn[aria-expanded='true'] { text-decoration-style: solid; }
+.term__btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+/* Il fumetto sta sotto la riga della parola, largo come il paragrafo, sopra al testo che segue: la frase non si spezza. */
+.learn-body,
+.learn-body p,
+.learn-body li { position: relative; }
+.term__def {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  margin-top: var(--sp-1);
+  padding: var(--sp-3);
+  background: var(--surface);
+  border: 2px solid var(--primary);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-2);
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ---------- Glossario generale ---------- */
+.glossary-letters { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.glossary-letters a {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+}
+.glossary-letters a:hover { border-color: var(--primary); background: var(--primary-soft); }
+.glossary-letter,
+.glossary--all > div { scroll-margin-top: 5.5rem; }
+.glossary--all > div { border-radius: var(--r-md); }
+/* La parola raggiunta da un risultato della ricerca resta in evidenza. */
+.glossary--all > div:focus { outline: none; background: var(--primary-soft); box-shadow: 0 0 0 6px var(--primary-soft); }
+.glossary--all dd + dd { margin-top: var(--sp-2); }
+/* Punti delle pagine raggiunti da un risultato della ricerca: non devono finire sotto la barra in alto. */
+[id^='sec-'],
+[id^='rumor-'] { scroll-margin-top: 5.5rem; }

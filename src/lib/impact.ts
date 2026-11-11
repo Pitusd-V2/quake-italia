@@ -5,9 +5,10 @@
  * calcinacci. Per questo tutto parte dall'intensità stimata nel tuo comune. Le soglie sono scelte per non allarmare:
  * il 112 compare solo quando è plausibile che serva davvero.
  */
-import { feltEstimate, SHALLOW_KM, SHALLOW_STRONG_MAG } from './describe';
-import { distanceKm, hypocentralKm } from './geo';
-import type { LatLon, Quake } from './types';
+import { capitalize, depthText, feltEstimate, fromPlace, magLevel, placeText, SHALLOW_KM, SHALLOW_STRONG_MAG } from './describe';
+import { formatMag, formatWhen } from './format';
+import { distanceKm, formatKm, hypocentralKm } from './geo';
+import type { LatLon, Place, Quake } from './types';
 
 /**
  * Intensità stimata (scala Mercalli) in un punto, senza effetti di sito.
@@ -50,6 +51,69 @@ export function impactAt(q: Quake, at: LatLon): Impact {
   // 10 km, una 4 a 50 km o una 5 a 150 km no. La pagina «Ho sentito una scossa» resta inclusiva: usa feltEstimate.
   const key = feltEstimate(q, at).key;
   return i >= 2 && (key === 'clear' || key === 'light') ? 'weak' : 'none';
+}
+
+/* ---------- «Si è sentita qui?», a parole ---------- */
+
+export type FeltHereKey = 'damage' | 'strong' | 'felt' | 'weak' | 'few' | 'no';
+
+export interface FeltHere {
+  key: FeltHereKey;
+  label: string;
+  explain: string;
+}
+
+/** Le frasi seguono i gradi della scala d'intensità (gli stessi di «Così si è sentita», in feltLike.ts). */
+const FELT_HERE: Record<FeltHereKey, Omit<FeltHere, 'key'>> = {
+  damage: {
+    label: 'Sentita molto forte',
+    explain: 'A questa distanza l’hanno sentita tutti, e molti si saranno spaventati. Sono possibili danni lievi, soprattutto agli edifici vecchi.',
+  },
+  strong: {
+    label: 'Sentita forte',
+    explain: 'A questa distanza l’hanno sentita quasi tutti: lampadari che oscillano parecchio, e qualche oggetto in alto può cadere.',
+  },
+  felt: {
+    label: 'Sentita bene',
+    explain: 'A questa distanza l’hanno sentita in molti: tintinnano vetri, porte e piatti.',
+  },
+  weak: {
+    label: 'Forse avvertita leggermente',
+    explain: 'A questa distanza si può essere sentita come un leggero tremolio.',
+  },
+  few: {
+    label: 'Avvertita da pochi',
+    explain: 'A questa distanza può averla sentita solo qualcuno, se fermo o ai piani alti.',
+  },
+  no: { label: 'Difficile da sentire qui', explain: 'A questa distanza di solito non si sente.' },
+};
+
+/**
+ * Quanto si è sentita in un punto, detto a parole: segue l'intensità stimata, come il resto del sito. Prima usavamo
+ * solo il raggio di avvertibilità, che si ferma a «probabilmente avvertita»: così una 4,7 molto superficiale a 9 km
+ * risultava uguale a una 2,5 sotto casa. Sotto la soglia di «weak» resta la stima per distanza, più inclusiva.
+ */
+export function feltHere(q: Quake, at: LatLon): FeltHere {
+  const impact = impactAt(q, at);
+  const key: FeltHereKey = impact !== 'none' ? impact : feltEstimate(q, at).key === 'no' ? 'no' : 'few';
+  return { key, ...FELT_HERE[key] };
+}
+
+/** Testo pensato per essere letto ad alta voce (niente sigle). */
+export function speechText(q: Quake, now: Date, home?: Place | null): string {
+  const lvl = magLevel(q.mag, q.depthKm);
+  const p = placeText(q.place);
+  const parts = [
+    `${lvl.name}: terremoto di magnitudo ${formatMag(q.mag)}.`,
+    `${capitalize(formatWhen(q.time, now))}, ${p.full.replace(/\bkm\b/g, 'chilometri')}.`,
+    `Profondità: ${depthText(q.depthKm).replace(/\bkm\b/g, 'chilometri')}.`,
+  ];
+  if (home) {
+    const d = formatKm(distanceKm(home, q)).replace(/\bkm\b/g, 'chilometri');
+    parts.push(`Si trova a ${d} ${fromPlace(home)}. ${feltHere(q, home).explain}`);
+  }
+  parts.push(lvl.feel);
+  return parts.join(' ');
 }
 
 /** Per quanto tempo una scossa resta «la notizia» in cima alla pagina iniziale. */

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { homeImpact, impactAt, intensityAt, isNightInItaly, shows112 } from './impact';
+import { feltHere, homeImpact, impactAt, intensityAt, isNightInItaly, shows112, speechText } from './impact';
 import { sequenceTrend } from './trend';
 import { feltLike } from './feltLike';
 import type { Quake } from './types';
@@ -169,5 +169,22 @@ describe('«Così si è sentita a casa tua»', () => {
     // Se il lampadario non si muove, la scossa non si è sentita.
     const none = feltLike(quakeAt(40, 1.5), HOME);
     expect(none).toMatchObject({ degree: 1, swingDeg: 0 });
+  });
+});
+
+describe('«Si è sentita qui?» a parole (etichetta delle schede)', () => {
+  it('una 4,7 molto superficiale a 9 km non è solo «probabilmente avvertita»', () => {
+    // Come la scossa dei Campi Flegrei del 31 luglio 2026 vista da Napoli.
+    const q = quakeAt(9, 4.7, 2.5);
+    expect(feltHere(q, HOME)).toMatchObject({ key: 'damage', label: 'Sentita molto forte' });
+    expect(speechText(q, NOW, { ...HOME, name: 'Napoli' })).toContain('molti si saranno spaventati');
+  });
+
+  it('segue l’intensità, non solo la distanza', () => {
+    expect(feltHere(quakeAt(30, 5.5), HOME).key).toBe('strong');
+    expect(feltHere(quakeAt(10, 4.2), HOME).key).toBe('felt');
+    // Una piccola scossa vicina e una forte più lontana non hanno più la stessa etichetta.
+    expect(feltHere(quakeAt(2, 2.5, 2), HOME).key).not.toBe(feltHere(quakeAt(9, 4.7, 2.5), HOME).key);
+    expect(feltHere(quakeAt(200, 2), HOME).key).toBe('no');
   });
 });

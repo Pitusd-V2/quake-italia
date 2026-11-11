@@ -6,10 +6,10 @@ import { useSettings } from '../state/settings';
 import { useQuakeFeed } from '../state/quakes';
 import { useNow } from '../hooks/useNow';
 import { distanceKm, formatKm } from '../lib/geo';
-import { feltEstimate, magLevel, placeText, speechText } from '../lib/describe';
+import { feltEstimate, fromPlace, magLevel, placeText } from '../lib/describe';
 import { daysAgo, formatMag, formatTime, formatWhen, timeAgo } from '../lib/format';
 import { fetchQuakes } from '../lib/ingv';
-import { impactAt, impactRank } from '../lib/impact';
+import { feltHere, impactAt, impactRank, speechText } from '../lib/impact';
 import type { Place, Quake } from '../lib/types';
 import { MagBadge, LevelLabel } from '../components/MagBadge';
 import { FeltLikeCard } from '../components/FeltLikeCard';
@@ -34,7 +34,7 @@ interface Candidate {
 
 function BestMatch({ quake, place, now }: { quake: Quake; place: Place; now: Date }) {
   const p = placeText(quake.place);
-  const felt = feltEstimate(quake, place);
+  const felt = feltHere(quake, place);
   const lvl = magLevel(quake.mag, quake.depthKm);
   return (
     <article className="card best-match" aria-labelledby="best-title">
@@ -57,7 +57,7 @@ function BestMatch({ quake, place, now }: { quake: Quake; place: Place; now: Dat
         <li>
           <MapPin aria-hidden="true" />
           <span>
-            A <span className="strong">{formatKm(distanceKm(place, quake))}</span> da {place.name}
+            A <span className="strong">{formatKm(distanceKm(place, quake))}</span> {fromPlace(place)}
           </span>
         </li>
       </ul>
@@ -106,7 +106,7 @@ export function FeltPage() {
   const pastMonth = useQuery({
     queryKey: ['felt-past-month', place?.lat, place?.lon],
     queryFn: ({ signal }) =>
-      fetchQuakes({ start: daysAgo(30), minMag: 3, around: { lat: place!.lat, lon: place!.lon, radiusKm: 150 } }, signal),
+      fetchQuakes({ start: daysAgo(30), minMag: 3, around: { lat: place!.lat, lon: place!.lon, radiusKm: 150, personal: true } }, signal),
     enabled: !!place && noneNow,
     staleTime: 30 * 60_000,
   });
@@ -146,7 +146,8 @@ export function FeltPage() {
             gpsLabel="Usa la posizione dove sono adesso"
             label="Oppure scrivi il comune dove ti trovi"
             onPick={(p) => {
-              setPlace(p);
+              // È il posto dove sei adesso, non casa: le distanze si chiamano con il nome del comune.
+              setPlace({ ...p, point: undefined });
               setChanging(false);
             }}
           />

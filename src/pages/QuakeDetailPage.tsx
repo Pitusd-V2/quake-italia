@@ -7,7 +7,8 @@ import { useQuake, useQuakeFeed } from '../state/quakes';
 import { useNow } from '../hooks/useNow';
 import { distanceKm, formatKm } from '../lib/geo';
 import { FeltLikeCard } from '../components/FeltLikeCard';
-import { capitalize, depthNote, depthText, feltEstimate, magLevel, placeText, shareText, speechText } from '../lib/describe';
+import { capitalize, depthNote, depthText, fromPlace, magLevel, placeText, shareText } from '../lib/describe';
+import { feltHere, speechText } from '../lib/impact';
 import { formatFull, formatMag, formatWhen, timeAgo } from '../lib/format';
 import { buildQueryUrl, ingvEventPage } from '../lib/ingv';
 import { HSIT_FORM, hsitHint } from '../lib/hsit';
@@ -58,7 +59,7 @@ export function QuakeDetailPage() {
   const lvl = magLevel(quake.mag, quake.depthKm);
   const note = depthNote(quake.depthKm);
   const hsit = hsitHint(quake);
-  const felt = home ? feltEstimate(quake, home) : null;
+  const felt = home ? feltHere(quake, home) : null;
   const pageUrl = `${window.location.origin}/terremoto/${quake.id}`;
 
   return (
@@ -137,7 +138,7 @@ export function QuakeDetailPage() {
           {home && felt && (
             <div>
               <dt>
-                <Ruler aria-hidden="true" /> Da {home.name}
+                <Ruler aria-hidden="true" /> {capitalize(fromPlace(home))}
               </dt>
               <dd>
                 {formatKm(distanceKm(home, quake))} — <span className={`chip chip--felt-${felt.key}`}>{felt.label}</span>

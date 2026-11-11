@@ -24,12 +24,12 @@ export function PrivacyPage() {
               <strong>pubblicità</strong> e non vende dati a nessuno.
             </li>
             <li>
-              Il comune che imposti e le tue preferenze restano <strong>solo sul tuo dispositivo</strong>: noi non li
-              riceviamo e non li vediamo.
+              Il comune che imposti, il punto di casa (se lo indichi) e le tue preferenze restano{' '}
+              <strong>solo sul tuo dispositivo</strong>: noi non li riceviamo e non li vediamo.
             </li>
             <li>
               Per funzionare, il tuo browser scarica i dati direttamente da servizi pubblici (INGV per i terremoti, OpenFreeMap
-              per le mappe, Photon per la ricerca dei comuni). Come ogni sito web, questi servizi e il nostro hosting vedono
+              per le mappe, Photon per la ricerca dei comuni e delle vie). Come ogni sito web, questi servizi e il nostro hosting vedono
               l’indirizzo IP del tuo dispositivo.
             </li>
             <li>
@@ -78,7 +78,10 @@ export function PrivacyPage() {
         <>
           <p>Per ricordare le tue scelte, {S} salva nella memoria del browser (localStorage) del tuo dispositivo:</p>
           <ul className="advice">
-            <li>il comune che hai scelto come «casa» (nome e coordinate) e il raggio «vicino a me»;</li>
+            <li>
+              il comune che hai scelto come «casa» (nome e coordinate), il punto di casa se lo indichi sulla mappa, e il
+              raggio «vicino a me»;
+            </li>
             <li>le preferenze di aspetto (testo, colori, contrasto) e degli avvisi;</li>
             <li>le voci della checklist «Prepara la tua casa» che hai spuntato.</li>
           </ul>
@@ -162,7 +165,10 @@ export function PrivacyPage() {
                 <ExternalLink href="https://www.ingv.it/privacy">informativa</ExternalLink>
               </span>
               <span role="cell">Dati ufficiali sui terremoti</span>
-              <span role="cell">IP, tipo di ricerca (periodo, area). Con «Il mio comune», anche le coordinate del comune.</span>
+              <span role="cell">
+                IP, tipo di ricerca (periodo, area). Per le ricerche vicino a te, anche le coordinate di casa arrotondate a
+                circa 1 km: mai il punto esatto.
+              </span>
             </div>
             <div role="row">
               <span role="cell">
@@ -179,9 +185,10 @@ export function PrivacyPage() {
                 <br />
                 <ExternalLink href="https://www.komoot.com/privacy">informativa</ExternalLink>
               </span>
-              <span role="cell">Ricerca dei comuni</span>
+              <span role="cell">Ricerca dei comuni e delle vie</span>
               <span role="cell">
-                IP e il testo che scrivi. Se usi «Usa la mia posizione», anche le coordinate, per trovare il comune.
+                IP e il testo che scrivi: il nome del comune e, se la cerchi per il punto di casa, il nome della via. Se
+                scegli il comune con «Usa la mia posizione», anche le coordinate, arrotondate a circa 100 metri.
               </span>
             </div>
           </div>
@@ -190,7 +197,7 @@ export function PrivacyPage() {
     },
     {
       id: 'posizione',
-      title: 'La tua posizione',
+      title: 'La tua posizione e il punto di casa',
       body: (
         <>
           <p>
@@ -198,8 +205,24 @@ export function PrivacyPage() {
             browser. La posizione serve a trovare il tuo comune e a calcolare la distanza dalle scosse.
           </p>
           <ul className="advice">
-            <li>Le coordinate vengono inviate a Photon (vedi sopra) solo per ricavare il nome del comune.</li>
+            <li>
+              Quando scegli il comune con la posizione, le coordinate vengono inviate a Photon (vedi sopra), arrotondate a
+              circa 100 metri, solo per ricavare il nome del comune.
+            </li>
             <li>Se scegli di salvarle come «casa», restano sul tuo dispositivo.</li>
+            <li>
+              Puoi indicare il <strong>punto di casa</strong> su una mappa: il punto resta sul tuo dispositivo e non viene
+              inviato a nessuno. Il servizio delle mappe riceve solo la zona che stai guardando, come per ogni mappa.
+            </li>
+            <li>
+              Per trovare il punto di casa puoi usare la posizione del dispositivo (in questo caso non esce dal dispositivo)
+              oppure scrivere il nome della via: quello che scrivi va a Photon, che risponde dove si trova la via. Il numero
+              civico non serve.
+            </li>
+            <li>
+              Per cercare le scosse vicino a te, all’INGV mandiamo coordinate arrotondate a circa 1 km, non il punto esatto.
+              La distanza precisa da casa tua si calcola sul tuo dispositivo.
+            </li>
             <li>Non seguiamo i tuoi spostamenti e non usiamo la posizione in sottofondo.</li>
             <li>Puoi revocare il permesso in qualsiasi momento dalle impostazioni del browser o del telefono.</li>
           </ul>

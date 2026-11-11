@@ -108,7 +108,7 @@ export function InfoPage() {
           </li>
         </ul>
         <p>
-          Le frasi come "probabilmente avvertita" sono <span className="strong">stime indicative</span> calcolate da magnitudo,
+          Le frasi come «sentita forte» sono <span className="strong">stime indicative</span> calcolate da magnitudo,
           profondità e distanza. Gli effetti reali dipendono da molti fattori (terreno, edificio, piano).
         </p>
         <p>

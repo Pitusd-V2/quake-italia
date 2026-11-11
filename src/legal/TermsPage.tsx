@@ -75,7 +75,7 @@ export function TermsPage() {
             completezza.
           </li>
           <li>
-            Le frasi come «probabilmente avvertita», i livelli («leggera», «moderata»…) e le distanze sono{' '}
+            Le frasi come «sentita forte», i livelli («leggera», «moderata»…) e le distanze sono{' '}
             <strong>stime indicative</strong> calcolate automaticamente, pensate per aiutare a capire. Non sono valutazioni
             ufficiali e gli effetti reali dipendono da molti fattori (terreno, edificio, piano).
           </li>

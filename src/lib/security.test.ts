@@ -77,7 +77,17 @@ describe('Impostazioni salvate manomesse', () => {
     // Le chiavi che non esistono più (come la vecchia "modalità esperto") vengono scartate.
     expect('expertMode' in s).toBe(false);
     expect(s.alerts).toEqual({ enabled: true, minMag: 2.5 });
-    expect(s.checklist).toEqual({ gas: true });
+    // Restano solo le spunte valide; la vecchia «gas» diventa i tre pezzi della missione (vedi prepare.ts).
+    expect(s.checklist).toEqual({ gasrubinetto: true, acquarubinetto: true, luceinterruttore: true });
+  });
+
+  it('del punto di casa tiene solo i valori previsti', () => {
+    const home = { name: 'Napoli', lat: 40.83, lon: 14.2 };
+    expect(sanitizeSettings({ home: { ...home, point: 'map' } }).home?.point).toBe('map');
+    expect(sanitizeSettings({ home: { ...home, point: 'gps' } }).home?.point).toBe('gps');
+    expect(sanitizeSettings({ home: { ...home, point: '<b>x' } }).home?.point).toBeUndefined();
+    // Un indirizzo o altri campi in più non vengono mai tenuti.
+    expect(sanitizeSettings({ home: { ...home, address: 'Via Roma 1' } }).home).toEqual(home);
   });
 
   it('ignora coordinate impossibili e dati non oggetto', () => {

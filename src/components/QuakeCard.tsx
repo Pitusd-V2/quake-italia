@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { ChevronRight, Clock, MapPin } from 'lucide-react';
-import { distanceKm, formatKm } from '../lib/geo';
-import { feltEstimate, placeText } from '../lib/describe';
+import { distanceFrom, placeText } from '../lib/describe';
 import { formatWhen, timeAgo } from '../lib/format';
+import { feltHere } from '../lib/impact';
 import type { Place, Quake } from '../lib/types';
 import { LevelLabel, MagBadge } from './MagBadge';
 
 /** Mostrata solo se la scossa può essersi sentita: per quelle lontane sarebbe solo rumore. */
 export function FeltChip({ quake, at }: { quake: Quake; at: Place }) {
-  const felt = feltEstimate(quake, at);
+  const felt = feltHere(quake, at);
   if (felt.key === 'no') return null;
   return <span className={`chip chip--felt-${felt.key}`}>{felt.label}</span>;
 }
@@ -42,9 +42,7 @@ export function QuakeCard({
         {home && (
           <span className="quake-card__meta">
             <MapPin className="inline-icon" aria-hidden="true" />
-            <span>
-              a {formatKm(distanceKm(home, quake))} da {home.name}
-            </span>
+            <span>{distanceFrom(quake, home)}</span>
           </span>
         )}
         <span className="quake-card__tags">

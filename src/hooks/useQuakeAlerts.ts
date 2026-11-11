@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { distanceKm, formatKm } from '../lib/geo';
-import { magLevel, placeText } from '../lib/describe';
+import { distanceKm } from '../lib/geo';
+import { distanceFrom, magLevel, placeText } from '../lib/describe';
 import { impactAt, impactRank } from '../lib/impact';
 import { formatMag } from '../lib/format';
 import { useSettings, type Settings } from '../state/settings';
@@ -28,7 +28,7 @@ export function isRelevant(q: Quake, s: Settings, now = Date.now()): boolean {
 export function alertText(q: Quake, s: Settings): { title: string; body: string } {
   const lvl = magLevel(q.mag, q.depthKm);
   const where = placeText(q.place).full;
-  const dist = s.home ? ` — a ${formatKm(distanceKm(s.home, q))} da ${s.home.name}` : '';
+  const dist = s.home ? ` — ${distanceFrom(q, s.home)}` : '';
   return {
     title: `Scossa ${lvl.name.toLowerCase()}, magnitudo ${formatMag(q.mag)}`,
     body: `${where}${dist}. Tocca per i dettagli.`,

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { buildQueryUrl, ITALY_BOUNDS, parseCollection, parseIngvTime } from './ingv';
-import { feltEstimate, magLevel, placeText } from './describe';
-import { distanceKm } from './geo';
+import { buildQueryUrl, ITALY_BOUNDS, onlyWithin, parseCollection, parseIngvTime } from './ingv';
+import { distanceFrom, feltEstimate, fromPlace, magLevel, placeText } from './describe';
+import { coarse, distanceKm } from './geo';
+import { groupStreets } from './geocode';
 import { formatWhen, timeAgo } from './format';
 import { bValue, completenessMaxc, frequencyMagnitude } from './stats';
 import type { Quake } from './types';
@@ -37,6 +38,74 @@ describe('INGV', () => {
     const around = new URL(buildQueryUrl({ start: new Date(0), around: { lat: 42.7, lon: 13.2, radiusKm: 100 } }));
     expect(around.searchParams.get('maxradiuskm')).toBe('100');
     expect(around.searchParams.has('minlat')).toBe(false);
+  });
+
+  it('non manda all’INGV il punto esatto di casa', () => {
+    const home = { lat: 40.83594, lon: 14.24881 };
+    const url = new URL(buildQueryUrl({ start: new Date(0), around: { ...home, radiusKm: 30, personal: true }, limit: 5 }));
+    // Coordinate arrotondate a circa 1 km, cerchio più largo di 1 km, qualche scossa in più da cui scegliere.
+    expect(url.searchParams.get('lat')).toBe('40.84');
+    expect(url.searchParams.get('lon')).toBe('14.25');
+    expect(url.searchParams.get('maxradiuskm')).toBe('31');
+    expect(url.searchParams.get('limit')).toBe('10');
+    expect(url.href).not.toContain('40.8359');
+    // L'arrotondamento non sposta mai il punto più di quanto il cerchio è stato allargato.
+    for (const p of [home, { lat: 45.005, lon: 7.005 }, { lat: 36.995, lon: 15.085 }]) expect(distanceKm(p, coarse(p, 2))).toBeLessThan(1);
+    // Una ricerca degli esperti attorno a un punto scritto a mano resta precisa.
+    const exact = new URL(buildQueryUrl({ start: new Date(0), around: { ...home, radiusKm: 30 }, limit: 5 }));
+    expect(exact.searchParams.get('lat')).toBe('40.8359');
+    expect(exact.searchParams.get('limit')).toBe('5');
+  });
+
+  it('tiene solo le scosse entro il raggio vero dal punto di casa', () => {
+    const home = { lat: 42.8, lon: 13.1 };
+    const near = quake({ id: 'a', lat: 42.9, lon: 13.1 }); // circa 11 km
+    const ring = quake({ id: 'b', lat: 43.075, lon: 13.1 }); // circa 30,6 km: dentro il cerchio allargato, fuori dal raggio
+    const q = { start: new Date(0), around: { ...home, radiusKm: 30, personal: true } };
+    expect(onlyWithin(q, [near, ring]).map((x) => x.id)).toEqual(['a']);
+    expect(onlyWithin({ ...q, limit: 1 }, [near, quake({ id: 'c' })]).map((x) => x.id)).toEqual(['a']);
+    // Senza punto personale non si tocca niente.
+    expect(onlyWithin({ start: new Date(0), around: { ...home, radiusKm: 30 } }, [near, ring])).toHaveLength(2);
+  });
+});
+
+describe('Ricerca della via per il punto di casa', () => {
+  const street = (name: string, city: string, lon: number, lat: number, extra: Record<string, unknown> = {}) => ({
+    properties: { type: 'street', name, city, countrycode: 'IT', ...extra } as Record<string, string | undefined>,
+    geometry: { coordinates: [lon, lat] as [number, number] },
+  });
+  const napoli = { name: 'Napoli', lat: 40.84, lon: 14.25 };
+
+  it('riunisce i pezzi della stessa via e mette prima quelle del comune scelto', () => {
+    const found = groupStreets(
+      [
+        street('Via Roma', 'Pozzuoli', 14.12, 40.82),
+        street('Via Alessandro Manzoni', 'Napoli', 14.1923, 40.807, { district: 'Municipalità 1', extent: [14.192, 40.808, 14.193, 40.806] }),
+        street('Via Alessandro Manzoni', 'Napoli', 14.2133, 40.8357, { district: 'Municipalità 1' }),
+        { ...street('Bar Manzoni', 'Napoli', 14.2, 40.8), properties: { type: 'house', name: 'Bar Manzoni', city: 'Napoli' } },
+        street('Via Fuori', 'Napoli', 500, 40.8),
+      ],
+      napoli,
+    );
+    expect(found.map((s) => s.name)).toEqual(['Via Alessandro Manzoni', 'Via Roma']);
+    expect(found[0].detail).toBe('Municipalità 1, Napoli');
+    // Il rettangolo contiene tutti i pezzi, anche lontani qualche km.
+    expect(found[0].bounds).toEqual({ minLat: 40.806, maxLat: 40.8357, minLon: 14.192, maxLon: 14.2133 });
+  });
+
+  it('toglie link e pezzi di HTML dai nomi che arrivano da fuori', () => {
+    const [s] = groupStreets([street('Via <b>Roma</b> http://evil.example', 'Napoli', 14.25, 40.84)], napoli);
+    expect(s.name).toBe('Via Roma');
+  });
+});
+
+describe('Da dove partono le distanze', () => {
+  it('«da casa tua» solo se il punto è stato indicato', () => {
+    const napoli = { name: 'Napoli', lat: 40.84, lon: 14.25 };
+    expect(fromPlace(napoli)).toBe('da Napoli');
+    expect(fromPlace({ ...napoli, point: 'map' })).toBe('da casa tua');
+    expect(fromPlace({ ...napoli, point: 'gps' })).toBe('da casa tua');
+    expect(distanceFrom(quake({ lat: 40.84, lon: 14.14 }), { ...napoli, point: 'map' })).toBe('a 9 km da casa tua');
   });
 });
 

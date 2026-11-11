@@ -13,7 +13,7 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import { MAG_LEVELS, magLevel, placeText } from '../lib/describe';
 import { formatMag, formatWhen } from '../lib/format';
 import { ITALY_BOUNDS } from '../lib/ingv';
-import type { LatLon, Place, Quake } from '../lib/types';
+import type { Bounds, LatLon, Place, Quake } from '../lib/types';
 import { useResolvedTheme } from '../state/settings';
 
 setWorkerUrl(workerUrl);
@@ -113,6 +113,126 @@ function popupContent(q: Quake, go: (path: string) => void): HTMLElement {
   });
   root.append(title, place, when, link);
   return root;
+}
+
+/* ---------- Il punto di casa ---------- */
+
+export interface HomePointMapProps {
+  /** Dove sta la casetta all'apertura. */
+  start: LatLon;
+  name: string;
+  /** Il punto è già stato indicato (a mano o con il GPS): si parte più da vicino. */
+  close: boolean;
+  onMove: (at: LatLon) => void;
+  /** Un posto trovato in un altro modo (posizione del dispositivo, ricerca della via): la casetta va lì. */
+  target?: HomePointTarget | null;
+}
+
+export interface HomePointTarget {
+  at: LatLon;
+  /** Se c'è, la mappa inquadra tutta quest'area (per esempio una via intera). */
+  bounds?: Bounds;
+  /** Cambia a ogni richiesta, anche se il posto è lo stesso. */
+  n: number;
+}
+
+/**
+ * Mappa piccola per indicare il punto di casa: un tocco sulla mappa sposta lì la casetta, che si può anche trascinare.
+ * Da qui non esce nessun dato: il punto resta nella pagina finché non viene salvato nelle impostazioni del dispositivo.
+ * Sta in questo file per restare nello stesso pezzo di codice della mappa dei terremoti (scaricato solo quando serve).
+ */
+export function HomePointMap({ start, name, close, onMove, target }: HomePointMapProps) {
+  const theme = useResolvedTheme();
+  const container = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<MlMap | null>(null);
+  const markerRef = useRef<Marker | null>(null);
+  const latest = useRef({ onMove, theme });
+  latest.current = { onMove, theme };
+
+  const report = () => {
+    const at = markerRef.current?.getLngLat();
+    if (at) latest.current.onMove({ lat: at.lat, lon: at.lng });
+  };
+
+  useEffect(() => {
+    if (!container.current) return;
+    const map = new MlMap({
+      container: container.current,
+      style: STYLE[latest.current.theme],
+      center: [start.lon, start.lat],
+      zoom: close ? 15 : 12,
+      minZoom: 5,
+      maxZoom: 17,
+      maxBounds: [
+        [ITALY_BOUNDS.minLon - 1, ITALY_BOUNDS.minLat - 1],
+        [ITALY_BOUNDS.maxLon + 1, ITALY_BOUNDS.maxLat + 1],
+      ],
+      attributionControl: { compact: true },
+      // Un dito scorre la pagina, due muovono la mappa: come nelle altre mappe dentro una pagina.
+      cooperativeGestures: true,
+      locale: { ...LOCALE, 'Map.Title': 'Mappa per indicare il punto di casa' },
+      dragRotate: false,
+      pitchWithRotate: false,
+    });
+    map.touchZoomRotate.disableRotation();
+    // Un tocco vuol dire «la casa è qui»: il doppio tocco per ingrandire farebbe saltare la casetta.
+    map.doubleClickZoom.disable();
+    map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
+
+    const el = homeMarkerEl(name);
+    el.classList.add('home-marker--drag');
+    const marker = new Marker({ element: el, draggable: true }).setLngLat([start.lon, start.lat]).addTo(map);
+    mapRef.current = map;
+    markerRef.current = marker;
+    marker.on('dragend', report);
+    map.on('click', (e) => {
+      // Un tocco sulla casetta non la sposta.
+      if (el.contains(e.originalEvent.target as Node)) return;
+      marker.setLngLat(e.lngLat);
+      report();
+    });
+
+    return () => {
+      marker.remove();
+      map.remove();
+      mapRef.current = null;
+      markerRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    mapRef.current?.setStyle(STYLE[theme]);
+  }, [theme]);
+
+  // Posizione del dispositivo o via cercata: la casetta va lì e la mappa la inquadra.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !markerRef.current || !target) return;
+    markerRef.current.setLngLat([target.at.lon, target.at.lat]);
+    const b = target.bounds;
+    if (b) map.fitBounds([[b.minLon, b.minLat], [b.maxLon, b.maxLat]], { padding: 48, maxZoom: 16, duration: 0 });
+    else map.jumpTo({ center: [target.at.lon, target.at.lat], zoom: 16 });
+    report();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target?.n]);
+
+  // Per chi usa la tastiera (le frecce muovono la mappa) e per chi preferisce spostare la mappa invece della casetta.
+  const toCenter = () => {
+    const map = mapRef.current;
+    if (!map || !markerRef.current) return;
+    markerRef.current.setLngLat(map.getCenter());
+    report();
+  };
+
+  return (
+    <div className="stack-sm">
+      <div ref={container} className="quake-map quake-map--point" role="region" aria-label="Mappa per indicare il punto di casa" />
+      <button type="button" className="btn btn--ghost" onClick={toCenter}>
+        Metti la casetta al centro della mappa
+      </button>
+    </div>
+  );
 }
 
 function homeMarkerEl(name: string): HTMLElement {

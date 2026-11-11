@@ -10,7 +10,7 @@ import { useSettings } from '../state/settings';
 import { useQuakeFeed } from '../state/quakes';
 import { useNow } from '../hooks/useNow';
 import { distanceKm, formatKm } from '../lib/geo';
-import { placeText } from '../lib/describe';
+import { fromPlace, placeText } from '../lib/describe';
 import { formatInt, formatMag, formatWhen, hoursAgo, timeAgo } from '../lib/format';
 import { homeImpact, impactAt, impactRank, isNightInItaly, shows112, type Impact } from '../lib/impact';
 import { sequenceTrend, TREND_SHORT } from '../lib/trend';
@@ -82,7 +82,7 @@ function homeStatus(last24: Quake[], home: Place, radiusKm: number, now: Date): 
 
   const q = hi.quake;
   const town = placeText(q.place).main;
-  const where = `a ${formatKm(distanceKm(home, q))} da ${home.name}${town === home.name ? '' : ` (${town})`}`;
+  const where = `a ${formatKm(distanceKm(home, q))} ${fromPlace(home)}${town === home.name ? '' : ` (${town})`}`;
   const feltCount = last24.filter((x) => impactAt(x, home) !== 'none').length;
   const base = {
     tone: IMPACT_TONE[hi.impact],
