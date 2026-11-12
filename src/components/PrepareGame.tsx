@@ -18,7 +18,7 @@ const BADGE_ICONS: Record<number, LucideIcon> = { 1: Compass, 2: Wrench, 3: User
 const SOURCE_URL = 'https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/';
 
 /** «Prepara la tua casa» come un gioco a livelli: missioni concrete e distintivi. */
-export function PrepareGame({ homeName }: { homeName?: string }) {
+export function PrepareGame({ homeName, heading = 'Prepara la tua casa', intro = true }: { homeName?: string; heading?: string; intro?: boolean }) {
   const { settings, update } = useSettings();
   const list = settings.checklist;
   const prog = progress(list);
@@ -40,9 +40,9 @@ export function PrepareGame({ homeName }: { homeName?: string }) {
   return (
     <section className="card stack prep" aria-labelledby="check-title">
       <h2 id="check-title" className="icon-title">
-        <ClipboardCheck aria-hidden="true" /> Prepara la tua casa
+        <ClipboardCheck aria-hidden="true" /> {heading}
       </h2>
-      <p>Missioni concrete, divise in quattro livelli. Si fanno un pezzo alla volta, con calma: ogni livello finito vale un distintivo.</p>
+      {intro && <p>Missioni concrete, divise in quattro livelli. Si fanno un pezzo alla volta, con calma: ogni livello finito vale un distintivo.</p>}
 
       <div className="prep-summary">
         <ul className="prep-badges" aria-label={`Distintivi conquistati: ${earned.length} su ${LEVELS.length}`}>

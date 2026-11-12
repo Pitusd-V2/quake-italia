@@ -12,6 +12,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { InfoPage } from './pages/InfoPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { MyTownPage } from './pages/MyTownPage';
+import { PreparePage } from './pages/PreparePage';
 import { SequencePage } from './pages/SequencePage';
 import { PrivacyPage } from './legal/PrivacyPage';
 import { TermsPage } from './legal/TermsPage';
@@ -38,6 +39,7 @@ export function App() {
         <Route path="capire/:slug" element={<ArticlePage />} />
         <Route path="come-scriviamo" element={<EditorialPage />} />
         <Route path="il-mio-comune" element={<MyTownPage />} />
+        <Route path="prepara-la-casa" element={<PreparePage />} />
         <Route path="sequenza/:id" element={<SequencePage />} />
         <Route path="impostazioni" element={<SettingsPage />} />
         <Route path="informazioni" element={<InfoPage />} />

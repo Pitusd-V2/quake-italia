@@ -26,7 +26,7 @@ const HOME_ITEM: NavItem = { to: '/', label: 'Vicino a te', icon: House, end: tr
 const QUAKES_ITEM: NavItem = { to: '/terremoti', label: 'Terremoti', icon: Activity };
 const TOWN_ITEM: NavItem = { to: '/il-mio-comune', label: 'Il mio comune', icon: Landmark };
 // «La casa ha dei danni» si cerca dopo una scossa forte: sta con «Cosa fare».
-const SAFETY_ITEM: NavItem = { to: '/cosa-fare', label: 'Cosa fare', icon: LifeBuoy, section: ['/cosa-fare', '/danni-casa'] };
+const SAFETY_ITEM: NavItem = { to: '/cosa-fare', label: 'Cosa fare', icon: LifeBuoy, section: ['/cosa-fare', '/danni-casa', '/prepara-la-casa'] };
 // «Capire» è la parte culturale del progetto: ha una voce sua. Dentro ci sono anche «È vero?» e (sul telefono) «Analisi».
 const learnItem = (section: string[]): NavItem => ({ to: '/capire', label: 'Capire', icon: BookOpen, section });
 

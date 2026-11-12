@@ -16,6 +16,8 @@ import { MagBadge, LevelLabel } from '../components/MagBadge';
 import { QuakeList } from '../components/QuakeCard';
 import { ShareButton, SpeakButton } from '../components/Actions';
 import { ErrorBox, ExternalLink, LoadingCards, Notice } from '../components/ui';
+import { ArticleQuestions } from '../learn/ArticleQuestions';
+import { contextOf, slugsForQuake } from '../learn/suggest';
 
 const QuakeMap = lazy(() => import('../components/QuakeMap'));
 
@@ -60,6 +62,9 @@ export function QuakeDetailPage() {
   const note = depthNote(quake.depthKm);
   const hsit = hsitHint(quake);
   const felt = home ? feltHere(quake, home) : null;
+  // Le domande che è naturale farsi davanti a questa scossa, con l'articolo che risponde (vedi learn/suggest.ts).
+  const followed = nearby.filter((q) => q.time > quake.time).length;
+  const ask = slugsForQuake(contextOf(quake, now, { sequence: quake.mag >= SEQUENCE_MIN_MAG || followed >= 3, feltAtHome: felt?.key }));
   const pageUrl = `${window.location.origin}/terremoto/${quake.id}`;
 
   return (
@@ -86,9 +91,6 @@ export function QuakeDetailPage() {
           <SpeakButton text={speechText(quake, now, home)} />
           <ShareButton title="Terremoto" text={shareText(quake, now)} url={pageUrl} />
         </div>
-        <p className="small">
-          <Link to="/capire/magnitudo-e-intensita">Cos’è la magnitudo, e perché è diversa dall’intensità?</Link>
-        </p>
       </section>
 
       {quake.mag >= SEQUENCE_MIN_MAG && (
@@ -150,6 +152,8 @@ export function QuakeDetailPage() {
       </section>
 
       {home && <FeltLikeCard quake={quake} place={home} />}
+
+      <ArticleQuestions slugs={ask} title="Per capire questa scossa" />
 
       <Suspense fallback={<div className="quake-map quake-map--loading">Sto caricando la mappa…</div>}>
         <QuakeMap

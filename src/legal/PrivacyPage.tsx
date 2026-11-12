@@ -83,7 +83,8 @@ export function PrivacyPage() {
               raggio «vicino a me»;
             </li>
             <li>le preferenze di aspetto (testo, colori, contrasto) e degli avvisi;</li>
-            <li>le voci della checklist «Prepara la tua casa» che hai spuntato.</li>
+            <li>le voci della checklist «Prepara la tua casa» che hai spuntato;</li>
+            <li>gli articoli di «Capire» che hai letto, per mostrarti da dove continuare.</li>
           </ul>
           <p>
             Inoltre il browser conserva una copia dei file del sito e degli ultimi dati sui terremoti e delle mappe

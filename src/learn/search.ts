@@ -14,7 +14,7 @@ import type { ArticleCard, ArticleText, GlossaryEntry } from './articleTypes';
 import { buildIndex, search, type SearchEntry, type SearchResult } from './searchEngine';
 import { PAGES } from '../seo/pages';
 import { RUMORS } from '../pages/RumorsPage';
-import { SECTIONS as SAFETY } from '../pages/SafetyPage';
+import { SECTIONS as SAFETY, sectionText } from '../pages/SafetyPage';
 import { SECTIONS as DAMAGE } from '../pages/DamagePage';
 import { LEVELS } from '../lib/prepare';
 
@@ -39,6 +39,7 @@ function articleEntry(card: ArticleCard): SearchEntry<Found> {
     fields: [
       { text: card.titolo, weight: W.title },
       { text: card.paroleChiave.join(' · '), weight: W.keywords },
+      { text: card.domanda, weight: W.keywords },
       { text: card.sottotitolo, weight: W.subtitle },
       { text: terms.join(' · '), weight: W.headings },
       { text: (text?.sezioni ?? []).map((s) => s.titolo ?? '').join(' · '), weight: W.headings },
@@ -71,10 +72,10 @@ const entries: SearchEntry<Found>[] = [
     ],
   })),
   ...RUMORS.map((r) => page(`/e-vero#rumor-${r.id}`, r.says, 'È vero?', r.answer.join('\n'))),
-  ...SAFETY.map((s) => page(`/cosa-fare#sec-${s.id}`, s.title, 'Cosa fare', groupsText(s.groups))),
+  ...SAFETY.map((s) => page(`/cosa-fare#sec-${s.id}`, s.title, 'Cosa fare', sectionText(s))),
   ...DAMAGE.map((s) => page(`/danni-casa#sec-${s.id}`, s.title, 'La casa ha dei danni', groupsText(s.groups))),
   ...LEVELS.flatMap((l) =>
-    l.missions.map((m) => page('/il-mio-comune', m.title, 'Prepara la tua casa', [m.how, ...(m.parts ?? []).map((p) => p.label)].join('\n'))),
+    l.missions.map((m) => page('/prepara-la-casa', m.title, 'Prepara la tua casa', [m.how, ...(m.parts ?? []).map((p) => p.label)].join('\n'))),
   ),
   // Le altre pagine del sito, con la loro descrizione (le stesse che vede Google).
   ...PAGES.filter((p) => p.path !== '/' && !p.path.startsWith('/capire')).map((p) =>

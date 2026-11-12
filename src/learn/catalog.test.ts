@@ -94,6 +94,7 @@ describe('Controlli sugli articoli (fermano il build)', () => {
   };
   const good = `titolo: Prova
 sottotitolo: Un articolo di prova per i test.
+domanda: A cosa serve un articolo di prova?
 percorso: le-basi
 ordine: 1
 minuti: 3

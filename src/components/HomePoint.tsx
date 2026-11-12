@@ -1,11 +1,12 @@
 import { lazy, Suspense, useId, useRef, useState, type FormEvent } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { LocateFixed, MapPin, MapPinned, Search } from 'lucide-react';
 import { useSettings } from '../state/settings';
 import { coarse, distanceKm, formatKm } from '../lib/geo';
 import { searchStreets, type StreetMatch } from '../lib/geocode';
 import { ITALY_BOUNDS } from '../lib/ingv';
 import { getPosition } from '../lib/position';
+import { volcanoNear } from '../lib/volcanoAreas';
 import type { Bounds, LatLon } from '../lib/types';
 import type { HomePointTarget } from './QuakeMap';
 import { Notice } from './ui';
@@ -36,7 +37,9 @@ export function HomePoint({ as: Heading = 'h3' }: { as?: 'h2' | 'h3' }) {
   const { settings, update } = useSettings();
   const home = settings.home;
   const id = useId();
-  const [editing, setEditing] = useState(false);
+  // Chi arriva dall'invito «Indica il punto di casa» (/impostazioni#punto-casa) trova la mappa già aperta.
+  const { hash } = useLocation();
+  const [editing, setEditing] = useState(() => hash === '#punto-casa');
   const [draft, setDraft] = useState<LatLon | null>(null);
   const [saved, setSaved] = useState(false);
   const [target, setTarget] = useState<HomePointTarget | null>(null);
@@ -51,6 +54,8 @@ export function HomePoint({ as: Heading = 'h3' }: { as?: 'h2' | 'h3' }) {
   if (!home) return null;
 
   const moved = draft ? distanceKm(home, draft) : 0;
+  // Vicino a un vulcano le scosse sono molto superficiali: lì il punto preciso conta davvero, e lo diciamo.
+  const volcano = home.point ? null : volcanoNear(home);
   const goTo = (at: LatLon, bounds?: Bounds) => {
     setTarget({ at, bounds, n: ++count.current });
     // Sul telefono la mappa è più in basso: la portiamo sotto gli occhi, così si vede dove è finita la casetta.
@@ -123,7 +128,7 @@ export function HomePoint({ as: Heading = 'h3' }: { as?: 'h2' | 'h3' }) {
   };
 
   return (
-    <div className="stack home-point">
+    <div className="stack home-point" id="punto-casa" tabIndex={-1}>
       <Heading className="icon-title">
         <MapPinned aria-hidden="true" /> Il punto di casa
       </Heading>
@@ -138,6 +143,13 @@ export function HomePoint({ as: Heading = 'h3' }: { as?: 'h2' | 'h3' }) {
             <p>
               Le distanze dalle scosse partono dalla <span className="strong">posizione trovata dal tuo dispositivo</span>{' '}
               quando hai scelto il comune. Se in quel momento non eri a casa, sposta il punto.
+            </p>
+          ) : volcano ? (
+            <p>
+              <span className="strong">Qui pochi chilometri contano.</span> Abiti {volcano.near}, dove le scosse sono molto
+              superficiali: la stessa scossa si sente in modo molto diverso da un quartiere all’altro. Adesso le distanze
+              partono dal <span className="strong">centro di {home.name}</span>: se indichi dove abiti, la stima di quanto
+              una scossa si è sentita da te diventa più precisa.
             </p>
           ) : (
             <p>
@@ -154,7 +166,7 @@ export function HomePoint({ as: Heading = 'h3' }: { as?: 'h2' | 'h3' }) {
           <div className="row">
             <button
               type="button"
-              className="btn btn--secondary"
+              className={`btn ${volcano ? 'btn--primary' : 'btn--secondary'}`}
               onClick={() => {
                 setSaved(false);
                 setEditing(true);

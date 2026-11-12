@@ -15,6 +15,8 @@ export interface ArticleData {
   slug: string;
   titolo: string;
   sottotitolo: string;
+  /** La domanda che le persone si fanno davvero e a cui l'articolo risponde: è il suo «ingresso» negli elenchi. */
+  domanda: string;
   percorso: string;
   ordine: number;
   minuti: number;
@@ -34,8 +36,19 @@ export interface ArticleData {
 /** Quello che sta nel pacchetto principale dell'app: solo il necessario per elenchi, ricerca e Google. */
 export type ArticleCard = Pick<
   ArticleData,
-  'slug' | 'titolo' | 'sottotitolo' | 'percorso' | 'ordine' | 'minuti' | 'verificato' | 'revisione' | 'correlati' | 'paroleChiave'
->;
+  'slug' | 'titolo' | 'sottotitolo' | 'domanda' | 'percorso' | 'ordine' | 'minuti' | 'verificato' | 'revisione' | 'correlati' | 'paroleChiave'
+> & {
+  /** Le parti degli articoli «a strati», con i minuti di lettura di ognuna (calcolati al build). Vuoto per gli altri. */
+  parti: Parte[];
+};
+
+export interface Parte {
+  n: number;
+  /** «La storia», «Cosa dicono i dati», «Per chi vuole andare a fondo». */
+  kicker: string;
+  titolo: string;
+  minuti: number;
+}
 
 /** Un pezzo del testo di un articolo, per la ricerca: il titolo del paragrafo e le sue frasi. */
 export interface Sezione {

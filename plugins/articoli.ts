@@ -16,8 +16,8 @@ import type { Plugin } from 'vite';
 import { isAllowedLink } from '../src/lib/sanitize.ts';
 import { PERCORSI } from '../src/learn/percorsi.ts';
 import { fold, termKey } from '../src/learn/searchEngine.ts';
-import { articleSections } from './testo-articolo.ts';
-import type { ArticleCard, ArticleData, ArticleText, Fonte, GlossaryEntry } from '../src/learn/articleTypes.ts';
+import { articleParts, articleSections } from './testo-articolo.ts';
+import type { ArticleCard, ArticleData, ArticleText, Fonte, GlossaryEntry, Parte } from '../src/learn/articleTypes.ts';
 
 export const ARTICLES_DIR = path.resolve(import.meta.dirname, '..', 'contenuti', 'articoli');
 
@@ -67,6 +67,8 @@ export function check(slug: string, d: Record<string, unknown>, today: string): 
   if (slug === 'glossario') errors.push('«glossario» è l’indirizzo del glossario generale: scegli un altro nome per il file');
   const titolo = str('titolo', 90);
   const sottotitolo = str('sottotitolo', 200);
+  const domanda = str('domanda', 120);
+  if (domanda && !domanda.endsWith('?')) errors.push('«domanda» deve essere una domanda, con il punto interrogativo alla fine');
   const percorso = str('percorso', 40);
   if (percorso && !PERCORSI.some((p) => p.id === percorso)) errors.push(`percorso «${percorso}» sconosciuto (vedi src/learn/percorsi.ts)`);
   const ordine = int('ordine', 1, 999);
@@ -115,6 +117,7 @@ export function check(slug: string, d: Record<string, unknown>, today: string): 
     slug,
     titolo,
     sottotitolo,
+    domanda,
     percorso,
     ordine,
     minuti,
@@ -162,17 +165,19 @@ export function readArticles(dir = ARTICLES_DIR, today = new Date().toISOString(
   return { articles, warnings };
 }
 
-export const toCard = ({ slug, titolo, sottotitolo, percorso, ordine, minuti, verificato, revisione, correlati, paroleChiave }: ArticleData): ArticleCard => ({
-  slug,
-  titolo,
-  sottotitolo,
-  percorso,
-  ordine,
-  minuti,
-  verificato,
-  revisione,
-  correlati,
-  paroleChiave,
+export const toCard = (a: ArticleData, parti: Parte[] = []): ArticleCard => ({
+  slug: a.slug,
+  titolo: a.titolo,
+  sottotitolo: a.sottotitolo,
+  domanda: a.domanda,
+  percorso: a.percorso,
+  ordine: a.ordine,
+  minuti: a.minuti,
+  verificato: a.verificato,
+  revisione: a.revisione,
+  correlati: a.correlati,
+  paroleChiave: a.paroleChiave,
+  parti,
 });
 
 /**
@@ -209,9 +214,20 @@ export function buildTexts(articles: ArticleData[], dir = ARTICLES_DIR): Article
   }));
 }
 
+/**
+ * I minuti di lettura di ogni parte di un articolo «a strati»: i minuti dichiarati in cima al file, divisi in
+ * proporzione alle parole di ogni parte. Sono arrotondati: la somma può scostarsi di un minuto dal totale.
+ */
+export function readingParts(a: ArticleData, dir = ARTICLES_DIR): Parte[] {
+  const parts = articleParts(fs.readFileSync(path.join(dir, `${a.slug}.mdx`), 'utf8'));
+  const total = parts.reduce((sum, p) => sum + p.parole, 0);
+  if (!total) return [];
+  return parts.map(({ n, kicker, titolo, parole }) => ({ n, kicker, titolo, minuti: Math.max(1, Math.round((a.minuti * parole) / total)) }));
+}
+
 /** I moduli creati dagli articoli: catalogo leggero, glossario, testo per la ricerca. */
 const MODULES: Record<string, (articles: ArticleData[]) => unknown> = {
-  'virtual:articoli': (articles) => articles.map(toCard),
+  'virtual:articoli': (articles) => articles.map((a) => toCard(a, readingParts(a))),
   'virtual:glossario': buildGlossary,
   'virtual:ricerca': (articles) => buildTexts(articles),
 };

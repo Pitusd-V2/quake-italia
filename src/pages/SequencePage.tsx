@@ -13,6 +13,8 @@ import type { Quake } from '../lib/types';
 import { MagBadge } from '../components/MagBadge';
 import { QuakeCard } from '../components/QuakeCard';
 import { SpeakButton } from '../components/Actions';
+import { ArticleQuestions } from '../learn/ArticleQuestions';
+import { contextOf, slugsForQuake } from '../learn/suggest';
 import { ErrorBox, ExternalLink, LoadingCards, Notice } from '../components/ui';
 
 /** Da questa magnitudo in su ha senso parlare di "sequenza" e mostrare la pagina. */
@@ -211,6 +213,8 @@ export function SequencePage() {
         </div>
       </section>
 
+      <ArticleQuestions title="Per capire cosa sta succedendo" slugs={slugsForQuake(contextOf(main, now, { sequence: true }))} />
+
       <section className="card stack" aria-labelledby="seq-help">
         <h2 id="seq-help" className="icon-title">
           <LifeBuoy aria-hidden="true" /> Dopo una scossa
@@ -219,7 +223,7 @@ export function SequencePage() {
           In caso di emergenza chiama il <a href="tel:112">112</a>.
         </p>
         <div className="row">
-          <Link to="/cosa-fare" className="btn btn--secondary">
+          <Link to="/cosa-fare#sec-dopo" className="btn btn--secondary">
             Cosa fare dopo una scossa
           </Link>
           <Link to="/danni-casa" className="btn btn--secondary">

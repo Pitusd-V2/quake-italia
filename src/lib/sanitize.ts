@@ -105,6 +105,10 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'demo.istat.it',
   'amq.aiqua.it',
   'e.hsit.it',
+  // Fonti di «Cosa fare»: Protezione Civile (pagina sul rischio sismico), Vigili del Fuoco (Ministero dell'Interno), 112
+  'rischi.protezionecivile.it',
+  'www.interno.gov.it',
+  'www.areu.lombardia.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

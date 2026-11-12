@@ -1,11 +1,13 @@
 import { Component, Suspense, use, useEffect, useMemo, useRef, useState, type ComponentPropsWithoutRef, type ReactNode, type RefObject } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router';
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router';
 import {
   ArrowLeft,
   ArrowRight,
   BookA,
   BookOpen,
+  ChevronDown,
   ChevronRight,
+  CircleCheck,
   Clock,
   FileText,
   FlaskConical,
@@ -28,6 +30,8 @@ import type { ArticleCard } from './articleTypes';
 import { PERCORSI } from './percorsi';
 import { Part } from './LearnPart';
 import { GlossarioContext, Termine } from './Termine';
+import { duration, readingTime, setRead, useReadArticles } from './readState';
+import type { Percorso } from './percorsi';
 import { fold, type SearchHit, type SearchResult } from './searchEngine';
 import type { Found } from './search';
 
@@ -52,19 +56,94 @@ function LinkCard({ to, title, text, icon: Icon }: { to: string; title: string; 
   );
 }
 
+/** Un articolo in un elenco: il titolo, la domanda a cui risponde, il tempo di lettura e il segno «letto». */
 function ArticleLink({ a }: { a: ArticleCard }) {
+  const read = useReadArticles().has(a.slug);
   return (
     <li>
       <Link to={`/capire/${a.slug}`} className="learn-card">
         <span className="learn-card__body">
           <span className="learn-card__title">{a.titolo}</span>
-          <span className="muted">{a.sottotitolo}</span>
-          <span className="small muted">
-            <Clock className="inline-icon" aria-hidden="true" /> {a.minuti} minuti di lettura
+          <span className="muted">{a.domanda}</span>
+          <span className="small muted learn-card__meta">
+            <span>
+              <Clock className="inline-icon" aria-hidden="true" /> {readingTime(a)}
+            </span>
+            {read && (
+              <span className="learn-card__read">
+                <CircleCheck className="inline-icon" aria-hidden="true" /> Letto
+              </span>
+            )}
           </span>
         </span>
       </Link>
     </li>
+  );
+}
+
+/**
+ * L'articolo da cui cominciare o continuare, in cima alla pagina «Capire»: chi non ha ancora letto niente parte dal
+ * primo; chi ha letto qualcosa continua nel percorso dell'ultimo articolo letto.
+ */
+function NextArticle({ read }: { read: ReadonlySet<string> }) {
+  const unread = CATALOG.filter((a) => !read.has(a.slug));
+  if (!unread.length) {
+    return (
+      <p className="strong percorso__done">
+        <CircleCheck className="inline-icon" aria-hidden="true" /> Hai letto tutti gli articoli. Ne arriveranno altri.
+      </p>
+    );
+  }
+  // L'elenco dei letti è in ordine di lettura: l'ultimo è il più recente.
+  const last = [...read].reverse().map((slug) => findCard(slug)).find((c) => !!c);
+  const next = (last && unread.find((a) => a.percorso === last.percorso)) ?? unread[0];
+  return (
+    <Link to={`/capire/${next.slug}`} className="percorso__next">
+      <span>
+        <span className="small muted">{last ? 'Continua da qui' : 'Comincia da qui'}</span>
+        <span className="strong">{next.domanda}</span>
+        <span className="small muted">
+          {next.titolo} · {readingTime(next)}
+        </span>
+      </span>
+      <ChevronRight aria-hidden="true" />
+    </Link>
+  );
+}
+
+/**
+ * Un percorso nella pagina «Capire»: una riga con il titolo, quanti articoli ha e quanti ne hai letti. Un tocco la
+ * apre e mostra gli articoli in ordine. Così la pagina resta corta anche quando gli articoli saranno tanti.
+ */
+function PercorsoCard({ p, open, onToggle, read }: { p: Percorso; open: boolean; onToggle: () => void; read: ReadonlySet<string> }) {
+  const articles = inPercorso(p.id);
+  const done = articles.filter((a) => read.has(a.slug)).length;
+  const minutes = articles.reduce((sum, a) => sum + a.minuti, 0);
+  const panelId = `percorso-${p.id}-articoli`;
+  return (
+    <section id={`percorso-${p.id}`} tabIndex={-1} className="percorso">
+      <h3 className="percorso__head">
+        <button type="button" className="percorso__toggle" aria-expanded={open} aria-controls={panelId} onClick={onToggle}>
+          <span>
+            <span className="percorso__title">{p.titolo}</span>
+            <span className="small muted">
+              {articles.length === 1 ? '1 articolo' : `${articles.length} articoli`} · {duration(minutes)}
+              {done > 0 && (done === articles.length ? ' · letti tutti' : ` · letti ${done} su ${articles.length}`)}
+            </span>
+          </span>
+          <ChevronDown className="percorso__icon" aria-hidden="true" />
+        </button>
+      </h3>
+      <div id={panelId} className="stack percorso__panel" hidden={!open}>
+        <p className="muted">{p.descrizione}</p>
+        {done > 0 && <progress className="percorso__bar" max={articles.length} value={done} aria-label={`Letti ${done} articoli su ${articles.length}`} />}
+        <ol className="learn-list">
+          {articles.map((a) => (
+            <ArticleLink key={a.slug} a={a} />
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 
@@ -105,7 +184,7 @@ function ResultItem({ hit }: { hit: SearchHit<Found> }) {
             <span className="learn-card__title">{item.card.titolo}</span>
             {hit.snippet ? <Snippet hit={hit} /> : <span className="muted">{item.card.sottotitolo}</span>}
             <span className="small muted">
-              <Clock className="inline-icon" aria-hidden="true" /> {item.card.minuti} minuti di lettura
+              <Clock className="inline-icon" aria-hidden="true" /> {readingTime(item.card)}
             </span>
           </span>
         </Link>
@@ -164,6 +243,14 @@ export function LearnIndexPage() {
   const searching = fold(q).length > 1;
   const results = useMemo(() => (searching ? (engine ? engine.searchSite(q) : basicSearch(q)) : null), [q, engine, searching]);
   const found = results?.hits.length ?? 0;
+  // Il percorso aperto sta nell'indirizzo (/capire#percorso-le-basi): tornando indietro da un articolo lo si ritrova
+  // aperto e in vista (ci pensa Layout, che porta la pagina al punto indicato dopo il #).
+  const location = useLocation();
+  const navigate = useNavigate();
+  const openId = location.hash.startsWith('#percorso-') ? location.hash.slice('#percorso-'.length) : null;
+  const toggle = (id: string) => navigate({ search: location.search, hash: openId === id ? '' : `#percorso-${id}` }, { replace: true });
+  const read = useReadArticles();
+  const readCount = CATALOG.filter((a) => read.has(a.slug)).length;
   return (
     <div className="container stack-lg">
       <PageHeader
@@ -222,33 +309,38 @@ export function LearnIndexPage() {
         </section>
       ) : (
         <>
-          <ul className="link-list">
-            <LinkCard
-              to="/e-vero"
-              title="È vero? Le voci sui terremoti"
-              text="Previsioni, «tempo da terremoto», magnitudo «abbassata»: le voci più comuni, con la risposta degli scienziati."
-              icon={MessageCircleQuestion}
-            />
-            <LinkCard
-              to="/capire/glossario"
-              title="Le parole della scienza"
-              text="Il glossario: ipocentro, faglia, replica… tutte le parole spiegate negli articoli, dalla A alla Z."
-              icon={BookA}
-            />
-          </ul>
-          {PERCORSI.filter((p) => inPercorso(p.id).length > 0).map((p) => (
-            <section key={p.id} className="stack learn-percorso" aria-labelledby={`percorso-${p.id}`}>
-              <div className="stack-sm">
-                <h2 id={`percorso-${p.id}`}>{p.titolo}</h2>
-                <p className="muted">{p.descrizione}</p>
-              </div>
-              <ul className="learn-list">
-                {inPercorso(p.id).map((a) => (
-                  <ArticleLink key={a.slug} a={a} />
-                ))}
-              </ul>
-            </section>
-          ))}
+          <NextArticle read={read} />
+          <section className="stack" aria-labelledby="percorsi-titolo">
+            <div className="stack-sm">
+              <h2 id="percorsi-titolo">I percorsi</h2>
+              <p className="muted">
+                Articoli sullo stesso tema, dal più semplice al più specifico. Tocca un percorso per vederli.
+                {readCount > 0 && ` Su questo dispositivo ne hai letti ${readCount} su ${CATALOG.length}.`}
+              </p>
+            </div>
+            <div className="percorsi">
+              {PERCORSI.filter((p) => inPercorso(p.id).length > 0).map((p) => (
+                <PercorsoCard key={p.id} p={p} open={openId === p.id} onToggle={() => toggle(p.id)} read={read} />
+              ))}
+            </div>
+          </section>
+          <section className="stack" aria-labelledby="learn-more">
+            <h2 id="learn-more">Altro da leggere</h2>
+            <ul className="link-list">
+              <LinkCard
+                to="/e-vero"
+                title="È vero? Le voci sui terremoti"
+                text="Previsioni, «tempo da terremoto», magnitudo «abbassata»: le voci più comuni, con la risposta degli scienziati."
+                icon={MessageCircleQuestion}
+              />
+              <LinkCard
+                to="/capire/glossario"
+                title="Le parole della scienza"
+                text="Il glossario: ipocentro, faglia, replica… tutte le parole spiegate negli articoli, dalla A alla Z."
+                icon={BookA}
+              />
+            </ul>
+          </section>
         </>
       )}
 
@@ -300,6 +392,51 @@ function ReadAloud({ target }: { target: RefObject<HTMLElement | null> }) {
   );
 }
 
+/**
+ * Alla fine del testo: quando chi legge arriva qui e ci resta un momento, l'articolo viene segnato come letto
+ * (solo sul dispositivo). Si può togliere il segno; in quel caso, per questa visita, non lo rimettiamo da soli.
+ */
+function ReadMark({ slug }: { slug: string }) {
+  const read = useReadArticles().has(slug);
+  const [undone, setUndone] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    if (read || undone || !ref.current || typeof IntersectionObserver === 'undefined') return;
+    let timer = 0;
+    const io = new IntersectionObserver(([entry]) => {
+      window.clearTimeout(timer);
+      if (entry.isIntersecting) timer = window.setTimeout(() => setRead(slug, true), 1500);
+    });
+    io.observe(ref.current);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [slug, read, undone]);
+  return (
+    <p ref={ref} className="learn-read small" aria-live="polite">
+      {read ? (
+        <>
+          <CircleCheck className="inline-icon" aria-hidden="true" /> <span className="strong">Articolo letto.</span> Lo ricordiamo solo su
+          questo dispositivo.{' '}
+          <button
+            type="button"
+            className="link-btn"
+            onClick={() => {
+              setUndone(true);
+              setRead(slug, false);
+            }}
+          >
+            Segna come da leggere
+          </button>
+        </>
+      ) : (
+        <span className="muted">Fine del testo. Qui sotto trovi le parole della scienza e le fonti.</span>
+      )}
+    </p>
+  );
+}
+
 /** Come vengono disegnati gli elementi del testo Markdown. */
 const MDX_COMPONENTS = {
   a: ({ href = '', children }: ComponentPropsWithoutRef<'a'>) =>
@@ -345,11 +482,38 @@ function ArticleBody({ card }: { card: ArticleCard }) {
         <ReadAloud target={bodyRef} />
       </section>
 
+      {card.parti.length > 1 && (
+        <nav className="learn-toc" aria-labelledby="toc-titolo">
+          <h2 id="toc-titolo">In questo articolo</h2>
+          <ol>
+            {card.parti.map((p) => (
+              <li key={p.n}>
+                <a href={`#parte-${p.n}`}>
+                  <span className="learn-toc__n" aria-hidden="true">
+                    {p.n}
+                  </span>
+                  <span>
+                    <span className="small muted">{p.kicker}</span>
+                    <span className="strong">{p.titolo}</span>
+                  </span>
+                  <span className="small muted learn-toc__min">{p.minuti} min</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+          {/fondo/i.test(card.parti[card.parti.length - 1].kicker) && (
+            <p className="small muted">Puoi fermarti prima dell’ultima parte: è per chi vuole andare a fondo.</p>
+          )}
+        </nav>
+      )}
+
       <div className="learn-body" ref={bodyRef}>
         <GlossarioContext value={fm.glossario}>
           <Content components={MDX_COMPONENTS} />
         </GlossarioContext>
       </div>
+
+      <ReadMark slug={card.slug} />
 
       {fm.glossario.length > 0 && (
         <section className="card stack" aria-labelledby="glossary-title">
@@ -429,8 +593,8 @@ export function ArticlePage() {
 
   return (
     <article className="container stack-lg learn-article">
-      <Link to="/capire" className="back-link">
-        <ArrowLeft aria-hidden="true" /> Capire i terremoti
+      <Link to={`/capire#percorso-${card.percorso}`} className="back-link">
+        <ArrowLeft aria-hidden="true" /> {percorso ? `Percorso «${percorso.titolo}»` : 'Capire i terremoti'}
       </Link>
 
       <header className="page-header">

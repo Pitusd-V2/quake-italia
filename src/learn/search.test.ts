@@ -59,12 +59,15 @@ describe('Ricerca di «Capire»: sugli articoli veri', () => {
     expect(top('paura', 5)).toContain('articolo:mal-da-terremoto');
     expect(top('capogiri')).toContain('articolo:mal-da-terremoto');
     expect(top('richter mercalli differenza')).toContain('articolo:magnitudo-e-intensita');
+    // La domanda a cui risponde l'articolo conta come le parole chiave.
+    expect(top('quanto dura', 1)).toEqual(['articolo:repliche-e-sequenze']);
+    expect(top('perché sento tremare', 1)).toEqual(['articolo:mal-da-terremoto']);
   });
 
   it('trova anche le pagine pratiche e le parole del glossario', () => {
     expect(top('crepe')).toContain('pagina:/danni-casa');
     expect(top('animali')).toContain('pagina:/e-vero');
-    expect(top('kit', 5).some((r) => r === 'pagina:/il-mio-comune' || r === 'pagina:/cosa-fare')).toBe(true);
+    expect(top('kit', 1)).toEqual(['pagina:/prepara-la-casa']);
     expect(top('ipocentro', 1)).toEqual(['parola:Ipocentro']);
     expect(top('faglia normale', 1)).toEqual(['parola:Faglia normale']);
     expect(top('mw', 1)).toEqual(['parola:Magnitudo momento (Mw)']);

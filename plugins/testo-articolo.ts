@@ -44,6 +44,26 @@ const clean = (line: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+/**
+ * Le parti di un articolo «a strati» (<Part n={1} kicker="La storia">Titolo</Part>), con quante parole ha ognuna:
+ * serve a dire quanto tempo ci vuole per ogni parte.
+ */
+export function articleParts(source: string): { n: number; kicker: string; titolo: string; parole: number }[] {
+  const sections = articleSections(source);
+  const parts: { n: number; kicker: string; titolo: string; parole: number }[] = [];
+  for (const m of source.matchAll(/<Part\b([^>]*)>([\s\S]*?)<\/Part>/g)) {
+    const n = Number(/\bn=\{(\d+)\}/.exec(m[1])?.[1]);
+    const kicker = /\bkicker="([^"]*)"/.exec(m[1])?.[1] ?? '';
+    const titolo = clean(m[2].trim());
+    if (!Number.isInteger(n)) continue;
+    const parole = sections
+      .filter((s) => s.parte === titolo)
+      .reduce((sum, s) => sum + s.testo.split(/\s+/).filter(Boolean).length, 0);
+    parts.push({ n, kicker, titolo, parole });
+  }
+  return parts;
+}
+
 export function articleSections(source: string): Sezione[] {
   let s = source.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n');
   s = s.replace(/^---\n[\s\S]*?\n---\n/, '');

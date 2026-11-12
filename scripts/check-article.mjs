@@ -116,6 +116,11 @@ if (errors.length === 0) {
     const { createElement } = await import('react');
     const { renderToString } = await import('react-dom/server');
     const { StaticRouter } = await import('react-router');
+    // Alcuni articoli hanno dentro riquadri del sito vero (le sequenze dal vivo): vogliono le impostazioni e i dati
+    // dal vivo intorno, come nel sito. Qui i dati non si scaricano: restano «in caricamento», come al build.
+    const { QueryClient, QueryClientProvider } = await import('@tanstack/react-query');
+    const { SettingsProvider } = await server.ssrLoadModule('/src/state/settings.tsx');
+    const queryClient = new QueryClient({ defaultOptions: { queries: { enabled: false, retry: false } } });
     const { Part } = await server.ssrLoadModule('/src/learn/LearnPart.tsx');
     const mod = await server.ssrLoadModule(abs);
     // «Termine»: le parole del glossario nel testo (plugins/termini.ts). Qui basta disegnarle come parole in evidenza.
@@ -129,7 +134,13 @@ if (errors.length === 0) {
     };
     let html = '';
     try {
-      html = renderToString(createElement(StaticRouter, { location: `/capire/${slug}` }, createElement(mod.default, { components })));
+      html = renderToString(
+        createElement(
+          QueryClientProvider,
+          { client: queryClient },
+          createElement(SettingsProvider, null, createElement(StaticRouter, { location: `/capire/${slug}` }, createElement(mod.default, { components }))),
+        ),
+      );
     } finally {
       console.error = origError;
     }

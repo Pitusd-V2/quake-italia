@@ -12,8 +12,10 @@ import { QuakeList } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { ExternalLink, LoadingCards, Notice, PageHeader } from '../components/ui';
 import { VolcanoZones } from '../components/VolcanoZones';
-import { PrepareGame } from '../components/PrepareGame';
+import { PrepareSummary } from '../components/PrepareSummary';
+import { volcanoZonesFor } from '../lib/volcanoZones';
 import { HomePoint } from '../components/HomePoint';
+import { ArticleQuestionLine } from '../learn/ArticleQuestions';
 
 const NEAR_KM = 30;
 
@@ -69,6 +71,16 @@ export function MyTownPage() {
   return (
     <div className="container stack-lg">
       <PageHeader title={`Il mio comune: ${home.name}`} intro="Quanto è sismica la tua zona, cosa è successo in passato e come prepararti." />
+
+      {/* La pagina è lunga: da qui si salta al punto che interessa. */}
+      <nav className="jump" aria-label="In questa pagina">
+        <a href="#zone-title">Zona sismica</a>
+        {z && volcanoZonesFor(z.comune, z.sigla).length > 0 && <a href="#volcano-title">Vulcani</a>}
+        <a href="#history-title">Storia</a>
+        <a href="#recent-title">Ultimi 30 giorni</a>
+        <Link to="/prepara-la-casa">Prepara la casa</Link>
+        <a href="#plan-title">Piano del Comune</a>
+      </nav>
 
       {/* Le impostazioni sono personali come il comune: qui le trova anche chi usa il telefono (dove non sono in alto). */}
       <Link to="/impostazioni" className="link-card">
@@ -134,6 +146,7 @@ export function MyTownPage() {
             {!z.mixed && /[A-Za-z]/.test(z.code) && (
               <p className="muted">La lettera nel codice indica una sottozona decisa dalla Regione.</p>
             )}
+            <ArticleQuestionLine slug="le-zone-sismiche" />
             <p className="small muted">
               La zona serve a Regione e Genio civile per pianificare e controllare il territorio. Per costruire, dal 2009, non
               conta più la zona: i progettisti usano la pericolosità calcolata punto per punto, su una griglia di 5 km (Norme
@@ -170,6 +183,7 @@ export function MyTownPage() {
           Per i terremoti più antichi (dall’anno 1000) c’è il{' '}
           <ExternalLink href="https://emidius.mi.ingv.it/CPTI15-DBMI15/">catalogo storico CPTI15 dell’INGV</ExternalLink>.
         </p>
+        <ArticleQuestionLine slug="grandi-terremoti-della-storia" />
       </section>
 
       {/* ---------- Ultimi 30 giorni ---------- */}
@@ -188,8 +202,8 @@ export function MyTownPage() {
         </Link>
       </section>
 
-      {/* ---------- Prepara la tua casa (gioco a livelli) ---------- */}
-      <PrepareGame homeName={home.name} />
+      {/* ---------- Prepara la tua casa: il gioco ha una pagina sua, qui c'è a che punto sei ---------- */}
+      <PrepareSummary />
 
       {/* ---------- Comune e IT-alert ---------- */}
       <section className="card stack" aria-labelledby="plan-title">

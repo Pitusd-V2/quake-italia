@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { useQuery } from '@tanstack/react-query';
-import { Activity, BookOpen, ChevronDown, ChevronRight, CircleCheck, Ear, Info, LifeBuoy, MapPin, Phone, ShieldAlert, TriangleAlert } from 'lucide-react';
-import { findComune, ZONE_INFO } from '../lib/seismicZones';
+import { Activity, BookOpen, ChevronDown, ChevronRight, CircleCheck, Ear, Info, LifeBuoy, MapPin, MapPinned, Phone, TriangleAlert } from 'lucide-react';
+import { volcanoNear, type VolcanoArea } from '../lib/volcanoAreas';
+import { PrepareReminder } from '../components/PrepareSummary';
 import { readRaw, writeJson } from '../lib/storage';
 import { SEQUENCE_MIN_MAG, SEQUENCE_RADIUS_KM } from './SequencePage';
 import { TAGLINE } from '../lib/brand';
@@ -19,8 +19,7 @@ import type { Place, Quake } from '../lib/types';
 import { QuakeCard } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { SpeakButton } from '../components/Actions';
-import { ErrorBox, LoadingCards } from '../components/ui';
-import { volcanoShort } from '../components/VolcanoZones';
+import { ErrorBox, LoadingCards, Notice } from '../components/ui';
 
 type Tone = 'ok' | 'info' | 'warn' | 'danger';
 
@@ -166,7 +165,7 @@ function StatusPanel({ status }: { status: Status }) {
         </div>
         {status.showSafety && (
           <p className="small">
-            Leggi con calma <Link to="/cosa-fare">cosa fare dopo una scossa</Link> e, se vedi crepe o danni,{' '}
+            Leggi con calma <Link to="/cosa-fare#sec-dopo">cosa fare dopo una scossa</Link> e, se vedi crepe o danni,{' '}
             <Link to="/danni-casa">cosa fare se la casa ha dei danni</Link>.
             {status.emergency === 'line' && (
               <>
@@ -181,7 +180,7 @@ function StatusPanel({ status }: { status: Status }) {
   );
 }
 
-function Welcome() {
+function Welcome({ onPicked }: { onPicked: (home: Place) => void }) {
   const { update } = useSettings();
   return (
     <section className="card welcome" aria-labelledby="welcome-title">
@@ -190,7 +189,12 @@ function Welcome() {
         <strong>{TAGLINE}</strong> Qui trovi i terremoti in Italia, raccontati in parole semplici. Dicci dove
         abiti: ti diremo se una scossa è vicina a te e se potresti averla sentita.
       </p>
-      <PlacePicker onPick={(home) => update({ home, onboarded: true })} />
+      <PlacePicker
+        onPick={(home) => {
+          update({ home, onboarded: true });
+          onPicked(home);
+        }}
+      />
       <button type="button" className="btn btn--ghost btn--block" onClick={() => update({ onboarded: true })}>
         Lo faccio dopo
       </button>
@@ -219,15 +223,11 @@ function useMoreOpen(): [boolean, () => void] {
 export function HomePage() {
   const { settings } = useSettings();
   const [moreOpen, toggleMore] = useMoreOpen();
+  /** L'area vulcanica del comune appena scelto: mostra una volta l'invito a indicare il punto di casa. */
+  const [invite, setInvite] = useState<VolcanoArea | null>(null);
   const feed = useQuakeFeed();
   const now = useNow();
   const home = settings.home;
-  const zone = useQuery({
-    queryKey: ['zone', home?.name, home?.detail],
-    queryFn: () => findComune(home!),
-    enabled: !!home,
-    staleTime: Infinity,
-  });
 
   const data = useMemo(() => {
     if (!feed.data) return null;
@@ -267,7 +267,28 @@ export function HomePage() {
         )}
       </header>
 
-      {!home && !settings.onboarded && <Welcome />}
+      {!home && !settings.onboarded && (
+        <Welcome onPicked={(picked) => setInvite(picked.point ? null : volcanoNear(picked))} />
+      )}
+
+      {/* Subito dopo la scelta del comune, e solo dove serve: vicino a un vulcano il punto preciso cambia la stima. */}
+      {home && !home.point && invite && (
+        <Notice tone="info" icon={<MapPinned />} title="Qui pochi chilometri contano">
+          <p>
+            Abiti {invite.near}, dove le scosse sono molto superficiali: la stessa scossa si sente in modo molto diverso da
+            un quartiere all’altro. Adesso le distanze partono dal centro di {home.name}. Se indichi dove abiti, la stima
+            di quanto una scossa si è sentita da te diventa più precisa. Il punto resta solo su questo dispositivo.
+          </p>
+          <div className="row">
+            <Link to="/impostazioni#punto-casa" className="btn btn--primary">
+              Indica il punto di casa
+            </Link>
+            <button type="button" className="btn btn--ghost" onClick={() => setInvite(null)}>
+              Non ora
+            </button>
+          </div>
+        </Notice>
+      )}
 
       {feed.isPending && <LoadingCards count={2} />}
       {feed.isError && !feed.data && <ErrorBox message={(feed.error as Error).message} onRetry={() => feed.refetch()} />}
@@ -297,19 +318,9 @@ export function HomePage() {
         </Link>
       )}
 
-      {home && zone.data && (
-        <Link to="/il-mio-comune" className="seq-card seq-card--town">
-          <ShieldAlert aria-hidden="true" />
-          <span>
-            <span className="strong">
-              {zone.data.comune}: zona sismica {zone.data.zone}
-              {volcanoShort(zone.data.comune, zone.data.sigla) ? ` · ${volcanoShort(zone.data.comune, zone.data.sigla)}` : ''}
-            </span>
-            <span>{ZONE_INFO[zone.data.zone].label}. Scopri cosa vuol dire e come preparare la casa.</span>
-          </span>
-          <ChevronRight aria-hidden="true" />
-        </Link>
-      )}
+      {/* Ogni tanto, e solo nei giorni tranquilli, un promemoria per preparare la casa (regole in lib/prepareReminder.ts).
+          La scheda del comune non c'è più: zona e storia stanno in «Il mio comune», a un tocco dal menu. */}
+      {home && <PrepareReminder calm={data?.status.tone === 'ok'} />}
 
       {/* Sopra c'è solo quello che serve subito; il resto si apre con un solo pulsante grande.
           Il focus resta sul pulsante (schema "disclosure"): il contenuto compare subito sotto. */}

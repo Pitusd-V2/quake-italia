@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 /** Titolo di una delle parti di un articolo «a strati» (la storia, i dati, l'approfondimento), con il suo numero. */
 export function Part({ n, kicker, children }: { n: number; kicker: string; children: ReactNode }) {
   return (
-    <div className="learn-part">
+    <div className="learn-part" id={`parte-${n}`} tabIndex={-1}>
       <span className="learn-part__n" aria-hidden="true">
         {n}
       </span>

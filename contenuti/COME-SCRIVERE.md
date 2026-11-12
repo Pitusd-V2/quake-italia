@@ -49,6 +49,8 @@ Copia questo schema in un file nuovo, per esempio `contenuti/articoli/liquefazio
 ---
 titolo: "Quando il terreno diventa liquido"
 sottotitolo: "La liquefazione: perché durante una scossa la sabbia può comportarsi come l’acqua."
+# La domanda che le persone si fanno davvero (dal piano editoriale): compare negli elenchi e aiuta la ricerca.
+domanda: "Cos’è la liquefazione, e perché è successa in Emilia?"
 percorso: le-basi          # uno di: le-basi, italia, storia, vulcani, sicurezza, scienza, miti, persone
 ordine: 6                  # posizione nel percorso (non due articoli con lo stesso numero)
 minuti: 5                  # tempo di lettura

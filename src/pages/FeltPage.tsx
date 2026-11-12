@@ -18,6 +18,8 @@ import { PlacePicker } from '../components/PlacePicker';
 import { SpeakButton } from '../components/Actions';
 import { ErrorBox, ExternalLink, LoadingCards, Notice, PageHeader, Segmented } from '../components/ui';
 import { HSIT_FORM } from '../lib/hsit';
+import { ArticleQuestions } from '../learn/ArticleQuestions';
+import { contextOf, slugsForQuake } from '../learn/suggest';
 
 type Window = '60' | '180' | '720';
 const WINDOWS: { value: Window; label: string }[] = [
@@ -164,6 +166,15 @@ export function FeltPage() {
             <>
               <BestMatch quake={candidates[0].quake} place={place} now={now} />
               <FeltLikeCard quake={candidates[0].quake} place={place} />
+              <ArticleQuestions
+                title="Per capire questa scossa"
+                slugs={slugsForQuake(
+                  contextOf(candidates[0].quake, now, {
+                    sequence: candidates[0].quake.mag >= 3.5 || candidates.length > 3,
+                    feltAtHome: feltHere(candidates[0].quake, place).key,
+                  }),
+                )}
+              />
               {candidates.length > 1 && (
                 <div className="stack">
                   <h2>Altre scosse nella zona {winLabel}</h2>
@@ -230,7 +241,7 @@ export function FeltPage() {
         </ExternalLink>
       </section>
 
-      <Link to="/cosa-fare" className="btn btn--secondary btn--block">
+      <Link to="/cosa-fare#sec-dopo" className="btn btn--secondary btn--block">
         Cosa fare dopo una scossa
       </Link>
     </div>

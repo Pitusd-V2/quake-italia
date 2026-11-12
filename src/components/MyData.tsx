@@ -40,8 +40,8 @@ export function MyData() {
     <section className="card stack" aria-labelledby="s-data" id="i-tuoi-dati">
       <h2 id="s-data">I tuoi dati</h2>
       <p>
-        Quake Italia salva solo su questo dispositivo: il tuo comune, le preferenze, la checklist e una copia dei dati per
-        funzionare senza rete. Noi non riceviamo niente. Dettagli nella <Link to="/privacy">Privacy Policy</Link>.
+        Quake Italia salva solo su questo dispositivo: il tuo comune, le preferenze, la checklist, gli articoli letti e una
+        copia dei dati per funzionare senza rete. Noi non riceviamo niente. Dettagli nella <Link to="/privacy">Privacy Policy</Link>.
       </p>
       {step === 'idle' && (
         <button type="button" className="btn btn--secondary btn--danger-text" onClick={() => setStep('confirm')}>
@@ -52,7 +52,7 @@ export function MyData() {
         <div className="notice notice--warn" role="alert">
           <div className="notice__body">
             <p className="strong">Vuoi davvero cancellare tutto?</p>
-            <p>Comune, preferenze e checklist verranno cancellati da questo dispositivo. Non si può annullare.</p>
+            <p>Comune, preferenze, checklist e articoli letti verranno cancellati da questo dispositivo. Non si può annullare.</p>
             <div className="row">
               <button type="button" className="btn btn--primary" onClick={wipe} disabled={step === 'working'}>
                 {step === 'working' ? 'Sto cancellando…' : 'Sì, cancella tutto'}

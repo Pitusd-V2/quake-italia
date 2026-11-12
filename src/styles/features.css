@@ -176,8 +176,6 @@
 .seq-card > svg:first-child { width: 2rem; height: 2rem; color: var(--warn); flex-shrink: 0; }
 .seq-card > svg:last-child { width: 1.5rem; height: 1.5rem; margin-left: auto; flex-shrink: 0; color: var(--text-muted); }
 .seq-card > span { display: flex; flex-direction: column; }
-.seq-card--town { border-color: var(--primary); background: var(--primary-soft); }
-.seq-card--town > svg:first-child { color: var(--primary); }
 
 .time-bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .time-bars li { display: grid; grid-template-columns: 7.5rem 1fr auto; align-items: center; gap: var(--sp-3); }
@@ -699,3 +697,169 @@
 /* Punti delle pagine raggiunti da un risultato della ricerca: non devono finire sotto la barra in alto. */
 [id^='sec-'],
 [id^='rumor-'] { scroll-margin-top: 5.5rem; }
+
+/* ---------- Capire: i percorsi (riquadri che si aprono) ---------- */
+.percorsi { display: flex; flex-direction: column; gap: var(--sp-2); }
+.percorso { scroll-margin-top: 5.5rem; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); }
+.percorso:focus { outline: none; }
+.percorso__head { margin: 0; font-size: inherit; }
+.percorso__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--sp-3) var(--sp-4);
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: var(--r-lg);
+  cursor: pointer;
+}
+.percorso__toggle:hover { background: var(--primary-soft); }
+.percorso__toggle:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.percorso__toggle > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.percorso__title { font-size: var(--fs-lg); font-weight: 700; }
+.percorso__icon { margin-left: auto; flex-shrink: 0; width: 1.5rem; height: 1.5rem; color: var(--primary); transition: transform var(--dur) var(--ease); }
+.percorso__toggle[aria-expanded='true'] .percorso__icon { transform: rotate(180deg); }
+.percorso__panel { padding: 0 var(--sp-4) var(--sp-4); }
+.percorso__panel[hidden] { display: none; }
+.percorso__bar { width: 100%; height: 0.5rem; accent-color: var(--primary); }
+.percorso__next {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border: 2px solid var(--primary);
+  border-radius: var(--r-md);
+  background: var(--primary-soft);
+  color: var(--text);
+  text-decoration: none;
+}
+.percorso__next:hover { background: var(--surface); color: var(--text); }
+.percorso__next > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.percorso__next > svg { margin-left: auto; flex-shrink: 0; width: 1.5rem; height: 1.5rem; color: var(--primary); }
+.percorso__done { color: var(--ok); }
+.learn-list[hidden] { display: none; }
+.learn-card__meta { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-3); }
+.learn-card__read { color: var(--ok); font-weight: 700; }
+
+/* ---------- Dentro l'articolo: l'indice delle parti e il segno «letto» ---------- */
+.learn-toc { display: flex; flex-direction: column; gap: var(--sp-2); }
+.learn-toc h2 { margin: 0; font-size: var(--fs-md); }
+.learn-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.learn-toc a {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+.learn-toc a:hover { border-color: var(--primary); background: var(--primary-soft); }
+.learn-toc a > span:nth-child(2) { display: flex; flex-direction: column; min-width: 0; }
+.learn-toc__n {
+  flex-shrink: 0; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--primary); color: var(--on-primary, #fff); font-weight: 800;
+}
+.learn-toc__min { margin-left: auto; white-space: nowrap; }
+.learn-part { scroll-margin-top: 5.5rem; }
+.learn-part:focus { outline: none; }
+.learn-read { padding-top: var(--sp-3); border-top: 2px solid var(--border); }
+.learn-read .inline-icon { color: var(--ok); }
+.link-btn { font: inherit; color: var(--primary); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+.link-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+
+/* ---------- Domande che portano agli articoli, accanto a una scossa ---------- */
+.ask-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.ask {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+.ask:hover { border-color: var(--primary); background: var(--primary-soft); color: var(--text); }
+.ask > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ask > svg { margin-left: auto; flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: var(--primary); }
+
+/* ---------- Link di salto in cima a una pagina lunga («Il mio comune») ---------- */
+.jump { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+.jump a:hover { border-color: var(--primary); background: var(--primary-soft); }
+/* I titoli raggiunti da un salto non devono finire sotto la barra in alto. */
+#main h2[id] { scroll-margin-top: 5.5rem; }
+
+/* Il riquadro «Il punto di casa», quando ci si arriva da un invito: non deve finire sotto la barra in alto. */
+.home-point { scroll-margin-top: 5.5rem; }
+.home-point:focus { outline: none; }
+
+/* Il promemoria «Prepara la tua casa» nella pagina iniziale: testo e pulsanti uno sotto l'altro. */
+.prep-reminder { align-items: flex-start; }
+.prep-reminder .row { margin-top: var(--sp-1); }
+
+/* ---------- «Cosa fare»: passi numerati e cose da non fare ---------- */
+.safety { scroll-margin-top: 5.5rem; }
+.safety:focus { outline: none; }
+.safety .eyebrow { margin: 0; }
+.safety__group { display: flex; align-items: center; gap: var(--sp-2); margin: var(--sp-2) 0 0; font-size: var(--fs-md); }
+.safety__group svg { width: 1.25rem; height: 1.25rem; color: var(--primary); flex-shrink: 0; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: flex; flex-direction: column; gap: var(--sp-3); }
+.steps li { counter-increment: step; position: relative; padding-left: 2.75rem; display: flex; flex-direction: column; gap: 2px; min-height: 2rem; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--primary);
+  color: var(--on-primary, #fff);
+  font-weight: 800;
+}
+.steps__title { font-weight: 700; font-size: var(--fs-md); line-height: 1.35; padding-top: 0.2rem; }
+.steps__text { color: var(--text-muted); }
+.dont { padding: var(--sp-3) var(--sp-4); border-left: 4px solid var(--danger); background: var(--danger-soft); }
+.dont__title { margin: 0 0 var(--sp-1); font-weight: 700; color: var(--danger); }
+.dont ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-1); }
+.dont li { display: flex; gap: var(--sp-2); align-items: flex-start; }
+.dont li svg { width: 1.1rem; height: 1.1rem; margin-top: 0.25rem; color: var(--danger); flex-shrink: 0; }
+.dont__link { margin: var(--sp-2) 0 0; font-weight: 700; }
+.safety [hidden] { display: none; }
+/* Elenco di link compatto: una riga per link, separati da una linea. */
+.more-links { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.more-links li { border-bottom: 1px solid var(--border); }
+.more-links a { display: flex; align-items: center; gap: var(--sp-3); min-height: var(--tap); padding: var(--sp-2) 0; font-weight: 700; text-decoration: none; }
+.more-links a:hover { text-decoration: underline; }
+.more-links svg { margin-left: auto; flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: var(--text-muted); }
+/* Il numero della fonte accanto a un consiglio: piccolo, ma sempre lì. */
+.src { font-size: var(--fs-sm); color: var(--text-muted); white-space: nowrap; }
+.src a { font-weight: 700; }
+.dont .src { color: inherit; }
+.learn-sources li[id] { scroll-margin-top: 5.5rem; }
+.learn-sources li:focus { outline: 3px solid var(--focus); outline-offset: 2px; }
