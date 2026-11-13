@@ -21,7 +21,7 @@ export const LEGAL = {
   hosting: 'cloudflare' as Hosting,
 
   /** Data dell'ultima modifica delle pagine legali (da aggiornare a ogni cambiamento). */
-  lastUpdated: '11 novembre 2026',
+  lastUpdated: '13 novembre 2026',
 };
 
 /** Formula prudente: le garanzie esatte (DPF e/o clausole standard) vanno verificate nell'informativa del fornitore. */

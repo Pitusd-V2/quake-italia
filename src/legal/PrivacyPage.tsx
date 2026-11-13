@@ -84,7 +84,11 @@ export function PrivacyPage() {
             </li>
             <li>le preferenze di aspetto (testo, colori, contrasto) e degli avvisi;</li>
             <li>le voci della checklist «Prepara la tua casa» che hai spuntato;</li>
-            <li>gli articoli di «Capire» che hai letto, per mostrarti da dove continuare.</li>
+            <li>gli articoli di «Capire» che hai letto, per mostrarti da dove continuare;</li>
+            <li>
+              lo stato di alcuni riquadri (per esempio se hai chiuso «Per cominciare» o quando ti abbiamo ricordato di
+              preparare la casa), per non mostrarteli più del necessario.
+            </li>
           </ul>
           <p>
             Inoltre il browser conserva una copia dei file del sito e degli ultimi dati sui terremoti e delle mappe

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { Activity, BookOpen, ChevronDown, ChevronRight, CircleCheck, Ear, Info, LifeBuoy, MapPin, MapPinned, Phone, TriangleAlert } from 'lucide-react';
-import { volcanoNear, type VolcanoArea } from '../lib/volcanoAreas';
+import { Activity, BookOpen, ChevronDown, ChevronRight, CircleCheck, Ear, HeartHandshake, Info, LifeBuoy, MapPin, Phone, Siren, Smartphone, TriangleAlert } from 'lucide-react';
+import { FirstSteps, useFirstSteps } from '../components/FirstSteps';
 import { PrepareReminder } from '../components/PrepareSummary';
 import { readRaw, writeJson } from '../lib/storage';
 import { SEQUENCE_MIN_MAG, SEQUENCE_RADIUS_KM } from './SequencePage';
@@ -19,7 +19,7 @@ import type { Place, Quake } from '../lib/types';
 import { QuakeCard } from '../components/QuakeCard';
 import { PlacePicker } from '../components/PlacePicker';
 import { SpeakButton } from '../components/Actions';
-import { ErrorBox, LoadingCards, Notice } from '../components/ui';
+import { ErrorBox, LoadingCards } from '../components/ui';
 
 type Tone = 'ok' | 'info' | 'warn' | 'danger';
 
@@ -180,15 +180,55 @@ function StatusPanel({ status }: { status: Status }) {
   );
 }
 
+/**
+ * La prima visita: chi siamo in due frasi (la missione, la stessa della pagina Informazioni), i limiti che contano
+ * (non prevede, non è un sistema di allerta) e la scelta del comune. Niente da accettare: la legge chiede di
+ * informare, non di far cliccare «Accetto» (GDPR art. 12-13; per i dati sul dispositivo vale l'eccezione dell'art. 122
+ * del Codice privacy). Privacy e Termini sono a un tocco, qui e in fondo a ogni pagina.
+ */
 function Welcome({ onPicked }: { onPicked: (home: Place) => void }) {
   const { update } = useSettings();
   return (
     <section className="card welcome" aria-labelledby="welcome-title">
       <h2 id="welcome-title">Benvenuto su Quake Italia</h2>
-      <p>
-        <strong>{TAGLINE}</strong> Qui trovi i terremoti in Italia, raccontati in parole semplici. Dicci dove
-        abiti: ti diremo se una scossa è vicina a te e se potresti averla sentita.
+      {/* Chi arriva la prima volta spesso ha appena sentito tremare: l'uscita rapida viene prima di tutto il resto. */}
+      <Link to="/ho-sentito" className="welcome__felt">
+        <Ear aria-hidden="true" />
+        <span>
+          <span className="strong">Hai appena sentito una scossa?</span> Scopri subito cos’era.
+        </span>
+        <ChevronRight aria-hidden="true" />
+      </Link>
+      <p className="lead">
+        Quake Italia è nato a Napoli, ai Campi Flegrei, per dare una risposta chiara, vera e tranquilla quando la terra
+        trema. Usa i dati ufficiali dell’INGV e, per ogni numero, ti dice da dove viene.
       </p>
+      <ul className="welcome-facts">
+        <li>
+          <HeartHandshake aria-hidden="true" />
+          <span>Gratuito, senza account e senza pubblicità.</span>
+        </li>
+        <li>
+          <Smartphone aria-hidden="true" />
+          <span>Quello che scegli resta sul tuo dispositivo: noi non lo riceviamo.</span>
+        </li>
+        <li>
+          <Siren aria-hidden="true" />
+          <span>
+            <span className="strong">Non prevede i terremoti e non è un sistema di allerta.</span> In caso di emergenza
+            chiama il <a href="tel:112">112</a>.
+          </span>
+        </li>
+      </ul>
+      <p className="small">
+        <Link to="/informazioni#mission">La nostra missione</Link> · <Link to="/privacy">Privacy</Link> ·{' '}
+        <Link to="/termini">Termini d’uso</Link>
+      </p>
+
+      <div className="stack-sm welcome__place">
+        <h3>Dove abiti?</h3>
+        <p>Ti diremo se una scossa è vicina a te e se potresti averla sentita.</p>
+      </div>
       <PlacePicker
         onPick={(home) => {
           update({ home, onboarded: true });
@@ -198,7 +238,6 @@ function Welcome({ onPicked }: { onPicked: (home: Place) => void }) {
       <button type="button" className="btn btn--ghost btn--block" onClick={() => update({ onboarded: true })}>
         Lo faccio dopo
       </button>
-      <p className="small muted">Il tuo comune resta salvato solo su questo dispositivo.</p>
     </section>
   );
 }
@@ -223,8 +262,8 @@ function useMoreOpen(): [boolean, () => void] {
 export function HomePage() {
   const { settings } = useSettings();
   const [moreOpen, toggleMore] = useMoreOpen();
-  /** L'area vulcanica del comune appena scelto: mostra una volta l'invito a indicare il punto di casa. */
-  const [invite, setInvite] = useState<VolcanoArea | null>(null);
+  /** «Per cominciare» (letture sul posto, punto di casa): dalla scelta del comune fino a «Chiudi», al massimo per quel giorno. */
+  const firstSteps = useFirstSteps();
   const feed = useQuakeFeed();
   const now = useNow();
   const home = settings.home;
@@ -253,6 +292,14 @@ export function HomePage() {
     const trend = sequence ? TREND_SHORT[sequenceTrend(after, sequence.time, now).kind] : undefined;
     return { status, latestNear, top, zones, sequence, aftershocks: after.length, trend };
   }, [feed.data, home, settings.radiusKm, now]);
+  /**
+   * C'è una scossa da raccontare prima del benvenuto: una che lo stato segnala come seria, oppure una scossa da
+   * magnitudo 4 in su nelle ultime 3 ore in Italia (si sente su un'area ampia: molti arrivano proprio per quella).
+   */
+  const urgent =
+    data?.status.tone === 'warn' ||
+    data?.status.tone === 'danger' ||
+    !!feed.data?.some((q) => q.mag >= 4 && now.getTime() - q.time.getTime() <= 3 * 3_600_000);
 
   return (
     <div className="container stack-lg">
@@ -267,33 +314,18 @@ export function HomePage() {
         )}
       </header>
 
-      {!home && !settings.onboarded && (
-        <Welcome onPicked={(picked) => setInvite(picked.point ? null : volcanoNear(picked))} />
-      )}
-
-      {/* Subito dopo la scelta del comune, e solo dove serve: vicino a un vulcano il punto preciso cambia la stima. */}
-      {home && !home.point && invite && (
-        <Notice tone="info" icon={<MapPinned />} title="Qui pochi chilometri contano">
-          <p>
-            Abiti {invite.near}, dove le scosse sono molto superficiali: la stessa scossa si sente in modo molto diverso da
-            un quartiere all’altro. Adesso le distanze partono dal centro di {home.name}. Se indichi dove abiti, la stima
-            di quanto una scossa si è sentita da te diventa più precisa. Il punto resta solo su questo dispositivo.
-          </p>
-          <div className="row">
-            <Link to="/impostazioni#punto-casa" className="btn btn--primary">
-              Indica il punto di casa
-            </Link>
-            <button type="button" className="btn btn--ghost" onClick={() => setInvite(null)}>
-              Non ora
-            </button>
-          </div>
-        </Notice>
-      )}
+      {/* Il benvenuto non passa mai davanti alle notizie: dopo una scossa importante va sotto lo stato. */}
+      {!home && !settings.onboarded && !urgent && <Welcome onPicked={firstSteps.start} />}
 
       {feed.isPending && <LoadingCards count={2} />}
       {feed.isError && !feed.data && <ErrorBox message={(feed.error as Error).message} onRetry={() => feed.refetch()} />}
 
       {data && <StatusPanel status={data.status} />}
+
+      {!home && !settings.onboarded && urgent && <Welcome onPicked={firstSteps.start} />}
+
+      {/* Subito dopo la scelta del comune, una volta sola: letture sul posto dove vivi e, vicino ai vulcani, il punto di casa. */}
+      {home && firstSteps.show && <FirstSteps place={home} onClose={firstSteps.close} />}
 
       <Link to="/ho-sentito" className="btn btn--felt">
         <Ear aria-hidden="true" />

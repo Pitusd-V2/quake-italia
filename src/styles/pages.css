@@ -295,3 +295,20 @@ th.num .th-btn { justify-content: flex-end; }
 .more-toggle[aria-expanded='true'] .more-toggle__icon { transform: rotate(180deg); }
 /* .stack-lg imposta display:flex, che altrimenti vincerebbe sull'attributo hidden. */
 .home-more[hidden] { display: none; }
+
+/* Il benvenuto: i tre fatti che contano, con un'icona ciascuno. */
+.welcome-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.welcome-facts li { display: flex; gap: var(--sp-3); align-items: flex-start; }
+.welcome-facts svg { width: 1.4rem; height: 1.4rem; color: var(--primary); flex-shrink: 0; margin-top: 0.15rem; }
+.welcome__place { padding-top: var(--sp-3); border-top: 1px solid var(--border); }
+.welcome__place h3, .welcome__place p { margin: 0; }
+.first-steps__point { padding: var(--sp-3) var(--sp-4); border-left: 4px solid var(--primary); background: var(--surface-2); display: flex; flex-direction: column; gap: var(--sp-2); }
+.first-steps__point p { margin: 0; }
+.welcome__felt {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3); border-radius: var(--r-md);
+  background: var(--primary-soft); color: var(--text); text-decoration: none;
+}
+.welcome__felt:hover { color: var(--text); text-decoration: underline; }
+.welcome__felt > svg:first-child { width: 1.5rem; height: 1.5rem; color: var(--primary); flex-shrink: 0; }
+.welcome__felt > svg:last-child { margin-left: auto; width: 1.25rem; height: 1.25rem; color: var(--primary); flex-shrink: 0; }
