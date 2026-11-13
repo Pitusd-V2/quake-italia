@@ -13,6 +13,7 @@ import { PlacePicker } from '../components/PlacePicker';
 import { ExternalLink, LoadingCards, Notice, PageHeader } from '../components/ui';
 import { VolcanoZones } from '../components/VolcanoZones';
 import { PrepareSummary } from '../components/PrepareSummary';
+import { TownHistory } from '../components/TownHistory';
 import { volcanoZonesFor } from '../lib/volcanoZones';
 import { HomePoint } from '../components/HomePoint';
 import { ArticleQuestionLine } from '../learn/ArticleQuestions';
@@ -76,7 +77,8 @@ export function MyTownPage() {
       <nav className="jump" aria-label="In questa pagina">
         <a href="#zone-title">Zona sismica</a>
         {z && volcanoZonesFor(z.comune, z.sigla).length > 0 && <a href="#volcano-title">Vulcani</a>}
-        <a href="#history-title">Storia</a>
+        <a href="#storia-title">Nella storia</a>
+        <a href="#history-title">Dal 1985</a>
         <a href="#recent-title">Ultimi 30 giorni</a>
         <Link to="/prepara-la-casa">Prepara la casa</Link>
         <a href="#plan-title">Piano del Comune</a>
@@ -160,12 +162,19 @@ export function MyTownPage() {
       {/* ---------- Vesuvio e Campi Flegrei ---------- */}
       {z && <VolcanoZones comune={z.comune} sigla={z.sigla} />}
 
+      {/* ---------- Nella storia: mille anni di terremoti sentiti qui (DBMI15, INGV) ---------- */}
+      {z && <TownHistory comune={z.comune} sigla={z.sigla} />}
+
       {/* ---------- Storia ---------- */}
       <section className="stack" aria-labelledby="history-title">
         <h2 id="history-title" className="icon-title">
-          <History aria-hidden="true" /> I terremoti più forti qui vicino
+          <History aria-hidden="true" /> Dal 1985: le scosse più forti registrate qui vicino
         </h2>
-        <p className="muted">Magnitudo 4 o più, entro {NEAR_KM} km, dal 1985 a oggi (catalogo strumentale INGV).</p>
+        <p className="muted">
+          Magnitudo 4 o più, con l’epicentro entro {NEAR_KM} km, dal 1985 a oggi: sono le scosse misurate dagli strumenti
+          dell’INGV. Un terremoto più lontano o più antico non compare qui, anche se si è sentito forte: per quelli c’è la
+          storia qui sopra.
+        </p>
         {history.isPending && <LoadingCards count={2} label="Cerco nel catalogo storico…" />}
         {history.data && history.data.length === 0 && (
           <p className="empty">Dal 1985 non risultano terremoti di magnitudo 4 o più entro {NEAR_KM} km.</p>

@@ -15,7 +15,8 @@
     "icons": "pwa-assets-generator",
     "audit:deps": "npm audit --audit-level=moderate",
     "check:fonti": "node scripts/check-sources.mjs",
-    "check:zone": "node scripts/check-zone-update.mjs"
+    "check:zone": "node scripts/check-zone-update.mjs",
+    "crediti": "node scripts/build-credits.mjs"
   },
   "dependencies": {
     "@fontsource/atkinson-hyperlegible-next": "5.3.0",

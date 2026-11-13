@@ -110,6 +110,8 @@ dati si scrivono come `{n(dati.totale)}` (vedi gli articoli esistenti): così re
 - `npm run build` si ferma se un articolo non rispetta le regole (fonti, date, link, percorso…) e dice cosa sistemare.
 - `npm run check:fonti` controlla che i link funzionino e che ogni DOI porti allo studio citato. Gira anche da solo ogni
   lunedì su GitHub.
+- `npm run crediti` aggiunge le fonti del nuovo articolo ai crediti del README. Se te ne dimentichi, la build si ferma ed
+  elenca le fonti che mancano.
 - Prima di proporre un articolo, leggilo ad alta voce: se una frase non si capisce al primo ascolto, va riscritta.
 - **Nessun articolo va online senza che una persona l’abbia letto e approvato.** Lo promettiamo pubblicamente nella
   pagina «Come scriviamo»: è una regola, non un consiglio.

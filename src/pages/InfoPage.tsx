@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { TAGLINE } from '../lib/brand';
 import { ExternalLink, PageHeader } from '../components/ui';
+import { DBMI_CITATION, DBMI_DOI, DBMI_LICENSE } from '../lib/dbmi';
 
 export function InfoPage() {
   return (
@@ -101,6 +102,11 @@ export function InfoPage() {
             <ExternalLink href="https://open-meteo.com/en/license">Open-Meteo</ExternalLink>, licenza CC BY 4.0, con dati della
             rianalisi ERA5 del Copernicus Climate Change Service. Scaricati una volta sola per preparare l’articolo: il sito
             non si collega a Open-Meteo.
+          </li>
+          <li>
+            <span className="strong">Storia sismica dei comuni</span> (in «Il mio comune»): {DBMI_CITATION}{' '}
+            <ExternalLink href={DBMI_DOI}>{DBMI_DOI}</ExternalLink>. Licenza{' '}
+            <ExternalLink href={DBMI_LICENSE.url}>{DBMI_LICENSE.name}</ExternalLink>. Ne mostriamo una scelta, riassunta da noi.
           </li>
           <li>
             <span className="strong">Consigli di sicurezza:</span> campagna{' '}

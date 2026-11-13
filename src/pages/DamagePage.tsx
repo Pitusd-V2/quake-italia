@@ -3,6 +3,7 @@ import { BedDouble, Camera, ClipboardCheck, LifeBuoy, Phone, ShieldAlert, Siren,
 import type { ReactNode } from 'react';
 import { SpeakButton } from '../components/Actions';
 import { ExternalLink, Notice, PageHeader } from '../components/ui';
+import { DAMAGE_SOURCES } from '../data/pageSources';
 
 interface Section {
   id: string;
@@ -242,34 +243,9 @@ export function DamagePage() {
       <section className="stack-sm learn-sources" aria-labelledby="damage-sources">
         <h2 id="damage-sources">Fonti</h2>
         <ol>
-          <li>
-            <ExternalLink href="https://www.protezionecivile.gov.it/it/approfondimento/se-arriva-il-terremoto/">
-              Dipartimento della Protezione Civile — Se arriva il terremoto
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://www.protezionecivile.gov.it/it/approfondimento/scheda-aedes/">
-              Dipartimento della Protezione Civile — La scheda AeDES
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://emergenze.protezionecivile.gov.it/en/seismic/emilia-romagna-and-lombardy-earthquake-2012/safety-checks/">
-              Dipartimento della Protezione Civile — Terremoto Emilia 2012, verifiche di agibilità ed esiti A–F (in inglese)
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://emergenze.protezionecivile.gov.it/it/sismiche/terremoto-centro-italia-2016/verifiche-di-agibilita/">
-              Dipartimento della Protezione Civile — Terremoto Centro Italia 2016, verifiche di agibilità
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://domande-risposte.protezionecivile.gov.it/it/approfondimento/terremoto-centro-italia-chiarimenti-cas/">
-              Dipartimento della Protezione Civile — Chiarimenti sul contributo di autonoma sistemazione (CAS)
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://iononrischio.protezionecivile.it/">Io non rischio — campagna di comunicazione sui rischi</ExternalLink>
-          </li>
+          {DAMAGE_SOURCES.map((s) => (
+            <li key={s.url ?? s.label}>{s.url ? <ExternalLink href={s.url}>{s.label}</ExternalLink> : s.label}</li>
+          ))}
         </ol>
       </section>
     </div>

@@ -3,6 +3,7 @@ import { MessageCircleWarning, ShieldCheck } from 'lucide-react';
 import { SpeakButton } from '../components/Actions';
 import { ExternalLink, PageHeader } from '../components/ui';
 import { meteo as weatherMeteo } from '../data/learn/tempo-terremoto.json';
+import { RUMOR_SOURCES } from '../data/pageSources';
 
 type Verdict = 'falso' | 'in-parte';
 
@@ -166,40 +167,9 @@ export function RumorsPage() {
       <section className="stack-sm learn-sources" aria-labelledby="rumor-sources">
         <h2 id="rumor-sources">Fonti</h2>
         <ol>
-          <li>
-            <ExternalLink href="https://ingvterremoti.com/2019/11/11/alcune-riflessioni-in-caso-di-una-sequenza-sismica-come-quella-di-sora-balsorano-del-7-novembre-2019/">
-              A. Amato (INGV), Alcune riflessioni in caso di una sequenza sismica, INGVterremoti, 2019
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://ingvterremoti.com/faq/faq-domande-frequenti-sui-terremoti/">INGV — FAQ, domande frequenti sui terremoti (Quale magnitudo?)</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://ingvterremoti.com/2016/10/31/la-magnitudo-del-terremoto-del-30-ottobre-2016/">
-              INGV — La magnitudo del terremoto del 30 ottobre 2016
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://www.usgs.gov/programs/earthquake-hazards/earthquake-facts-earthquake-fantasy">
-              USGS — Earthquake Facts & Earthquake Fantasy (in inglese)
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://www.usgs.gov/faqs/can-you-predict-earthquakes">USGS — Can you predict earthquakes? (in inglese)</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://www.ilpost.it/2016/08/26/magnitudo-terremoto-bufala/">Il Post — La bufala sul governo che avrebbe abbassato la magnitudo del terremoto, 2016</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://www.focus.it/scienza/scienze/terremoto-perche-i-dati-sulle-magnitudo-sono-diversi">
-              Focus — Terremoto: perché i dati sulle magnitudo sono diversi
-            </ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/il-bradisismo-ai-campi-flegrei/domande-e-risposte/domande-e-risposte-sul-rischio-vulcanico-e-il-bradisismo-ai-campi-flegrei/">
-              Dipartimento della Protezione Civile — Domande e risposte sui Campi Flegrei
-            </ExternalLink>
-          </li>
+          {RUMOR_SOURCES.map((s) => (
+            <li key={s.url ?? s.label}>{s.url ? <ExternalLink href={s.url}>{s.label}</ExternalLink> : s.label}</li>
+          ))}
         </ol>
       </section>
     </div>

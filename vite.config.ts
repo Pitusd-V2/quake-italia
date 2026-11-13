@@ -57,7 +57,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,mjs,css,html,svg,png,ico,woff2}'],
         // La mappa (~1 MB) non viene scaricata in anticipo: la salviamo solo quando serve
         // (vedi runtimeCaching), così la prima visita resta leggera anche col telefono.
-        globIgnores: ['**/QuakeMap-*', '**/maplibre-gl-worker-*'],
+        // Lo stesso per la storia sismica dei comuni (22 file, 1,4 MB): si salva solo quello del proprio comune.
+        globIgnores: ['**/QuakeMap-*', '**/maplibre-gl-worker-*', '**/dbmi-*'],
         navigateFallback: '/index.html',
         importScripts: ['sw-notifications.js'],
         runtimeCaching: [
@@ -67,6 +68,12 @@ export default defineConfig({
               sameOrigin && /\/assets\/(QuakeMap|maplibre-gl-worker)-/.test(url.pathname),
             handler: 'CacheFirst',
             options: { cacheName: 'map-code', expiration: { maxEntries: 10 } },
+          },
+          {
+            // Storia sismica dei comuni: stessa regola, così «Il mio comune» funziona anche senza rete.
+            urlPattern: ({ url, sameOrigin }) => sameOrigin && /\/assets\/dbmi-/.test(url.pathname),
+            handler: 'CacheFirst',
+            options: { cacheName: 'town-history', expiration: { maxEntries: 30 } },
           },
           {
             // Dati INGV: prima la rete (dati freschi), se offline l'ultima copia salvata.

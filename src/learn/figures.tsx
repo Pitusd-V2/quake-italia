@@ -4,6 +4,7 @@
  * - Grafici costruiti con DATI VERI dell'INGV (src/data/learn/*.json, generati da scripts/build-learn-data.mjs).
  * Ogni grafico ha anche la versione "a numeri" per chi usa un lettore di schermo.
  */
+import { MCS, MCS_SOURCE } from '../lib/mcs';
 import type { ReactNode } from 'react';
 import slab from '../data/learn/slab.json';
 import norcia from '../data/learn/norcia2016.json';
@@ -135,33 +136,20 @@ export function EnergyChart() {
 
 /* ---------- 3. Scala MCS (testi INGV) ---------- */
 
-const MCS: [string, string, string][] = [
-  ['I', 'Impercettibile', 'Rilevato soltanto dai sismografi.'],
-  ['II', 'Molto leggero', 'Sentito solo da persone molto sensibili, in perfetta quiete, ai piani alti.'],
-  ['III', 'Leggero', 'Percepito da una piccola parte delle persone in casa, come il passaggio di un mezzo pesante.'],
-  ['IV', 'Moderato', 'Notato in casa da molte persone: tintinnano finestre e stoviglie, scricchiolano porte.'],
-  ['V', 'Abbastanza forte', 'Avvertito da quasi tutti; oggetti appesi oscillano, quadri sbattono, quasi tutti si svegliano.'],
-  ['VI', 'Forte', 'Avvertito da tutti con paura; cadono oggetti; danni leggeri agli edifici (crepe nell’intonaco).'],
-  ['VII', 'Molto forte', 'Danni moderati a molti edifici solidi; cadono tegole e camini.'],
-  ['VIII', 'Rovinoso', 'Circa un quarto delle case gravemente danneggiato, alcune crollano.'],
-  ['IX', 'Distruttivo', 'Circa metà delle case in pietra distrutte.'],
-  ['X', 'Completamente distruttivo', 'Circa tre quarti degli edifici distrutti; danni a ponti e dighe.'],
-  ['XI', 'Catastrofico', 'Crollano tutti gli edifici in muratura.'],
-  ['XII', 'Grandemente catastrofico', 'Nessuna opera umana resiste; il paesaggio cambia.'],
-];
+/* L elenco dei gradi è in src/lib/mcs.ts: lo stesso usato dalla storia sismica dei comuni. */
 
 export function MCSScale() {
   return (
     <Figure
       title="I 12 gradi della scala Mercalli-Cancani-Sieberg (MCS)"
       caption="L’intensità descrive gli effetti in un luogo. Dal I al V grado si guardano le persone e gli oggetti; dal VI al XII i danni agli edifici e all’ambiente. Descrizioni riassunte dalla scala ufficiale."
-      source="INGV, Database Fotografico Macrosismico — Scala MCS"
-      sourceHref="https://dfm.ingv.it/?page=scale.mcs"
+      source={MCS_SOURCE.label}
+      sourceHref={MCS_SOURCE.url}
     >
       <ol className="mcs" aria-label="Gradi della scala MCS">
-        {MCS.map(([deg, name, text], i) => (
-          <li key={deg} style={{ ['--step' as string]: String(i) }}>
-            <span className="mcs__deg">{deg}</span>
+        {MCS.map(({ roman, name, text }, i) => (
+          <li key={roman} style={{ ['--step' as string]: String(i) }}>
+            <span className="mcs__deg">{roman}</span>
             <span>
               <span className="strong">{name}.</span> {text}
             </span>

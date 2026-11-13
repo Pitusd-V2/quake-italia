@@ -4,6 +4,7 @@ import { SpeakButton } from '../components/Actions';
 import { ExternalLink, PageHeader } from '../components/ui';
 import { PrepareSummary } from '../components/PrepareSummary';
 import { ArticleQuestionLine } from '../learn/ArticleQuestions';
+import { CAA_SOURCE, SAFETY_SOURCES } from '../data/pageSources';
 
 /**
  * Le fonti di questa pagina, numerate: ogni consiglio porta accanto il numero della fonte (o delle fonti) da cui viene.
@@ -11,16 +12,9 @@ import { ArticleQuestionLine } from '../learn/ArticleQuestions';
  * pagine ufficiali. Se una fonte cambia, cambia anche questo file. Quando le fonti dicono cose un po' diverse
  * («limitare» o «non usare» il telefono) teniamo la versione più prudente e citiamo entrambe.
  */
-export const SOURCES: { n: number; label: string; url: string }[] = [
-  { n: 1, label: 'Io non rischio (Protezione Civile) — Cosa fare: terremoto', url: 'https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/' },
-  { n: 2, label: 'Dipartimento della Protezione Civile — Se arriva il terremoto', url: 'https://www.protezionecivile.gov.it/it/approfondimento/se-arriva-il-terremoto/' },
-  { n: 3, label: 'Dipartimento della Protezione Civile — Rischio sismico. Sei preparato?', url: 'https://rischi.protezionecivile.it/it/sismico/sei-preparato/' },
-  { n: 4, label: 'Ministero dell’Interno — Che cosa fare se si è coinvolti in un terremoto? I consigli dei Vigili del Fuoco', url: 'https://www.interno.gov.it/it/cosa-fare-e-coinvolti-terremoto' },
-  { n: 5, label: 'AREU Lombardia (agenzia che gestisce il 112) — Domande frequenti sull’app del 112', url: 'https://www.areu.lombardia.it/web/home/faq-where-are-u' },
-];
+export const SOURCES = SAFETY_SOURCES;
 
-/** La scheda a simboli della Protezione Civile (citata nella fonte 3). */
-const CAA_URL = 'https://www.protezionecivile.gov.it/static/e8131fdaea1248f821bcb3029623fb1e/scheda-caa-terremoto.pdf';
+const CAA_URL = CAA_SOURCE.url!;
 
 /** Un passo: l'azione in poche parole, poi il perché o il come, e le fonti. */
 export interface Step {
