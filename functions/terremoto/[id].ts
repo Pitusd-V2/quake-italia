@@ -12,7 +12,9 @@ export async function onRequestGet(ctx: PagesContext): Promise<Response> {
   // La scheda di una scossa è l'app, cioè la pagina iniziale: la stessa che dà la regola in _redirects.
   const page = withSecurityHeaders(await ctx.env.ASSETS.fetch(new URL('/', url.origin)));
   const id = String(ctx.params.id);
-  const wanted = isPreviewClient(ctx.request.headers.get('user-agent')) || url.searchParams.has('anteprima');
+  // I link del pulsante «Condividi» hanno ?m=43: l'anteprima deve esserci anche se l'app non si fa riconoscere.
+  const shared = /^\d{1,2}$/.test(url.searchParams.get('m') ?? '');
+  const wanted = shared || isPreviewClient(ctx.request.headers.get('user-agent')) || url.searchParams.has('anteprima');
   if (!wanted || !page.ok || !isQuakeId(id)) return page;
 
   try {
@@ -23,7 +25,7 @@ export async function onRequestGet(ctx: PagesContext): Promise<Response> {
     const headers = new Headers(page.headers);
     headers.delete('content-length');
     headers.delete('etag');
-    headers.set('Cache-Control', 'public, max-age=300');
+    // La cache resta quella della pagina: anche le persone aprono questi link e devono ricevere sempre l'ultima versione.
     return new Response(html, { status: 200, headers });
   } catch {
     return page;

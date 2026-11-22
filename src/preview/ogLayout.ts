@@ -58,5 +58,15 @@ export function magKey(mag: number): number | null {
   return Number.isInteger(k) && k >= 0 && k <= 99 ? k : null;
 }
 
+/**
+ * Il link da condividere. La magnitudo nell'indirizzo fa due cose: dice al server di preparare l'anteprima anche se
+ * l'app che la chiede non si fa riconoscere, e se l'INGV corregge il valore il link cambia, così WhatsApp non riusa la
+ * vecchia anteprima che ha salvato.
+ */
+export function quakeShareUrl(origin: string, id: string, mag: number): string {
+  const key = magKey(mag);
+  return `${origin}/terremoto/${id}${key === null ? '' : `?m=${key}`}`;
+}
+
 export const headFile = (key: number, level: number) => `h-${key}-${level}.bin`;
 export const OG_DATA_PATH = '/og-data';

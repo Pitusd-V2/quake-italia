@@ -77,6 +77,8 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').repl
 /** La pagina con titolo, descrizione e immagine della scossa al posto di quelli generici. */
 export function withPreviewMeta(html: string, p: QuakePreview, origin: string): string {
   const url = `${origin}/terremoto/${p.id}`;
+  // og:url con la magnitudo: alcune app salvano l'anteprima in base a questo indirizzo.
+  const shared = `${url}?m=${p.key}`;
   const image = `${origin}/og/terremoto/${p.id}.png?m=${p.key}`;
   const meta = (attr: string, name: string, value: string, doc: string) =>
     doc.replace(new RegExp(`<meta ${attr}="${name}"[^>]*>`), () => `<meta ${attr}="${name}" content="${esc(value)}" />`);
@@ -86,7 +88,7 @@ export function withPreviewMeta(html: string, p: QuakePreview, origin: string): 
     ['name', 'description', p.description],
     ['property', 'og:title', p.title],
     ['property', 'og:description', p.description],
-    ['property', 'og:url', url],
+    ['property', 'og:url', shared],
     ['property', 'og:image', image],
     ['property', 'og:image:alt', p.alt],
   ]) {

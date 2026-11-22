@@ -11,6 +11,7 @@ import { capitalize, depthNote, depthText, fromPlace, magLevel, placeText, share
 import { feltHere, speechText } from '../lib/impact';
 import { formatFull, formatMag, formatWhen, timeAgo } from '../lib/format';
 import { buildQueryUrl, ingvEventPage } from '../lib/ingv';
+import { quakeShareUrl } from '../preview/ogLayout';
 import { HSIT_FORM, hsitHint } from '../lib/hsit';
 import { MagBadge, LevelLabel } from '../components/MagBadge';
 import { QuakeList } from '../components/QuakeCard';
@@ -65,7 +66,7 @@ export function QuakeDetailPage() {
   // Le domande che è naturale farsi davanti a questa scossa, con l'articolo che risponde (vedi learn/suggest.ts).
   const followed = nearby.filter((q) => q.time > quake.time).length;
   const ask = slugsForQuake(contextOf(quake, now, { sequence: quake.mag >= SEQUENCE_MIN_MAG || followed >= 3, feltAtHome: felt?.key }));
-  const pageUrl = `${window.location.origin}/terremoto/${quake.id}`;
+  const pageUrl = quakeShareUrl(window.location.origin, quake.id, quake.mag);
 
   return (
     <div className="container stack-lg">

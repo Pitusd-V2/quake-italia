@@ -7,7 +7,7 @@ import { onRequestGet as pageRoute } from '../../functions/terremoto/[id]';
 import { magLevel } from '../lib/describe';
 import type { Quake } from '../lib/types';
 import { composeOgPng, fitLine } from './ogImage';
-import { BAND_BOTTOM, BAND_TOP, headFile, magKey, OG_H, OG_PALETTE, OG_W, TEXT_MAX } from './ogLayout';
+import { BAND_BOTTOM, BAND_TOP, headFile, magKey, OG_H, OG_PALETTE, OG_W, quakeShareUrl, TEXT_MAX } from './ogLayout';
 import { isPreviewClient, isQuakeId, previewOf, quakeUrl, withPreviewMeta } from './quakePreview';
 
 const DATA = join(process.cwd(), 'public', 'og-data');
@@ -213,6 +213,26 @@ describe('anteprima di una scossa: le funzioni su Cloudflare', () => {
     expect(html).toContain('<link rel="canonical" href="https://quakeitalia.it/terremoto/48036792" />');
     expect(res.headers.get('content-security-policy')).toContain('script-src');
     expect(String(ingv.mock.calls[0]?.[0 as never])).toContain('eventid=48036792');
+  });
+
+  it('il link del pulsante Condividi ha l’anteprima anche se l’app non si fa riconoscere', async () => {
+    expect(quakeShareUrl('https://quakeitalia.it', '48036792', 4.3)).toBe('https://quakeitalia.it/terremoto/48036792?m=43');
+    expect(quakeShareUrl('https://quakeitalia.it', '48036792', -0.4)).toBe('https://quakeitalia.it/terremoto/48036792');
+    mockIngv(() => Response.json(GEOJSON));
+    const res = await pageRoute(context('/terremoto/48036792?m=43', 'Mozilla/5.0 Chrome/130', { id: '48036792' }));
+    const html = await res.text();
+    expect(html).toContain('<meta property="og:title" content="Magnitudo 4,3 · Capistrano (VV)" />');
+    expect(html).toContain('<meta property="og:url" content="https://quakeitalia.it/terremoto/48036792?m=43" />');
+    expect(html).toContain('<link rel="canonical" href="https://quakeitalia.it/terremoto/48036792" />');
+    // Anche le persone aprono questo link: la pagina non deve restare in cache più del solito.
+    expect(res.headers.get('cache-control')).toBeNull();
+  });
+
+  it('un parametro m inventato non fa chiamare l’INGV', async () => {
+    const ingv = mockIngv(() => Response.json(GEOJSON));
+    const res = await pageRoute(context('/terremoto/48036792?m=abc', 'Mozilla/5.0 Chrome/130', { id: '48036792' }));
+    expect(await res.text()).toBe(SHELL);
+    expect(ingv).not.toHaveBeenCalled();
   });
 
   it('se l’INGV non risponde la pagina funziona lo stesso, con l’anteprima generica', async () => {
