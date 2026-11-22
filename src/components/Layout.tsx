@@ -154,12 +154,7 @@ export function Layout() {
       <header className="app-header">
         <div className="app-header__inner">
           <div className="app-header__identity">
-            <Link to="/" className="app-header__brand" aria-label="Quake Italia, vai alla pagina iniziale">
-              <Logo />
-            </Link>
-            <Link to="/informazioni#beta" className="beta-tag" aria-label="Versione beta: cosa vuol dire">
-              Beta
-            </Link>
+            <Logo />
           </div>
           <nav className="top-nav" aria-label="Menu principale">
             <NavLinks items={TOP_NAV} className="top-nav__link" />

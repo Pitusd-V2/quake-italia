@@ -66,19 +66,21 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
   margin-right: auto;
 }
-.app-header__brand {
-  color: var(--text);
-  text-decoration: none;
-  border-radius: var(--r-sm);
-}
-.app-header__brand:hover { color: var(--text); }
+.logo__line { display: flex; align-items: center; gap: 6px; }
+.logo__home { color: var(--text); text-decoration: none; }
+.logo__home:hover { color: var(--text); }
+/* Il link alla pagina iniziale copre tutto il marchio, icona compresa. */
+.logo__home::after { content: ''; position: absolute; inset: 0; border-radius: var(--r-sm); }
+.logo__home:focus-visible { outline: none; }
+.logo__home:focus-visible::after { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 /* «Beta» accanto al nome: porta alla spiegazione in Informazioni. */
 .beta-tag {
   position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   padding: 2px 7px;
   border-radius: var(--r-pill);
   background: var(--primary-soft);
@@ -102,6 +104,7 @@
   font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .top-nav { display: none; gap: var(--sp-1); }
@@ -732,9 +735,13 @@
 @media (max-width: 479px) {
   .app-header__inner { gap: 8px; padding-inline: 12px; }
   .btn--felt-small { font-size: 16px; min-height: 48px; padding-inline: 14px; }
-  /* Sul telefono «Beta» sta sotto il nome, per lasciare tutta la larghezza a «Ho sentito». */
-  .app-header__brand .logo__text { padding-bottom: 16px; }
-  .beta-tag { position: absolute; left: 44px; bottom: 0; padding: 1px 6px; font-size: 11px; }
+  .beta-tag { padding: 1px 6px; }
+  .beta-tag::after { inset: -10px -4px; }
+}
+/* Sui telefoni più stretti non c'è spazio accanto al nome: «Beta» va sotto, per non toccare «Ho sentito». */
+@media (max-width: 359px) {
+  .logo__line { flex-direction: column; align-items: flex-start; gap: 1px; }
+  .beta-tag { font-size: 11px; }
   .beta-tag::after { inset: -2px -10px -8px -4px; }
 }
 @media (min-width: 1100px) {
@@ -747,7 +754,7 @@
   .btn--felt-small svg { width: 18px; height: 18px; }
   .btn--felt-small .only-wide { display: none; }
   .btn--felt-small .only-narrow { display: inline; }
-  .app-header__brand .logo__word { font-size: 19px; white-space: nowrap; }
+  .app-header__identity .logo__word { font-size: 19px; }
 }
 /* La larghezza della testata in px: con «rem» dipenderebbe dalla grandezza del testo (più stretta con «Normale»). */
 @media (min-width: 1100px) {

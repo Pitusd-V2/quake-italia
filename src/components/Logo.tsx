@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { TAGLINE } from '../lib/brand';
 
 /** Sagoma dell'Italia (Natural Earth) attraversata dal tracciato di un sismografo. Colori fissi: è il marchio. */
@@ -15,12 +16,23 @@ export function LogoMark({ size = 36 }: { size?: number }) {
   );
 }
 
+/**
+ * Il marchio della testata. Tutto il blocco porta alla pagina iniziale (il link si estende con il CSS), tranne «Beta»,
+ * che sta accanto al nome e porta alla sua spiegazione: due link separati, perché un link non può contenerne un altro.
+ */
 export function Logo() {
   return (
     <span className="logo">
       <LogoMark />
       <span className="logo__text">
-        <span className="logo__word">Quake Italia</span>
+        <span className="logo__line">
+          <Link to="/" className="logo__home" aria-label="Quake Italia, vai alla pagina iniziale">
+            <span className="logo__word">Quake Italia</span>
+          </Link>
+          <Link to="/informazioni#beta" className="beta-tag" aria-label="Versione beta: cosa vuol dire">
+            Beta
+          </Link>
+        </span>
         <span className="logo__tagline">{TAGLINE}</span>
       </span>
     </span>

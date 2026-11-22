@@ -27,6 +27,7 @@
   "include": [
     "src",
     "security",
+    "functions",
     "vite.config.ts"
   ],
   "exclude": [
