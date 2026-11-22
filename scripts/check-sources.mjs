@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import { readArticles } from '../plugins/articoli.ts';
 
 const REPORT = 'sources-check.md';
-const UA = 'QuakeItalia-source-check/1.0 (+https://github.com/Pitusd-V2/quake-italia; mailto:quakeitalia@gmail.com)';
+const UA = 'QuakeItalia-source-check/1.0 (+https://github.com/Pitusd-V2/quake-italia; mailto:contatti@quakeitalia.it)';
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function get(url, { json = false, timeout = 25_000 } = {}) {

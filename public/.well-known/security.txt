@@ -1,6 +1,6 @@
 # Come segnalare un problema di sicurezza di Quake Italia (RFC 9116).
 Contact: https://github.com/Pitusd-V2/quake-italia/security/advisories/new
-Contact: mailto:quakeitalia@gmail.com
+Contact: mailto:contatti@quakeitalia.it
 Expires: 2027-11-01T00:00:00.000Z
 Preferred-Languages: it, en
 Canonical: https://quakeitalia.it/.well-known/security.txt

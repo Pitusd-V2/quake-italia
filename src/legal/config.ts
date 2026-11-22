@@ -15,13 +15,16 @@ export const LEGAL = {
   /** Chi pubblica il sito ed è responsabile dei dati (il "titolare del trattamento"). */
   owner: {
     name: 'Quake Italia',
-    email: 'quakeitalia@gmail.com',
+    /** L'indirizzo pubblico: Cloudflare Email Routing lo inoltra a replyEmail. */
+    email: 'contatti@quakeitalia.it',
+    /** La casella del progetto, da cui partono le risposte (Email Routing riceve soltanto). */
+    replyEmail: 'quakeitalia@gmail.com',
   },
 
   hosting: 'cloudflare' as Hosting,
 
   /** Data dell'ultima modifica delle pagine legali (da aggiornare a ogni cambiamento). */
-  lastUpdated: '13 novembre 2026',
+  lastUpdated: '22 novembre 2026',
 };
 
 /** Formula prudente: le garanzie esatte (DPF e/o clausole standard) vanno verificate nell'informativa del fornitore. */

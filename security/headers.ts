@@ -39,8 +39,9 @@ const csp = [
 
 export const SECURITY_HEADERS: Record<string, string> = {
   'Content-Security-Policy': csp,
-  // Solo HTTPS per 2 anni (attivo solo quando il sito è servito in HTTPS).
-  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains',
+  // Solo HTTPS per 1 giorno durante il lancio: un errore si può ancora ritirare.
+  // Due settimane dopo il lancio, con l'HTTPS stabile, riportare a 2 anni: max-age=63072000.
+  'Strict-Transport-Security': 'max-age=86400; includeSubDomains',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',

@@ -268,6 +268,13 @@ export function PrivacyPage() {
             lett. b e f, GDPR), e li conserveremo per il tempo necessario a gestire la tua richiesta.
           </p>
           <p>
+            I messaggi inviati a <ContactEmail /> passano da due servizi: Cloudflare Email Routing li inoltra alla casella Gmail
+            del progetto, dove li leggiamo. Per questo la nostra risposta ti arriva da {LEGAL.owner.replyEmail}. Cloudflare e
+            Google possono trattare questi dati anche fuori dall’Unione europea, con le garanzie descritte nelle loro
+            informative: <ExternalLink href={HOSTING_INFO.cloudflare.privacyUrl!}>Cloudflare</ExternalLink> e{' '}
+            <ExternalLink href="https://policies.google.com/privacy">Google</ExternalLink>.
+          </p>
+          <p>
             Se segnali un errore su GitHub (per esempio con il link in fondo agli articoli), lo fai sul sito di GitHub, con il
             tuo account e secondo la sua informativa: la segnalazione è pubblica e la può leggere chiunque.
           </p>

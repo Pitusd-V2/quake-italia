@@ -514,4 +514,4 @@ Hai trovato un errore in un articolo? In fondo a ogni articolo c'è il link per 
 ## Sicurezza e contatti
 
 Per i problemi di sicurezza **non aprire una segnalazione pubblica**: segui [SECURITY.md](SECURITY.md).
-Per tutto il resto: quakeitalia@gmail.com.
+Per tutto il resto: contatti@quakeitalia.it.

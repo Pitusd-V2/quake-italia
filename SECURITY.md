@@ -5,7 +5,7 @@
 Se trovi una vulnerabilità **non aprire una segnalazione pubblica** (issue): chiunque la leggerebbe prima che sia corretta.
 
 - Su GitHub, nella scheda **Security** del repository, usa **«Report a vulnerability»** (segnalazione privata).
-- Oppure scrivi a **quakeitalia@gmail.com**.
+- Oppure scrivi a **contatti@quakeitalia.it**.
 
 Descrivi il problema e, se puoi, come riprodurlo. Rispondiamo **entro 7 giorni**.
 Quake Italia è un progetto personale e gratuito: non ci sono premi in denaro, ma ringraziamo volentieri chi segnala

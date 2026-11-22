@@ -43,6 +43,8 @@ a {
   color: var(--primary);
   text-underline-offset: 0.18em;
   text-decoration-thickness: 0.08em;
+  /* Un indirizzo lungo (un DOI, un link) va a capo invece di allargare la pagina sui telefoni stretti. */
+  overflow-wrap: break-word;
 }
 a:hover { color: var(--primary-hover); }
 

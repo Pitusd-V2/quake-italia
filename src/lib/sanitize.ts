@@ -59,6 +59,7 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.ingv.it',
   'www.komoot.com',
   'www.cloudflare.com',
+  'policies.google.com',
   'www.netlify.com',
   'docs.github.com',
   // Fonti di «Capire i terremoti»

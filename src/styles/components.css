@@ -62,13 +62,35 @@
   align-items: center;
   gap: var(--sp-4);
 }
+.app-header__identity {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+}
 .app-header__brand {
   color: var(--text);
   text-decoration: none;
-  margin-right: auto;
   border-radius: var(--r-sm);
 }
 .app-header__brand:hover { color: var(--text); }
+
+/* «Beta» accanto al nome: porta alla spiegazione in Informazioni. */
+.beta-tag {
+  position: relative;
+  padding: 2px 7px;
+  border-radius: var(--r-pill);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.beta-tag:hover { color: var(--primary); text-decoration: underline; }
+/* L'area da toccare è più grande dell'etichetta. */
+.beta-tag::after { content: ''; position: absolute; inset: -8px -6px; }
 
 .logo svg { flex-shrink: 0; }
 .logo {
@@ -710,10 +732,14 @@
 @media (max-width: 479px) {
   .app-header__inner { gap: 8px; padding-inline: 12px; }
   .btn--felt-small { font-size: 16px; min-height: 48px; padding-inline: 14px; }
+  /* Sul telefono «Beta» sta sotto il nome, per lasciare tutta la larghezza a «Ho sentito». */
+  .app-header__brand .logo__text { padding-bottom: 16px; }
+  .beta-tag { position: absolute; left: 44px; bottom: 0; padding: 1px 6px; font-size: 11px; }
+  .beta-tag::after { inset: -2px -10px -8px -4px; }
 }
 @media (min-width: 1100px) {
   .app-header__inner { gap: 28px; padding-inline: 16px; }
-  .app-header__brand { margin-right: 0; }
+  .app-header__identity { margin-right: 0; }
   .top-nav { margin-right: auto; justify-content: flex-start; gap: 4px; }
   .top-nav__link { font-size: 16px; min-height: 44px; padding: 0 12px; }
   .top-nav__link svg { display: inline-block; width: 18px; height: 18px; }

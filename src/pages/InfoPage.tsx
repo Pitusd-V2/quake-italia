@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { TAGLINE } from '../lib/brand';
 import { ExternalLink, PageHeader } from '../components/ui';
 import { DBMI_CITATION, DBMI_DOI, DBMI_LICENSE } from '../lib/dbmi';
+import { LEGAL } from '../legal/config';
 
 export function InfoPage() {
   return (
@@ -75,6 +76,19 @@ export function InfoPage() {
           <span className="strong">Quake Italia non è un sito ufficiale e non è collegato all'INGV.</span> Non prevede i
           terremoti e non è un sistema di allerta. Non ha pubblicità e non chiede registrazioni. In caso di emergenza chiama
           il <a href="tel:112">112</a>.
+        </p>
+      </section>
+
+      <section className="card stack" aria-labelledby="beta">
+        <h2 id="beta">Perché c’è scritto «Beta»</h2>
+        <p>
+          Quake Italia è già utilizzabile, ma è ancora in costruzione. Gli articoli di «Capire» coprono per ora solo una parte
+          dei temi che vogliamo spiegare, e alcuni dei primi saranno riscritti con più dati e più fonti.
+        </p>
+        <p>
+          Può esserci qualche errore: se ne trovi uno, scrivici a{' '}
+          <a href={`mailto:${LEGAL.owner.email}`}>{LEGAL.owner.email}</a>. Per i dati e le indicazioni ufficiali restano sempre
+          l’INGV, la Protezione Civile e il tuo Comune.
         </p>
       </section>
 
