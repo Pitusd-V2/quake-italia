@@ -34,11 +34,12 @@ describe('Pagine per Google e anteprime dei link', () => {
     expect(metaFor('/terremoto/123').title).toBe(HOME_TITLE);
   });
 
-  it('_redirects non ha la regola «tutto → index.html», che nasconderebbe le pagine generate', () => {
+  it('_redirects apre l’app solo per gli indirizzi variabili, senza nascondere le pagine generate', () => {
     const rules = readFileSync(join(__dirname, '../../public/_redirects'), 'utf8')
       .split('\n')
       .filter((l) => l.trim() && !l.startsWith('#'));
     expect(rules.some((l) => /^\/\*\s/.test(l))).toBe(false);
-    for (const r of rules) expect(r).toMatch(/^\/(terremoto|sequenza)\/\*\s+\/index\.html\s+200$/);
+    // Verso «/», non «/index.html»: su Cloudflare quella destinazione risponde 404.
+    for (const r of rules) expect(r).toMatch(/^\/(terremoto|sequenza)\/\*\s+\/\s+200$/);
   });
 });

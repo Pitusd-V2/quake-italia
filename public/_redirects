@@ -1,5 +1,6 @@
 # Le pagine fisse (articoli, consigli, pagine legali…) sono file veri generati al build e si servono così come sono.
 # Qui solo gli indirizzi variabili, che apre l'app. Gli indirizzi che non esistono ricevono 404.html.
-# Niente regola «/* → /index.html»: su Cloudflare Pages varrebbe anche per i file che esistono e li nasconderebbe.
-/terremoto/*  /index.html  200
-/sequenza/*   /index.html  200
+# Niente regola «/* → /»: su Cloudflare Pages varrebbe anche per i file che esistono e li nasconderebbe.
+# La destinazione è «/» e non «/index.html»: Cloudflare toglie «.html» dagli indirizzi e la regola finirebbe in 404.
+/terremoto/*  /  200
+/sequenza/*   /  200
