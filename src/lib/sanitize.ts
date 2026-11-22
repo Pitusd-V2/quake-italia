@@ -109,6 +109,11 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'rischi.protezionecivile.it',
   'www.interno.gov.it',
   'www.areu.lombardia.it',
+  // Fonti di «Perché gli edifici crollano» e «Casa antisismica»: rivista, ISTAT, Ministero, ReLUIS
+  'bgo.ogs.it',
+  'esploradati.istat.it',
+  'www.mit.gov.it',
+  'www.reluis.it',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

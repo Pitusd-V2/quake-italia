@@ -139,7 +139,10 @@ export const SECTIONS: Section[] = [
 
 /* Esiti della scheda AeDES, con le definizioni del Dipartimento della Protezione Civile dette in modo semplice. */
 const OUTCOMES: { code: string; text: string }[] = [
-  { code: 'A', text: 'Agibile: si può usare tutta, senza pericolo per chi ci abita.' },
+  {
+    code: 'A',
+    text: 'Agibile: si può usare. Il controllo, fatto a vista, non ha trovato danni che facciano temere crolli con un’altra scossa non più forte di quella avvenuta.',
+  },
   { code: 'B', text: 'Si potrà usare dopo piccoli lavori di messa in sicurezza, veloci da fare.' },
   { code: 'C', text: 'Solo alcune parti sono pericolose e non si possono usare.' },
   { code: 'D', text: 'Il tecnico non è sicuro: serve un controllo più approfondito. Fino ad allora non si usa.' },

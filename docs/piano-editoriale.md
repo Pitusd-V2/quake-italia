@@ -98,8 +98,8 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 
 | # | Titolo provvisorio | La domanda | Fonti principali previste | |
 |---|---|---|---|---|
-| 55 | Perché gli edifici crollano | Perché una casa crolla e quella accanto no? | Protezione Civile; Eucentre/ReLUIS *(da individuare)* | 🆕 ★ |
-| 56 | Casa antisismica: cosa vuol dire davvero | «Antisismica» vuol dire che non crolla mai? | NTC 2018; Protezione Civile | 🆕 ★ |
+| 55 | Perché gli edifici crollano | Perché una casa crolla e quella accanto no? | Scritto: `perche-gli-edifici-crollano` (22/11/2026) | ✅ ★ |
+| 56 | Casa antisismica: cosa vuol dire davvero | «Antisismica» vuol dire che non crolla mai? | Scritto: `casa-antisismica` (22/11/2026) | ✅ ★ |
 | 57 | Muratura, cemento armato, edifici storici | Qual è la differenza, e qual è il punto debole di ognuno? | Protezione Civile *(da individuare)* | 🆕 |
 | 58 | La classe di rischio della casa e il Sismabonus | Come si capisce quanto è sicura una casa? | DM 58/2017 (Linee guida classificazione rischio sismico) | 🆕 ★ |
 | 59 | Dopo la scossa: l’agibilità | Chi decide se posso rientrare, e come? | Protezione Civile (manuale scheda AeDES) | 🆕 ★ |

@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 150 fonti in 16 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 185 fonti in 18 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -347,6 +347,54 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Io non rischio — Campi Flegrei: cosa sapere — [link](https://iononrischio.protezionecivile.gov.it/it/preparati/vulcani/campi-flegrei/cosa-sapere/)
 - INGV — Miscellanea INGV sulle crisi bradisismiche del 1970–72 e 1982–84 — [link](https://collane-editoriali.ingv.it/index.php/mi/article/view/171/pdf)
 - INGV — catalogo dei terremoti, richiesta usata per i grafici — [link](https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&limit=20000&starttime=2026-01-01&endtime=2027-01-01&lat=40.827&lon=14.139&maxradiuskm=8)
+
+#### Perché gli edifici crollano
+
+*Case e sicurezza* · [leggi l’articolo](contenuti/articoli/perche-gli-edifici-crollano.mdx)
+
+- Dipartimento della Protezione Civile — «Vulnerabilità sismica», rischio sismico, attività — [link](https://rischi.protezionecivile.gov.it/it/sismico/attivita/vulnerabilita-sismica/)
+- Dipartimento della Protezione Civile — «Descrizione del rischio», rischio sismico — [link](https://rischi.protezionecivile.gov.it/it/sismico/descrizione-del-rischio/)
+- Dipartimento della Protezione Civile — «I numeri del sisma in Centro Italia» (dati aggiornati al 22 agosto 2018) — [link](https://emergenze.protezionecivile.gov.it/static/f438b5ebc904a11a47dd5db891db0fbb/Relazione_di_aggiornamento_numeri_dell_emergenza__22_agosto_2018_.pdf)
+- Dipartimento della Protezione Civile, Servizio nazionale — «The earthquake in Central Italy» — [link](https://servizio-nazionale.protezionecivile.gov.it/en/pagina-base/earthquake-central-italy/)
+- Decreto del Presidente del Consiglio dei Ministri 8 luglio 2014, Nucleo tecnico nazionale per il rilievo del danno e la valutazione di agibilità, con il modello AeDES aggiornato e il manuale di compilazione (testo sul sito del Dipartimento della Protezione Civile) — [link](https://www.protezionecivile.gov.it/static/bc6f8269aa55f34978cad339ef9b5b61/dpcm-nucleo-tecnico-nazionale-8luglio2014-def.pdf)
+- Ministero delle Infrastrutture e dei Trasporti — D.M. 17 gennaio 2018, «Aggiornamento delle Norme tecniche per le costruzioni», Gazzetta Ufficiale n. 42 del 20 febbraio 2018, S.O. n. 8, §8.7.1 — [link](https://www.gazzettaufficiale.it/eli/gu/2018/02/20/42/so/8/sg/pdf)
+- Grünthal, G. (a cura di), Musson, R. M. W., Schwarz, J. & Stucchi, M. (1998). European Macroseismic Scale 1998 (EMS-98). Cahiers du Centre Européen de Géodynamique et de Séismologie, 15 — [link](https://doi.org/10.2312/EMS-98.full.en)
+- Dolce, M., Speranza, E., Giordano, F., Borzi, B., Bocchi, F., Conte, C., Di Meo, A., Faravelli, M. & Pascale, V. (2019). Observed damage database of past Italian earthquakes: the Da.D.O. WebGIS. Bollettino di Geofisica Teorica ed Applicata, 60(2), 141–164 — [link](https://bgo.ogs.it/provapage.php?id_articolo=787)
+- Dolce, M., Prota, A., Borzi, B., da Porto, F., Lagomarsino, S., Magenes, G., Moroni, C., Penna, A., Polese, M., Speranza, E., Verderame, G. M. & Zuccaro, G. (2021). Seismic risk assessment of residential buildings in Italy. Bulletin of Earthquake Engineering, 19(8), 2999–3032 — [link](https://doi.org/10.1007/s10518-020-01009-5)
+- Sisti, R., Di Ludovico, M., Borri, A. & Prota, A. (2022). Seismic performance of strengthened masonry structures: actual behaviour of buildings in Norcia and Campi Alto during the 2016 Central Italy seismic sequence. Bulletin of Earthquake Engineering, 20(1), 321–348 — [link](https://doi.org/10.1007/s10518-021-01248-0)
+- Sorrentino, L., Cattari, S., da Porto, F., Magenes, G. & Penna, A. (2019). Seismic behaviour of ordinary masonry buildings during the 2016 central Italy earthquakes. Bulletin of Earthquake Engineering, 17(10), 5583–5607. Versione accettata degli autori nell’archivio IRIS della Sapienza, handle 11573/1121183 — [link](https://doi.org/10.1007/s10518-018-0370-4)
+- Lagomarsino, S., Cattari, S. & Ottonelli, D. (2021). The heuristic vulnerability model: fragility curves for masonry buildings. Bulletin of Earthquake Engineering, 19(8), 3129–3163 — [link](https://doi.org/10.1007/s10518-021-01063-7)
+- Rosti, A., Del Gaudio, C., Rota, M., Ricci, P., Di Ludovico, M., Penna, A. & Verderame, G. M. (2021). Empirical fragility curves for Italian residential RC buildings. Bulletin of Earthquake Engineering, 19(8), 3165–3183 — [link](https://doi.org/10.1007/s10518-020-00971-4)
+- da Porto, F., Donà, M., Rosti, A., Rota, M., Lagomarsino, S., Cattari, S., Borzi, B., Onida, M., De Gregorio, D., Perelli, F. L., Del Gaudio, C., Ricci, P. & Speranza, E. (2021). Comparative analysis of the fragility curves for Italian residential masonry and RC buildings. Bulletin of Earthquake Engineering, 19(8), 3209–3252 — [link](https://doi.org/10.1007/s10518-021-01120-1)
+
+#### Casa antisismica: cosa vuol dire davvero
+
+*Case e sicurezza* · [leggi l’articolo](contenuti/articoli/casa-antisismica.mdx)
+
+- Decreto del Ministero delle Infrastrutture e dei Trasporti 17 gennaio 2018, «Aggiornamento delle Norme tecniche per le costruzioni» (GU n. 42 del 20 febbraio 2018, S.O. n. 8), paragrafi 2.1–2.4, 3.2.1 (Tab. 3.2.I), 7.0–7.3.6 (Tab. 7.3.II e 7.3.III) e 8.1–8.4 — [link](https://www.gazzettaufficiale.it/eli/gu/2018/02/20/42/so/8/sg/pdf)
+- Circolare 21 gennaio 2019, n. 7 del Consiglio superiore dei lavori pubblici, Istruzioni per l’applicazione dell’aggiornamento delle Norme tecniche per le costruzioni (GU n. 35 dell’11 febbraio 2019, S.O. n. 5), paragrafi C2.4 e C3.2.1 — [link](https://www.gazzettaufficiale.it/eli/gu/2019/02/11/35/so/5/sg/pdf)
+- Dipartimento della Protezione Civile — Vulnerabilità sismica — [link](https://rischi.protezionecivile.gov.it/it/sismico/attivita/vulnerabilita-sismica/)
+- Dipartimento della Protezione Civile — Classificazione sismica — [link](https://rischi.protezionecivile.gov.it/it/sismico/attivita/classificazione-sismica/)
+- Dipartimento della Protezione Civile — Rischio sismico. Sei preparato? — [link](https://rischi.protezionecivile.gov.it/it/sismico/sei-preparato/)
+- Dipartimento della Protezione Civile — Esposizione — [link](https://rischi.protezionecivile.gov.it/it/sismico/attivita/esposizione/)
+- Galli, P., Castenetto, S. & Peronace, E. (2012). Terremoti dell’Emilia — Maggio 2012. Rilievo macrosismico MCS speditivo. Rapporto finale, 15 giugno 2012. Dipartimento della Protezione Civile, Ufficio Rischio Sismico e Vulcanico — [link](https://emergenze.protezionecivile.gov.it/static/77e7020dd1a9fc81d1f9c772a55d3de2/TerremotoEmiliaMCS.pdf)
+- Dipartimento della Protezione Civile — The earthquake in Northern Italy (la pagina sull’emergenza del 2012) — [link](https://servizio-nazionale.protezionecivile.gov.it/en/pagina-base/earthquake-northern-italy/)
+- INGV — Servizio web dei terremoti, evento 772691 (20 maggio 2012, Mw 5,8) — [link](https://webservices.ingv.it/fdsnws/event/1/query?eventid=772691&format=text)
+- INGV — Servizio web dei terremoti, evento 841091 (29 maggio 2012, Mw 5,6) — [link](https://webservices.ingv.it/fdsnws/event/1/query?eventid=841091&format=text)
+- Legge 2 febbraio 1974, n. 64, Provvedimenti per le costruzioni con particolari prescrizioni per le zone sismiche (GU n. 76 del 21 marzo 1974), articoli 1 e 3, testo originario — [link](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1974-02-02;64)
+- Decreto del Presidente della Repubblica 6 giugno 2001, n. 380 (Testo unico dell’edilizia), articolo 83, testo vigente — [link](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:2001-06-06;380)
+- Decreto-legge 28 aprile 2009, n. 39, convertito dalla legge 24 giugno 2009, n. 77, articolo 1-bis (norme tecniche obbligatorie dal 1° luglio 2009) — [link](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2009-04-28;39)
+- Decreto-legge 6 giugno 2012, n. 74, convertito dalla legge 1° agosto 2012, n. 122, articolo 3, commi 7–10, testo vigente — [link](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2012-06-06;74~art3)
+- Ministero delle Infrastrutture e dei Trasporti — Linee guida per la classificazione del rischio sismico delle costruzioni (DM 28 febbraio 2017, n. 58) — [link](https://www.mit.gov.it/node/5413)
+- ISTAT — 15° Censimento generale della popolazione e delle abitazioni 2011, Edifici residenziali per epoca di costruzione e materiale (DICA\_EDIFICIRES, CC BY 4.0) — [link](https://esploradati.istat.it/databrowser/DWL/censtatv5db/Popolazione/DICA_EDIFICIRES-data.zip)
+- Ordinanza del Presidente del Consiglio dei Ministri n. 3274 del 20 marzo 2003, Allegato A, classificazione sismica dei comuni (copia pubblicata dall’INGV) — [link](https://zonesismiche.mi.ingv.it/documenti/all_1_Com_Class.xls)
+- Meletti, C. & Stucchi, M. (2009). Pericolosità sismica, normativa e zone sismiche nell’Aquilano. INGV, Sezione di Milano, 16 aprile 2009 — [link](https://zonesismiche.mi.ingv.it/documenti/Pericolo_aq_090416.pdf)
+- Dolce, M., Prota, A., Borzi, B., da Porto, F., Lagomarsino, S., Magenes, G., Moroni, C., Penna, A., Polese, M., Speranza, E., Verderame, G. M. & Zuccaro, G. (2021). Seismic risk assessment of residential buildings in Italy. Bulletin of Earthquake Engineering, 19(8), 2999–3032 — [link](https://doi.org/10.1007/s10518-020-01009-5)
+- RINTC Workgroup (2018). Results of the 2015-2017 Implicit seismic risk of code-conforming structures in Italy (RINTC) project. ReLUIS report, a cura di I. Iervolino. Napoli: Doppiavoce — [link](https://www.reluis.it/wp-content/uploads/2024/04/the-implicit-risk-of-code-conforming-structures-in-italy-a-joint-reluis-eucentre-project.pdf)
+- Iervolino, I., Spillatura, A. & Bazzurro, P. (2018). Seismic Reliability of Code-Conforming Italian Buildings. Journal of Earthquake Engineering, 22(sup2), 5–27 — [link](https://doi.org/10.1080/13632469.2018.1540372)
+- Iervolino, I., Baraschino, R. & Spillatura, A. (2023). Evolution of Seismic Reliability of Code-Conforming Italian Buildings. Journal of Earthquake Engineering, 27(7), 1740–1768 — [link](https://doi.org/10.1080/13632469.2022.2087801)
+- Magliulo, G., Ercolino, M., Petrone, C., Coppola, O. & Manfredi, G. (2014). The Emilia Earthquake: Seismic Performance of Precast Reinforced Concrete Buildings. Earthquake Spectra, 30(2), 891–912 — [link](https://doi.org/10.1193/091012EQS285M)
+- Sisti, R., Di Ludovico, M., Borri, A. & Prota, A. (2022). Seismic performance of strengthened masonry structures: actual behaviour of buildings in Norcia and Campi Alto during the 2016 Central Italy seismic sequence. Bulletin of Earthquake Engineering, 20(1), 321–348 — [link](https://doi.org/10.1007/s10518-021-01248-0)
 
 #### Esiste il «tempo da terremoto»?
 

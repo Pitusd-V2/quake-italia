@@ -151,8 +151,8 @@ export function MyTownPage() {
             <ArticleQuestionLine slug="le-zone-sismiche" />
             <p className="small muted">
               La zona serve a Regione e Genio civile per pianificare e controllare il territorio. Per costruire, dal 2009, non
-              conta più la zona: i progettisti usano la pericolosità calcolata punto per punto, su una griglia di 5 km (Norme
-              Tecniche per le Costruzioni). La zona non dice quando ci sarà un terremoto: nessuno può prevederlo. Fonte:{' '}
+              conta più la zona: i progettisti usano la pericolosità calcolata punto per punto, su una griglia di punti distanti
+              tra loro non più di 10 km (Norme Tecniche per le Costruzioni). La zona non dice quando ci sarà un terremoto: nessuno può prevederlo. Fonte:{' '}
               <ExternalLink href="https://rischi.protezionecivile.gov.it/it/sismico/attivita/classificazione-sismica/">{ZONES_SOURCE}</ExternalLink>.
             </p>
           </>
