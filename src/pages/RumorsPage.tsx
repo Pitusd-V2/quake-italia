@@ -82,7 +82,7 @@ export const RUMORS: Rumor[] = [
     says: '«Ai Campi Flegrei sta per arrivare l’eruzione, lo dicono tutti sui social.»',
     verdict: 'falso',
     answer: [
-      'Lo stato del vulcano lo seguono giorno e notte gli strumenti dell’Osservatorio Vesuviano dell’INGV. Il livello di allerta lo decide la Protezione Civile, e se cambiasse lo saprebbero tutti dai canali ufficiali e dal proprio Comune, anche con IT-alert.',
+      'Lo stato del vulcano lo seguono giorno e notte gli strumenti dell’Osservatorio Vesuviano dell’INGV. Il livello di allerta lo decide la Protezione Civile, e se cambiasse lo saprebbero tutti dai canali ufficiali e dal proprio Comune. Al passaggio alla fase di allarme arriverebbe anche un messaggio IT-alert.',
       'Un post o un audio che gira sui social non è un avviso.',
     ],
   },

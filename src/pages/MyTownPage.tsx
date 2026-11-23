@@ -233,8 +233,8 @@ export function MyTownPage() {
 
       <Notice tone="info" icon={<BellRing />} title="IT-alert: gli avvisi ufficiali dello Stato">
         <p>
-          Per alcune emergenze gravi (per esempio un maremoto o un’eruzione) lo Stato può mandare un messaggio a tutti i
-          telefoni della zona con IT-alert. Non serve installare niente. Per i terremoti, invece, in Italia non c’è un sistema pubblico di allerta. In altri
+          Per alcune emergenze gravi (per esempio il collasso di una grande diga o un’eruzione ai Campi Flegrei, al Vesuvio
+          o a Vulcano) lo Stato può mandare un messaggio ai telefoni della zona con IT-alert. Non serve installare niente. Per i terremoti, invece, in Italia non c’è un sistema pubblico di allerta. In altri
           Paesi, come il Giappone, esiste: avvisa pochi secondi prima che arrivino le onde più forti, a scossa già iniziata,
           ma non può prevedere i terremoti.
         </p>

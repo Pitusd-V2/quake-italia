@@ -115,6 +115,11 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'esploradati.istat.it',
   'www.mit.gov.it',
   'www.reluis.it',
+  // Fonti di «IT-alert»: Centro Allerta Tsunami, standard europeo, cronaca, guida di Android
+  'cat.ingv.it',
+  'www.etsi.org',
+  'www.ansa.it',
+  'support.google.com',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

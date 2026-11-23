@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 185 fonti in 18 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 204 fonti in 19 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -395,6 +395,30 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Iervolino, I., Baraschino, R. & Spillatura, A. (2023). Evolution of Seismic Reliability of Code-Conforming Italian Buildings. Journal of Earthquake Engineering, 27(7), 1740–1768 — [link](https://doi.org/10.1080/13632469.2022.2087801)
 - Magliulo, G., Ercolino, M., Petrone, C., Coppola, O. & Manfredi, G. (2014). The Emilia Earthquake: Seismic Performance of Precast Reinforced Concrete Buildings. Earthquake Spectra, 30(2), 891–912 — [link](https://doi.org/10.1193/091012EQS285M)
 - Sisti, R., Di Ludovico, M., Borri, A. & Prota, A. (2022). Seismic performance of strengthened masonry structures: actual behaviour of buildings in Norcia and Campi Alto during the 2016 Central Italy seismic sequence. Bulletin of Earthquake Engineering, 20(1), 321–348 — [link](https://doi.org/10.1007/s10518-021-01248-0)
+
+#### IT-alert: cosa arriva sul telefono, e quando
+
+*Case e sicurezza* · [leggi l’articolo](contenuti/articoli/it-alert.mdx)
+
+- Dipartimento della Protezione Civile, IT-alert — Cos’è — [link](https://www.it-alert.gov.it/it/cose/)
+- Dipartimento della Protezione Civile, IT-alert — Quando si usa — [link](https://www.it-alert.gov.it/it/quando-si-usa/)
+- Dipartimento della Protezione Civile, IT-alert — Normativa (con la direttiva del 12 febbraio 2026) — [link](https://www.it-alert.gov.it/it/normativa/)
+- Dipartimento della Protezione Civile, IT-alert — Messaggi — [link](https://www.it-alert.gov.it/it/messaggi/)
+- Dipartimento della Protezione Civile, IT-alert — Come funziona — [link](https://www.it-alert.gov.it/it/come-funziona/)
+- Dipartimento della Protezione Civile, IT-alert — Domande frequenti (aggiornate al 12 febbraio 2024) — [link](https://www.it-alert.gov.it/it/faq/)
+- Dipartimento della Protezione Civile, IT-alert — Sperimentazione — [link](https://www.it-alert.gov.it/it/sperimentazione/)
+- Dipartimento della Protezione Civile, IT-alert — Incidente stabilimento Eni Calenzano: IT-alert attivato per la prima volta in un caso reale (9 dicembre 2024) — [link](https://www.it-alert.gov.it/it/notizia/incidente-stabilimento-eni-calenzano-it-alert-attivato-la-prima-volta-un-caso-reale/)
+- Dipartimento della Protezione Civile — IT-alert: non esiste alcuna App, attenzione alle truffe (9 novembre 2023) — [link](https://www.protezionecivile.gov.it/it/comunicato-stampa/it-alert-non-esiste-alcuna-app-attenzione-alle-truffe/)
+- Decreto del Capo del Dipartimento della Protezione Civile n. 148 del 19 gennaio 2024, Allegato 2, indicazioni operative per i maremoti generati da sisma, paragrafi 2–5 — [link](https://www.protezionecivile.gov.it/static/2dbd5d85982045269d5280edf69af416/all-2-it-alert-io-maremoti-generati-da-sisma.pdf)
+- Decreto del Capo del Dipartimento della Protezione Civile n. 148 del 19 gennaio 2024, Allegato 3, indicazioni operative per i vulcani, paragrafi 2.1.1, 4.2 e 4.3 — [link](https://www.protezionecivile.gov.it/static/9650c86b095495bd906fbc2ae645fa80/all-3-it-alert-io-vulcani.pdf)
+- Decreto del Capo del Dipartimento della Protezione Civile n. 148 del 19 gennaio 2024, Allegato 5, indicazioni operative per il rischio industriale, paragrafi 4.1 e 5 — [link](https://www.protezionecivile.gov.it/static/7ee2bcd0ed94114871ae76385ede8d94/all5-it-alert-io-rischio-industriale-0.pdf)
+- Io non rischio (Dipartimento della Protezione Civile) — Maremoto, cosa fare — [link](https://iononrischio.protezionecivile.gov.it/it/preparati/maremoto/cosa-fare/)
+- Centro Allerta Tsunami dell’INGV — Cosa fare in caso di tsunami: durante l’evento — [link](https://cat.ingv.it/it/capire-e-difendersi/cosa-fare-in-caso-di-tsunami/durante-l-evento)
+- Direttiva (UE) 2018/1972, Codice europeo delle comunicazioni elettroniche, articolo 110, paragrafi 1 e 2 — [link](https://eur-lex.europa.eu/eli/dir/2018/1972/oj)
+- ETSI TS 102 900 V1.4.1, Emergency Communications; European Public Warning System (EU-ALERT) using the Cell Broadcast Service — [link](https://www.etsi.org/deliver/etsi_ts/102900_102999/102900/01.04.01_60/ts_102900v010401p.pdf)
+- ANSA, Calenzano: Ciciliano, «il sistema It Alert ha funzionato» (9 dicembre 2024), solo per gli orari e la dichiarazione — [link](https://www.ansa.it/toscana/notizie/2024/12/09/calenzano-ciciliano-il-sistema-it-alert-ha-funzionato_c0eb120c-b0cc-4d47-a6c5-8a2bfa8c69bd.html)
+- Il Post, articolo del 10 dicembre 2024 sull’esplosione nel deposito Eni di Calenzano — [link](https://www.ilpost.it/2024/12/10/calenzano-esplosione-deposito-eni-2/)
+- Google, Guida di Android — Allerte relative a terremoti — [link](https://support.google.com/android/answer/9319337?hl=it)
 
 #### Esiste il «tempo da terremoto»?
 
