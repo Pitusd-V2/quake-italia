@@ -15,7 +15,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
-const { render, PAGES } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
+const { render, PAGES, structuredDataTags, lastModified } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 
 const config = fs.readFileSync(path.join(root, 'src', 'legal', 'config.ts'), 'utf8');
 const configured = process.env.SITE_URL ?? config.match(/siteUrl:\s*'([^']*)'/)?.[1] ?? '';
@@ -25,7 +25,7 @@ if (!site) console.warn('⚠ Indirizzo del sito non ancora impostato: niente lin
 // Il modello è dist/index.html; se lo script viene rilanciato, toglie prima i tag che aveva aggiunto.
 const template = fs
   .readFileSync(path.join(dist, 'index.html'), 'utf8')
-  .replace(/\s*<meta property="og:[^>]*>|\s*<meta name="twitter:[^>]*>|\s*<meta name="robots"[^>]*>|\s*<link rel="canonical"[^>]*>/g, '');
+  .replace(/\s*<meta property="og:[^>]*>|\s*<meta name="twitter:[^>]*>|\s*<meta name="robots"[^>]*>|\s*<link rel="canonical"[^>]*>|\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function head(page) {
@@ -48,6 +48,9 @@ function head(page) {
       `<meta property="og:image:alt" content="Quake Italia: capire i terremoti, con i dati ufficiali INGV." />`,
       `<meta name="twitter:card" content="summary_large_image" />`,
     );
+    // Dati strutturati per Google e Bing (home e articoli): sono dati, non codice, quindi la CSP non li blocca.
+    const ld = structuredDataTags(page.path, site);
+    if (ld) tags.push(ld);
   }
   return tags.join('\n    ');
 }
@@ -98,7 +101,12 @@ fs.writeFileSync(
 const indexable = PAGES.filter((p) => p.sitemap);
 fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n${site ? `\nSitemap: ${site}/sitemap.xml\n` : ''}`);
 if (site) {
-  const urls = indexable.map((p) => `  <url><loc>${esc(`${site}${p.path}`)}</loc></url>`).join('\n');
+  const urls = indexable
+    .map((p) => {
+      const mod = lastModified(p.path); // solo gli articoli hanno una data vera: l'ultimo controllo delle fonti
+      return `  <url><loc>${esc(`${site}${p.path}`)}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ''}</url>`;
+    })
+    .join('\n');
   fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 }
 
