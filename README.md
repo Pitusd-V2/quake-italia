@@ -311,7 +311,7 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 
 #### I grandi terremoti della storia d’Italia
 
-*I grandi terremoti* · [leggi l’articolo](contenuti/articoli/grandi-terremoti-della-storia.mdx)
+*Terremoti nella storia* · [leggi l’articolo](contenuti/articoli/grandi-terremoti-della-storia.mdx)
 
 - Rovida A., Locati M., Camassi R., Lolli B., Gasperini P., Antonucci A. (2022). Catalogo Parametrico dei Terremoti Italiani (CPTI15), versione 4.0. INGV — [link](https://doi.org/10.13127/CPTI/CPTI15.4)
 - INGV — CFTI5Med, Catalogo dei Forti Terremoti in Italia — [link](https://storing.ingv.it/cfti/cfti5/)
@@ -324,7 +324,7 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 
 #### Terremoti e vulcani: Etna, Vesuvio, Campi Flegrei
 
-*Vulcani e terremoti* · [leggi l’articolo](contenuti/articoli/terremoti-e-vulcani.mdx)
+*Vulcani d’Italia* · [leggi l’articolo](contenuti/articoli/terremoti-e-vulcani.mdx)
 
 - Rovida A., Locati M., Camassi R., Lolli B., Gasperini P., Antonucci A. (2022). Catalogo Parametrico dei Terremoti Italiani (CPTI15), versione 4.0. INGV — [link](https://doi.org/10.13127/CPTI/CPTI15.4)
 - INGV — Il terremoto sull’Etna del 26 dicembre e la rottura della faglia di Fiandaca — [link](https://www.ingv.it/stampa-urp/ufficio-stampa/note-stampa/il-terremoto-sull-etna-del-26-dicembre-e-la-rottura-della-faglia-di-fiandaca)
@@ -335,7 +335,7 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 
 #### Campi Flegrei: la caldera che respira
 
-*Vulcani e terremoti* · [leggi l’articolo](contenuti/articoli/campi-flegrei.mdx)
+*Vulcani d’Italia* · [leggi l’articolo](contenuti/articoli/campi-flegrei.mdx)
 
 - INGV – Osservatorio Vesuviano, Bollettino di sorveglianza Campi Flegrei, settembre 2026 — [link](https://www.ov.ingv.it/index.php/monitoraggio-e-infrastrutture/bollettini-tutti/bollett-mensili-cf/anno-2026-3/2017-bollettino-mensile-campi-flegrei-2026-09/file)
 - INGV – Osservatorio Vesuviano — I Campi Flegrei: inquadramento — [link](https://www.ov.ingv.it/index.php/monitoraggio-sismico-e-vulcanico/campi-flegrei)
@@ -442,7 +442,7 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 
 #### Il «mal da terremoto»
 
-*Le persone* · [leggi l’articolo](contenuti/articoli/mal-da-terremoto.mdx)
+*Vivere un terremoto* · [leggi l’articolo](contenuti/articoli/mal-da-terremoto.mdx)
 
 - Miwa T., Matsuyoshi H., Nomura Y., Minoda R. (2021). Post-earthquake dizziness syndrome following the 2016 Kumamoto earthquakes, Japan. PLOS ONE 16(8): e0255816 — [link](https://doi.org/10.1371/journal.pone.0255816)
 - Honma M., Endo N., Osada Y., Kim Y., Kuriyama K. (2012). Disturbances in equilibrium function after major earthquake. Scientific Reports 2: 749 — [link](https://doi.org/10.1038/srep00749)

@@ -52,7 +52,7 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | 26 | Le zone sismiche, spiegate | Cosa vuol dire «zona 2» per casa mia? | Scritto: `le-zone-sismiche` (8/11/2026) | ✅ ★ |
 | 27 | Come si ricostruisce un terremoto di 500 anni fa | Come sappiamo dei terremoti senza strumenti? | CPTI15; DBMI15; CFTI5Med | 🆕 ★ |
 
-## 3. I grandi terremoti — `storia`
+## 3. Terremoti nella storia — `storia`
 
 Ogni articolo: cosa successe (dai cataloghi), cosa abbiamo imparato (norme, protezione civile, scienza), cosa resta oggi.
 Tono rispettoso: sono tragedie con nomi e famiglie, non curiosità.
@@ -78,8 +78,9 @@ Tono rispettoso: sono tragedie con nomi e famiglie, non curiosità.
 | 44 | 2016–2017, il Centro Italia | La sequenza più studiata d’Italia | INGV; Protezione Civile | 🆕 ★ |
 | 45 | 2017, Ischia | Una scossa di Mw 3,9 e due vittime: perché | INGV | 🆕 |
 | 46 | 2022, la costa marchigiana | Un terremoto in mare, sentito in mezza Italia | INGV | 🆕 |
+| 82 | Il processo «Grandi Rischi» | Cosa è successo davvero dopo L’Aquila? | Sentenze; *(da individuare: analisi scientifiche)* | 🆕 (spostato da «Vivere un terremoto» il 25/11/2026) |
 
-## 4. Vulcani e terremoti — `vulcani`
+## 4. Vulcani d’Italia — `vulcani`
 
 | # | Titolo provvisorio | La domanda | Fonti principali previste | |
 |---|---|---|---|---|
@@ -132,7 +133,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 | 76 | Le piccole scosse «scaricano» energia? | Meglio tante piccole che una grande? | Gutenberg-Richter; INGV | 🆕 |
 | 77 | HAARP e le «armi sismiche» | Si può provocare un terremoto a comando? | *(da individuare: fonti scientifiche e fact-checking)* | 🆕 |
 
-## 8. Le persone — `persone`
+## 8. Vivere un terremoto — `persone`
 
 Regola in più: niente consigli medici personali, sempre il rimando al medico; numeri utili ufficiali.
 
@@ -142,7 +143,6 @@ Regola in più: niente consigli medici personali, sempre il rimando al medico; n
 | 79 | Paura, ansia e sonno dopo un terremoto | È normale non dormire per settimane? | *(da individuare: studi dopo L’Aquila e il Centro Italia)* | 🆕 ★ |
 | 80 | Come parlare di terremoti ai bambini | Cosa dire, e cosa non dire? | Protezione Civile; *(da individuare)* | 🆕 |
 | 81 | Anziani e persone con disabilità | Come prepararsi se non ci si muove facilmente? | Protezione Civile; *(da individuare)* | 🆕 ★ |
-| 82 | Il processo «Grandi Rischi» | Cosa è successo davvero dopo L’Aquila? | Sentenze; *(da individuare: analisi scientifiche)* | 🆕 |
 
 ---
 
