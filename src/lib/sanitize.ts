@@ -120,6 +120,8 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.etsi.org',
   'www.ansa.it',
   'support.google.com',
+  'blog.google',
+  'www.jma.go.jp',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

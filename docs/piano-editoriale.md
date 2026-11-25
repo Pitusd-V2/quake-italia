@@ -106,7 +106,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 | 59 | Dopo la scossa: l’agibilità | Chi decide se posso rientrare, e come? | Protezione Civile (manuale scheda AeDES) | 🆕 ★ |
 | 60 | Scuole e ospedali | A che punto è la sicurezza degli edifici pubblici? | Protezione Civile; Anagrafe edilizia scolastica *(da individuare)* | 🆕 |
 | 61 | IT-alert | Cosa mi arriva sul telefono, e quando? | Scritto: `it-alert` (23/11/2026); ricontrollare maremoto e Stromboli a gennaio 2027 | ✅ ★ |
-| 62 | Early warning: pochi secondi preziosi | Come funziona l’allerta in Giappone e sui telefoni Android? | Allen & Melgar (2019) *(da verificare)*; INGV | 🆕 ★ |
+| 62 | Allerta precoce (early warning) | Come funziona l’allerta in Giappone e sui telefoni Android, e quanto ci si può contare? | Scritto: `allerta-sismica-precoce` (25/11/2026); ricontrollare gli avvisi Android in Italia nel 2027 | ✅ ★ |
 | 63 | Il piano di protezione civile del tuo Comune | Dove vado dopo una scossa forte? | Protezione Civile | 🆕 |
 | 64 | L’assicurazione contro i terremoti | È obbligatoria? Per chi? | Norme in vigore *(da verificare al momento della scrittura)* | 🆕 |
 

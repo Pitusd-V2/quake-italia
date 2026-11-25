@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 204 fonti in 19 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 217 fonti in 20 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -419,6 +419,25 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - ANSA, Calenzano: Ciciliano, «il sistema It Alert ha funzionato» (9 dicembre 2024), solo per gli orari e la dichiarazione — [link](https://www.ansa.it/toscana/notizie/2024/12/09/calenzano-ciciliano-il-sistema-it-alert-ha-funzionato_c0eb120c-b0cc-4d47-a6c5-8a2bfa8c69bd.html)
 - Il Post, articolo del 10 dicembre 2024 sull’esplosione nel deposito Eni di Calenzano — [link](https://www.ilpost.it/2024/12/10/calenzano-esplosione-deposito-eni-2/)
 - Google, Guida di Android — Allerte relative a terremoti — [link](https://support.google.com/android/answer/9319337?hl=it)
+
+#### Allerta precoce: l’avviso di un terremoto già iniziato
+
+*Case e sicurezza* · [leggi l’articolo](contenuti/articoli/allerta-sismica-precoce.mdx)
+
+- Io non rischio (Dipartimento della Protezione Civile) — Terremoto, cosa fare — [link](https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/)
+- INGV — Earthquakes at the INGV: the international workshop on early warning systems «Earthquake Early Warning: Strategies for Italy» (17 febbraio 2026) — [link](https://www.ingv.it/en/urp-press/Press-office/News/Earthquakes-at-the-INGV%3A-the-international-workshop-on-early-warning-systems)
+- USGS — Earthquake Early Warning: Overview (ShakeAlert) — [link](https://www.usgs.gov/programs/earthquake-hazards/science/earthquake-early-warning-overview)
+- USGS — Earthquake early warning: new study examines safety potentials and limits (27 marzo 2018, sullo studio di Minson e colleghi) — [link](https://www.usgs.gov/news/national-news-release/earthquake-early-warning-new-study-examines-safety-potentials-and-limits)
+- Japan Meteorological Agency — Earthquakes and Tsunamis: Disaster Prevention and Mitigation Efforts (marzo 2025), pp. 10–11 e 26 — [link](https://www.jma.go.jp/jma/kishou/books/jishintsunami/en/jishintsunami_en.pdf)
+- Allen, R. M., e Melgar, D. (2019). Earthquake Early Warning: Advances, Scientific Challenges, and Societal Needs. Annual Review of Earth and Planetary Sciences, 47, 361–388 — [link](https://doi.org/10.1146/annurev-earth-053018-060457)
+- Hoshiba, M., Iwakiri, K., Hayashimoto, N., e altri (2011). Outline of the 2011 off the Pacific coast of Tohoku Earthquake (Mw 9.0) — Earthquake Early Warning and observed seismic intensity. Earth, Planets and Space, 63, 547–551 — [link](https://doi.org/10.5047/eps.2011.05.031)
+- Suárez, G. (2022). The Seismic Early Warning System of Mexico (SASMEX): A Retrospective View and Future Challenges. Frontiers in Earth Science, 10, 827236 — [link](https://doi.org/10.3389/feart.2022.827236)
+- Satriano, C., Elia, L., Martino, C., Lancieri, M., Zollo, A., e Iannaccone, G. (2011). PRESTo, the earthquake early warning system for Southern Italy: Concepts, capabilities and future perspectives. Soil Dynamics and Earthquake Engineering, 31(2), 137–153 — [link](https://doi.org/10.1016/j.soildyn.2010.06.008)
+- Picozzi, M., Zollo, A., Brondi, P., Colombelli, S., Elia, L., e Martino, C. (2015). Exploring the feasibility of a nationwide earthquake early warning system in Italy. Journal of Geophysical Research: Solid Earth, 120, 2446–2465 — [link](https://doi.org/10.1002/2014JB011669)
+- Festa, G., Picozzi, M., Caruso, A., e altri (2018). Performance of Earthquake Early Warning Systems during the 2016–2017 Mw 5–6.5 Central Italy Sequence. Seismological Research Letters, 89(1), 1–12 — [link](https://doi.org/10.1785/0220170150)
+- Allen, R. M., Barski, A., Berman, M., e altri (2025). Global earthquake detection and warning using Android phones. Science, 389, 254–259 — [link](https://doi.org/10.1126/science.ads4779)
+- Google, Guida di Android — Allerte relative a terremoti — [link](https://support.google.com/android/answer/9319337?hl=it)
+- Google, blog italiano — Il sistema di allerte terremoti di Android è ora disponibile anche in Italia (19 novembre 2026) — [link](https://blog.google/intl/it-it/prodotti/android-chrome-play/il-sistema-di-allerte-terremoti-di-android-e-ora-disponibile-anche-in-italia/)
 
 #### Esiste il «tempo da terremoto»?
 
