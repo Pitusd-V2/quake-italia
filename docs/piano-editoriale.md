@@ -129,7 +129,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 | 72 | Lo stipite della porta e il «triangolo della vita» | Dove ripararsi davvero durante una scossa? | Scritto: `stipite-e-triangolo-della-vita` (25/11/2026) | ✅ ★ |
 | 73 | 11 maggio 2011: la profezia su Roma | Come nasce e muore una falsa previsione | INGV (nota del 2011); *(da individuare)* | 🆕 ★ |
 | 74 | La Luna e le maree | La Luna piena fa tremare? | Ide et al. (2016) | 🆕 |
-| 75 | I terremoti sono aumentati? | Perché sembra che oggi tremi di più? | Catalogo INGV (completezza); analisi propria | 🆕 ★ |
+| 75 | I terremoti sono aumentati? | Perché sembra che oggi tremi di più? | Scritto: `i-terremoti-sono-aumentati` (25/11/2026), analisi propria (catalogo INGV e HORUS) | ✅ ★ |
 | 76 | Le piccole scosse «scaricano» energia? | Meglio tante piccole che una grande? | Gutenberg-Richter; INGV | 🆕 |
 | 77 | HAARP e le «armi sismiche» | Si può provocare un terremoto a comando? | *(da individuare: fonti scientifiche e fact-checking)* | 🆕 |
 

@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 245 fonti in 22 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 258 fonti in 23 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -498,6 +498,26 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Celikmen, M. F., Yilmaz, S., Tatliparmak, A. C. e Unal Colak, F. (2023). Drop, Cover, and Hold On versus Fetal Position in the Triangle of Life to Survive in an Earthquake: A Delphi Study. Prehospital and Disaster Medicine, 38(3), 287–293 — [link](https://doi.org/10.1017/s1049023x23000444)
 - Prati, G., Saccinto, E., Pietrantoni, L. e Pérez-Testor, C. (2013). The 2012 Northern Italy Earthquakes: modelling human behaviour. Natural Hazards, 69, 99–113 — [link](https://doi.org/10.1007/s11069-013-0688-9)
 - Del Papa, J., Vittorini, P., D’Aloisio, F. e altri (2019). Retrospective Analysis of Injuries and Hospitalizations of Patients Following the 2009 Earthquake of L’Aquila City. International Journal of Environmental Research and Public Health, 16(10), 1675 — [link](https://doi.org/10.3390/ijerph16101675)
+
+#### I terremoti sono aumentati?
+
+*Miti e verità* · [leggi l’articolo](contenuti/articoli/i-terremoti-sono-aumentati.mdx)
+
+- INGV — «Over 15,000 earthquakes in Italy in 2025», comunicato stampa, 12 gennaio 2026 — [link](https://www.ingv.it/en/urp-press/Press-office/Press-releases/Over-15-000-earthquakes-in-Italy-in-2025)
+- INGV — «2016, a year of earthquakes», nota per la stampa, febbraio 2017 — [link](https://www.ingv.it/en/urp-press/Press-office/press-notes/2016-a-year-of-earthquakes)
+- INGV — «1985-2025: 40 anni del Bollettino Sismico Italiano», blog INGVterremoti, 16 giugno 2025 — [link](https://ingvterremoti.com/2025/06/16/1985-2025-40-anni-del-bollettino-sismico-italiano/)
+- Meletti, C. (INGV) — «Quanti terremoti avvengono ogni anno nel mondo?», blog INGVterremoti, 16 luglio 2019 — [link](https://ingvterremoti.com/2019/07/16/quanti-terremoti-avvengono-ogni-anno-nel-mondo/)
+- INGV, Osservatorio Vesuviano — Bollettino di sorveglianza dei Campi Flegrei, settembre 2026 — [link](https://www.ov.ingv.it/index.php/monitoraggio-e-infrastrutture/bollettini-tutti/bollett-mensili-cf/anno-2026-3/2017-bollettino-mensile-campi-flegrei-2026-09/file)
+- USGS — «Why are we having so many (or so few) earthquakes? Has naturally occurring earthquake activity been increasing?», domande frequenti — [link](https://www.usgs.gov/faqs/why-are-we-having-so-many-earthquakes-has-naturally-occurring-earthquake-activity-been)
+- ISIDe Working Group (2007). Italian Seismological Instrumental and Parametric Database (ISIDe). INGV (dati, licenza CC BY 4.0) — [link](https://doi.org/10.13127/ISIDE)
+- Lolli, B., Randazzo, D., Vannucci, G. & Gasperini, P. (2020). The Homogenized instRUmental Seismic catalog (HORUS) of Italy. INGV (dati, licenza CC BY 4.0) — [link](https://doi.org/10.13127/HORUS)
+- Lolli, B., Randazzo, D., Vannucci, G. & Gasperini, P. (2020). The Homogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present. Seismological Research Letters, 91(6) — [link](https://doi.org/10.1785/0220200148)
+- Amato, A. & Mele, F. M. (2008). Performance of the INGV National Seismic Network from 1997 to 2007. Annals of Geophysics, 51(2/3) — [link](https://doi.org/10.4401/ag-4454)
+- Schorlemmer, D., Mele, F. & Marzocchi, W. (2010). A completeness analysis of the National Seismic Network of Italy. Journal of Geophysical Research, 115, B04308 — [link](https://doi.org/10.1029/2008JB006097)
+- Lolli, B., Vannucci, G. & Gasperini, P. (2025). Completeness and calibration of the Italian Seismological Instrumental and Parametric Database (ISIDe) before 16 April 2005. Acta Geophysica, 73 — [link](https://doi.org/10.1007/s11600-024-01395-3)
+- Rovida, A., Locati, M., Camassi, R., Lolli, B. & Gasperini, P. (2020). The Italian earthquake catalogue CPTI15. Bulletin of Earthquake Engineering, 18(7) — [link](https://doi.org/10.1007/s10518-020-00818-y)
+- Pignone, M. e altri (2022). Public earthquake communication in Italy through a multi-source social media platform: The INGVterremoti experience (2010–2022). Frontiers in Earth Science, 10 — [link](https://doi.org/10.3389/feart.2022.1003867)
+- Gardner, J. K. & Knopoff, L. (1974). Is the sequence of earthquakes in Southern California, with aftershocks removed, Poissonian? Bulletin of the Seismological Society of America, 64(5) — [link](https://doi.org/10.1785/BSSA0640051363)
 
 #### Il «mal da terremoto»
 
