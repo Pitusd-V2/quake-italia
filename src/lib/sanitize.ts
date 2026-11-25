@@ -122,6 +122,12 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'support.google.com',
   'blog.google',
   'www.jma.go.jp',
+  'pmc.ncbi.nlm.nih.gov',
+  'web.archive.org',
+  'www.civildefence.govt.nz',
+  'www.earthquakecountry.org',
+  'www.gns.cri.nz',
+  'www.jsee.ir',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

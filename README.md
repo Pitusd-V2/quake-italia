@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 229 fonti in 21 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 245 fonti in 22 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -476,6 +476,28 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Bettinelli, P. e altri (2008). Seasonal variations of seismicity and geodetic strain in the Himalaya induced by surface hydrology. Earth and Planetary Science Letters, 266 — [link](https://doi.org/10.1016/j.epsl.2007.11.021)
 - Ide, S., Yabe, S. & Tanaka, Y. (2016). Earthquake potential revealed by tidal influence on earthquake size–frequency statistics. Nature Geoscience, 9 — [link](https://doi.org/10.1038/ngeo2796)
 - Allmann, B. P. & Shearer, P. M. (2009). Global variations of stress drop for moderate to large earthquakes. Journal of Geophysical Research, 114 — [link](https://doi.org/10.1029/2008JB005821)
+
+#### Lo stipite della porta e il «triangolo della vita»
+
+*Miti e verità* · [leggi l’articolo](contenuti/articoli/stipite-e-triangolo-della-vita.mdx)
+
+- Io non rischio (Dipartimento della Protezione Civile) — Terremoto, cosa fare — [link](https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/)
+- Dipartimento della Protezione Civile — Rischio sismico, Sei preparato? — [link](https://rischi.protezionecivile.it/it/sismico/sei-preparato/)
+- Ministero dell’Interno, consigli dei Vigili del Fuoco — Che cosa fare se si è coinvolti in un terremoto — [link](https://www.interno.gov.it/it/cosa-fare-e-coinvolti-terremoto)
+- Earthquake Country Alliance (Statewide California Earthquake Center) — Drop, Cover, and Hold On — [link](https://www.earthquakecountry.org/dropcoverholdon/)
+- U.S. Geological Survey — What is the «Triangle of Life» and is it legitimate? (domande frequenti) — [link](https://www.usgs.gov/faqs/what-triangle-life-and-it-legitimate)
+- National Emergency Management Agency, Nuova Zelanda — Consistent messages: Response, what to do in an earthquake (aggiornata il 4 novembre 2026) — [link](https://www.civildefence.govt.nz/guidance-training/consistent-messages/earthquake/response-what-to-do-in-an-earthquake)
+- Japan Meteorological Agency — Come comportarsi quando si vede o si sente un avviso di allerta sismica precoce (pagina in giapponese) — [link](https://www.jma.go.jp/jma/kishou/know/jishin/eew/koudou/koudou.html)
+- GNS Science — Canterbury quake the most damaging since 1931 (4 settembre 2010) — [link](https://www.gns.cri.nz/news/canterbury-quake-the-most-damaging-since-1931/)
+- de Bruycker, M., Greco, D., Annino, I. e altri (1983). The 1980 earthquake in southern Italy: rescue of trapped victims and mortality. Bulletin of the World Health Organization, 61(6), 1021–1025 — [link](https://pmc.ncbi.nlm.nih.gov/articles/PMC2536241/)
+- Johnston, D. e altri (2014). The 2010/2011 Canterbury earthquakes: context and cause of injury. Natural Hazards, 73(2), 627–637 — [link](https://doi.org/10.1007/s11069-014-1094-7)
+- Peek-Asa, C., Kraus, J. F., Bourque, L. B. e altri (1998). Fatal and hospitalized injuries resulting from the 1994 Northridge earthquake. International Journal of Epidemiology, 27(3), 459–465 — [link](https://doi.org/10.1093/ije/27.3.459)
+- Mahue-Giangreco, M., Mack, W., Seligson, H. e Bourque, L. B. (2001). Risk factors associated with moderate and serious injuries attributable to the 1994 Northridge Earthquake. Annals of Epidemiology, 11(5), 347–357 — [link](https://doi.org/10.1016/s1047-2797%2801%2900220-4)
+- Petal, M. (2006). The need for an evidence-basis for earthquake survival tips (presa di posizione pubblicata dalla Earthquake Country Alliance; copia dell’Internet Archive) — [link](https://web.archive.org/web/2008/http://www.earthquakecountry.info/dropcoverholdon/Petal_Rejoinder_to_Copp_0906.pdf)
+- Mahdavifar, M. R., Izadkhah, Y. O. e Heshmati, V. (2009). Appropriate and Correct Reactions during Earthquakes: «Drop, Cover and Hold on» or «Triangle of Life». Journal of Seismology and Earthquake Engineering, 11(1), 41–48 — [link](https://www.jsee.ir/article_240585.html)
+- Celikmen, M. F., Yilmaz, S., Tatliparmak, A. C. e Unal Colak, F. (2023). Drop, Cover, and Hold On versus Fetal Position in the Triangle of Life to Survive in an Earthquake: A Delphi Study. Prehospital and Disaster Medicine, 38(3), 287–293 — [link](https://doi.org/10.1017/s1049023x23000444)
+- Prati, G., Saccinto, E., Pietrantoni, L. e Pérez-Testor, C. (2013). The 2012 Northern Italy Earthquakes: modelling human behaviour. Natural Hazards, 69, 99–113 — [link](https://doi.org/10.1007/s11069-013-0688-9)
+- Del Papa, J., Vittorini, P., D’Aloisio, F. e altri (2019). Retrospective Analysis of Injuries and Hospitalizations of Patients Following the 2009 Earthquake of L’Aquila City. International Journal of Environmental Research and Public Health, 16(10), 1675 — [link](https://doi.org/10.3390/ijerph16101675)
 
 #### Il «mal da terremoto»
 
