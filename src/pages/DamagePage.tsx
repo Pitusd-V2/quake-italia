@@ -146,7 +146,7 @@ const OUTCOMES: { code: string; text: string }[] = [
   { code: 'B', text: 'Si potrà usare dopo piccoli lavori di messa in sicurezza, veloci da fare.' },
   { code: 'C', text: 'Solo alcune parti sono pericolose e non si possono usare.' },
   { code: 'D', text: 'Il tecnico non è sicuro: serve un controllo più approfondito. Fino ad allora non si usa.' },
-  { code: 'E', text: 'Inagibile: ha danni seri e per ripararla serve il progetto di un tecnico.' },
+  { code: 'E', text: 'Inagibile: non si può usare in nessuna parte, nemmeno dopo piccoli lavori. Si può riparare, ma serve il progetto di un tecnico.' },
   {
     code: 'F',
     text: 'Inagibile per un pericolo esterno, per esempio un edificio vicino che rischia di crollare, anche se la casa in sé ha pochi danni.',
@@ -212,7 +212,7 @@ export function DamagePage() {
         <p>
           Dopo un terremoto forte, prima arrivano controlli veloci (spesso dei Vigili del Fuoco) per capire quali case si possono
           usare subito. Poi, dove serve, tecnici preparati fanno un controllo più accurato con una scheda ufficiale che si chiama{' '}
-          <span className="strong">AeDES</span>. Alla fine la casa riceve un esito, indicato con una lettera:
+          <span className="strong">AeDES</span>. Alla fine l’edificio (non il singolo appartamento) riceve un esito, indicato con una lettera:
         </p>
         <dl className="glossary">
           {OUTCOMES.map((o) => (

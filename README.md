@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 217 fonti in 20 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 229 fonti in 21 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -438,6 +438,24 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Allen, R. M., Barski, A., Berman, M., e altri (2025). Global earthquake detection and warning using Android phones. Science, 389, 254–259 — [link](https://doi.org/10.1126/science.ads4779)
 - Google, Guida di Android — Allerte relative a terremoti — [link](https://support.google.com/android/answer/9319337?hl=it)
 - Google, blog italiano — Il sistema di allerte terremoti di Android è ora disponibile anche in Italia (19 novembre 2026) — [link](https://blog.google/intl/it-it/prodotti/android-chrome-play/il-sistema-di-allerte-terremoti-di-android-e-ora-disponibile-anche-in-italia/)
+
+#### Dopo la scossa: chi decide se la casa è agibile
+
+*Case e sicurezza* · [leggi l’articolo](contenuti/articoli/agibilita-dopo-una-scossa.mdx)
+
+- Decreto del Presidente del Consiglio dei Ministri 8 luglio 2014, Istituzione del Nucleo Tecnico Nazionale per il rilievo del danno e la valutazione di agibilità nell’emergenza post-sismica e approvazione dell’aggiornamento della scheda AeDES e del manuale (Gazzetta Ufficiale n. 243 del 18 ottobre 2014; testo sul sito del Dipartimento della Protezione Civile) — [link](https://www.protezionecivile.gov.it/static/bc6f8269aa55f34978cad339ef9b5b61/dpcm-nucleo-tecnico-nazionale-8luglio2014-def.pdf)
+- Dipartimento della Protezione Civile — Scheda AeDES — [link](https://www.protezionecivile.gov.it/it/approfondimento/scheda-aedes/)
+- Ordinanza del Capo del Dipartimento della Protezione Civile n. 405 del 10 novembre 2016, art. 1, ricognizione preliminare con la scheda FAST (Gazzetta Ufficiale, Serie Generale, n. 267 del 15 novembre 2016) — [link](https://www.gazzettaufficiale.it/eli/id/2016/11/15/16A08115/sg)
+- Dipartimento della Protezione Civile — Terremoto Centro Italia 2016, Verifiche di agibilità (con l’allegato «Verifiche AEDES ed esiti», dati al 30 aprile 2018) — [link](https://emergenze.protezionecivile.gov.it/it/sismiche/terremoto-centro-italia-2016/verifiche-di-agibilita/)
+- Dipartimento della Protezione Civile — Emilia-Romagna and Lombardy earthquake 2012, Safety checks (dati al 23 e al 25 luglio 2012) — [link](https://emergenze.protezionecivile.gov.it/en/seismic/emilia-romagna-and-lombardy-earthquake-2012/safety-checks/)
+- Dipartimento della Protezione Civile — Terremoto Abruzzo 2009, Verifiche di agibilità — [link](https://emergenze.protezionecivile.gov.it/it/sismiche/terremoto-abruzzo-2009/verifiche-agibilita/)
+- Dipartimento della Protezione Civile — Campi Flegrei, Informazioni utili per l’istanza di sopralluogo sugli edifici privati (vademecum, aggiornato al 5 marzo 2025) — [link](https://www.protezionecivile.gov.it/static/6ccf35f2a883eb6b0f3d5694299edeac/vademecum-istanza-di-sopralluogo-edifici-privati.pdf)
+- Dipartimento della Protezione Civile — Terremoto Centro Italia: contributo di autonoma sistemazione, chiarimenti sull’OCDPC n. 614 del 12 novembre 2019 — [link](https://domande-risposte.protezionecivile.gov.it/it/approfondimento/terremoto-centro-italia-chiarimenti-cas/)
+- Io non rischio (Dipartimento della Protezione Civile) — Terremoto, cosa fare — [link](https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/)
+- Baggio, C., Bernardini, A., Colozza, R., e altri; revisione di Dolce, M., Papa, F., e Pizza, A. G. (2014). Manuale per la compilazione della scheda di 1° livello di rilevamento danno, pronto intervento e agibilità per edifici ordinari nell’emergenza post-sismica (AeDES), seconda edizione. Presidenza del Consiglio dei Ministri, Dipartimento della Protezione Civile (approvato con il DPCM 8 luglio 2014)
+- Di Ludovico, M., Digrisolo, A., Graziotti, F., e altri (2017). The contribution of ReLUIS to the usability assessment of school buildings following the 2016 central Italy earthquake. Bollettino di Geofisica Teorica ed Applicata, 58(4), 353–376 — [link](https://bgo.ogs.it/sites/default/files/pdf/bgta0192_DiLudovico.pdf)
+- Dolce, M., Speranza, E., Giordano, F., Borzi, B., Bocchi, F., Conte, C., Di Meo, A., Faravelli, M., e Pascale, V. (2019). Observed damage database of past Italian earthquakes: the Da.D.O. WebGIS. Bollettino di Geofisica Teorica ed Applicata, 60(2), 141–164 — [link](https://bgo.ogs.it/issues/2019-vol-60-2/observed-damage-database-past-italian-earthquakes-dado-webgis)
+- Ghimire, S., Guéguen, P., Pothon, A., e Schorlemmer, D. (2023). Testing machine learning models for heuristic building damage assessment applied to the Italian Database of Observed Damage (DaDO). Natural Hazards and Earth System Sciences, 23, 3199–3218 — [link](https://doi.org/10.5194/nhess-23-3199-2023)
 
 #### Esiste il «tempo da terremoto»?
 

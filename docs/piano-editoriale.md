@@ -103,7 +103,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 | 56 | Casa antisismica: cosa vuol dire davvero | «Antisismica» vuol dire che non crolla mai? | Scritto: `casa-antisismica` (22/11/2026) | ✅ ★ |
 | 57 | Muratura, cemento armato, edifici storici | Qual è la differenza, e qual è il punto debole di ognuno? | Protezione Civile *(da individuare)* | 🆕 |
 | 58 | La classe di rischio della casa e il Sismabonus | Come si capisce quanto è sicura una casa? | DM 58/2017 (Linee guida classificazione rischio sismico) | 🆕 ★ |
-| 59 | Dopo la scossa: l’agibilità | Chi decide se posso rientrare, e come? | Protezione Civile (manuale scheda AeDES) | 🆕 ★ |
+| 59 | Dopo la scossa: l’agibilità | Chi decide se posso rientrare, e come? | Scritto: `agibilita-dopo-una-scossa` (25/11/2026) | ✅ ★ |
 | 60 | Scuole e ospedali | A che punto è la sicurezza degli edifici pubblici? | Protezione Civile; Anagrafe edilizia scolastica *(da individuare)* | 🆕 |
 | 61 | IT-alert | Cosa mi arriva sul telefono, e quando? | Scritto: `it-alert` (23/11/2026); ricontrollare maremoto e Stromboli a gennaio 2027 | ✅ ★ |
 | 62 | Allerta precoce (early warning) | Come funziona l’allerta in Giappone e sui telefoni Android, e quanto ci si può contare? | Scritto: `allerta-sismica-precoce` (25/11/2026); ricontrollare gli avvisi Android in Italia nel 2027 | ✅ ★ |
