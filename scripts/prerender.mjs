@@ -15,7 +15,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
-const { render, PAGES, structuredDataTags, lastModified } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
+const { render, PAGES, structuredDataTags, lastModified, noScriptHtml, llmsTxt, articleSummaries } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 
 const config = fs.readFileSync(path.join(root, 'src', 'legal', 'config.ts'), 'utf8');
 const configured = process.env.SITE_URL ?? config.match(/siteUrl:\s*'([^']*)'/)?.[1] ?? '';
@@ -26,6 +26,8 @@ if (!site) console.warn('⚠ Indirizzo del sito non ancora impostato: niente lin
 const template = fs
   .readFileSync(path.join(dist, 'index.html'), 'utf8')
   .replace(/\s*<meta property="og:[^>]*>|\s*<meta name="twitter:[^>]*>|\s*<meta name="robots"[^>]*>|\s*<link rel="canonical"[^>]*>|\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+// I riassunti «In 30 secondi» di tutti gli articoli, per la home senza JavaScript e per llms.txt.
+const summaries = await articleSummaries();
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function head(page) {
@@ -62,6 +64,9 @@ function build(page, body, extraHead = '') {
   if (!html.includes(`<title>${esc(page.title)}</title>`) || !html.includes('property="og:title"')) {
     throw new Error(`Modello HTML inatteso: non riesco a inserire titolo e descrizione (${page.path})`);
   }
+  // Il blocco per chi non ha JavaScript (assistenti IA, lettori di testo): nella home presenta il sito e tutti gli articoli.
+  if (!/<noscript>[\s\S]*?<\/noscript>/.test(html)) throw new Error(`Modello HTML inatteso: manca il blocco <noscript> (${page.path})`);
+  html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, () => noScriptHtml(page.path, summaries));
   return html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
 }
 
@@ -107,7 +112,9 @@ if (site) {
       return `  <url><loc>${esc(`${site}${p.path}`)}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ''}</url>`;
     })
     .join('\n');
+  // Indice del sito per gli assistenti IA (proposta llmstxt.org).
+  fs.writeFileSync(path.join(dist, 'llms.txt'), llmsTxt(site, summaries));
   fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 }
 
-console.log(`Pagine generate: ${full} con il testo, ${meta} con solo titolo e descrizione, più 404.html e robots.txt${site ? ' e sitemap.xml' : ''}.`);
+console.log(`Pagine generate: ${full} con il testo, ${meta} con solo titolo e descrizione, più 404.html e robots.txt${site ? ', sitemap.xml e llms.txt' : ''}.`);

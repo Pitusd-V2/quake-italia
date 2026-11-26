@@ -12,6 +12,7 @@ import { loadGlossary } from './learn/glossary';
 
 export { PAGES } from './seo/pages';
 export { structuredDataTags, lastModified } from './seo/structuredData';
+export { noScriptHtml, llmsTxt, articleSummaries } from './seo/noJs';
 
 export async function render(url: string): Promise<string> {
   // Gli articoli si scaricano a parte: al build li prepariamo tutti prima di disegnare.
