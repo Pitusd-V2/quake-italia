@@ -36,9 +36,10 @@ export const RUMORS: Rumor[] = [
     says: '«Tutte queste piccole scosse vogliono dire che sta per arrivare quella grande.»',
     verdict: 'falso',
     answer: [
-      'Uno sciame non è un annuncio. Secondo i sismologi dell’INGV, la gran parte delle sequenze come quelle che capitano spesso in Italia (tra il 95 e il 99 su 100) finisce dopo giorni o settimane senza una scossa più forte.',
+      'Uno sciame non è un annuncio. Secondo i sismologi dell’INGV, la gran parte delle sequenze italiane con scosse intorno a magnitudo 4 (tra il 95 e il 99 su 100) finisce dopo giorni o settimane senza un terremoto forte.',
       'Non si può però escludere: per questo è giusto restare prudenti e avere la casa preparata, senza farsi prendere dal panico.',
     ],
+    more: { to: '/capire/foreshock', label: 'Foreshock: perché una scossa si riconosce come annuncio solo dopo' },
   },
   {
     id: 'scaricano',

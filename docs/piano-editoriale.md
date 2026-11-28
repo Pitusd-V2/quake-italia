@@ -30,7 +30,7 @@ segnate *(da individuare)* vanno ancora trovate: se non si trova una fonte solid
 | 9 | Come l’INGV localizza un terremoto in pochi minuti | Cosa succede nella sala di sorveglianza dopo una scossa? | Scritto: `come-si-trova-un-terremoto` (4/11/2026) | ✅ ★ |
 | 10 | La profondità conta | Perché alcune scosse piccole si sentono fortissimo? | Catalogo INGV; Allen, Wald & Worden (2012) | 🆕 |
 | 11 | Il terreno amplifica: gli effetti di sito | Perché due case vicine tremano in modo diverso? | Scritto: `effetti-di-sito` (8/11/2026) | ✅ ★ |
-| 12 | Foreshock: avvisano prima? | Una scossa può annunciarne una più forte? | Gulia & Wiemer (2019) e le critiche successive; INGV | 🆕 ★ |
+| 12 | Foreshock: avvisano prima? | Una scossa può annunciarne una più forte? | Scritto: `foreshock` (28/11/2026), da leggere | ✅ ★ |
 | 13 | Gli sciami sismici | Tante scosse simili: cosa vuol dire? | INGV *(da individuare: studi italiani sugli sciami)* | 🆕 |
 | 14 | Quando il terreno diventa liquido | Cos’è la liquefazione, e perché è successa in Emilia? | INGV EMERGEO; ISPRA | 🆕 ★ |
 | 15 | Frane e terremoti | Una scossa può far franare una montagna? | ISPRA; CFTI5Med (casi storici) | 🆕 |
@@ -127,7 +127,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 |---|---|---|---|---|
 | 71 | Esiste il «tempo da terremoto»? | Il caldo annuncia le scosse? | Analisi propria dei dati INGV ed ERA5; 15 fonti | ✅ ★ |
 | 72 | Lo stipite della porta e il «triangolo della vita» | Dove ripararsi davvero durante una scossa? | Scritto: `stipite-e-triangolo-della-vita` (25/11/2026) | ✅ ★ |
-| 73 | 11 maggio 2011: la profezia su Roma | Come nasce e muore una falsa previsione | Scritto: `la-profezia-su-roma` (28/11/2026), da leggere | ✅ ★ |
+| 73 | 11 maggio 2011: la profezia su Roma | Come nasce e muore una falsa previsione | Scritto: `la-profezia-su-roma` (28/11/2026) | ✅ ★ |
 | 74 | La Luna e le maree | La Luna piena fa tremare? | Ide et al. (2016) | 🆕 |
 | 75 | I terremoti sono aumentati? | Perché sembra che oggi tremi di più? | Scritto: `i-terremoti-sono-aumentati` (25/11/2026), analisi propria (catalogo INGV e HORUS) | ✅ ★ |
 | 76 | Le piccole scosse «scaricano» energia? | Meglio tante piccole che una grande? | Gutenberg-Richter; INGV | 🆕 |

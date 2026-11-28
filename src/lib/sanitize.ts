@@ -129,6 +129,7 @@ export const ALLOWED_LINK_HOSTS = new Set([
   'www.gns.cri.nz',
   'www.jsee.ir',
   'www.ign.es',
+  'earthquake.usgs.gov',
   // Il codice aperto del sito
   'github.com',
   'www.gnu.org',

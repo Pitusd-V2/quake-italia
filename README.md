@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 268 fonti in 24 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 291 fonti in 25 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -276,6 +276,34 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Bindi, D., Pacor, F., Luzi, L., Puglia, R., Massa, M., Ameri, G. & Paolucci, R. (2011). Ground motion prediction equations derived from the Italian strong motion database. Bulletin of Earthquake Engineering, 9(6). Versione dell’autore ad accesso aperto su Earth-prints (INGV), handle 2122/7515 — [link](https://doi.org/10.1007/s10518-011-9313-z)
 - Priolo, E. e altri (2020). Seismological analyses of the seismic microzonation of 138 municipalities damaged by the 2016–2017 seismic sequence in Central Italy. Bulletin of Earthquake Engineering, 18(12) — [link](https://doi.org/10.1007/s10518-019-00652-x)
 - Zhu, C., Cotton, F., Kawase, H., Haendel, A., Pilz, M. & Nakano, K. (2022). How well can we predict earthquake site response so far? Site-specific approaches. Earthquake Spectra, 38(2) — [link](https://doi.org/10.1177/87552930211060859)
+
+#### Foreshock: le scosse che si riconoscono solo dopo
+
+*Le basi* · [leggi l’articolo](contenuti/articoli/foreshock.mdx)
+
+- Amato, A. (INGV) — Alcune riflessioni in caso di una sequenza sismica come quella di Sora-Balsorano del 7 novembre 2019. Blog INGVterremoti, 11 novembre 2019 — [link](https://ingvterremoti.com/2019/11/11/alcune-riflessioni-in-caso-di-una-sequenza-sismica-come-quella-di-sora-balsorano-del-7-novembre-2019/)
+- INGVterremoti — L’inizio e la fine della sequenza sismica dell’Aquila, 9 novembre 2014 — [link](https://ingvterremoti.com/2014/11/09/linizio-e-la-fine-della-sequenza-sismica-dellaquila/)
+- INGV — Catalogo dei terremoti, servizio FDSN: scosse di magnitudo 3 o più entro 25 km dall’Aquila, ottobre 2008 – 6 aprile 2009 (consultato il 28 novembre 2026) — [link](https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&starttime=2008-10-01&endtime=2009-04-06T02:00:00&minmag=3.0&lat=42.35&lon=13.38&maxradiuskm=25)
+- INGV — Catalogo dei terremoti, servizio FDSN: scosse di magnitudo 5,4 o più in Italia centrale, agosto–ottobre 2016 (consultato il 28 novembre 2026) — [link](https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&starttime=2016-08-01&endtime=2016-10-31&minmag=5.4&lat=42.8&lon=13.2&maxradiuskm=40)
+- INGV — Catalogo dei terremoti, servizio FDSN: scosse di magnitudo 2 o più entro 20 km dall’epicentro di Amatrice, 1–24 agosto 2016 (consultato il 28 novembre 2026) — [link](https://webservices.ingv.it/fdsnws/event/1/query?format=text&orderby=time-asc&starttime=2016-08-01&endtime=2016-08-24T01:36:00&minmag=2.0&lat=42.6983&lon=13.2335&maxradiuskm=20)
+- Dipartimento della Protezione Civile, Io non rischio — Terremoto: cosa fare — [link](https://iononrischio.protezionecivile.it/it/preparati/terremoto/cosa-fare/)
+- USGS — What is the probability that an earthquake is a foreshock to a larger earthquake? — [link](https://www.usgs.gov/faqs/what-probability-earthquake-a-foreshock-a-larger-earthquake)
+- USGS — Catalogo ComCat, servizio FDSN: terremoti di magnitudo 6,5 o più al largo del Giappone, 1–12 marzo 2011 (consultato il 28 novembre 2026) — [link](https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=2011-03-01&endtime=2011-03-12&minmagnitude=6.5&minlatitude=35&maxlatitude=41&minlongitude=140&maxlongitude=146)
+- Jordan, T. H., Chen, Y.-T., Gasparini, P., Madariaga, R., Main, I., Marzocchi, W., Papadopoulos, G., Sobolev, G., Yamaoka, K. e Zschau, J. (ICEF, 2011). Operational Earthquake Forecasting. State of Knowledge and Guidelines for Utilization. Rapporto della commissione internazionale nominata dalla Protezione Civile; pubblicato su Annals of Geophysics, 54(4), doi 10.4401/ag-5350 — [link](https://rischi.protezionecivile.gov.it/static/b263aeefdd6803efac719b5a4131b912/ICEF_FinalReport_enpdf.pdf)
+- Marzocchi, W. e Zhuang, J. (2011). Statistics between mainshocks and foreshocks in Italy and Southern California. Geophysical Research Letters, 38(9), L09310 — [link](https://doi.org/10.1029/2011GL047165)
+- Trugman, D. T. e Ross, Z. E. (2019). Pervasive Foreshock Activity Across Southern California. Geophysical Research Letters, 46(15), 8772–8781 — [link](https://doi.org/10.1029/2019GL083725)
+- van den Ende, M. P. A. e Ampuero, J.-P. (2020). On the Statistical Significance of Foreshock Sequences in Southern California. Geophysical Research Letters, 47(3), e2019GL086224 — [link](https://doi.org/10.1029/2019GL086224)
+- Mignan, A. (2014). The debate on the prognostic value of earthquake foreshocks: A meta-analysis. Scientific Reports, 4, 4099 — [link](https://doi.org/10.1038/srep04099)
+- McLaskey, G. C. (2019). Earthquake Initiation From Laboratory Observations and Implications for Foreshocks. Journal of Geophysical Research: Solid Earth, 124(12), 12882–12904 — [link](https://doi.org/10.1029/2019JB018363)
+- Kato, A., Obara, K., Igarashi, T., Tsuruoka, H., Nakagawa, S. e Hirata, N. (2012). Propagation of Slow Slip Leading Up to the 2011 Mw 9.0 Tohoku-Oki Earthquake. Science, 335(6069), 705–708 — [link](https://doi.org/10.1126/science.1215141)
+- Gulia, L. e Wiemer, S. (2019). Real-time discrimination of earthquake foreshocks and aftershocks. Nature, 574, 193–199 — [link](https://doi.org/10.1038/s41586-019-1606-4)
+- Gulia, L., Wiemer, S. e Vannucci, G. (2020). Pseudoprospective Evaluation of the Foreshock Traffic-Light System in Ridgecrest and Implications for Aftershock Hazard Assessment. Seismological Research Letters, 91(5), 2828–2842 — [link](https://doi.org/10.1785/0220190307)
+- Dascher-Cousineau, K., Lay, T. e Brodsky, E. E. (2020). Two Foreshock Sequences Post Gulia and Wiemer (2019). Seismological Research Letters, 91(5), 2843–2850 — [link](https://doi.org/10.1785/0220200082)
+- Gulia, L. e Wiemer, S. (2021). Comment on “Two Foreshock Sequences Post Gulia and Wiemer (2019)”. Seismological Research Letters, 92(5), 3251–3258 — [link](https://doi.org/10.1785/0220200428)
+- Dascher-Cousineau, K., Lay, T. e Brodsky, E. E. (2021). Reply to “Comment on ‘Two Foreshock Sequences Post Gulia and Wiemer (2019)’”. Seismological Research Letters, 92(5), 3259–3264 — [link](https://doi.org/10.1785/0220210059)
+- van der Elst, N. J. (2021). B-Positive: A Robust Estimator of Aftershock Magnitude Distribution in Transiently Incomplete Catalogs. Journal of Geophysical Research: Solid Earth, 126(2), e2020JB021027 — [link](https://doi.org/10.1029/2020JB021027)
+- Gulia, L., Wiemer, S., Biondini, E., Enescu, B. e Vannucci, G. (2024). Improving the Foreshock Traffic Light Systems for Real-Time Discrimination Between Foreshocks and Aftershocks. Seismological Research Letters, 95(6), 3579–3592 — [link](https://doi.org/10.1785/0220240163)
+- Spassiani, I., Falcone, G., Murru, M. e Marzocchi, W. (2023). Operational Earthquake Forecasting in Italy: validation after 10 yr of operativity. Geophysical Journal International, 234(3), 2501–2518 — [link](https://doi.org/10.1093/gji/ggad256)
 
 #### Perché l’Italia trema
 
