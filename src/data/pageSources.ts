@@ -54,6 +54,11 @@ export const RUMOR_SOURCES: Source[] = [
   { label: 'INGV — La magnitudo del terremoto del 30 ottobre 2016', url: 'https://ingvterremoti.com/2016/10/31/la-magnitudo-del-terremoto-del-30-ottobre-2016/' },
   { label: 'USGS — Earthquake Facts & Earthquake Fantasy (in inglese)', url: 'https://www.usgs.gov/programs/earthquake-hazards/earthquake-facts-earthquake-fantasy' },
   { label: 'USGS — Can you predict earthquakes? (in inglese)', url: 'https://www.usgs.gov/faqs/can-you-predict-earthquakes' },
+  { label: 'INGV — Over 15,000 earthquakes in Italy in 2025, comunicato stampa, 2026 (in inglese)', url: 'https://www.ingv.it/en/urp-press/Press-office/Press-releases/Over-15-000-earthquakes-in-Italy-in-2025' },
+  {
+    label: 'USGS — Why are we having so many earthquakes? Has naturally occurring earthquake activity been increasing? (in inglese)',
+    url: 'https://www.usgs.gov/faqs/why-are-we-having-so-many-earthquakes-has-naturally-occurring-earthquake-activity-been',
+  },
   { label: 'Il Post — La bufala sul governo che avrebbe abbassato la magnitudo del terremoto, 2016', url: 'https://www.ilpost.it/2016/08/26/magnitudo-terremoto-bufala/' },
   { label: 'Focus — Terremoto: perché i dati sulle magnitudo sono diversi', url: 'https://www.focus.it/scienza/scienze/terremoto-perche-i-dati-sulle-magnitudo-sono-diversi' },
   {

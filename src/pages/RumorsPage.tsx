@@ -29,6 +29,7 @@ export const RUMORS: Rumor[] = [
       'Oggi nessuno al mondo sa prevedere un terremoto, cioè dire giorno, luogo e forza di una scossa futura. Né l’INGV né nessun altro.',
       'Gli scienziati possono solo dire quanto è probabile, in molti anni, un terremoto forte in una zona: per questo esistono le zone sismiche.',
     ],
+    more: { to: '/capire/la-profezia-su-roma', label: 'La storia della «profezia» su Roma dell’11 maggio 2011' },
   },
   {
     id: 'sciame',
@@ -46,6 +47,17 @@ export const RUMORS: Rumor[] = [
     answer: [
       'Le scosse piccole liberano pochissima energia. Per arrivare all’energia di una sola scossa di magnitudo 6 servirebbero circa 32.000 scosse di magnitudo 3, e scosse così, in una stessa zona, non ce ne sono mai abbastanza.',
     ],
+  },
+  {
+    id: 'aumentati',
+    says: '«Ormai ci sono terremoti tutti i giorni: una volta non era così.»',
+    verdict: 'falso',
+    answer: [
+      'Il catalogo dell’INGV oggi conta circa 16.000 terremoti l’anno, quasi dieci volte quelli del 1985. Ma la Terra non trema di più: le stazioni sismiche sono molte di più e registrano migliaia di scosse piccolissime, che nessuno sente e che prima sfuggivano.',
+      'Le scosse che si sentono non sono aumentate. Contando sempre dalla stessa magnitudo e togliendo le repliche, le scosse di magnitudo 4 o più sulla terraferma italiana sono più o meno le stesse dal 1960 a oggi. Ci sono anni con molte più scosse, come il 2016 di Amatrice e Norcia, ma finita la sequenza il ritmo torna quello di prima.',
+      'Sembra di più anche perché oggi ogni scossa diventa subito una notizia. Un aumento vero c’è, ma è locale: ai Campi Flegrei, con il bradisismo, dal 2019.',
+    ],
+    more: { to: '/capire/i-terremoti-sono-aumentati', label: 'Leggi l’analisi completa, con i dati del catalogo' },
   },
   {
     id: 'tempo',

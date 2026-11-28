@@ -143,7 +143,7 @@ come sono scritte negli articoli; dove c’è «e altri», l’elenco completo d
 Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se manca qualcosa.
 
 <details>
-<summary><strong>Fonti degli articoli di «Capire» — 258 fonti in 23 articoli</strong></summary>
+<summary><strong>Fonti degli articoli di «Capire» — 268 fonti in 24 articoli</strong></summary>
 
 #### Cos’è un terremoto
 
@@ -519,6 +519,21 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - Pignone, M. e altri (2022). Public earthquake communication in Italy through a multi-source social media platform: The INGVterremoti experience (2010–2022). Frontiers in Earth Science, 10 — [link](https://doi.org/10.3389/feart.2022.1003867)
 - Gardner, J. K. & Knopoff, L. (1974). Is the sequence of earthquakes in Southern California, with aftershocks removed, Poissonian? Bulletin of the Seismological Society of America, 64(5) — [link](https://doi.org/10.1785/BSSA0640051363)
 
+#### 11 maggio 2011: la profezia su Roma che Bendandi non aveva fatto
+
+*Miti e verità* · [leggi l’articolo](contenuti/articoli/la-profezia-su-roma.mdx)
+
+- INGV — Terremoto a Roma l’11 maggio 2011 (domande e risposte, 14 aprile 2011) — [link](https://www.ingv.it/stampa-urp/ufficio-stampa/news/terremoto-a-roma-l11-maggio-2011)
+- Dipartimento della Protezione Civile — 11 maggio: terremoto a Roma? Le risposte del Dipartimento. Protezione Civile Magazine, anno 1, n. 2, marzo-aprile 2011, pp. 12–15 — [link](https://www.protezionecivile.gov.it/static/3effa17b990b3fa182ff6d9a444041d9/unico_2_cor.pdf)
+- INGV — Catalogo dei terremoti, servizio FDSN: eventi dell’11 maggio 2011 in Italia e mari vicini (consultato il 28 novembre 2026) — [link](https://webservices.ingv.it/fdsnws/event/1/query?starttime=2011-05-11T00:00:00&endtime=2011-05-12T00:00:00&minlat=35&maxlat=48&minlon=6&maxlon=19&format=text)
+- Instituto Geográfico Nacional e Universidad Complutense de Madrid — Informe del sismo de Lorca del 11 de mayo de 2011 (luglio 2011) — [link](https://www.ign.es/web/resources/sismologia/www/lorca/Lorcainfo2011.pdf)
+- Nostro, C., Amato, A., Cultrera, G., Margheriti, L., Selvaggi, G., Arcoraci, L., Casarotti, E., Di Stefano, R., Cerrato, S. e May 11 Team (2012). Turning the rumor of the May 11, 2011, earthquake prediction in Rome, Italy, into an information day on earthquake hazard. Annals of Geophysics, 55(3), 413–420 — [link](https://doi.org/10.4401/ag-5559)
+- Lagorio, P. (2009). The epistolary archive of Raffaele Bendandi, a seismologist standing outside the institutions. Annals of Geophysics, 52(6), 651–656 — [link](https://doi.org/10.4401/ag-4621)
+- Crescimbene, M., Todesco, M., La Longa, F., Ercolani, E. e Camassi, R. (2023). The whole story: Rumors and science communication in the aftermath of 2012 Emilia seismic sequence. Frontiers in Earth Science, 10, 1002648 — [link](https://doi.org/10.3389/feart.2022.1002648)
+- Dallo, I., Elroy, O., Fallou, L., Komendantova, N. e Yosipof, A. (2023). Dynamics and characteristics of misinformation related to earthquake predictions on Twitter. Scientific Reports, 13, 13391 — [link](https://doi.org/10.1038/s41598-023-40399-9)
+- Fallou, L., Bossu, R. e Cheny, J.-M. (2024). Prebunking earthquake predictions on social media. Frontiers in Communication, 9, 1391480 — [link](https://doi.org/10.3389/fcomm.2024.1391480)
+- Toselli, P. (CeRaVoLC) — 11 maggio 2011, allarme terremoto a Roma: nascita e sviluppo di una leggenda metropolitana. Focus.it, 9 maggio 2011 — [link](https://www.focus.it/scienza/scienze/terremoti-leggende-metropolitane-roma-11-maggio-2011-metropolitani-541224-1554)
+
 #### Il «mal da terremoto»
 
 *Vivere un terremoto* · [leggi l’articolo](contenuti/articoli/mal-da-terremoto.mdx)
@@ -537,7 +552,7 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 </details>
 
 <details>
-<summary><strong>Fonti delle pagine e delle funzioni del sito — 27 fonti</strong></summary>
+<summary><strong>Fonti delle pagine e delle funzioni del sito — 29 fonti</strong></summary>
 
 #### Cosa fare in caso di terremoto
 
@@ -564,6 +579,8 @@ Questa parte si aggiorna da sola con `npm run crediti`, e la build si ferma se m
 - INGV — La magnitudo del terremoto del 30 ottobre 2016 — [link](https://ingvterremoti.com/2016/10/31/la-magnitudo-del-terremoto-del-30-ottobre-2016/)
 - USGS — Earthquake Facts & Earthquake Fantasy (in inglese) — [link](https://www.usgs.gov/programs/earthquake-hazards/earthquake-facts-earthquake-fantasy)
 - USGS — Can you predict earthquakes? (in inglese) — [link](https://www.usgs.gov/faqs/can-you-predict-earthquakes)
+- INGV — Over 15,000 earthquakes in Italy in 2025, comunicato stampa, 2026 (in inglese) — [link](https://www.ingv.it/en/urp-press/Press-office/Press-releases/Over-15-000-earthquakes-in-Italy-in-2025)
+- USGS — Why are we having so many earthquakes? Has naturally occurring earthquake activity been increasing? (in inglese) — [link](https://www.usgs.gov/faqs/why-are-we-having-so-many-earthquakes-has-naturally-occurring-earthquake-activity-been)
 - Il Post — La bufala sul governo che avrebbe abbassato la magnitudo del terremoto, 2016 — [link](https://www.ilpost.it/2016/08/26/magnitudo-terremoto-bufala/)
 - Focus — Terremoto: perché i dati sulle magnitudo sono diversi — [link](https://www.focus.it/scienza/scienze/terremoto-perche-i-dati-sulle-magnitudo-sono-diversi)
 - Dipartimento della Protezione Civile — Domande e risposte sui Campi Flegrei — [link](https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/campi-flegrei/il-bradisismo-ai-campi-flegrei/domande-e-risposte/domande-e-risposte-sul-rischio-vulcanico-e-il-bradisismo-ai-campi-flegrei/)

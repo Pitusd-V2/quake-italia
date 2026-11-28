@@ -127,7 +127,7 @@ Regola in più: niente valutazioni sul singolo edificio, sempre il rimando a un 
 |---|---|---|---|---|
 | 71 | Esiste il «tempo da terremoto»? | Il caldo annuncia le scosse? | Analisi propria dei dati INGV ed ERA5; 15 fonti | ✅ ★ |
 | 72 | Lo stipite della porta e il «triangolo della vita» | Dove ripararsi davvero durante una scossa? | Scritto: `stipite-e-triangolo-della-vita` (25/11/2026) | ✅ ★ |
-| 73 | 11 maggio 2011: la profezia su Roma | Come nasce e muore una falsa previsione | INGV (nota del 2011); *(da individuare)* | 🆕 ★ |
+| 73 | 11 maggio 2011: la profezia su Roma | Come nasce e muore una falsa previsione | Scritto: `la-profezia-su-roma` (28/11/2026), da leggere | ✅ ★ |
 | 74 | La Luna e le maree | La Luna piena fa tremare? | Ide et al. (2016) | 🆕 |
 | 75 | I terremoti sono aumentati? | Perché sembra che oggi tremi di più? | Scritto: `i-terremoti-sono-aumentati` (25/11/2026), analisi propria (catalogo INGV e HORUS) | ✅ ★ |
 | 76 | Le piccole scosse «scaricano» energia? | Meglio tante piccole che una grande? | Gutenberg-Richter; INGV | 🆕 |
